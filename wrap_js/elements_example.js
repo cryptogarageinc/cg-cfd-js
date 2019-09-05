@@ -1,0 +1,476 @@
+//
+// elements_example.js
+// サンプルコード
+//
+import {
+  GetWitnessStackNum,
+  AddSign,
+  UpdateWitnessStack,
+  CreateMultisig,
+  GetSupportedFunction,
+  CreateUnblindedAddress,
+  GetConfidentialAddress,
+  GetUnblindedAddress,
+  CreateElementsSignatureHash,
+  ElementsCreateRawTransaction,
+  BlindRawTransaction,
+  UnblindRawTransaction,
+  SetRawIssueAsset,
+} from "./build/Release/cfd_js"
+import {
+  CalculateEcSignature,
+} from "./build/Release/cfdtest"
+
+let supportFunctions
+{
+  console.log("===== Supported Function =====")
+  const resStr = GetSupportedFunction()
+  supportFunctions = JSON.parse(resStr)
+  console.log("*** Response ***\n", supportFunctions, "\n")
+}
+if (!supportFunctions.elements) {
+  console.log("*** Elements not supported. exit. ***\n")
+} else {
+  const NET_TYPE = "testnet"
+  const CONTRACT_CONDS = {
+    fundAmt: 5000000000,    // fix fund amount (unit:satoshi), which is unconcerned fee
+    feeAmt: 8000,           // fix fee amount (unit:satoshi) each transaction
+    payAddrAlice: "tb1qmtjru45n7v8rklpan2vfzms7gex23d780lxkl2",       // payment address for alice (your party)
+    payAddrBob: "tb1qj52arfpmwxyjwddvjhjy45nkl725h583es0mef",         // payment address for bob (couter party)
+    chgAddrAlice: "tb1q6vugzhd50r3yxgejxym0yzylkpkh2qqcvjuqp4",       // change address for alice (your party)
+    chgAddrBob: "tb1qy7c7fqkgags3g6j0r8naj6c8fydcaz766d0skr",         // change address for bob (couter party)
+    cetxDelay: 144,         // delay(144) num of blocks for a day
+  }
+  console.log("\n===== CONTRACT_CONDS =====\n", CONTRACT_CONDS, "\n")
+
+  // CreateMultisig
+  let createMultisigResult
+  {
+    console.log("\n===== CreateMultisig =====")
+    const createMultisigParamJson = {
+      "nrequired": 2,
+      "keys": [
+        "0205ffcdde75f262d66ada3dd877c7471f8f8ee9ee24d917c3e18d01cee458bafe",
+        "02be61f4350b4ae7544f99649a917f48ba16cf48c983ac1599774958d88ad17ec5"
+      ],
+      "network": NET_TYPE,
+      "addressType": "bech32"
+    }
+    console.log("*** Request ***\n", createMultisigParamJson)
+    const resStr = CreateMultisig(JSON.stringify(createMultisigParamJson))
+    createMultisigResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", createMultisigResult, "\n")
+  }
+
+  //ElementsAPI -------------------------------------------------------------------
+  let createElementsP2pkhAddressResult
+  {
+    console.log("\n===== createElementsP2pkhAddress =====")
+    const createAddressParamJson = {
+      "pubkeyHex": "0279BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798",
+      "elementsNetwork": "liquidv1"
+    }
+    console.log("*** Request ***\n", createAddressParamJson)
+    const resStr = CreateUnblindedAddress(JSON.stringify(createAddressParamJson))
+    createElementsP2pkhAddressResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", createElementsP2pkhAddressResult, "\n")
+  }
+
+  let createElementsP2shAddressResult
+  {
+    console.log("\n===== createElementsP2shAddress =====")
+    const createAddressParamJson = {
+      "scriptHex": "210279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798ac",
+      "elementsNetwork": "liquidv1"
+    }
+    console.log("*** Request ***\n", createAddressParamJson)
+    const resStr = CreateUnblindedAddress(JSON.stringify(createAddressParamJson))
+    createElementsP2shAddressResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", createElementsP2shAddressResult, "\n")
+  }
+
+  let getElementsConfidentialAddressResult
+  {
+    console.log("\n===== getConfidentialAddress =====")
+    const getAddressParamJson = {
+      "unblindedAddress": createElementsP2pkhAddressResult.unblindedAddress,
+      "key": "025476c2e83188368da1ff3e292e7acafcdb3566bb0ad253f62fc70f07aeee6357"
+    }
+    console.log("*** Request ***\n", getAddressParamJson)
+    const resStr = GetConfidentialAddress(JSON.stringify(getAddressParamJson))
+    getElementsConfidentialAddressResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", getElementsConfidentialAddressResult, "\n")
+  }
+
+  let getUnblindedAddressResult
+  {
+    console.log("\n===== getUnblindedAddress =====")
+    const getAddressParamJson = {
+      "confidentialAddress": getElementsConfidentialAddressResult.confidentialAddress
+    }
+    console.log("*** Request ***\n", getAddressParamJson)
+    const resStr = GetUnblindedAddress(JSON.stringify(getAddressParamJson))
+    getUnblindedAddressResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", getUnblindedAddressResult, "\n")
+  }
+
+  let ConfidentialTxHex = "020000000101319bff5f4311e6255ecf4dd472650a6ef85fde7d11cd10d3e6ba5974174aeb560100000000ffffffff020ae145e8632536e224757bd032e072746d30abf69b354988400edf39983f008793084922fb4232da7c9d12c88dcbf329175771bf4333bbbea23343e86023490253b4037400a34d389ced89874ab4fcd56b4a6b5d224c6fbe7e35598a27819b2c3c7a211976a9146a98a3f2935718df72518c00768ec67c589e0b2888ac01f38611eb688e6fcd06f25e2faf52b9f98364dc14c379ab085f1b57d56b4b1a6f0100000000004c4b40000000000000000000004301000173423ed95c29c059e93ee3becbd2a5e92cbf9e4ff5e54295c6602b7e997276141c367723a203679ef194e21280e652387926a586a3561ed9d3ec47b88eb18bb6fdcd0d602b0000000000000001373b0d3a0ae0e9b18d3b990f3050cd390391943ec0858a96a05f39900b2b46e60e7d9af5ebefecf46ada21a5cddb6d60b7df85d6896a4dfc2a3c0c452b7e1024805603253f2a1768c59d3dfce39234bec188a9b3f795f0dde4dafdc477942ee36698556e39eecf5c327cece7e05b912d254fc0cbd83dfb3f41fdc8b8ce43221cb06a82be5e05891517a78c3b9ca0c55266a9111603dc0ef78e19761448403cf4b104b2a4acd0bdecb45c3b35c8eaa024a5db7891c1a8d3282c3f7406e770ac9a6fe5b7e7a6abb1446badbf1feb0a1ab707d6ddee05eaf62ac45405ee45be142027cce0ca05d92368d30a0a9423da5d71edb75c221763c8a6703e47d1a958fe7447f9c8d8aadf1c29b45d3cc32d4ff40cca9c734347e0c5549f98d8b461141db694b6bda0f71d6891561ef4e000917ea0ab571d13ed81ede908b34dccb7e1c9f51e151d912bfeeaddc848066bf04c8eb1751ec15bbed66f8e787db2a152161f79f9a459870c713684c3f2c9537fbf7c0f932e47eb478fb78e9cb98a6a0d64a08b61070d63e244eacb01e12d2e6cc03a312589130294e4dad665051182367b4fb468f135ae89a77670365317d0e72a992dccbeca32519f755686ca218572e9a95ce129c09dd5209202cf4a234a947738efcfe4fa1009e02267ecfdc434a3bbda321664c63420607f2493d562df2ad42d3eb5dfcf5cd59820b27f1f87d4cb887ba833c73ecccf90d61d13f67484c0169cf27bca2ac6ce4898b07a035508382b932395eaaaff852be4faabee9023679a2652892d2e43e4f77bed08a25a5b3576a318c2e017c1a4f05597760b0ae7b484a0fd32777ebeeaa4ee94f8475cbde545469f254d21b36dbd590fc6daf68b58f694cfd42054e8c03fc4f72631a977ed5a6097516c56ebd6bde09b4db18a8577e3d948660b0ad2f3f86c75e97d6845ee98874dd88a934bf5f7b43fc029f0cf04a2e91caa881d87875fdd32c9f9097f29e9e72d08efad9c2399eb58d6df098cf004845360a8b25d3087c0cf7494aa42f872ee72dae4c8adc3060a141d65d029031955906acd9b7b60407bd696a20688d25109cb0055c43f3262b67c4c6d0da1cd6d60388dcfe5431df7c1a32a9b60bd930b70bf79138c25f38604022d5eaec14f175aab58a4e044d1fe4c6918459fd30e73dab508b94fba643d86dd0e6243767ac88ccd28d433496e71a709c6c52c0076ce7ed6450d2b3b322a691e000011d70daef0fe3b1cbc73f05fe631d1bcd1360b9234469849b08d68f9fac265be8ea2815dc60a53fd1eeb9d3bd55896fa3c5743f587af8c799a6788d083d1ba9d96223735cad17ac046b75d975765c7817a5027b4999bda9e4a26aa020b63595d6f3b50f0ade2b4d66235e3dd8a2840aa0b218aae98218b2fa9b6a7f9ab217f2c43279bf8f260f1dbc31f96e4fded5d666bb29fe66e81ff2642b9de74c5b001d61619e6b90d879059308b3c7e788537f4955e0eae16816063703a44a51de6d161820f71ca597213f4b48e5d3e2d79fafe6fc42914f232822f6ba5d0df88ef3b9e824ec1d0a2a59704a0780562513540a864c650fd9a293e870e556771ececc756ab9e33b166a31933446a066de03fa77f0b41b41fcb0708ce7bf03d5a6e3e6a3baf1df5b1a266ca7670a15666c8dcd62e712ea5f5d7245dd1e1987da48a08241348ab3dd84a6c386cf5b3f080bcf1dec3d843462cd24955794fe76a6865b1368a25398540d2c1ce1c2149fae9757da0addbe681fea4a314e3b52de9d73b228ca24a0c53aed9f715c95f3f6795bbfecf2ed88c3cda95585a89a85302862269bf99676a95da18d8c5cddcf27f4775f629581435a961bd929609db6c08a4b600b713bfe7f313f917cc9df9fd73c64119aafdba79163524d6d9ba217d8119cb3189ba47680a007e30522f6171141e330e91c8f6e0958bc0d0324853fd82232e784dd56d8a20cf36308975b1a510672478181e64f1900a4fc16927d35700e6d8b8c8b8e458d62992508b579cb2b36a870d92804798d9f5ca2113ab088fd06d7b04cf9a2f9dc0aa7d23f3586faca692fc733d0dbcdc66d0095b801feb3934010f5e8034e08af89812c64d79570f11d056018201386a97730895f31c58e21079c3ab720d0a60f1f9b12310687fa12a02463848b06aff07a6e9e2b4cd4774e298f3eaa7074e77395e0264eccf4addd435dd64212da06ebe02ac7c19237d2972c2f7bb3fc6a796b99a0eeabedfe35c6771e7a784d314b041a0ec1116da39fe604ae479175b609f16832ee69594ea738ea300e693e82db41d2c677d32d523b8233b2bdbc3236d1b74c17e1e20100460a452e03df52868e435688078600fe1e76be1c651425b097dc6b15b1fcf056e33a11ca33e03db9fec4a0f8c8b2762858f4ed4996120d239f57b67273d8d9e1422f81557fbf2b435e96c437a06e68ddec059b2a88646b8a81c12f42a08b311d15c0f8cda3857f48010abac55cee2df7f2195726c1d012c8602b164430cf040d5a78308d8d2752a87de8c46cff8cec0e54a5d40853f780273682e66fa507642f2e0888a110068444105bdfa7a450471a395dbaa9b30ca32c8d20faeeb1ebfd4b7cd0580deae21cbc986ad3165562035b1e0b6c2070751fc56431c046cc291e4d7870fce5535e049d39861bda942a54bdfe971ef23f2cba394136b3c0562881b6daf1ff4d3d28a75b3faa4e0dca313a0c57d8115310ce12c85a309a4b94f4e72a1dba9c3954ab5d7c2995b78eb349c39bba9e47411f9fd2eae450dafe176853daee6fd09578932d049fd600562d16d851944a6b49f6dfd001b90bee895604d9369c338cb0746c62ac7a1ccd9957a38f3c399d6a66a4116227dc0a0e82d43656317fc94f74eb8e5fe46b9dfc82157abf0dfe3186b0d36c920de8f50db89bdf73aba20241583062366bf4502266afafd649891651ebc2b7e838a9027db40320a307f35eb17e413e9af0cf5593ad465107096d7520834a8e66fc93d268bef0f1308899e98cc039b2766e2f40c671355239d5cbd1478fee223c81f0f4c8b2c30ea50319f58f52ba9fd715bc0856b2225906fa9c4fd0c5936c2df6be8e32dafcc3b1759e94cd1b75e7e1d8366661b599b38072b25900ed9dfeecbc893b0f049a731b7a8c35473cdf6a0962872c2c03a3074ac73502edbbbbbfc0ec8c012e3f994300c8e329a4ae6af970aa590c60541c50a96570ff749c022da5b47e5424afec3484185137dc3f44e4fed022c238ee2d6200171dd09555851fb2b07d3b5814a2c9a50383dc9ecb5f9a29bd18d1359a6c4b914fd0e13c16a6f45faf39c54cad0ff25f61c65ab6d02017bf81ca1e8969dcb52f91be435bea6f9d49e214d11ef16001072cbe3c6e32cce57c0ee0b050026939c349b2280eb16247265039325a623b8e05c93bb9ac1f71ba0725258eddae1fd99dd9cd941cfdd29a8601209547b6db8ba8834654046168a7787e2bf32e7971e5e2c710e9e426507ccf91cebbf24ff154568ef510419dd4fe88bd214c3d07b67fc624a458170bcc7f5f4d7cd1c83b970a1e0524a9510a601548555356a30eb5091e69df721ae3fa3a47f9e2f60132cb9457dfbe64102067978744fbcffb273b0c1c6fa8605de4991ba9dfe008d5fb9abb6414003e42772e88e83530e43c84431c7bc1994b05a75d6b13c046a4943457593f017fbe3054f4f618be6680d44af44c4036374251e6574779147d4b8f52372bb3f9cd1e72c1bc7f85577ffef629d7104f83269036244ce1ec10a0062c9222fddeadf891532b86c5c70598576cada11daff2d5ffab79bd70599011613a1a393d303e9383a2744224469ec6a1605cc137c96f047c90beaa676e61f9c773d3ce2b90e98d6eb53cfb5d2f49b2059a8a408a7e1dd1a5cdd1e9a48c931cd99fd2be75bdfce4ec7d1dac0f9a45a6894ea60bd6c81dc57533b5e67a34ba7be7d9f189b6c2b672bc8e474381536760f3d18819b5534d308bdb8baacf332540738a47bc80e82f23389c0d38c6a32107933912cb3c675c9807252ab2de793eaf225efc93453579879e60a6ff22c5ffde2ca7b01451e8e8c2c01711c5589b6612d15c2b28400b6f68cf8a20a97d85972d30b5bcd02daa032975646e2250997439b26b0928ed627983f704c1494cec4e60fdf45ce6908f22cee977c78df7ed89300fb4ff31872847b0001d610f8501c2f4c5d931130d6f692a486f0653da71dbb7e00a2de843fba42df811ac30b4768e8f645d9cd0e8d3674c72cf40b3748217f17ab1fcf77ca6aba58ee80fd17c60ceb91799fb03003ed39d1a8c8eecc8585342f2335f42103bbe39c9aa4f32afa65e801dd8ba7565b95d1068e53dc88de1a977642eacc6715aa713dba151cd3ac9e8c6647afb125a92278627700846811a29511a1454cefff17e46c1fabfd3dc41c830f22d1e034be21556e1ce87dc6ceed03c0c131767c49914cbfe87290169f3d1f523ee2f9d404b80a280883b99522f0d2239701f2a893c4eeaa4b6a360cd40276c8b32fcf26c9c0ecc462ffa02d0b360d543a93546a6801997707b7a3e271caaedc156a48a707d1e82389d34fa38dad220d83a0d599ac6e5350fc5e10172c226a0c994220add343b8d620ac9ed0c9e3d7fe423ca0a345e8111aa1a7af1a5b4055c85e0e9d85c823648bb6d85ee7f728d7ce8207ecdb9f11674bd164503c0de65107550386bb8dcbbc8cee18b262ee6ba6b5e746afffe81e91081ab6553c92636c86e4f2e2b5ab40f4620df839e7e0827046ead9f3f7360bd4b91bd6d207ad1d07db2e9c09e8fd8ab8a6e35d3e6d50abd013e523704a0abadf364204e381557708f8ce5bf01405268103106bcbfcd5de6361550d9b490b74e7e13a0428313f4b98effa287f33bc86afd524dae49c55652392f60146bc1bb1c3fd1439e2672bcf8102cdd96b5c9f0352b7a0a55e1c62aef8443cf076df77beb0f13e7933896c179f0ac2a7b4728ed9e40000"
+
+  let CreateElementsSignatureHashResult
+  {
+    console.log("\n===== CreateElementsSignatureHashResult =====")
+    const signatureHashParamJson = {
+      txHex: ConfidentialTxHex,
+      // TODO: modify after CreateRawElementsTransaction
+      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      txinVout: 1,
+      pubkeyHex: '020ff7000e2754f34aeb894f1e4dc985e3f9742b194fac2350f963dfa219f177c4',
+      amount: 13000000000000,
+      hashType: 'p2pkh'
+    }
+    console.log("*** Request ***\n", signatureHashParamJson)
+    const resStr = CreateElementsSignatureHash(JSON.stringify(signatureHashParamJson))
+    CreateElementsSignatureHashResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", CreateElementsSignatureHashResult, "\n")
+  }
+
+  let getWitnessStackNum1
+  {
+    console.log("\n===== getWitnessStackNum1 =====")
+
+    // build json parameter
+    const getWitnessJson = {
+      txHex: ConfidentialTxHex,
+      isElements: true,
+      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      txinVout: 1
+    }
+    console.log("\n*** Request ***\n", getWitnessJson)
+    const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
+    getWitnessStackNum1 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", getWitnessStackNum1, "\n")
+  }
+
+  let addWitnessStack1
+  {
+    console.log("\n===== AddSign1 =====")
+
+    // build json parameter
+    const getWitnessJson = {
+      txHex: ConfidentialTxHex,
+      isElements: true,
+      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      txinVout: 1,
+      signParam: [
+        {
+          hex: "11111111",
+          type: "binary"
+        },
+        {
+          hex: "22222222",
+          type: "binary"
+        },
+        {
+          hex: createMultisigResult.witnessScript,
+          type: "redeemScript"
+        }
+      ]
+    }
+    console.log("\n*** Request ***\n", getWitnessJson)
+    const resStr = AddSign(JSON.stringify(getWitnessJson));
+    addWitnessStack1 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", addWitnessStack1, "\n")
+  }
+
+  let updateWitnessStack1
+  {
+    console.log("\n===== UpdateWitnessStack1 =====")
+
+    // build json parameter
+    const getWitnessJson = {
+      txHex: addWitnessStack1.hex,
+      isElements: true,
+      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      txinVout: 1,
+      witnessStack: {
+        index: 1,
+        hex: "33333333",
+        type: "binary"
+      }
+    }
+    console.log("\n*** Request ***\n", getWitnessJson)
+    const resStr = UpdateWitnessStack(JSON.stringify(getWitnessJson));
+    updateWitnessStack1 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", updateWitnessStack1, "\n")
+  }
+
+  let getWitnessStackNum2
+  {
+    console.log("\n===== GetWitnessStackNum2 =====")
+
+    // build json parameter
+    const getWitnessJson = {
+      txHex: updateWitnessStack1.hex,
+      isElements: true,
+      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      txinVout: 1
+    }
+    console.log("\n*** Request ***\n", getWitnessJson)
+    const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
+    getWitnessStackNum2 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", getWitnessStackNum2, "\n")
+  }
+
+  let elementsCreateRawTransactionResult
+  {
+
+    console.log("\n===== ElementsCreateRawTransaction =====")
+    const paramJson = {
+      "version": 2,
+      "locktime": 0,
+      "txins": [{
+        "txid": "7461b02405414d79e79a5050684a333c922c1136f4bdff5fb94b551394edebbd",
+        "vout": 0,
+        "asset": "6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3",
+        "sequence": 4294967295
+      },
+      {
+        "txid": "1497e1f146bc5fe00b6268ea16a7069ecb90a2a41a183446d5df8965d2356dc1",
+        "vout": 1,
+        "asset": "ef47c42d34de1b06a02212e8061323f50d5f02ceed202f1cb375932aa299f751",
+        "sequence": 4294967295
+      }],
+      "txouts": [{
+        "address": "CTEw7oSCUWDfmfhCEdsB3gsG7D9b4xLCZEq71H8JxRFeBu7yQN3CbSF6qT6J4F7qji4bq1jVSdVcqvRJ",
+        "amount": 100000000,
+        "asset": "ef47c42d34de1b06a02212e8061323f50d5f02ceed202f1cb375932aa299f751"
+      },
+      {
+        "address": "2dxZw5iVZ6Pmqoc5Vn8gkUWDGB5dXuMBCmM",
+        "amount": 1900500000,
+        "asset": "6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3"
+      }],
+      "fee": {
+        "amount": 500000,
+        "asset": "6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3"
+      }
+    }
+    console.log("*** Request ***\n", paramJson)
+    const resStr = ElementsCreateRawTransaction(JSON.stringify(paramJson))
+    elementsCreateRawTransactionResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", elementsCreateRawTransactionResult, "\n")
+  }
+
+  let blindRawTransactionResult
+  {
+    console.log("\n===== BlindRawTransaction =====")
+    const paramJson = {
+      "txHex": "020000000001319bff5f4311e6255ecf4dd472650a6ef85fde7d11cd10d3e6ba5974174aeb560100000000ffffffff0201f38611eb688e6fcd06f25e2faf52b9f98364dc14c379ab085f1b57d56b4b1a6f0100000bd2cc1584c002deb65cc52301e1622f482a2f588b9800d2b8386ffabf74d6b2d73d17503a2f921976a9146a98a3f2935718df72518c00768ec67c589e0b2888ac01f38611eb688e6fcd06f25e2faf52b9f98364dc14c379ab085f1b57d56b4b1a6f0100000000004c4b40000000000000",
+      "txins": [{
+        "txid": "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+        "vout": 1,
+        "asset": "6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3",
+        "blindFactor": "fe3357df1f35df75412d9ad86ebd99e622e26019722f316027787a685e2cd71a",
+        "assetBlindFactor": "346dbdba35c19f6e3958a2c00881024503f6611d23d98d270b98ef9de3edc7a3",
+        "amount": 13000000000000
+      }],
+      "blindPubkeys": [
+        "02d570f84ffe5bdf7583400af2e6b9e219210ecf29a333757481cbca826ada8e16"
+      ]
+    }
+    console.log("*** Request ***\n", paramJson)
+    const resStr = BlindRawTransaction(JSON.stringify(paramJson))
+    blindRawTransactionResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", blindRawTransactionResult, "\n")
+  }
+
+  let SetRawIssueAssetResult
+  {
+    console.log("\n===== SetRawIssueAsset =====")
+    const paramJson = {
+      "txHex": "0200000000011cbdfb4c92e7c758d3dc1b53db0f1dd3426d7f9730eb545524fef1583cda06020000000000fdffffff03017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c1801000000000000000000036a0100017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c18010000000005f2eacc03d8f0342ad623743d5f15c76bbdb38b4388986e68681a20b15ec2f1997169b52f17a914feeb109e7e9fee99ce9ae550751e0c25d400dd8787017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c180100000000000052bc000000000000",
+      "isRandomize": false,
+      "issuances": [{
+        "txinTxid": "0206da3c58f1fe245554eb30977f6d42d31d0fdb531bdcd358c7e7924cfbbd1c",
+        "txinVout": 0,
+        "assetAmount": 1000000000,
+        "assetAddress": "CTEkixoGGeTsw1hEBJgCaVQwBNDYQ8c3Hr45hbVaZgiccXwG7QVy9CwiN4AwaDaweCh5GZQmJEpVDYww",
+        "tokenAmount": 500000000,
+        "tokenAddress": "CTEpRhbZfnFYaGcH6CACRDgvvUzMcqB2TLqcVr4mizQGesSU9gFwkvG1pEix27DCgypm9omVjEEYBuU8",
+        "isBlind":false,
+        "contractHash":"0000000000000000000000000000000000000000000000000000000000000000"
+      }]
+    }
+    console.log("*** Request ***\n", paramJson)
+    const resStr = SetRawIssueAsset(JSON.stringify(paramJson))
+    SetRawIssueAssetResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", SetRawIssueAssetResult, "\n")
+  }
+
+  let UnblindRawTransactionResult
+  {
+    console.log("\n===== UnblindRawTransaction =====")
+    const paramJson = {
+      "txHex": "020000000102b5e7e11dd2ae7ed6dfa754d406d240fe8cd0ab1e329cee6edbeffad5e54a4ac7000000006a47304402203d0d7240234aa446a08c1d6107789405c0f3499f4f5dd61fd7318ba58bb21bae02203d2e5a37c704c95af5801618edfb2184d80871b79a160f9dbc8a8e0a90467b380121030ab052e1482e9715c05301b07cf531d6a7e343bb508f0f2ba9126118c15be5bffdffffffd007d56e9e984c52b4e077487a711ff0c7126da52f254ea4d532dafd78748d2c0000000000fdffffff030b48263bdde648e0ba73cb63b44410ad1941fc1304bcba6665be398db23a702a300979f67b8612d871d2dbe646debe1c07717b0429f5afcc7889d84572e9657176d803430e3f6e47f856ef7a1b2928783e2ddcb8acff8e402e1d8c4c22b078e8ea36ea1976a91410eb66140b970b99b072d25fd4f07b4e88db32c088ac0bc322eb24c971bfd454fd61577b70eafab7a7c42f3b973cf57b3e56a002c4adb00802025d289a81f637f62c55500d6e439a9e13743ef7753d728866acc58b459b6d028a3e9de7bddcb400f3c1534270d9063dc465bd06a3da50278013a0ff4a5823b617a914862432e4a10eb1ca46c2e97525ab27a13abaffc987017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c18010000000000009da8000002000000000000000000024730440220761eb444887bd22ed0a3fc05caf4b9e74fa879db2b6cba70747f9aeae40848c00220070205b4817123234536efe00ec778240a87e5d8b5b9f9e155e892767ee922f20121026e3ab12d8a898ac99e71bbca0843cf749009025381a2a109cf0d1c2bfd5f86b300630200036507e368fd17b9db49f8f108b7dc78af4cbbdf67227d77658e2da045ea665cb0a34bcbf77b32c0b3dec83385b8d14a641e926951cf08099dc5e22205db641a8e5ca94ef7ea313435be5541e2b6a5b9b199750921f65dd1030fa4abde717a29bffd4d0b60230000000000000001ecb2010aa97ea3544b1ac0c9a3321a3f05c6accd4436f7944d670b15c32d3f0541ae8779ae3f6105b01085df24aa249b7d12238fa8a775f06815e2818eb4af3ef8f075d1f0d3fe89fd5567cc8c6b4cf4f48d11fea10809ca06f7bf47290c5182516a0d797fb43a80af28f221dd09628f21cb0b98e7b82567d8e28dc2b494c1dd248cc56a9307c39974da90050d2312cb2858e86de0d393ccfda7ba3b368729d4e9b3972393e05e6ccd623e8dd035205ba554c099948bd8992d20030e145b95e64c3d91f6e3217d099ba5a0a64fabe2f2172102097160ec40baee5f5db764abc2f666cc22c20258797d623f413e399a0377561633b68f2057ee74b1d2f1b040e49b5e3df38b612439d25ab332ef9aeec15e6292d84acf5a3faa4d4a7df5d9bea923340363ad0d6ced0e274adbc82c7cfb4801e37a16700925f6f2ff626f43c99817ffcf320070927037508c0372747ef66ba2021e0ac876c431e16a6919a77b5754ed3e321d30cd5e9df6b035d5842cde9c5e02d595ae299d2570b4236a53a0e5a55e5cd95d1f2bc1258ad2db2aeef8d36d16b8f7371cb38b13d6c28f2c8f0152b7e5a49282b8d95ac94d9a592ff0dd5a3fc1ec93fcb742c7cd4b67fa12ab3f69c7c4dcac75eb30a27a12bb82cdb714b6413386fad53609fc1cd455c33e127ce8451b690e62efcb09cc0735f4544dd288835db5d1dd731f0904a33817fa464fd3de8c09e235d36892b502703ab18e4037faab71cbf4ce02728194c4b296d9d1a1a6ba5702a0cb3741a19bb507cd2373f7ef865aa9a68159cf7963bed7ac92403ad7c8dbab0dd3ae8be3cdfc9be71f598195feb8bc332164c2207ef8b7cb6e42fc6501cf41768f39b849aa1b0c9e0f404a913867597cc7df9f88afe55c5e37d53aafde632449165feaf04a147ea3d18b3733e9d4b69e5478f42177486c881553c0c46df164b50814a5151df7b467cd366f9f5bf8171d5fb20e02e94b6f78f91b1bf6bb560cc761f4113759e1de2bc4e5a28085d9ead77ef95eaa481995162143125be8a497dd0d7e45b230c18cb0fe1c13de6849a37efba8a71b7cfab7a3b366de29f038654996c46b97f26cc04cd79b80e845a9f0fd9680c699c61eee46cca800507824d4b5aa053f02fb01ffc7bfa536510ff6964098a3de2bb57e07d7ee1ce1d03966821c06e7f85a0f517ec19eb64059d298ccea429d5bb88fb87aa26b9d97efe810be69e149a426f38fd151e37dabac83c7d42a64068c6d3772193d3cd5b139bc5002b20a046808c01bf506f82255f630aac431ae21b508d839018a6379ca53f27662b525699e9bc316984648961103006eda1de37e71e18078fd79acc7b161297712acb9a552f5f299161248fc328b965251501f44de37acd8ea968a5d38583a9a26b2fa7ee48553bbe24a4ba7ef730eaa741c06ea91367e9eef3840d4dfee1538031249975e83652a1533479b591106e5c2607161149c1b1f1ba7839a105753aeb4b899efa2064c9c9c971025d8e5572529da6b42ea615246b9910fa6560323bf56a6cbf652991145451c77a819e141594fdaa9125cf01e0623a22bc8015bb866e3c311e170bc5f8ee86b15e6a9b20c9bdd240ff75a95981fd03947f11f2c2baf01cf5697b3329c88c896eb508f6826ae1df45bb426156fcb20129f33af4880a28b0d7e894dd293a21527743ee21ff6981df4c875f827aae158c105e6f30c66958e10a5d8f8255ef5a958474fa67b711735deec717472667c1cfa068f77c7f7b2a7adfa38f4e465bae2658486fcfa608e1d03737c9213f68ee04305b64312ac43a1a9cbd16cd20daaf13b1d58587f075f72cf9bfb121693a8e27993e334f5a1627435eae39c5a23c7b0d880c85e672374b1eb480e6bcd8c0b505c94751a36a26fdd6f9f032681ecd5bc75b618cd11489863efcad774a0dab5dcc7c4c47583f373222e02bf6e21921d7cc641685ae021f049e5bf61ee9f5c98d30d3fc0f9fa112e378950e2f33195f2ec245ff614676b09dc932625a989089a6ce0ca6f36d49093d7a544b3255658ef88d49a6eb200c39caf55548a0680ee551239cf693fc2fc1be571bc6080ddba18f75ef318e329ef3e721001772af8f0b869d3b83339917c73d383f2f0fcade5e8f936bf09112c5664e57dcf622fe69f467a342cbfe692882fffc31d22ccae655fa2bc161718fd06c89395ff69c2933ba72ccac3505396a69ff899da2250f6cdf0031f6e7c6e394a0f3a57d078244f11c70bcc5a93aa4756749b12e188183c82aafc6da92236105334013afd315a6603713a43075b9d9fff3280a5a9de58a40adea4958edcc404ee4714c45a82ba16dcb199739003986c0c06176ab0569797f3be6eb7ccead4be4905cee9eede3f4ad83723f207e5e467718bd940b80424d79e3781958f22f778f90504dd5d374c898520170470e9fb4789d3af82f8e61ea5b13829138ece20451a35d8b876694674c8d891bcc1fb44f188eda12bbaf1861480afa931dde5c1017d8e75d8c732df05d4859d4d0d72cdd8361bcaa8e5e13a2dcac0cc6a93bd94523ad054de6fe90de0b69f5410b3c8e44fcc32a9c7f475e42ece13bbd94c1d86986fb5db804ffbc72a51ad6fe058a1fa50690cd4ba4f93fbde3bedb3e98ff3803e3947ef3f442fb59932e5bf3e8ad1db8066a947213e9f956c4b615633668453dd5ad6a3db9b5d9a60ba86881c2c414da9e566a2198c2b1041432e21f1098fd904eb6cd06e24adfe31c8151d238598a7f399f6cb08090fa786d76dbc16c5f06ea6bc10e44ab042aa1507fc290b9185dc17cf78f2eb836e89eb12ca42d30fb96c097e0d362e91c3414606c5f29ac1683ae90b2ef28cf0124186135b46780caee8589d1b733f7e5ac74488b273451012d46c72e85163b428a056b4812595e046b650df7a08cc343503cc1f5bf828c8859854b5c61629d212a06acda00ce4d88b4fbf2fc0e3948d16974a9aadc38c61fb04352896e2926963c60551fc4e5c91db4887551039718321fb4f2df41cfe5f868ee0884eccd2c8854f5eea49e5fac2be54fdd2908fb1c24c4362482a44c82086d72907ff6a80cb8f7be17ce86735681002dd0031d6d011157696dad161a129f7984da3f97ee43718e9c67499d2cdc8bec6f255bd1841ccea5870d3d20d3b69b507e3b364d1d33b4d86dbce407c1e2b4bde37724ed022dc9fffc4d85a80aaf7d0ffcc0d82783f9238b46e17d66f4532a9c29f25df0fcc404963065d776f5d8f6773806c79331cf2031fcd6ab49c28a1b6a10be13a8bbaa2b4d8fb2d14d74ff87b06e989a7a141b9775cb22707cdc5bed26f269f0054245533055c365340e162fb7c2fe38e91afba7b0c2cb222816ab0a5d68437b882e997e85ceb1c7049722643f55857a23452a3cf228f00393bffb2bf100b63bd987f550df8df9a2a5d66d7f642d1e31e81058719469959aefd7f00726da2e911b17f2a892d27a2e2ea3b4c18aee0317565406c4456cc11cc70b4303b04fec0193a3324a8f310f2004fc7b0676ba75e31bbd728bfc248acb1fb242a8b2ac6b349efc38d4e17480da1f45b3eca80cbf80d6f543dbaf59d69a0c5a0bccce0e15532252b00a5e11be765d15bd6308aedfade1c82e9066ed0a4a985d332b81bbdfeca78faf31c96ddf4651218b40bd81e6e13fe1b088ca76ee9a2bd7676f8792c94fbeba1d6dc7b98d880044d3c424cc5e724db685d0804695675129b08a708051c98dae98fb3248bd382ec48ce499a69e45b4eabf2abddea3099c006179207152fc7e63c11edb5d8c9c50c232484636f3240042420b6380d397645c6a2e1d58954947f11863f59eb30a57cbb9917eb6d92c0a93e4ea3f4a0884aff0ee08b93a6603b39de99beccbea94c273786f253904b74abf4103ae099a95154e25d23159420dd3e836c5cebe2772ea740fc0ebbd7a1ca45314e06fd85d9cd98235116c7a091120a2020c9f5d9f3952c44921f934a589985242aa9658b9cea5cbd4550cff46b952480cd822eb0a94029570c59262ca0a6b2f819c9734355d40919f3a96b443f40170f09954598c36cb9fff3356c97829963020003964663a99750c551dd2229ea4fc24702909f4ca1d258e58165b97a086261f553e2d5dc9a23f4231ee4b1c7f3575c8142e394b6d4f4cb0810ba207f400f3aa3d8156632f18da696843ad6ed74dfce3f56feaa97a35ec49b3a460cee5083bf8025fd4d0b6023000000000000000171df008e5ce1b189dbd7161c603db628726b84dddf1083d23c43a376511634ea404fc5a6d1eb5a95b767426e72066d99cdf533b4b075ea6dbea840796c632fb01d2eb2d2fee92b909e269552c521dbf4fa4e8f123ed119513edd066ad7ab0dfcd87bd3b2cc64a665eda4278f922011f799ba6353f85daf9020e4b95b7ad4717a233f474c7e27433ac20ba1066c66296819a069d909d1ce015851286193993d499e0ed4404136dc18b54ac9bee46c34f4a2c26cc9fc3bc159d172a65ec4589546f70d51f0025c91321b54bd80bace8a363370caca7dce096d811f8e496526a370acf590797384d0da382249e6024fe2c0494007689254e9a4c299758c9b1fc6e6865f98b4e04630fba0aa25598f0a0fb339559296043243aedd672b60325820f2b4d88e5ff134f735e0e4fd2abd0fb258b4004025eca31502cfce7c6d879b7faaea94552e31d49d32df37aa0881f423242d472d29e8971d6db88cba7f92fc08e27d3bf742ae270a12eedbf73fc43a9361c94807874495308de00e3c1720fafaeb553ec8eaec65c41a61cd9110894269258f216ae8d23af94141eba5b92211f7daaaae0a8c2ef5a6d59c003ceee7c28414fb5c142070da9930e404bb0a33dbeec1e06168aadf715c5426197966a2d56e172e4fc6f7fdecaa1ed3b1e397d3e83c3d0013b15a78ec697e635b80b5cbd88e2c78867fc4cfa274f09725865edb109058e114502a6d9952c2e8429287e509bdb57e728d4d7beb5c8e73cf9eb45c2930ced482dbed0a8adf3e47bbfb0ee5ec9c1242f254c02b5ff4f54a4b0bbec240814b38b1e20f24e1505d22eef07d6fd25fecb2ba3067ffca727d00d70b070cb0411690479b65f61eb6b357b5f08075a53340caaed328a5af007f7acc2ead770fba7a06bbaab5584eb1c8606e1e6366c640c202c22c34d0e74cc4b14993f11ab04e82291f8f6ce7a2c1adb00e4bbdc7e20a19a39184f0f53726c61d931223ab8b0ca81ca5592a4d44e28b41b00bdcd37cb02adf31c0536f6fd48aee848f1adb27c3141d21a5bba74af0241ffeff0548fbf29e278aa3a0827179393b3a0860557aac767fda675022efffdfd075c07b96ca27f05eb4b4a1f2173b8a0595b1917e30fe37d82725dfb403cbbf9cf84352209cfe70d4792967cfda5e1a7fbc05112048a760a215f2a965b8cb9850bd8544320c3adc30f8dbb53cefe0280d9b3781c1bfbfe7285d6fb91d0d8c8518a7cea21da117e3fbd8570f2371658cd0db77519ed550e700e5c362ffe688d2185b878f6a378005c174eed420b69be5aace92b738579f1d218496f789f4a935e522b3879d8ff23b755c1f40702b11107e76a8a7b57ecb1b36a90c84183fd6c69c35e52493a077305359c9572cb54dd9c3ebc0db510987f4591ac28bab490d34c4e40aeed78c5c8ce2f77119f833a5c882cf7c5d197dd8900ec1520443f2154a1ca4ea2f8056182d7c6839971910fcdfe4053fec4674514be84256d69d3f41c94d343a1fc3778e47f29fda71688ac6db278eddd1b887e0c1e2754bc5e0061452de03ac38f0fce3297246ada974a2abdee4becc12a7d0245439201d5ead049e6a5796da02d3ef79741e372c697f42c6b26d8fe06a8bbae8dd7071d3fffc79b947bde32f0a70de6688820c1f9c240b9d775299cdaabb14f0c3bf9cad1d0a7f76b7a839ef3a54cdeb9de47f07a51e84beb0ad052f66fed105b3acf6cc7f51b19a519de8ea759bb786d50f6df5a99cfe838c7564ce137929e925b9d4a2a515aad8d31ee48cfe1b73bdb9e08020dff9f229387acaffdde47f9dbf1463007d169f81aed7cbf87649fa8cd8224fbc815032d968157693380f9edc784758a14df25d14e6f80f7e273d5c9843ad9cf9c81796c0c9361a82ccf1a06ce1f880aa9586412a947eb58e6f4e3545cf180c84b0aaff2e4e3f947a831d85f1873a9b1f2e40079df0e98579a6b293690f8dd2c66569f6e55a1b8fb85482696839b53772bf2eebc05a5346198b191fcc820f20bf6da8602a65287ba0c6c0206170588707238d148a829692b60b8ba3142c8a24da7771bcbf02ea9b765ec0259f9d2504a25cf9ff1f35d02ea6fc43b4c7330271200a52591e4367c86b44710167dab01558861ec2b7d5da8c990d9be1590fef5afc606db732633ac8890d00787181b5f38441bebdddee361997c9a06499b72818bda1c20a7c4fc666600a86ff06be0e8e87ba143fe6a3871be9433869ff33b3c67b99c5abab03a21036636a3e14df121c476753d6dbf6b45bc9609e440cab81452a1bea7c8e1441b3bcf3e443afedb7679aa09d9870dff0bb72d41ad5372c94ff6ab9f28a58576936b61fc9cd23aa1b3191bf5f590e86d2595012fb82dd4dcf6366d60c3c9380a5ceb60c525e9235b08f00c09ec06c0f760e64d703cfc4afe222d44372109021da9ed278837adc6eb82183e686081d21ce496a83c015543c032bc2bdaaeb796ba89c92f2bc66742cdae9fca7828eb9b27a95457d1f8f225b3bf0a8c52de25859ca45c8e97a04540f4164e07e7117d8d877c7b162c146aaaf32bb7426257c26faa35187d7073d1d06272215700ac6e419d985fbf26d58161f5424f1f57b28607ab1cb87d5340195de5b957124fae287f361f0b1cf4fed091620ab3ae70fe7fa0f83ab09add12bfe4e89d7955e66e2785024ccb1e179da83fd9c2b020afe73dfb60e5454d3ed87dd85c663f6f92a3e84bc4f8bc20c9ca755477260b51247e453541f69faffa864403a9acd5ec3f7e9eb7c700a09d1c25d58e03b25f8dcf9dc15a1153a2b0218d4b64d2bb56cf57fa62c4d1ea1a3e5cb9564a23f27d1b56301003dd62cada5312b15914a5086a8e9168dc0d493cfa6777cf7bfafcaadf47f575966c38ab7ae2149d08ec6c703161938ed75fde6432052f224545e5729229fb13f70e57d6965c1a5f2a191ba8b60ab934a7c6928d76173fa1d9804ffa2b7384c229f51c1405f34f1a089625eed55ee36a2ac83a6d58e4c7795fbaac004e60eacd5c8a5fc7e775cfe5528bfcafbf3c2a69091e58a74a0e1ed19031332caceee7e60a1955734155764d13bc457bd659485f6e21f06db6bbba3ec13e1cf7f3dde73b07896101740905e2c745019417915279f130115bba798bfb08acbbde629796849418e16a62b2cb51eced7e87ee9b3a083faf4011730f964aca5632a08e2aa8fb662f986ddff057d677ba1f2f1dc2e2085b561c8b24a2e65e47270babe6e7350a9e58e2a03b43f544c13c00d8b956ba65e3c4c3071df806d69c3ae198ef4f229c8499fd77a020aa9d36715835249daa8f539acb704f6a1d489137b3af0fa8991606d4b530cdfd85788ab8e5c899ff0abdd02d2a7fc9e74d7e9d2ef2fcda34b810a8b819c00c599aebb6f14efa489b7c965f439c12acd805c7d734a30210a3dc25ed132aede74c0c043cd76dfc6c632385fdbd817c4329dca712740bcd6dd68b164af78c7b048fef6fa7ae0d1da489591abbbbe7b81e02c054f7a0a7a9ebeb769fd494167d0b3b8698842f84e406204bc2ccc373f71ea7a83912e6826db5a0371d80b38c6d536ea88a3aaef71b01721c9817a93ba6d95c4c239ee37c75f746680febfce1cdb5a523cbf5c6b0e2734cb7cfa1133c918aab211daf63bd7f706e69cbffce4603262be927aee1d8c662f3dd4735f7551f1c1b7382b0602b6f49724371d6ea54bf8651ce2b0b76d0621c420cae8306facd7b213e36ad89ccd6c9f3eb5a233cb9391cfa6443f38b489c70460dc513d0a6422668ed9437905b9c7eeb9b1c5d84e9f5bab02252087ed3d05dccc7eb0d429cd3a0c173c5418cdf621b276b3770453b32800dab24b33efe07991802ab0746f9170295b608eaf6c76450207648b1cdeb38864cae39da3b55079d6b8ebe8cdb774e419a19728495a0da0ca039416d0b16e52cfafbc1e07412ad232b749f42404dfd8784f5f692a5b48eacc40da56e551809a2a7f1b5e3dd7de298d16a986ae4d476e104433f840468f16efe2a3b78fb5418c9e738ec13911b2ed98c7f751bd7710f363d89eb69ef911212d3477104c4a05336fc29cc0371fd7b30000",
+      "blindingKeys": [
+        "86f51824f47012cda257c2db9988850f1fa08da00b139ccae7eaf1f5e8364c65",
+        "4caed85937d0270835d8b8cb1a5182dc2280a5857bacac8224b5362eb4170818"
+      ]
+    }
+    console.log("*** Request ***\n", paramJson)
+    const resStr = UnblindRawTransaction(JSON.stringify(paramJson))
+    UnblindRawTransactionResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", UnblindRawTransactionResult, "\n")
+  }
+
+  let elementsCreateRawTransactionResult1
+  {
+    console.log("\n===== ElementsCreateRawTransaction (blinded utxo) =====")
+    const paramJson = {
+      "version": 2,
+      "locktime": 0,
+      "txins": [{
+        "txid": "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
+        "vout": 0,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225",
+        "sequence": 4294967295
+      }],
+      "txouts": [{
+        "address": "XSGB2gQmM8U1LWtXDTG2FdQ6LYJ5e9BxU6",
+        "amount": 180000,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+      },
+      {
+        "address": "XSGB2gQmM8U1LWtXDTG2FdQ6LYJ5e9BxU6",
+        "amount": 100000,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+      }],
+      "fee": {
+        "amount": 10000,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+      }
+    }
+    console.log("*** Request ***\n", paramJson)
+    const resStr = ElementsCreateRawTransaction(JSON.stringify(paramJson))
+    elementsCreateRawTransactionResult1 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", elementsCreateRawTransactionResult1, "\n")
+  }
+
+  let blindRawTransactionResult2
+  {
+    console.log("\n===== BlindRawTransaction (blinded utxo) =====")
+    const paramJson = {
+      "txHex": elementsCreateRawTransactionResult1.hex,
+      "txins": [{
+        "txid": "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
+        "vout": 0,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225",
+        "blindFactor": "f87734c279533d8beba96c5369e169e6caf5f307a34d72d4a0f9c9a7b8f8f269",
+        "assetBlindFactor": "28093061ab2e407c6015f8cb33f337ffb118eaf3beb2d254de64203aa27ecbf7",
+        "amount": 290000
+      }],
+      "blindPubkeys": [
+        "0213c4451645063e1edd5fe76e5194864c2246d4c4e6c8df5a305224046e1ea2c4",
+        "0213c4451645063e1edd5fe76e5194864c2246d4c4e6c8df5a305224046e1ea2c4"
+      ]
+    }
+    console.log("*** Request ***\n", paramJson)
+    const resStr = BlindRawTransaction(JSON.stringify(paramJson))
+    blindRawTransactionResult2 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", blindRawTransactionResult2, "\n")
+  }
+
+  let UnblindRawTransactionResult1
+  {
+    console.log("\n===== UnblindRawTransaction (blinded utxo) =====")
+    const paramJson = {
+      "txHex": blindRawTransactionResult2.hex,
+      "blindingKeys": [
+        "66e4df5035a64acef16b4aa52ddc8bebd22b22c9eca150774e355abc72909d83",
+        "66e4df5035a64acef16b4aa52ddc8bebd22b22c9eca150774e355abc72909d83"
+      ]
+    }
+    console.log("*** Request ***\n", paramJson)
+    const resStr = UnblindRawTransaction(JSON.stringify(paramJson))
+    UnblindRawTransactionResult1 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", UnblindRawTransactionResult1, "\n")
+  }
+
+  let CreateElementsSignatureHashResult1
+  {
+    console.log("\n===== CreateElementsSignatureHashResult (blinded utxo) =====")
+    const signatureHashParamJson = {
+      txHex: blindRawTransactionResult2.hex,
+      // TODO: modify after CreateRawElementsTransaction
+      txinTxid: "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
+      txinVout: 0,
+      pubkeyHex: '03f942716865bb9b62678d99aa34de4632249d066d99de2b5a2e542e54908450d6',
+      //scriptHex: '0014eb3c0d55b7098a4aef4a18ee1eebcb1ed924a82b',
+      //amount: 290000,
+      confidentialValueHex: '08b7057c10af7e696c1927584b006fbc3e7e914d4e7ac29f1876bf8d4a64276736',
+      hashType: 'p2wpkh'
+    }
+    console.log("*** Request ***\n", signatureHashParamJson)
+    const resStr = CreateElementsSignatureHash(JSON.stringify(signatureHashParamJson))
+    CreateElementsSignatureHashResult1 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", CreateElementsSignatureHashResult1, "\n")
+  }
+
+  let signature1
+  {
+    console.log("\n===== AddSign1 signature (blinded utxo) =====")
+    const privkey = 'cU4KjNUT7GjHm7CkjRjG46SzLrXHXoH3ekXmqa2jTCFPMkQ64sw1';
+    signature1 = CalculateEcSignature(CreateElementsSignatureHashResult1.sighash, privkey, NET_TYPE);
+    console.log("\n*** CalculateEcSignature ***\n", signature1)
+  }
+
+  let addSign1
+  {
+    console.log("\n===== AddSign1 (blinded utxo) =====")
+    // build json parameter
+    const getWitnessJson = {
+      txHex: blindRawTransactionResult2.hex,
+      isElements: true,
+      txinTxid: "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
+      txinVout: 0,
+      signParam: [
+        {
+          hex: signature1,
+          type: "sign",
+          derEncode: true
+        },
+        {
+          hex: '03f942716865bb9b62678d99aa34de4632249d066d99de2b5a2e542e54908450d6',
+          type: "pubkey"
+        }
+      ]
+    }
+    console.log("\n*** Request ***\n", getWitnessJson)
+    const resStr = AddSign(JSON.stringify(getWitnessJson));
+    addSign1 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", addSign1, "\n")
+  }
+
+  let addSign1_2
+  {
+    console.log("\n===== addSign1_2 (blinded utxo) =====")
+    // build json parameter
+    const getWitnessJson = {
+      txHex: addSign1.hex,
+      isElements: true,
+      txinTxid: "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
+      txinVout: 0,
+      isWitness: false,   // P2SH用のscriptSig追加のため
+      signParam: [
+        {
+          hex: '0014eb3c0d55b7098a4aef4a18ee1eebcb1ed924a82b',
+          type: "redeemScript"
+        }
+      ]
+    }
+    console.log("\n*** Request ***\n", getWitnessJson)
+    const resStr = AddSign(JSON.stringify(getWitnessJson));
+    addSign1_2 = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", addSign1_2, "\n")
+  }
+}
