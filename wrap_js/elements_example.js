@@ -16,6 +16,7 @@ import {
   BlindRawTransaction,
   UnblindRawTransaction,
   SetRawIssueAsset,
+  GetIssuanceBlindingKey,
 } from "./build/Release/cfd_js"
 import {
   CalculateEcSignature,
@@ -297,8 +298,8 @@ if (!supportFunctions.elements) {
         "assetAddress": "CTEkixoGGeTsw1hEBJgCaVQwBNDYQ8c3Hr45hbVaZgiccXwG7QVy9CwiN4AwaDaweCh5GZQmJEpVDYww",
         "tokenAmount": 500000000,
         "tokenAddress": "CTEpRhbZfnFYaGcH6CACRDgvvUzMcqB2TLqcVr4mizQGesSU9gFwkvG1pEix27DCgypm9omVjEEYBuU8",
-        "isBlind":false,
-        "contractHash":"0000000000000000000000000000000000000000000000000000000000000000"
+        "isBlind": false,
+        "contractHash": "0000000000000000000000000000000000000000000000000000000000000000"
       }]
     }
     console.log("*** Request ***\n", paramJson)
@@ -472,5 +473,19 @@ if (!supportFunctions.elements) {
     const resStr = AddSign(JSON.stringify(getWitnessJson));
     addSign1_2 = JSON.parse(resStr)
     console.log("\n*** Response ***\n", addSign1_2, "\n")
+  }
+
+  let getIssuanceBlindingKeyResult
+  {
+    console.log("\n===== getIssuanceBlindingKeyResult =====")
+    const getKeyJson = {
+      masterBlindingKey: 'a0cd219833629db30c5210716c7b2e22fb8dd10aa231692f1f53acd8e662de01',
+      txid: '21fe3fc8e38256ec747fa8d8ea96319fd00cbcf318c2586b9b8e9e27a5afe9aa',
+      vout: 0
+    }
+    console.log("\n*** Request ***\n", getKeyJson)
+    const resStr = GetIssuanceBlindingKey(JSON.stringify(getKeyJson));
+    getIssuanceBlindingKeyResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", getIssuanceBlindingKeyResult, "\n")
   }
 }

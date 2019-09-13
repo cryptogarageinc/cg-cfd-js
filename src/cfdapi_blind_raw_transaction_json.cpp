@@ -101,6 +101,68 @@ BlindTxInRequestStruct BlindTxInRequest::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// BlindIssuanceRequest
+// ------------------------------------------------------------------------
+cfdcore::JsonTableMap<BlindIssuanceRequest>
+  BlindIssuanceRequest::json_mapper;
+std::vector<std::string> BlindIssuanceRequest::item_list;
+
+void BlindIssuanceRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfdcore::CLASS_FUNCTION_TABLE<BlindIssuanceRequest> func_table;  // NOLINT
+
+  func_table = {
+    BlindIssuanceRequest::GetTxidString,
+    BlindIssuanceRequest::SetTxidString,
+    BlindIssuanceRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    BlindIssuanceRequest::GetVoutString,
+    BlindIssuanceRequest::SetVoutString,
+    BlindIssuanceRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    BlindIssuanceRequest::GetAssetBlindingKeyString,
+    BlindIssuanceRequest::SetAssetBlindingKeyString,
+    BlindIssuanceRequest::GetAssetBlindingKeyFieldType,
+  };
+  json_mapper.emplace("assetBlindingKey", func_table);
+  item_list.push_back("assetBlindingKey");
+  func_table = {
+    BlindIssuanceRequest::GetTokenBlindingKeyString,
+    BlindIssuanceRequest::SetTokenBlindingKeyString,
+    BlindIssuanceRequest::GetTokenBlindingKeyFieldType,
+  };
+  json_mapper.emplace("tokenBlindingKey", func_table);
+  item_list.push_back("tokenBlindingKey");
+}
+
+void BlindIssuanceRequest::ConvertFromStruct(
+    const BlindIssuanceRequestStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  asset_blinding_key_ = data.asset_blinding_key;
+  token_blinding_key_ = data.token_blinding_key;
+  ignore_items = data.ignore_items;
+}
+
+BlindIssuanceRequestStruct BlindIssuanceRequest::ConvertToStruct() const {  // NOLINT
+  BlindIssuanceRequestStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.asset_blinding_key = asset_blinding_key_;
+  result.token_blinding_key = token_blinding_key_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // BlindRawTransactionRequest
 // ------------------------------------------------------------------------
 cfdcore::JsonTableMap<BlindRawTransactionRequest>
@@ -134,6 +196,13 @@ void BlindRawTransactionRequest::CollectFieldName() {
   };
   json_mapper.emplace("blindPubkeys", func_table);
   item_list.push_back("blindPubkeys");
+  func_table = {
+    BlindRawTransactionRequest::GetIssuancesString,
+    BlindRawTransactionRequest::SetIssuancesString,
+    BlindRawTransactionRequest::GetIssuancesFieldType,
+  };
+  json_mapper.emplace("issuances", func_table);
+  item_list.push_back("issuances");
 }
 
 void BlindRawTransactionRequest::ConvertFromStruct(
@@ -141,6 +210,7 @@ void BlindRawTransactionRequest::ConvertFromStruct(
   tx_hex_ = data.tx_hex;
   txins_.ConvertFromStruct(data.txins);
   blind_pubkeys_.ConvertFromStruct(data.blind_pubkeys);
+  issuances_.ConvertFromStruct(data.issuances);
   ignore_items = data.ignore_items;
 }
 
@@ -149,6 +219,7 @@ BlindRawTransactionRequestStruct BlindRawTransactionRequest::ConvertToStruct() c
   result.tx_hex = tx_hex_;
   result.txins = txins_.ConvertToStruct();
   result.blind_pubkeys = blind_pubkeys_.ConvertToStruct();
+  result.issuances = issuances_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }

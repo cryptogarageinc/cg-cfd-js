@@ -21,6 +21,68 @@ using cfdcore::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------
+// UnblindIssuance
+// ------------------------------------------------------------------------
+cfdcore::JsonTableMap<UnblindIssuance>
+  UnblindIssuance::json_mapper;
+std::vector<std::string> UnblindIssuance::item_list;
+
+void UnblindIssuance::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfdcore::CLASS_FUNCTION_TABLE<UnblindIssuance> func_table;  // NOLINT
+
+  func_table = {
+    UnblindIssuance::GetTxidString,
+    UnblindIssuance::SetTxidString,
+    UnblindIssuance::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    UnblindIssuance::GetVoutString,
+    UnblindIssuance::SetVoutString,
+    UnblindIssuance::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    UnblindIssuance::GetAssetBlindingKeyString,
+    UnblindIssuance::SetAssetBlindingKeyString,
+    UnblindIssuance::GetAssetBlindingKeyFieldType,
+  };
+  json_mapper.emplace("assetBlindingKey", func_table);
+  item_list.push_back("assetBlindingKey");
+  func_table = {
+    UnblindIssuance::GetTokenBlindingKeyString,
+    UnblindIssuance::SetTokenBlindingKeyString,
+    UnblindIssuance::GetTokenBlindingKeyFieldType,
+  };
+  json_mapper.emplace("tokenBlindingKey", func_table);
+  item_list.push_back("tokenBlindingKey");
+}
+
+void UnblindIssuance::ConvertFromStruct(
+    const UnblindIssuanceStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  asset_blinding_key_ = data.asset_blinding_key;
+  token_blinding_key_ = data.token_blinding_key;
+  ignore_items = data.ignore_items;
+}
+
+UnblindIssuanceStruct UnblindIssuance::ConvertToStruct() const {  // NOLINT
+  UnblindIssuanceStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.asset_blinding_key = asset_blinding_key_;
+  result.token_blinding_key = token_blinding_key_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // UnblindRawTransactionRequest
 // ------------------------------------------------------------------------
 cfdcore::JsonTableMap<UnblindRawTransactionRequest>
@@ -54,6 +116,13 @@ void UnblindRawTransactionRequest::CollectFieldName() {
   };
   json_mapper.emplace("blindingKeys", func_table);
   item_list.push_back("blindingKeys");
+  func_table = {
+    UnblindRawTransactionRequest::GetIssuancesString,
+    UnblindRawTransactionRequest::SetIssuancesString,
+    UnblindRawTransactionRequest::GetIssuancesFieldType,
+  };
+  json_mapper.emplace("issuances", func_table);
+  item_list.push_back("issuances");
 }
 
 void UnblindRawTransactionRequest::ConvertFromStruct(
@@ -61,6 +130,7 @@ void UnblindRawTransactionRequest::ConvertFromStruct(
   tx_hex_ = data.tx_hex;
   target_output_index_ = data.target_output_index;
   blinding_keys_.ConvertFromStruct(data.blinding_keys);
+  issuances_.ConvertFromStruct(data.issuances);
   ignore_items = data.ignore_items;
 }
 
@@ -69,6 +139,7 @@ UnblindRawTransactionRequestStruct UnblindRawTransactionRequest::ConvertToStruct
   result.tx_hex = tx_hex_;
   result.target_output_index = target_output_index_;
   result.blinding_keys = blinding_keys_.ConvertToStruct();
+  result.issuances = issuances_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }
@@ -136,6 +207,86 @@ UnblindOutputStruct UnblindOutput::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// UnblindIssuanceOutput
+// ------------------------------------------------------------------------
+cfdcore::JsonTableMap<UnblindIssuanceOutput>
+  UnblindIssuanceOutput::json_mapper;
+std::vector<std::string> UnblindIssuanceOutput::item_list;
+
+void UnblindIssuanceOutput::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfdcore::CLASS_FUNCTION_TABLE<UnblindIssuanceOutput> func_table;  // NOLINT
+
+  func_table = {
+    UnblindIssuanceOutput::GetTxidString,
+    UnblindIssuanceOutput::SetTxidString,
+    UnblindIssuanceOutput::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    UnblindIssuanceOutput::GetVoutString,
+    UnblindIssuanceOutput::SetVoutString,
+    UnblindIssuanceOutput::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    UnblindIssuanceOutput::GetAssetString,
+    UnblindIssuanceOutput::SetAssetString,
+    UnblindIssuanceOutput::GetAssetFieldType,
+  };
+  json_mapper.emplace("asset", func_table);
+  item_list.push_back("asset");
+  func_table = {
+    UnblindIssuanceOutput::GetAssetamountString,
+    UnblindIssuanceOutput::SetAssetamountString,
+    UnblindIssuanceOutput::GetAssetamountFieldType,
+  };
+  json_mapper.emplace("assetamount", func_table);
+  item_list.push_back("assetamount");
+  func_table = {
+    UnblindIssuanceOutput::GetTokenString,
+    UnblindIssuanceOutput::SetTokenString,
+    UnblindIssuanceOutput::GetTokenFieldType,
+  };
+  json_mapper.emplace("token", func_table);
+  item_list.push_back("token");
+  func_table = {
+    UnblindIssuanceOutput::GetTokenamountString,
+    UnblindIssuanceOutput::SetTokenamountString,
+    UnblindIssuanceOutput::GetTokenamountFieldType,
+  };
+  json_mapper.emplace("tokenamount", func_table);
+  item_list.push_back("tokenamount");
+}
+
+void UnblindIssuanceOutput::ConvertFromStruct(
+    const UnblindIssuanceOutputStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  asset_ = data.asset;
+  assetamount_ = data.assetamount;
+  token_ = data.token;
+  tokenamount_ = data.tokenamount;
+  ignore_items = data.ignore_items;
+}
+
+UnblindIssuanceOutputStruct UnblindIssuanceOutput::ConvertToStruct() const {  // NOLINT
+  UnblindIssuanceOutputStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.asset = asset_;
+  result.assetamount = assetamount_;
+  result.token = token_;
+  result.tokenamount = tokenamount_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // UnblindRawTransactionResponse
 // ------------------------------------------------------------------------
 cfdcore::JsonTableMap<UnblindRawTransactionResponse>
@@ -162,12 +313,20 @@ void UnblindRawTransactionResponse::CollectFieldName() {
   };
   json_mapper.emplace("outputs", func_table);
   item_list.push_back("outputs");
+  func_table = {
+    UnblindRawTransactionResponse::GetIssuanceOutputsString,
+    UnblindRawTransactionResponse::SetIssuanceOutputsString,
+    UnblindRawTransactionResponse::GetIssuanceOutputsFieldType,
+  };
+  json_mapper.emplace("issuanceOutputs", func_table);
+  item_list.push_back("issuanceOutputs");
 }
 
 void UnblindRawTransactionResponse::ConvertFromStruct(
     const UnblindRawTransactionResponseStruct& data) {
   hex_ = data.hex;
   outputs_.ConvertFromStruct(data.outputs);
+  issuance_outputs_.ConvertFromStruct(data.issuance_outputs);
   ignore_items = data.ignore_items;
 }
 
@@ -175,6 +334,7 @@ UnblindRawTransactionResponseStruct UnblindRawTransactionResponse::ConvertToStru
   UnblindRawTransactionResponseStruct result;
   result.hex = hex_;
   result.outputs = outputs_.ConvertToStruct();
+  result.issuance_outputs = issuance_outputs_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }
