@@ -66,7 +66,7 @@ let createMultisigResult
       "02be61f4350b4ae7544f99649a917f48ba16cf48c983ac1599774958d88ad17ec5"
     ],
     "network": NET_TYPE,
-    "addressType": "bech32"
+    "addressType": "p2wsh"
   }
   console.log("*** Request ***\n", createMultisigParamJson)
   const resStr = CreateMultisig(JSON.stringify(createMultisigParamJson))
@@ -305,7 +305,7 @@ let resultAddMultisigSign
       }
     ],
     witnessScript: createMultisigResult.witnessScript,
-    txinType: 'bech32',
+    txinType: 'p2wsh',
   }
   // signed value: 3044022047ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f0220217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb01
   console.log("\n*** Request ***\n", addWitnessJson)
@@ -477,7 +477,7 @@ let createP2shMultisigAddressResult
       "02be61f4350b4ae7544f99649a917f48ba16cf48c983ac1599774958d88ad17ec5"
     ],
     "network": NET_TYPE,
-    "addressType": "p2sh-segwit"
+    "addressType": "p2sh-p2wsh"
   }
   console.log("*** Request ***\n", createMultisigParamJson)
   const resStr = CreateMultisig(JSON.stringify(createMultisigParamJson))

@@ -31,9 +31,11 @@
 #include "cfdapi_elements_get_confidential_address_json.h"  // NOLINT
 #include "cfdapi_elements_get_unblinded_address_json.h"     // NOLINT
 #include "cfdapi_elements_set_rawissueasset_json.h"         // NOLINT
+#include "cfdapi_elements_set_rawreissueasset_json.h"       // NOLINT
 #include "cfdapi_elements_unblind_raw_transaction_json.h"   // NOLINT
 #include "cfdapi_error_base_json.h"                         // NOLINT
 #include "cfdapi_error_json.h"                              // NOLINT
+#include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
 #include "cfdapi_get_witness_num_json.h"                    // NOLINT
 #include "cfdapi_multisig_address_json.h"                   // NOLINT
 #include "cfdapi_sighash_elements_json.h"                   // NOLINT
@@ -409,6 +411,13 @@ Value SetRawIssueAsset(const CallbackInfo &information) {
       information, ElementsTransactionApi::SetRawIssueAsset);
 }
 
+Value SetRawReissueAsset(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      SetRawReissueAssetRequest, SetRawReissueAssetResponse,
+      SetRawReissueAssetRequestStruct, SetRawReissueAssetResponseStruct>(
+      information, ElementsTransactionApi::SetRawReissueAsset);
+}
+
 Value CreateElementsSignatureHash(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       CreateElementsSignatureHashRequest, CreateElementsSignatureHashResponse,
@@ -424,6 +433,15 @@ Value CreateRawPegin(const CallbackInfo &information) {
       ElementsCreateRawPeginResponseStruct>(
       information, ElementsTransactionApi::CreateRawPeginTransaction);
 }
+
+Value GetIssuanceBlindingKey(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      GetIssuanceBlindingKeyRequest, GetIssuanceBlindingKeyResponse,
+      GetIssuanceBlindingKeyRequestStruct,
+      GetIssuanceBlindingKeyResponseStruct>(
+      information, ElementsTransactionApi::GetIssuanceBlindingKey);
+}
+
 #endif  // CFD_DISABLE_ELEMENTS
 
 }  // namespace api
@@ -508,11 +526,17 @@ Object Init(Env env, Object exports) {
       String::New(env, "SetRawIssueAsset"),
       Function::New(env, cfd::api::SetRawIssueAsset));
   exports.Set(
+      String::New(env, "SetRawReissueAsset"),
+      Function::New(env, cfd::api::SetRawReissueAsset));
+  exports.Set(
       String::New(env, "CreateElementsSignatureHash"),
       Function::New(env, cfd::api::CreateElementsSignatureHash));
   exports.Set(
       String::New(env, "CreateRawPegin"),
       Function::New(env, cfd::api::CreateRawPegin));
+  exports.Set(
+      String::New(env, "GetIssuanceBlindingKey"),
+      Function::New(env, cfd::api::GetIssuanceBlindingKey));
 #endif  // CFD_DISABLE_ELEMENTS
   exports.Set(
       String::New(env, "CreateCETxAddress"),
