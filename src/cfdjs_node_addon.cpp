@@ -27,6 +27,7 @@
 #include "cfdapi_elements_create_address_json.h"            // NOLINT
 #include "cfdapi_elements_create_pegin_address_json.h"      // NOLINT
 #include "cfdapi_elements_create_raw_pegin_json.h"          // NOLINT
+#include "cfdapi_elements_create_raw_pegout_json.h"         // NOLINT
 #include "cfdapi_elements_create_raw_transaction_json.h"    // NOLINT
 #include "cfdapi_elements_get_confidential_address_json.h"  // NOLINT
 #include "cfdapi_elements_get_unblinded_address_json.h"     // NOLINT
@@ -434,6 +435,14 @@ Value CreateRawPegin(const CallbackInfo &information) {
       information, ElementsTransactionApi::CreateRawPeginTransaction);
 }
 
+Value CreateRawPegout(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      ElementsCreateRawPegoutRequest, ElementsCreateRawPegoutResponse,
+      ElementsCreateRawPegoutRequestStruct,
+      ElementsCreateRawPegoutResponseStruct>(
+      information, ElementsTransactionApi::CreateRawPegoutTransaction);
+}
+
 Value GetIssuanceBlindingKey(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       GetIssuanceBlindingKeyRequest, GetIssuanceBlindingKeyResponse,
@@ -534,6 +543,9 @@ Object Init(Env env, Object exports) {
   exports.Set(
       String::New(env, "CreateRawPegin"),
       Function::New(env, cfd::api::CreateRawPegin));
+  exports.Set(
+      String::New(env, "CreateRawPegout"),
+      Function::New(env, cfd::api::CreateRawPegout));
   exports.Set(
       String::New(env, "GetIssuanceBlindingKey"),
       Function::New(env, cfd::api::GetIssuanceBlindingKey));
