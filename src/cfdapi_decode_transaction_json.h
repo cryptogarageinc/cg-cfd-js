@@ -463,6 +463,49 @@ class DecodeRawTransactionTxIn
   static void CollectFieldName();
 
   /**
+   * @brief coinbase 取得処理
+   * @return coinbase
+   */
+  std::string GetCoinbase() {
+    return coinbase_;
+  }
+  /**
+   * @brief coinbase 設定処理
+   * @param[in] coinbase    設定値
+   */
+  void SetCoinbase(  // line separate
+    const std::string& coinbase) {  // NOLINT
+    this->coinbase_ = coinbase;
+  }
+  /**
+   * @brief coinbase データ型の取得処理
+   * @return coinbaseのデータ型
+   */
+  static std::string GetCoinbaseFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief coinbase フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetCoinbaseString(  // line separate
+      const DecodeRawTransactionTxIn& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.coinbase_);
+  }
+  /**
+   * @brief coinbase フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetCoinbaseString(  // line separate
+      DecodeRawTransactionTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.coinbase_, json_value);
+  }
+
+  /**
    * @brief txid 取得処理
    * @return txid
    */
@@ -746,6 +789,10 @@ class DecodeRawTransactionTxIn
    */
   std::set<std::string> ignore_items;
 
+  /**
+   * @brief JsonAPI(coinbase) のvalue
+   */
+  std::string coinbase_ = "";
   /**
    * @brief JsonAPI(txid) のvalue
    */
