@@ -109,6 +109,7 @@ target_sources(${PROJECT_NAME}
     cfdapi_elements_create_raw_pegin_json.cpp
     cfdapi_elements_create_raw_pegout_json.cpp
     cfdapi_elements_create_pegin_address_json.cpp
+    cfdapi_elements_decode_raw_transaction_json.cpp
     cfdapi_elements_unblind_raw_transaction_json.cpp
     cfdapi_elements_set_rawissueasset_json.cpp
     cfdapi_elements_set_rawreissueasset_json.cpp
@@ -116,7 +117,6 @@ target_sources(${PROJECT_NAME}
     cfdapi_error_json.cpp
     cfdapi_get_issuance_blinding_key_json.cpp
     cfdapi_get_witness_num_json.cpp
-    cfdapi_elements_create_address_json.cpp
     cfdapi_elements_get_confidential_address_json.cpp
     cfdapi_elements_get_unblinded_address_json.cpp
     cfdapi_multisig_address_json.cpp

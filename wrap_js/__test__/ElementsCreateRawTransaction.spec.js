@@ -123,31 +123,25 @@ const errorCase = [
     "ElementsCreateRawTransaction invalid prefix txout.address(Unblinded)",
     ElementsCreateRawTransaction,
     ["{\"version\":2,\"locktime\":0,\"txins\":[{\"txid\":\"ae833a97f5c6aba5acf8dff4528168783e844a8888953fd3893dbea08e1fb9d4\",\"vout\":0,\"sequence\":4294967295}],\"txouts\":[{\"address\":\"2ewREnkRRMfyd7tGFMYvYoUYkckTrMKbZ4u\",\"amount\":999500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}],\"fee\":{\"amount\":500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}}"],
-    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"DecodeAddress received unknown address prefix.\"}}"
+    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Unknown address prefix.\"}}"
   ),
   TestHelper.createElementsTestCase(
     "ElementsCreateRawTransaction invalid data txout.address(Unblinded)",
     ElementsCreateRawTransaction,
     ["{\"version\":2,\"locktime\":0,\"txins\":[{\"txid\":\"ae833a97f5c6aba5acf8dff4528168783e844a8888953fd3893dbea08e1fb9d4\",\"vout\":0,\"sequence\":4294967295}],\"txouts\":[{\"address\":\"4HEb2jX3Q4mf7ZyUf1VFXyfpe6R4\",\"amount\":999500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}],\"fee\":{\"amount\":500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}}"],
-    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"DecodeAddress failed to decode address. UnblinedAddress contains unknown hash data.\"}}"
+    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"ByteData160 size unmatch.\"}}"
   ),
   TestHelper.createElementsTestCase(
     "ElementsCreateRawTransaction invalid prefix txout.address(Confidential)",
     ElementsCreateRawTransaction,
     ["{\"version\":2,\"locktime\":0,\"txins\":[{\"txid\":\"ae833a97f5c6aba5acf8dff4528168783e844a8888953fd3893dbea08e1fb9d4\",\"vout\":0,\"sequence\":4294967295}],\"txouts\":[{\"address\":\"H7N1u2iQ2vtC5JjGmfZdE8EPVpKTvK92d7SJmdjbzJiAYt6YejCQ3yJErMtaUwHt4Gf4PLz7pMcctHFJ\",\"amount\":999500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}],\"fee\":{\"amount\":500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}}"],
-    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"DecodeAddress received unknown address prefix.\"}}"
+    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Unknown address prefix.\"}}"
   ),
   TestHelper.createElementsTestCase(
     "ElementsCreateRawTransaction invalid data txout.address(Confidential)",
     ElementsCreateRawTransaction,
     ["{\"version\":2,\"locktime\":0,\"txins\":[{\"txid\":\"ae833a97f5c6aba5acf8dff4528168783e844a8888953fd3893dbea08e1fb9d4\",\"vout\":0,\"sequence\":4294967295}],\"txouts\":[{\"address\":\"GWjGbK58xaagfg7a8XoRn5tUmpWTsVTXHHUpcDbKia541E9AuthzJCnUkT4tzqyHcTAs8\",\"amount\":999500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}],\"fee\":{\"amount\":500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}}"],
-    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"DecodeAddress error. Invalid contained hash data size.\"}}"
-  ),
-  TestHelper.createElementsTestCase(
-    "ElementsCreateRawTransaction invalid data txout.address(Confidential)",
-    ElementsCreateRawTransaction,
-    ["{\"version\":2,\"locktime\":0,\"txins\":[{\"txid\":\"ae833a97f5c6aba5acf8dff4528168783e844a8888953fd3893dbea08e1fb9d4\",\"vout\":0,\"sequence\":4294967295}],\"txouts\":[{\"address\":\"GWjGbK58xaagfg7a8XoRn5tUmpWTsVTXHHUpcDbKia541E9AuthzJCnUkT4tzqyHcTAs8\",\"amount\":999500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}],\"fee\":{\"amount\":500000,\"asset\":\"6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3\"}}"],
-    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"DecodeAddress error. Invalid contained hash data size.\"}}"
+    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Unknown address prefix.\"}}"
   ),
   TestHelper.createElementsTestCase(
     "ElementsCreateRawTransaction invalid(negative) txout.amount",

@@ -327,7 +327,7 @@ let addCETxSign
       hex: "47ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb"
     },
     delayedUnlocking: true,
-    redeemScript: createMultisigResult.redeemScript,
+    redeemScript: createMultisigResult.witnessScript,
   }
   // signed value: 3044022047ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f0220217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb01
   console.log("\n*** Request ***\n", addWitnessJson)
@@ -337,26 +337,13 @@ let addCETxSign
 }
 
 // Create P2SH-P2WPKH transaction
-let createP2wpkhAddressResult
-{
-  console.log("\n===== CreateP2wpkhAddress =====")
-  const createAddressParamJson = {
-    "pubkeyHex": "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
-    "network": NET_TYPE,
-    "hashType": "p2wpkh"
-  }
-  console.log("*** Request ***\n", createAddressParamJson)
-  const resStr = CreateAddress(JSON.stringify(createAddressParamJson))
-  createP2wpkhAddressResult = JSON.parse(resStr)
-  console.log("\n*** Response ***\n", createP2wpkhAddressResult, "\n")
-}
 let createP2shP2wpkhAddressResult
 {
   console.log("\n===== CreateP2shP2wpkhAddress =====")
   const createAddressParamJson = {
-    "scriptHex": createP2wpkhAddressResult.lockingScript,
+    "pubkeyHex": "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
     "network": NET_TYPE,
-    "hashType": "p2sh"
+    "hashType": "p2sh-p2wpkh"
   }
   console.log("*** Request ***\n", createAddressParamJson)
   const resStr = CreateAddress(JSON.stringify(createAddressParamJson))
@@ -443,7 +430,7 @@ let addP2shP2wpkhTxStack
     isWitness: false,   // P2SH用のscriptSig追加のため
     signParam: [
       {
-        hex: createP2wpkhAddressResult.lockingScript,
+        hex: createP2shP2wpkhAddressResult.redeemScript,
         type: "redeemScript"
       }
     ]

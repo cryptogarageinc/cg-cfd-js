@@ -26,7 +26,6 @@ using Napi::Function;
 using Napi::String;
 using Napi::Boolean;
 
-using cfd::AddressUtil;
 using cfdcore::Pubkey;
 using cfdcore::Privkey;
 using cfdcore::Address;

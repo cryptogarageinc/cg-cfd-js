@@ -34,6 +34,13 @@ void CreateAddressRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<CreateAddressRequest> func_table;  // NOLINT
 
   func_table = {
+    CreateAddressRequest::GetIsElementsString,
+    CreateAddressRequest::SetIsElementsString,
+    CreateAddressRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
     CreateAddressRequest::GetScriptHexString,
     CreateAddressRequest::SetScriptHexString,
     CreateAddressRequest::GetScriptHexFieldType,
@@ -65,6 +72,7 @@ void CreateAddressRequest::CollectFieldName() {
 
 void CreateAddressRequest::ConvertFromStruct(
     const CreateAddressRequestStruct& data) {
+  is_elements_ = data.is_elements;
   script_hex_ = data.script_hex;
   pubkey_hex_ = data.pubkey_hex;
   network_ = data.network;
@@ -74,6 +82,7 @@ void CreateAddressRequest::ConvertFromStruct(
 
 CreateAddressRequestStruct CreateAddressRequest::ConvertToStruct() const {  // NOLINT
   CreateAddressRequestStruct result;
+  result.is_elements = is_elements_;
   result.script_hex = script_hex_;
   result.pubkey_hex = pubkey_hex_;
   result.network = network_;
@@ -109,12 +118,20 @@ void CreateAddressResponse::CollectFieldName() {
   };
   json_mapper.emplace("lockingScript", func_table);
   item_list.push_back("lockingScript");
+  func_table = {
+    CreateAddressResponse::GetRedeemScriptString,
+    CreateAddressResponse::SetRedeemScriptString,
+    CreateAddressResponse::GetRedeemScriptFieldType,
+  };
+  json_mapper.emplace("redeemScript", func_table);
+  item_list.push_back("redeemScript");
 }
 
 void CreateAddressResponse::ConvertFromStruct(
     const CreateAddressResponseStruct& data) {
   address_ = data.address;
   locking_script_ = data.locking_script;
+  redeem_script_ = data.redeem_script;
   ignore_items = data.ignore_items;
 }
 
@@ -122,6 +139,7 @@ CreateAddressResponseStruct CreateAddressResponse::ConvertToStruct() const {  //
   CreateAddressResponseStruct result;
   result.address = address_;
   result.locking_script = locking_script_;
+  result.redeem_script = redeem_script_;
   result.ignore_items = ignore_items;
   return result;
 }

@@ -48,6 +48,13 @@ void CreateMultisigRequest::CollectFieldName() {
   json_mapper.emplace("keys", func_table);
   item_list.push_back("keys");
   func_table = {
+    CreateMultisigRequest::GetIsElementsString,
+    CreateMultisigRequest::SetIsElementsString,
+    CreateMultisigRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
     CreateMultisigRequest::GetNetworkString,
     CreateMultisigRequest::SetNetworkString,
     CreateMultisigRequest::GetNetworkFieldType,
@@ -67,6 +74,7 @@ void CreateMultisigRequest::ConvertFromStruct(
     const CreateMultisigRequestStruct& data) {
   nrequired_ = data.nrequired;
   keys_.ConvertFromStruct(data.keys);
+  is_elements_ = data.is_elements;
   network_ = data.network;
   address_type_ = data.address_type;
   ignore_items = data.ignore_items;
@@ -76,6 +84,7 @@ CreateMultisigRequestStruct CreateMultisigRequest::ConvertToStruct() const {  //
   CreateMultisigRequestStruct result;
   result.nrequired = nrequired_;
   result.keys = keys_.ConvertToStruct();
+  result.is_elements = is_elements_;
   result.network = network_;
   result.address_type = address_type_;
   result.ignore_items = ignore_items;
