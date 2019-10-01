@@ -131,6 +131,13 @@ void DecodeRawTransactionTxIn::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<DecodeRawTransactionTxIn> func_table;  // NOLINT
 
   func_table = {
+    DecodeRawTransactionTxIn::GetCoinbaseString,
+    DecodeRawTransactionTxIn::SetCoinbaseString,
+    DecodeRawTransactionTxIn::GetCoinbaseFieldType,
+  };
+  json_mapper.emplace("coinbase", func_table);
+  item_list.push_back("coinbase");
+  func_table = {
     DecodeRawTransactionTxIn::GetTxidString,
     DecodeRawTransactionTxIn::SetTxidString,
     DecodeRawTransactionTxIn::GetTxidFieldType,
@@ -169,6 +176,7 @@ void DecodeRawTransactionTxIn::CollectFieldName() {
 
 void DecodeRawTransactionTxIn::ConvertFromStruct(
     const DecodeRawTransactionTxInStruct& data) {
+  coinbase_ = data.coinbase;
   txid_ = data.txid;
   vout_ = data.vout;
   script_sig_.ConvertFromStruct(data.script_sig);
@@ -179,6 +187,7 @@ void DecodeRawTransactionTxIn::ConvertFromStruct(
 
 DecodeRawTransactionTxInStruct DecodeRawTransactionTxIn::ConvertToStruct() const {  // NOLINT
   DecodeRawTransactionTxInStruct result;
+  result.coinbase = coinbase_;
   result.txid = txid_;
   result.vout = vout_;
   result.script_sig = script_sig_.ConvertToStruct();

@@ -5,7 +5,7 @@
 import {
   GetSupportedFunction,
   AddSign,
-  CreateUnblindedAddress,
+  CreateAddress,
   CreateElementsSignatureHash,
   CreateKeyPair,
   CreatePegInAddress,
@@ -131,9 +131,11 @@ else {
           {
             const reqJson = {
               "pubkeyHex": keypair.pubkey,
-              "elementsdNetwork": ELEMENTS_NET_TYPE
+              "network": ELEMENTS_NET_TYPE,
+              "hashType": "p2pkh",
+              "isElements": true
             }
-            const resStr = CreateUnblindedAddress(JSON.stringify(reqJson))
+            const resStr = CreateAddress(JSON.stringify(reqJson))
             outputAddress = JSON.parse(resStr)
             console.log("\n*** destination elements unblinded address ***\n", outputAddress, "\n")
           }
@@ -160,7 +162,7 @@ else {
               }
             }],
             "txouts": [{
-              "address": outputAddress.unblindedAddress,
+              "address": outputAddress.address,
               "amount": (peginParams.amount - FEE_AMOUNT),
               "asset": peginParams.assetId
             }],
@@ -181,7 +183,7 @@ else {
             "txHex": rawPeginTx.hex,
             "isElements": true,
             "txinTxid": peginParams.txid,
-            "txinVout": 0,
+            "txinVout": peginParams.vout,
             "pubkeyHex": peginKeyPair.pubkey,
             "amount": peginParams.amount,
             "hashType": "p2wpkh",
@@ -206,7 +208,7 @@ else {
             "txHex": rawPeginTx.hex,
             "isElements": true,
             "txinTxid": peginParams.txid,
-            "txinVout": 0,
+            "txinVout": peginParams.vout,
             "isWitness": true,
             "signParam": [
               {
@@ -229,6 +231,7 @@ else {
         }
       }
     } catch (e) {
+      console.error({ error: e })
       rl.close()
     }
 

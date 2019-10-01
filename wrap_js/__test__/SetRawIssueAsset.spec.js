@@ -57,7 +57,7 @@ const errorCaseElements = [
     "SetRawIssueAsset contractHash is err.",
     SetRawIssueAsset,
     ["{\"txHex\": \"020000000001fa8f7f752deb920f5d94331e880c2f514016c58663496ff33cc9c2368adec3880000000000ffffffff020151f799a22a9375b31c2f20edce025f0df5231306e81222a0061bde342dc447ef01000000003b9328e00017a9149d4a252d04e5072497ef2ac59574b1b14a7831b18701f38611eb688e6fcd06f25e2faf52b9f98364dc14c379ab085f1b57d56b4b1a6f01000000000007a120000000000000\",\"isRandomize\": false,\"issuances\": [{\"txinTxid\": \"88c3de8a36c2c93cf36f496386c51640512f0c881e33945d0f92eb2d757f8ffa\",\"txinVout\": 0, \"assetAmount\": 500000000, \"assetAddress\": \"2dnAZpPK76YhzKRcqMv4iBkLcMF4gP6aJ32\", \"tokenAmount\": 1000000000, \"tokenAddress\": \"xxxx\", \"isBlind\":false, \"contractHash\":\"aaaa\"}]}"],
-    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"ByteData256 size unmatch.\"}}"
+    "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Base58 decode error.\"}}"
   )
 ]
 

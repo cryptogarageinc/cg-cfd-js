@@ -132,6 +132,49 @@ class CreateMultisigRequest
   }
 
   /**
+   * @brief isElements 取得処理
+   * @return isElements
+   */
+  bool GetIsElements() {
+    return is_elements_;
+  }
+  /**
+   * @brief isElements 設定処理
+   * @param[in] is_elements    設定値
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief isElements データ型の取得処理
+   * @return isElementsのデータ型
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief isElements フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetIsElementsString(  // line separate
+      const CreateMultisigRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief isElements フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetIsElementsString(  // line separate
+      CreateMultisigRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
    * @brief network 取得処理
    * @return network
    */
@@ -295,13 +338,17 @@ class CreateMultisigRequest
    */
   JsonValueVector<std::string> keys_;  // NOLINT
   /**
+   * @brief JsonAPI(isElements) のvalue
+   */
+  bool is_elements_ = false;
+  /**
    * @brief JsonAPI(network) のvalue
    */
   std::string network_ = "mainnet";
   /**
    * @brief JsonAPI(addressType) のvalue
    */
-  std::string address_type_ = "bech32";
+  std::string address_type_ = "p2wsh";
 };
 
 // ------------------------------------------------------------------------

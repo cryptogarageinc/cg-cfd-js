@@ -46,6 +46,49 @@ class CreateAddressRequest
   static void CollectFieldName();
 
   /**
+   * @brief isElements 取得処理
+   * @return isElements
+   */
+  bool GetIsElements() {
+    return is_elements_;
+  }
+  /**
+   * @brief isElements 設定処理
+   * @param[in] is_elements    設定値
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief isElements データ型の取得処理
+   * @return isElementsのデータ型
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief isElements フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetIsElementsString(  // line separate
+      const CreateAddressRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief isElements フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetIsElementsString(  // line separate
+      CreateAddressRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
    * @brief scriptHex 取得処理
    * @return scriptHex
    */
@@ -287,6 +330,10 @@ class CreateAddressRequest
   std::set<std::string> ignore_items;
 
   /**
+   * @brief JsonAPI(isElements) のvalue
+   */
+  bool is_elements_ = false;
+  /**
    * @brief JsonAPI(scriptHex) のvalue
    */
   std::string script_hex_ = "";
@@ -411,6 +458,49 @@ class CreateAddressResponse
   }
 
   /**
+   * @brief redeemScript 取得処理
+   * @return redeemScript
+   */
+  std::string GetRedeemScript() {
+    return redeem_script_;
+  }
+  /**
+   * @brief redeemScript 設定処理
+   * @param[in] redeem_script    設定値
+   */
+  void SetRedeemScript(  // line separate
+    const std::string& redeem_script) {  // NOLINT
+    this->redeem_script_ = redeem_script;
+  }
+  /**
+   * @brief redeemScript データ型の取得処理
+   * @return redeemScriptのデータ型
+   */
+  static std::string GetRedeemScriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief redeemScript フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetRedeemScriptString(  // line separate
+      const CreateAddressResponse& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.redeem_script_);
+  }
+  /**
+   * @brief redeemScript フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetRedeemScriptString(  // line separate
+      CreateAddressResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.redeem_script_, json_value);
+  }
+
+  /**
    * @brief 無視対象アイテムを設定する。
    * @param[in] key   無視対象アイテムのキー名称
    */
@@ -487,6 +577,10 @@ class CreateAddressResponse
    * @brief JsonAPI(lockingScript) のvalue
    */
   std::string locking_script_ = "";
+  /**
+   * @brief JsonAPI(redeemScript) のvalue
+   */
+  std::string redeem_script_ = "";
 };
 
 // @formatter:on

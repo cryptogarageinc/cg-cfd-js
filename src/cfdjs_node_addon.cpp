@@ -24,11 +24,11 @@
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
 #include "cfdapi_decode_transaction_json.h"                 // NOLINT
-#include "cfdapi_elements_create_address_json.h"            // NOLINT
 #include "cfdapi_elements_create_pegin_address_json.h"      // NOLINT
 #include "cfdapi_elements_create_raw_pegin_json.h"          // NOLINT
 #include "cfdapi_elements_create_raw_pegout_json.h"         // NOLINT
 #include "cfdapi_elements_create_raw_transaction_json.h"    // NOLINT
+#include "cfdapi_elements_decode_raw_transaction_json.h"    // NOLINT
 #include "cfdapi_elements_get_confidential_address_json.h"  // NOLINT
 #include "cfdapi_elements_get_unblinded_address_json.h"     // NOLINT
 #include "cfdapi_elements_set_rawissueasset_json.h"         // NOLINT
@@ -292,16 +292,19 @@ Value DecodeRawTransaction(const CallbackInfo &information) {
 }
 
 Value CreateAddress(const CallbackInfo &information) {
-  return NodeAddonJsonApi<
+  return NodeAddonElementsCheckApi<
       CreateAddressRequest, CreateAddressResponse, CreateAddressRequestStruct,
-      CreateAddressResponseStruct>(information, AddressApi::CreateAddress);
+      CreateAddressResponseStruct>(
+      information, AddressApi::CreateAddress,
+      ElementsAddressApi::CreateAddress);
 }
 
 Value CreateMultisig(const CallbackInfo &information) {
-  return NodeAddonJsonApi<
+  return NodeAddonElementsCheckApi<
       CreateMultisigRequest, CreateMultisigResponse,
       CreateMultisigRequestStruct, CreateMultisigResponseStruct>(
-      information, AddressApi::CreateMultisig);
+      information, AddressApi::CreateMultisig,
+      ElementsAddressApi::CreateMultisig);
 }
 
 Value CreateSignatureHash(const CallbackInfo &information) {
@@ -350,14 +353,6 @@ Value AddMultisigSign(const CallbackInfo &information) {
 
 #ifndef CFD_DISABLE_ELEMENTS
 
-Value CreateUnblindedAddress(const CallbackInfo &information) {
-  return NodeAddonJsonApi<
-      CreateUnblindedAddressRequest, CreateUnblindedAddressResponse,
-      CreateUnblindedAddressRequestStruct,
-      CreateUnblindedAddressResponseStruct>(
-      information, ElementsAddressApi::CreateUnblindedAddress);
-}
-
 Value GetConfidentialAddress(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       GetConfidentialAddressRequest, GetConfidentialAddressResponse,
@@ -388,6 +383,15 @@ Value ElementsCreateRawTransaction(const CallbackInfo &information) {
       ElementsCreateRawTransactionRequestStruct,
       ElementsCreateRawTransactionResponseStruct>(
       information, ElementsTransactionApi::CreateRawTransaction);
+}
+
+Value ElementsDecodeRawTransaction(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      ElementsDecodeRawTransactionRequest,
+      ElementsDecodeRawTransactionResponse,
+      ElementsDecodeRawTransactionRequestStruct,
+      ElementsDecodeRawTransactionResponseStruct>(
+      information, ElementsTransactionApi::DecodeRawTransaction);
 }
 
 Value BlindRawTransaction(const CallbackInfo &information) {
@@ -511,9 +515,6 @@ Object Init(Env env, Object exports) {
       Function::New(env, cfd::api::CreateKeyPair));
 #ifndef CFD_DISABLE_ELEMENTS
   exports.Set(
-      String::New(env, "CreateUnblindedAddress"),
-      Function::New(env, cfd::api::CreateUnblindedAddress));
-  exports.Set(
       String::New(env, "GetConfidentialAddress"),
       Function::New(env, cfd::api::GetConfidentialAddress));
   exports.Set(
@@ -525,6 +526,9 @@ Object Init(Env env, Object exports) {
   exports.Set(
       String::New(env, "ElementsCreateRawTransaction"),
       Function::New(env, cfd::api::ElementsCreateRawTransaction));
+  exports.Set(
+      String::New(env, "ElementsDecodeRawTransaction"),
+      Function::New(env, cfd::api::ElementsDecodeRawTransaction));
   exports.Set(
       String::New(env, "BlindRawTransaction"),
       Function::New(env, cfd::api::BlindRawTransaction));
