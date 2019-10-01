@@ -108,6 +108,7 @@ target_sources(${PROJECT_NAME}
     cfdapi_elements_create_raw_transaction_json.cpp
     cfdapi_elements_create_raw_pegin_json.cpp
     cfdapi_elements_create_raw_pegout_json.cpp
+    cfdapi_elements_create_destroy_amount_json.cpp
     cfdapi_elements_create_pegin_address_json.cpp
     cfdapi_elements_decode_raw_transaction_json.cpp
     cfdapi_elements_unblind_raw_transaction_json.cpp

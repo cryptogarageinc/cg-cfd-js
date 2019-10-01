@@ -24,6 +24,7 @@
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
 #include "cfdapi_decode_transaction_json.h"                 // NOLINT
+#include "cfdapi_elements_create_destroy_amount_json.h"     // NOLINT
 #include "cfdapi_elements_create_pegin_address_json.h"      // NOLINT
 #include "cfdapi_elements_create_raw_pegin_json.h"          // NOLINT
 #include "cfdapi_elements_create_raw_pegout_json.h"         // NOLINT
@@ -455,6 +456,13 @@ Value GetIssuanceBlindingKey(const CallbackInfo &information) {
       information, ElementsTransactionApi::GetIssuanceBlindingKey);
 }
 
+Value CreateDestroyAmount(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      ElementsCreateDestroyAmountRequest, ElementsCreateDestroyAmountResponse,
+      ElementsCreateDestroyAmountRequestStruct,
+      ElementsCreateDestroyAmountResponseStruct>(
+      information, ElementsTransactionApi::CreateDestroyAmountTransaction);
+}
 #endif  // CFD_DISABLE_ELEMENTS
 
 }  // namespace api
@@ -553,6 +561,9 @@ Object Init(Env env, Object exports) {
   exports.Set(
       String::New(env, "GetIssuanceBlindingKey"),
       Function::New(env, cfd::api::GetIssuanceBlindingKey));
+  exports.Set(
+      String::New(env, "CreateDestroyAmount"),
+      Function::New(env, cfd::api::CreateDestroyAmount));
 #endif  // CFD_DISABLE_ELEMENTS
   exports.Set(
       String::New(env, "CreateCETxAddress"),
