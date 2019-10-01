@@ -21,6 +21,7 @@ import {
   GetIssuanceBlindingKey,
   CreateRawPegin,
   CreateRawPegout,
+  CreateDestroyAmount,
 } from "./build/Release/cfd_js"
 import {
   CalculateEcSignature,
@@ -853,4 +854,36 @@ if (!supportFunctions.elements) {
     console.log("\n*** Response ***\n", JSON.stringify(result, null, '  '), "\n")
   }
 
+  // DestroyAmount -------------------------------------------------------------
+  let DestroyAmount_CreateDestroyAmountResult
+  {
+    console.log("\n===== CreateDestroyAmount =====")
+    const paramJson = {
+    	"version":2,
+    	"locktime":0,
+    	"txins":[{
+      		"txid":"39a38fee7569a9b98f6c2fee3a3d946844c2f525be024fb73a698daa307d145e",
+      		"vout":1,
+      		"sequence":4294967293,
+      }],
+    	"txouts":[{
+    		"address":"Azppn1X5uLe1vrM4zQnpWNJZ7P5Jp3uw8VuxWZQXJPVxAa9F1364BMjErRKJ2hjz288tbXL16XrAT3dV",
+    		"amount":209997098761900,
+        "asset":"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+    	}],
+      "destroy":{
+        "amount": 400000000,
+  			"asset": "1b7d916b84c15ef482f665d8fce11a624e3650fbf6add4193949555b934df355"
+    	},
+    	"fee":{
+    		"amount":7300,
+    		"asset":"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+    	}
+    }
+
+    console.log("*** Request ***\n", paramJson)
+    const resStr = CreateDestroyAmount(JSON.stringify(paramJson))
+    DestroyAmount_CreateDestroyAmountResult = JSON.parse(resStr)
+    console.log("\n*** Response ***\n", DestroyAmount_CreateDestroyAmountResult, "\n")
+  }
 }
