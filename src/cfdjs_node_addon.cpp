@@ -11,6 +11,7 @@
 #include "cfd/cfdapi_address.h"
 #include "cfd/cfdapi_elements_address.h"
 #include "cfd/cfdapi_elements_transaction.h"
+#include "cfd/cfdapi_hdwallet.h"
 #include "cfd/cfdapi_key.h"
 #include "cfd/cfdapi_sighash.h"
 #include "cfd/cfdapi_transaction.h"
@@ -20,6 +21,7 @@
 
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
+#include "cfdapi_get_mnemonic_wordlist_json.h"                 // NOLINT
 #include "cfdapi_blind_raw_transaction_json.h"              // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
@@ -50,6 +52,7 @@
 
 // using
 using cfd::api::AddressApi;
+using cfd::api::HDWalletApi;
 using cfd::api::KeyApi;
 using cfd::api::SigHashApi;
 using cfd::api::TransactionApi;
@@ -315,6 +318,13 @@ Value CreateSignatureHash(const CallbackInfo &information) {
       information, SigHashApi::CreateSignatureHash);
 }
 
+Value GetMnemonicWordlist(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      GetMnemonicWordlistRequest, GetMnemonicWordlistResponse,
+      GetMnemonicWordlistRequestStruct, GetMnemonicWordlistResponseStruct>(
+      information, HDWalletApi::GetMnemonicWordlist);
+}
+
 Value CreateKeyPair(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       CreateKeyPairRequest, CreateKeyPairResponse, CreateKeyPairRequestStruct,
@@ -518,6 +528,9 @@ Object Init(Env env, Object exports) {
   exports.Set(
       String::New(env, "AddMultisigSign"),
       Function::New(env, cfd::api::AddMultisigSign));
+  exports.Set(
+      String::New(env, "GetMnemonicWordlist"),
+      Function::New(env, cfd::api::GetMnemonicWordlist));
   exports.Set(
       String::New(env, "CreateKeyPair"),
       Function::New(env, cfd::api::CreateKeyPair));

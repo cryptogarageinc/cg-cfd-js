@@ -15,7 +15,8 @@ import {
   CreateSignatureHash,
   CreateCETxAddress,
   AddCETxSign,
-  GetSupportedFunction
+  GetSupportedFunction,
+  GetMnemonicWordlist,
 } from "./build/Release/cfd_js"
 
 import {
@@ -718,4 +719,15 @@ let decodeP2WPKHSignedTxResult
   decodeP2WPKHSignedTxResult = JSON.parse(resStr)
   console.log("*** Response ***\n", JSON.stringify(decodeP2WPKHSignedTxResult, null, '  '))
   console.log("-- decoderawtransaction end   --\n")
+}
+
+let wordlistResult
+{
+  console.log("-- GetMnemonicWordlist start --")
+  const reqJson = {
+    language: "en"
+  }
+  const resStr = GetMnemonicWordlist(JSON.stringify(reqJson))
+  wordlistResult = JSON.parse(resStr)
+  console.log("*** Response ***\n", wordlistResult)
 }

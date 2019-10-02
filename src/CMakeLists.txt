@@ -101,6 +101,7 @@ target_sources(${PROJECT_NAME}
     cfdjs_node_addon.cpp
     cfdapi_add_multisig_sign_json.cpp
     cfdapi_add_sign_json.cpp
+    cfdapi_get_mnemonic_wordlist_json.cpp
     cfdapi_blind_raw_transaction_json.cpp
     cfdapi_create_address_json.cpp
     cfdapi_create_key_pair_json.cpp
