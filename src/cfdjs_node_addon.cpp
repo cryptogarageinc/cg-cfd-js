@@ -13,7 +13,6 @@
 #include "cfd/cfdapi_elements_transaction.h"
 #include "cfd/cfdapi_hdwallet.h"
 #include "cfd/cfdapi_key.h"
-#include "cfd/cfdapi_sighash.h"
 #include "cfd/cfdapi_transaction.h"
 #include "cfd/cfdapi_utility.h"
 #include "cfd/dlcapi_address.h"
@@ -54,7 +53,6 @@
 using cfd::api::AddressApi;
 using cfd::api::HDWalletApi;
 using cfd::api::KeyApi;
-using cfd::api::SigHashApi;
 using cfd::api::TransactionApi;
 using cfd::api::UtilApi;
 using dlc::api::DlcAddressApi;
@@ -315,7 +313,7 @@ Value CreateSignatureHash(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       CreateSignatureHashRequest, CreateSignatureHashResponse,
       CreateSignatureHashRequestStruct, CreateSignatureHashResponseStruct>(
-      information, SigHashApi::CreateSignatureHash);
+      information, TransactionApi::CreateSignatureHash);
 }
 
 Value GetMnemonicWordlist(const CallbackInfo &information) {

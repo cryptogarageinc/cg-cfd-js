@@ -21,6 +21,50 @@ using cfdcore::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------
+// SignatureHashKeyData
+// ------------------------------------------------------------------------
+cfdcore::JsonTableMap<SignatureHashKeyData>
+  SignatureHashKeyData::json_mapper;
+std::vector<std::string> SignatureHashKeyData::item_list;
+
+void SignatureHashKeyData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfdcore::CLASS_FUNCTION_TABLE<SignatureHashKeyData> func_table;  // NOLINT
+
+  func_table = {
+    SignatureHashKeyData::GetHexString,
+    SignatureHashKeyData::SetHexString,
+    SignatureHashKeyData::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+  func_table = {
+    SignatureHashKeyData::GetTypeString,
+    SignatureHashKeyData::SetTypeString,
+    SignatureHashKeyData::GetTypeFieldType,
+  };
+  json_mapper.emplace("type", func_table);
+  item_list.push_back("type");
+}
+
+void SignatureHashKeyData::ConvertFromStruct(
+    const SignatureHashKeyDataStruct& data) {
+  hex_ = data.hex;
+  type_ = data.type;
+  ignore_items = data.ignore_items;
+}
+
+SignatureHashKeyDataStruct SignatureHashKeyData::ConvertToStruct() const {  // NOLINT
+  SignatureHashKeyDataStruct result;
+  result.hex = hex_;
+  result.type = type_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // CreateSignatureHashRequest
 // ------------------------------------------------------------------------
 cfdcore::JsonTableMap<CreateSignatureHashRequest>
@@ -34,12 +78,12 @@ void CreateSignatureHashRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<CreateSignatureHashRequest> func_table;  // NOLINT
 
   func_table = {
-    CreateSignatureHashRequest::GetTxHexString,
-    CreateSignatureHashRequest::SetTxHexString,
-    CreateSignatureHashRequest::GetTxHexFieldType,
+    CreateSignatureHashRequest::GetTxString,
+    CreateSignatureHashRequest::SetTxString,
+    CreateSignatureHashRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     CreateSignatureHashRequest::GetTxinTxidString,
     CreateSignatureHashRequest::SetTxinTxidString,
@@ -55,19 +99,12 @@ void CreateSignatureHashRequest::CollectFieldName() {
   json_mapper.emplace("txinVout", func_table);
   item_list.push_back("txinVout");
   func_table = {
-    CreateSignatureHashRequest::GetScriptHexString,
-    CreateSignatureHashRequest::SetScriptHexString,
-    CreateSignatureHashRequest::GetScriptHexFieldType,
+    CreateSignatureHashRequest::GetKeyDataString,
+    CreateSignatureHashRequest::SetKeyDataString,
+    CreateSignatureHashRequest::GetKeyDataFieldType,
   };
-  json_mapper.emplace("scriptHex", func_table);
-  item_list.push_back("scriptHex");
-  func_table = {
-    CreateSignatureHashRequest::GetPubkeyHexString,
-    CreateSignatureHashRequest::SetPubkeyHexString,
-    CreateSignatureHashRequest::GetPubkeyHexFieldType,
-  };
-  json_mapper.emplace("pubkeyHex", func_table);
-  item_list.push_back("pubkeyHex");
+  json_mapper.emplace("keyData", func_table);
+  item_list.push_back("keyData");
   func_table = {
     CreateSignatureHashRequest::GetAmountString,
     CreateSignatureHashRequest::SetAmountString,
@@ -100,11 +137,10 @@ void CreateSignatureHashRequest::CollectFieldName() {
 
 void CreateSignatureHashRequest::ConvertFromStruct(
     const CreateSignatureHashRequestStruct& data) {
-  tx_hex_ = data.tx_hex;
+  tx_ = data.tx;
   txin_txid_ = data.txin_txid;
   txin_vout_ = data.txin_vout;
-  script_hex_ = data.script_hex;
-  pubkey_hex_ = data.pubkey_hex;
+  key_data_.ConvertFromStruct(data.key_data);
   amount_ = data.amount;
   hash_type_ = data.hash_type;
   sighash_type_ = data.sighash_type;
@@ -114,11 +150,10 @@ void CreateSignatureHashRequest::ConvertFromStruct(
 
 CreateSignatureHashRequestStruct CreateSignatureHashRequest::ConvertToStruct() const {  // NOLINT
   CreateSignatureHashRequestStruct result;
-  result.tx_hex = tx_hex_;
+  result.tx = tx_;
   result.txin_txid = txin_txid_;
   result.txin_vout = txin_vout_;
-  result.script_hex = script_hex_;
-  result.pubkey_hex = pubkey_hex_;
+  result.key_data = key_data_.ConvertToStruct();
   result.amount = amount_;
   result.hash_type = hash_type_;
   result.sighash_type = sighash_type_;

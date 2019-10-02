@@ -46,46 +46,46 @@ class GetWitnessStackNumRequest
   static void CollectFieldName();
 
   /**
-   * @brief txHex 取得処理
-   * @return txHex
+   * @brief tx 取得処理
+   * @return tx
    */
-  std::string GetTxHex() {
-    return tx_hex_;
+  std::string GetTx() {
+    return tx_;
   }
   /**
-   * @brief txHex 設定処理
-   * @param[in] tx_hex    設定値
+   * @brief tx 設定処理
+   * @param[in] tx    設定値
    */
-  void SetTxHex(  // line separate
-    const std::string& tx_hex) {  // NOLINT
-    this->tx_hex_ = tx_hex;
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
   }
   /**
-   * @brief txHex データ型の取得処理
-   * @return txHexのデータ型
+   * @brief tx データ型の取得処理
+   * @return txのデータ型
    */
-  static std::string GetTxHexFieldType() {
+  static std::string GetTxFieldType() {
     return "std::string";
   }
   /**
-   * @brief txHex フィールドのJSON文字列取得処理
+   * @brief tx フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxHexString(  // line separate
+  static std::string GetTxString(  // line separate
       const GetWitnessStackNumRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_hex_);
+    return cfdcore::ConvertToString(obj.tx_);
   }
   /**
-   * @brief txHex フィールドへのJSON情報設定処理
+   * @brief tx フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxHexString(  // line separate
+  static void SetTxString(  // line separate
       GetWitnessStackNumRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.tx_hex_, json_value);
+      obj.tx_, json_value);
   }
 
   /**
@@ -287,9 +287,9 @@ class GetWitnessStackNumRequest
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txHex) のvalue
+   * @brief JsonAPI(tx) のvalue
    */
-  std::string tx_hex_ = "";
+  std::string tx_ = "";
   /**
    * @brief JsonAPI(isElements) のvalue
    */

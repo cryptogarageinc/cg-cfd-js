@@ -112,12 +112,12 @@ void AddMultisigSignRequest::CollectFieldName() {
   json_mapper.emplace("isElements", func_table);
   item_list.push_back("isElements");
   func_table = {
-    AddMultisigSignRequest::GetTxHexString,
-    AddMultisigSignRequest::SetTxHexString,
-    AddMultisigSignRequest::GetTxHexFieldType,
+    AddMultisigSignRequest::GetTxString,
+    AddMultisigSignRequest::SetTxString,
+    AddMultisigSignRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     AddMultisigSignRequest::GetTxinTxidString,
     AddMultisigSignRequest::SetTxinTxidString,
@@ -172,7 +172,7 @@ void AddMultisigSignRequest::CollectFieldName() {
 void AddMultisigSignRequest::ConvertFromStruct(
     const AddMultisigSignRequestStruct& data) {
   is_elements_ = data.is_elements;
-  tx_hex_ = data.tx_hex;
+  tx_ = data.tx;
   txin_txid_ = data.txin_txid;
   txin_vout_ = data.txin_vout;
   sign_params_.ConvertFromStruct(data.sign_params);
@@ -186,7 +186,7 @@ void AddMultisigSignRequest::ConvertFromStruct(
 AddMultisigSignRequestStruct AddMultisigSignRequest::ConvertToStruct() const {  // NOLINT
   AddMultisigSignRequestStruct result;
   result.is_elements = is_elements_;
-  result.tx_hex = tx_hex_;
+  result.tx = tx_;
   result.txin_txid = txin_txid_;
   result.txin_vout = txin_vout_;
   result.sign_params = sign_params_.ConvertToStruct();

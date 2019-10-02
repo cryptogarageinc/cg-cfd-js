@@ -123,12 +123,12 @@ void SetRawReissueAssetRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<SetRawReissueAssetRequest> func_table;  // NOLINT
 
   func_table = {
-    SetRawReissueAssetRequest::GetTxHexString,
-    SetRawReissueAssetRequest::SetTxHexString,
-    SetRawReissueAssetRequest::GetTxHexFieldType,
+    SetRawReissueAssetRequest::GetTxString,
+    SetRawReissueAssetRequest::SetTxString,
+    SetRawReissueAssetRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     SetRawReissueAssetRequest::GetIsRandomizeString,
     SetRawReissueAssetRequest::SetIsRandomizeString,
@@ -147,7 +147,7 @@ void SetRawReissueAssetRequest::CollectFieldName() {
 
 void SetRawReissueAssetRequest::ConvertFromStruct(
     const SetRawReissueAssetRequestStruct& data) {
-  tx_hex_ = data.tx_hex;
+  tx_ = data.tx;
   is_randomize_ = data.is_randomize;
   issuances_.ConvertFromStruct(data.issuances);
   ignore_items = data.ignore_items;
@@ -155,7 +155,7 @@ void SetRawReissueAssetRequest::ConvertFromStruct(
 
 SetRawReissueAssetRequestStruct SetRawReissueAssetRequest::ConvertToStruct() const {  // NOLINT
   SetRawReissueAssetRequestStruct result;
-  result.tx_hex = tx_hex_;
+  result.tx = tx_;
   result.is_randomize = is_randomize_;
   result.issuances = issuances_.ConvertToStruct();
   result.ignore_items = ignore_items;

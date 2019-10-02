@@ -176,12 +176,12 @@ void BlindRawTransactionRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<BlindRawTransactionRequest> func_table;  // NOLINT
 
   func_table = {
-    BlindRawTransactionRequest::GetTxHexString,
-    BlindRawTransactionRequest::SetTxHexString,
-    BlindRawTransactionRequest::GetTxHexFieldType,
+    BlindRawTransactionRequest::GetTxString,
+    BlindRawTransactionRequest::SetTxString,
+    BlindRawTransactionRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     BlindRawTransactionRequest::GetTxinsString,
     BlindRawTransactionRequest::SetTxinsString,
@@ -207,7 +207,7 @@ void BlindRawTransactionRequest::CollectFieldName() {
 
 void BlindRawTransactionRequest::ConvertFromStruct(
     const BlindRawTransactionRequestStruct& data) {
-  tx_hex_ = data.tx_hex;
+  tx_ = data.tx;
   txins_.ConvertFromStruct(data.txins);
   blind_pubkeys_.ConvertFromStruct(data.blind_pubkeys);
   issuances_.ConvertFromStruct(data.issuances);
@@ -216,7 +216,7 @@ void BlindRawTransactionRequest::ConvertFromStruct(
 
 BlindRawTransactionRequestStruct BlindRawTransactionRequest::ConvertToStruct() const {  // NOLINT
   BlindRawTransactionRequestStruct result;
-  result.tx_hex = tx_hex_;
+  result.tx = tx_;
   result.txins = txins_.ConvertToStruct();
   result.blind_pubkeys = blind_pubkeys_.ConvertToStruct();
   result.issuances = issuances_.ConvertToStruct();

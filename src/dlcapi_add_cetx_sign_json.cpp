@@ -96,12 +96,12 @@ void AddCETxSignRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<AddCETxSignRequest> func_table;  // NOLINT
 
   func_table = {
-    AddCETxSignRequest::GetTxHexString,
-    AddCETxSignRequest::SetTxHexString,
-    AddCETxSignRequest::GetTxHexFieldType,
+    AddCETxSignRequest::GetTxString,
+    AddCETxSignRequest::SetTxString,
+    AddCETxSignRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     AddCETxSignRequest::GetTxinTxidString,
     AddCETxSignRequest::SetTxinTxidString,
@@ -141,7 +141,7 @@ void AddCETxSignRequest::CollectFieldName() {
 
 void AddCETxSignRequest::ConvertFromStruct(
     const AddCETxSignRequestStruct& data) {
-  tx_hex_ = data.tx_hex;
+  tx_ = data.tx;
   txin_txid_ = data.txin_txid;
   txin_vout_ = data.txin_vout;
   sign_.ConvertFromStruct(data.sign);
@@ -152,7 +152,7 @@ void AddCETxSignRequest::ConvertFromStruct(
 
 AddCETxSignRequestStruct AddCETxSignRequest::ConvertToStruct() const {  // NOLINT
   AddCETxSignRequestStruct result;
-  result.tx_hex = tx_hex_;
+  result.tx = tx_;
   result.txin_txid = txin_txid_;
   result.txin_vout = txin_vout_;
   result.sign = sign_.ConvertToStruct();
