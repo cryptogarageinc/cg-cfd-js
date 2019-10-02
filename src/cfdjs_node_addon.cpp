@@ -20,8 +20,8 @@
 #include "cfd/dlcapi_transaction.h"
 
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
-#include "cfdapi_bip39_get_wordlist_json.h"                 // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
+#include "cfdapi_bip39_get_wordlist_json.h"                 // NOLINT
 #include "cfdapi_blind_raw_transaction_json.h"              // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
@@ -320,10 +320,10 @@ Value CreateSignatureHash(const CallbackInfo &information) {
 
 Value Bip39GetWordlist(const CallbackInfo &information) {
   return NodeAddonJsonApi<
-      Bip39GetWordlistRequest, Bip39GetWordlistResponse, Bip39GetWordlistRequestStruct,
-      Bip39GetWordlistResponseStruct>(information, HDWalletApi::Bip39GetWordlist);
+      Bip39GetWordlistRequest, Bip39GetWordlistResponse,
+      Bip39GetWordlistRequestStruct, Bip39GetWordlistResponseStruct>(
+      information, HDWalletApi::Bip39GetWordlist);
 }
-
 
 Value CreateKeyPair(const CallbackInfo &information) {
   return NodeAddonJsonApi<
