@@ -16,7 +16,7 @@ import {
   CreateCETxAddress,
   AddCETxSign,
   GetSupportedFunction,
-  Bip39GetWordlist,
+  GetMnemonicWordlist,
 } from "./build/Release/cfd_js"
 
 import {
@@ -723,11 +723,11 @@ let decodeP2WPKHSignedTxResult
 
 let wordlistResult
 {
-  console.log("-- Bip39GetWordlist start --")
+  console.log("-- GetMnemonicWordlist start --")
   const reqJson = {
     language: "en"
   }
-  const resStr = Bip39GetWordlist(JSON.stringify(reqJson))
+  const resStr = GetMnemonicWordlist(JSON.stringify(reqJson))
   wordlistResult = JSON.parse(resStr)
   console.log("*** Response ***\n", wordlistResult)
 }

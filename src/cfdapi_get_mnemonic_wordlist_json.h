@@ -1,11 +1,11 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_bip39_get_wordlist_json.h
+ * @file cfdapi_get_mnemonic_wordlist_json.h
  *
  * @brief JSONマッピングファイル (自動生成)
  */
-#ifndef CFD_JS_SRC_CFDAPI_BIP39_GET_WORDLIST_JSON_H_
-#define CFD_JS_SRC_CFDAPI_BIP39_GET_WORDLIST_JSON_H_
+#ifndef CFD_JS_SRC_CFDAPI_GET_MNEMONIC_WORDLIST_JSON_H_
+#define CFD_JS_SRC_CFDAPI_GET_MNEMONIC_WORDLIST_JSON_H_
 
 #include <set>
 #include <string>
@@ -26,18 +26,18 @@ using cfdcore::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------
-// Bip39GetWordlistRequest
+// GetMnemonicWordlistRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（Bip39GetWordlistRequest）クラス
+ * @brief JSON-API（GetMnemonicWordlistRequest）クラス
  */
-class Bip39GetWordlistRequest
-  : public cfdcore::JsonClassBase<Bip39GetWordlistRequest> {
+class GetMnemonicWordlistRequest
+  : public cfdcore::JsonClassBase<GetMnemonicWordlistRequest> {
  public:
-  Bip39GetWordlistRequest() {
+  GetMnemonicWordlistRequest() {
     CollectFieldName();
   }
-  virtual ~Bip39GetWordlistRequest() {
+  virtual ~GetMnemonicWordlistRequest() {
     // do nothing
   }
   /**
@@ -73,7 +73,7 @@ class Bip39GetWordlistRequest
    * @return JSON文字列
    */
   static std::string GetLanguageString(  // line separate
-      const Bip39GetWordlistRequest& obj) {  // NOLINT
+      const GetMnemonicWordlistRequest& obj) {  // NOLINT
     return cfdcore::ConvertToString(obj.language_);
   }
   /**
@@ -82,7 +82,7 @@ class Bip39GetWordlistRequest
    * @param[in] json_value  JSON情報
    */
   static void SetLanguageString(  // line separate
-      Bip39GetWordlistRequest& obj,  // NOLINT
+      GetMnemonicWordlistRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
       obj.language_, json_value);
@@ -101,27 +101,27 @@ class Bip39GetWordlistRequest
    * @param[in] key   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
-      const Bip39GetWordlistRequestStruct& data);
+      const GetMnemonicWordlistRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
    * @param[in] key   無視対象アイテムのキー名称
    */
-  Bip39GetWordlistRequestStruct ConvertToStruct()  const;
+  GetMnemonicWordlistRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief Mapテーブルの型名定義
    */
-  using Bip39GetWordlistRequestMapTable =
-    cfdcore::JsonTableMap<Bip39GetWordlistRequest>;
+  using GetMnemonicWordlistRequestMapTable =
+    cfdcore::JsonTableMap<GetMnemonicWordlistRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
    * @see cfdcore::JsonClassBase::GetJsonMapper()
    */
-  virtual const Bip39GetWordlistRequestMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const GetMnemonicWordlistRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -147,7 +147,7 @@ class Bip39GetWordlistRequest
  /**
   * @brief JsonFunctionMapテーブル
   */
-  static Bip39GetWordlistRequestMapTable json_mapper;
+  static GetMnemonicWordlistRequestMapTable json_mapper;
   /**
    * @brief フィールド名リスト
    */
@@ -164,18 +164,18 @@ class Bip39GetWordlistRequest
 };
 
 // ------------------------------------------------------------------------
-// Bip39GetWordlistResponse
+// GetMnemonicWordlistResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（Bip39GetWordlistResponse）クラス
+ * @brief JSON-API（GetMnemonicWordlistResponse）クラス
  */
-class Bip39GetWordlistResponse
-  : public cfdcore::JsonClassBase<Bip39GetWordlistResponse> {
+class GetMnemonicWordlistResponse
+  : public cfdcore::JsonClassBase<GetMnemonicWordlistResponse> {
  public:
-  Bip39GetWordlistResponse() {
+  GetMnemonicWordlistResponse() {
     CollectFieldName();
   }
-  virtual ~Bip39GetWordlistResponse() {
+  virtual ~GetMnemonicWordlistResponse() {
     // do nothing
   }
   /**
@@ -211,7 +211,7 @@ class Bip39GetWordlistResponse
    * @return JSON文字列
    */
   static std::string GetWordlistString(  // line separate
-      const Bip39GetWordlistResponse& obj) {  // NOLINT
+      const GetMnemonicWordlistResponse& obj) {  // NOLINT
     // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
     return obj.wordlist_.Serialize();
   }
@@ -221,7 +221,7 @@ class Bip39GetWordlistResponse
    * @param[in] json_value  JSON情報
    */
   static void SetWordlistString(  // line separate
-      Bip39GetWordlistResponse& obj,  // NOLINT
+      GetMnemonicWordlistResponse& obj,  // NOLINT
       const UniValue& json_value) {
     obj.wordlist_.DeserializeUniValue(json_value);
   }
@@ -239,27 +239,27 @@ class Bip39GetWordlistResponse
    * @param[in] key   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
-      const Bip39GetWordlistResponseStruct& data);
+      const GetMnemonicWordlistResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
    * @param[in] key   無視対象アイテムのキー名称
    */
-  Bip39GetWordlistResponseStruct ConvertToStruct()  const;
+  GetMnemonicWordlistResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief Mapテーブルの型名定義
    */
-  using Bip39GetWordlistResponseMapTable =
-    cfdcore::JsonTableMap<Bip39GetWordlistResponse>;
+  using GetMnemonicWordlistResponseMapTable =
+    cfdcore::JsonTableMap<GetMnemonicWordlistResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
    * @see cfdcore::JsonClassBase::GetJsonMapper()
    */
-  virtual const Bip39GetWordlistResponseMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const GetMnemonicWordlistResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -285,7 +285,7 @@ class Bip39GetWordlistResponse
  /**
   * @brief JsonFunctionMapテーブル
   */
-  static Bip39GetWordlistResponseMapTable json_mapper;
+  static GetMnemonicWordlistResponseMapTable json_mapper;
   /**
    * @brief フィールド名リスト
    */
@@ -307,4 +307,4 @@ class Bip39GetWordlistResponse
 }  // namespace api
 }  // namespace cfd
 
-#endif  // CFD_JS_SRC_CFDAPI_BIP39_GET_WORDLIST_JSON_H_
+#endif  // CFD_JS_SRC_CFDAPI_GET_MNEMONIC_WORDLIST_JSON_H_

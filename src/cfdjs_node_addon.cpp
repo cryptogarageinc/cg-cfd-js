@@ -21,7 +21,7 @@
 
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
-#include "cfdapi_bip39_get_wordlist_json.h"                 // NOLINT
+#include "cfdapi_get_mnemonic_wordlist_json.h"                 // NOLINT
 #include "cfdapi_blind_raw_transaction_json.h"              // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
@@ -318,11 +318,11 @@ Value CreateSignatureHash(const CallbackInfo &information) {
       information, SigHashApi::CreateSignatureHash);
 }
 
-Value Bip39GetWordlist(const CallbackInfo &information) {
+Value GetMnemonicWordlist(const CallbackInfo &information) {
   return NodeAddonJsonApi<
-      Bip39GetWordlistRequest, Bip39GetWordlistResponse,
-      Bip39GetWordlistRequestStruct, Bip39GetWordlistResponseStruct>(
-      information, HDWalletApi::Bip39GetWordlist);
+      GetMnemonicWordlistRequest, GetMnemonicWordlistResponse,
+      GetMnemonicWordlistRequestStruct, GetMnemonicWordlistResponseStruct>(
+      information, HDWalletApi::GetMnemonicWordlist);
 }
 
 Value CreateKeyPair(const CallbackInfo &information) {
@@ -529,8 +529,8 @@ Object Init(Env env, Object exports) {
       String::New(env, "AddMultisigSign"),
       Function::New(env, cfd::api::AddMultisigSign));
   exports.Set(
-      String::New(env, "Bip39GetWordlist"),
-      Function::New(env, cfd::api::Bip39GetWordlist));
+      String::New(env, "GetMnemonicWordlist"),
+      Function::New(env, cfd::api::GetMnemonicWordlist));
   exports.Set(
       String::New(env, "CreateKeyPair"),
       Function::New(env, cfd::api::CreateKeyPair));
