@@ -20,7 +20,6 @@
 
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
-#include "cfdapi_get_mnemonic_wordlist_json.h"                 // NOLINT
 #include "cfdapi_blind_raw_transaction_json.h"              // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
@@ -39,6 +38,7 @@
 #include "cfdapi_error_base_json.h"                         // NOLINT
 #include "cfdapi_error_json.h"                              // NOLINT
 #include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
+#include "cfdapi_get_mnemonic_wordlist_json.h"              // NOLINT
 #include "cfdapi_get_witness_num_json.h"                    // NOLINT
 #include "cfdapi_multisig_address_json.h"                   // NOLINT
 #include "cfdapi_sighash_elements_json.h"                   // NOLINT

@@ -89,6 +89,49 @@ class MultisigSignData
   }
 
   /**
+   * @brief type 取得処理
+   * @return type
+   */
+  std::string GetType() {
+    return type_;
+  }
+  /**
+   * @brief type 設定処理
+   * @param[in] type    設定値
+   */
+  void SetType(  // line separate
+    const std::string& type) {  // NOLINT
+    this->type_ = type;
+  }
+  /**
+   * @brief type データ型の取得処理
+   * @return typeのデータ型
+   */
+  static std::string GetTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief type フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTypeString(  // line separate
+      const MultisigSignData& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.type_);
+  }
+  /**
+   * @brief type フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTypeString(  // line separate
+      MultisigSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.type_, json_value);
+  }
+
+  /**
    * @brief derEncode 取得処理
    * @return derEncode
    */
@@ -333,6 +376,10 @@ class MultisigSignData
    * @brief JsonAPI(hex) のvalue
    */
   std::string hex_ = "";
+  /**
+   * @brief JsonAPI(type) のvalue
+   */
+  std::string type_ = "sign";
   /**
    * @brief JsonAPI(derEncode) のvalue
    */

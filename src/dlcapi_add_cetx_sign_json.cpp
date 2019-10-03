@@ -41,6 +41,13 @@ void CETxSignData::CollectFieldName() {
   json_mapper.emplace("hex", func_table);
   item_list.push_back("hex");
   func_table = {
+    CETxSignData::GetTypeString,
+    CETxSignData::SetTypeString,
+    CETxSignData::GetTypeFieldType,
+  };
+  json_mapper.emplace("type", func_table);
+  item_list.push_back("type");
+  func_table = {
     CETxSignData::GetDerEncodeString,
     CETxSignData::SetDerEncodeString,
     CETxSignData::GetDerEncodeFieldType,
@@ -66,6 +73,7 @@ void CETxSignData::CollectFieldName() {
 void CETxSignData::ConvertFromStruct(
     const CETxSignDataStruct& data) {
   hex_ = data.hex;
+  type_ = data.type;
   der_encode_ = data.der_encode;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
@@ -75,6 +83,7 @@ void CETxSignData::ConvertFromStruct(
 CETxSignDataStruct CETxSignData::ConvertToStruct() const {  // NOLINT
   CETxSignDataStruct result;
   result.hex = hex_;
+  result.type = type_;
   result.der_encode = der_encode_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
