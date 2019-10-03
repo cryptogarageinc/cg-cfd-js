@@ -129,6 +129,7 @@ target_sources(${PROJECT_NAME}
     cfdapi_update_witness_json.cpp
     dlcapi_add_cetx_sign_json.cpp
     dlcapi_address_json.cpp
+    ${CMAKE_JS_SRC}
 )
 
 target_compile_options(${PROJECT_NAME}
