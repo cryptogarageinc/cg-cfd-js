@@ -274,89 +274,89 @@ class CreateSignatureHashRequest
   }
 
   /**
-   * @brief txinTxid 取得処理
-   * @return txinTxid
+   * @brief txid 取得処理
+   * @return txid
    */
-  std::string GetTxinTxid() {
-    return txin_txid_;
+  std::string GetTxid() {
+    return txid_;
   }
   /**
-   * @brief txinTxid 設定処理
-   * @param[in] txin_txid    設定値
+   * @brief txid 設定処理
+   * @param[in] txid    設定値
    */
-  void SetTxinTxid(  // line separate
-    const std::string& txin_txid) {  // NOLINT
-    this->txin_txid_ = txin_txid;
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
   }
   /**
-   * @brief txinTxid データ型の取得処理
-   * @return txinTxidのデータ型
+   * @brief txid データ型の取得処理
+   * @return txidのデータ型
    */
-  static std::string GetTxinTxidFieldType() {
+  static std::string GetTxidFieldType() {
     return "std::string";
   }
   /**
-   * @brief txinTxid フィールドのJSON文字列取得処理
+   * @brief txid フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxinTxidString(  // line separate
+  static std::string GetTxidString(  // line separate
       const CreateSignatureHashRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_txid_);
+    return cfdcore::ConvertToString(obj.txid_);
   }
   /**
-   * @brief txinTxid フィールドへのJSON情報設定処理
+   * @brief txid フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxinTxidString(  // line separate
+  static void SetTxidString(  // line separate
       CreateSignatureHashRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_txid_, json_value);
+      obj.txid_, json_value);
   }
 
   /**
-   * @brief txinVout 取得処理
-   * @return txinVout
+   * @brief vout 取得処理
+   * @return vout
    */
-  uint32_t GetTxinVout() {
-    return txin_vout_;
+  uint32_t GetVout() {
+    return vout_;
   }
   /**
-   * @brief txinVout 設定処理
-   * @param[in] txin_vout    設定値
+   * @brief vout 設定処理
+   * @param[in] vout    設定値
    */
-  void SetTxinVout(  // line separate
-    const uint32_t& txin_vout) {  // NOLINT
-    this->txin_vout_ = txin_vout;
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
   }
   /**
-   * @brief txinVout データ型の取得処理
-   * @return txinVoutのデータ型
+   * @brief vout データ型の取得処理
+   * @return voutのデータ型
    */
-  static std::string GetTxinVoutFieldType() {
+  static std::string GetVoutFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief txinVout フィールドのJSON文字列取得処理
+   * @brief vout フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxinVoutString(  // line separate
+  static std::string GetVoutString(  // line separate
       const CreateSignatureHashRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_vout_);
+    return cfdcore::ConvertToString(obj.vout_);
   }
   /**
-   * @brief txinVout フィールドへのJSON情報設定処理
+   * @brief vout フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxinVoutString(  // line separate
+  static void SetVoutString(  // line separate
       CreateSignatureHashRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_vout_, json_value);
+      obj.vout_, json_value);
   }
 
   /**
@@ -648,13 +648,13 @@ class CreateSignatureHashRequest
    */
   std::string tx_ = "";
   /**
-   * @brief JsonAPI(txinTxid) のvalue
+   * @brief JsonAPI(txid) のvalue
    */
-  std::string txin_txid_ = "";
+  std::string txid_ = "";
   /**
-   * @brief JsonAPI(txinVout) のvalue
+   * @brief JsonAPI(vout) のvalue
    */
-  uint32_t txin_vout_ = 0;
+  uint32_t vout_ = 0;
   /**
    * @brief JsonAPI(keyData) のvalue
    */

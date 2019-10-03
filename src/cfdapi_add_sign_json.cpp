@@ -119,19 +119,19 @@ void AddSignRequest::CollectFieldName() {
   json_mapper.emplace("isElements", func_table);
   item_list.push_back("isElements");
   func_table = {
-    AddSignRequest::GetTxinTxidString,
-    AddSignRequest::SetTxinTxidString,
-    AddSignRequest::GetTxinTxidFieldType,
+    AddSignRequest::GetTxidString,
+    AddSignRequest::SetTxidString,
+    AddSignRequest::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    AddSignRequest::GetTxinVoutString,
-    AddSignRequest::SetTxinVoutString,
-    AddSignRequest::GetTxinVoutFieldType,
+    AddSignRequest::GetVoutString,
+    AddSignRequest::SetVoutString,
+    AddSignRequest::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     AddSignRequest::GetIsWitnessString,
     AddSignRequest::SetIsWitnessString,
@@ -159,8 +159,8 @@ void AddSignRequest::ConvertFromStruct(
     const AddSignRequestStruct& data) {
   tx_ = data.tx;
   is_elements_ = data.is_elements;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   is_witness_ = data.is_witness;
   sign_param_.ConvertFromStruct(data.sign_param);
   clear_stack_ = data.clear_stack;
@@ -171,8 +171,8 @@ AddSignRequestStruct AddSignRequest::ConvertToStruct() const {  // NOLINT
   AddSignRequestStruct result;
   result.tx = tx_;
   result.is_elements = is_elements_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.is_witness = is_witness_;
   result.sign_param = sign_param_.ConvertToStruct();
   result.clear_stack = clear_stack_;

@@ -48,27 +48,27 @@ void GetWitnessStackNumRequest::CollectFieldName() {
   json_mapper.emplace("isElements", func_table);
   item_list.push_back("isElements");
   func_table = {
-    GetWitnessStackNumRequest::GetTxinTxidString,
-    GetWitnessStackNumRequest::SetTxinTxidString,
-    GetWitnessStackNumRequest::GetTxinTxidFieldType,
+    GetWitnessStackNumRequest::GetTxidString,
+    GetWitnessStackNumRequest::SetTxidString,
+    GetWitnessStackNumRequest::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    GetWitnessStackNumRequest::GetTxinVoutString,
-    GetWitnessStackNumRequest::SetTxinVoutString,
-    GetWitnessStackNumRequest::GetTxinVoutFieldType,
+    GetWitnessStackNumRequest::GetVoutString,
+    GetWitnessStackNumRequest::SetVoutString,
+    GetWitnessStackNumRequest::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
 }
 
 void GetWitnessStackNumRequest::ConvertFromStruct(
     const GetWitnessStackNumRequestStruct& data) {
   tx_ = data.tx;
   is_elements_ = data.is_elements;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   ignore_items = data.ignore_items;
 }
 
@@ -76,8 +76,8 @@ GetWitnessStackNumRequestStruct GetWitnessStackNumRequest::ConvertToStruct() con
   GetWitnessStackNumRequestStruct result;
   result.tx = tx_;
   result.is_elements = is_elements_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.ignore_items = ignore_items;
   return result;
 }

@@ -85,19 +85,19 @@ void CreateElementsSignatureHashRequest::CollectFieldName() {
   json_mapper.emplace("tx", func_table);
   item_list.push_back("tx");
   func_table = {
-    CreateElementsSignatureHashRequest::GetTxinTxidString,
-    CreateElementsSignatureHashRequest::SetTxinTxidString,
-    CreateElementsSignatureHashRequest::GetTxinTxidFieldType,
+    CreateElementsSignatureHashRequest::GetTxidString,
+    CreateElementsSignatureHashRequest::SetTxidString,
+    CreateElementsSignatureHashRequest::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    CreateElementsSignatureHashRequest::GetTxinVoutString,
-    CreateElementsSignatureHashRequest::SetTxinVoutString,
-    CreateElementsSignatureHashRequest::GetTxinVoutFieldType,
+    CreateElementsSignatureHashRequest::GetVoutString,
+    CreateElementsSignatureHashRequest::SetVoutString,
+    CreateElementsSignatureHashRequest::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     CreateElementsSignatureHashRequest::GetKeyDataString,
     CreateElementsSignatureHashRequest::SetKeyDataString,
@@ -145,8 +145,8 @@ void CreateElementsSignatureHashRequest::CollectFieldName() {
 void CreateElementsSignatureHashRequest::ConvertFromStruct(
     const CreateElementsSignatureHashRequestStruct& data) {
   tx_ = data.tx;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   key_data_.ConvertFromStruct(data.key_data);
   amount_ = data.amount;
   confidential_value_commitment_ = data.confidential_value_commitment;
@@ -159,8 +159,8 @@ void CreateElementsSignatureHashRequest::ConvertFromStruct(
 CreateElementsSignatureHashRequestStruct CreateElementsSignatureHashRequest::ConvertToStruct() const {  // NOLINT
   CreateElementsSignatureHashRequestStruct result;
   result.tx = tx_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.key_data = key_data_.ConvertToStruct();
   result.amount = amount_;
   result.confidential_value_commitment = confidential_value_commitment_;

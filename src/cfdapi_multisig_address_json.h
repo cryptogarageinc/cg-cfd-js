@@ -218,46 +218,46 @@ class CreateMultisigRequest
   }
 
   /**
-   * @brief addressType 取得処理
-   * @return addressType
+   * @brief hashType 取得処理
+   * @return hashType
    */
-  std::string GetAddressType() {
-    return address_type_;
+  std::string GetHashType() {
+    return hash_type_;
   }
   /**
-   * @brief addressType 設定処理
-   * @param[in] address_type    設定値
+   * @brief hashType 設定処理
+   * @param[in] hash_type    設定値
    */
-  void SetAddressType(  // line separate
-    const std::string& address_type) {  // NOLINT
-    this->address_type_ = address_type;
+  void SetHashType(  // line separate
+    const std::string& hash_type) {  // NOLINT
+    this->hash_type_ = hash_type;
   }
   /**
-   * @brief addressType データ型の取得処理
-   * @return addressTypeのデータ型
+   * @brief hashType データ型の取得処理
+   * @return hashTypeのデータ型
    */
-  static std::string GetAddressTypeFieldType() {
+  static std::string GetHashTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief addressType フィールドのJSON文字列取得処理
+   * @brief hashType フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetAddressTypeString(  // line separate
+  static std::string GetHashTypeString(  // line separate
       const CreateMultisigRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.address_type_);
+    return cfdcore::ConvertToString(obj.hash_type_);
   }
   /**
-   * @brief addressType フィールドへのJSON情報設定処理
+   * @brief hashType フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetAddressTypeString(  // line separate
+  static void SetHashTypeString(  // line separate
       CreateMultisigRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.address_type_, json_value);
+      obj.hash_type_, json_value);
   }
 
   /**
@@ -346,9 +346,9 @@ class CreateMultisigRequest
    */
   std::string network_ = "mainnet";
   /**
-   * @brief JsonAPI(addressType) のvalue
+   * @brief JsonAPI(hashType) のvalue
    */
-  std::string address_type_ = "p2wsh";
+  std::string hash_type_ = "p2wsh";
 };
 
 // ------------------------------------------------------------------------

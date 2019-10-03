@@ -62,12 +62,12 @@ void CreateMultisigRequest::CollectFieldName() {
   json_mapper.emplace("network", func_table);
   item_list.push_back("network");
   func_table = {
-    CreateMultisigRequest::GetAddressTypeString,
-    CreateMultisigRequest::SetAddressTypeString,
-    CreateMultisigRequest::GetAddressTypeFieldType,
+    CreateMultisigRequest::GetHashTypeString,
+    CreateMultisigRequest::SetHashTypeString,
+    CreateMultisigRequest::GetHashTypeFieldType,
   };
-  json_mapper.emplace("addressType", func_table);
-  item_list.push_back("addressType");
+  json_mapper.emplace("hashType", func_table);
+  item_list.push_back("hashType");
 }
 
 void CreateMultisigRequest::ConvertFromStruct(
@@ -76,7 +76,7 @@ void CreateMultisigRequest::ConvertFromStruct(
   keys_.ConvertFromStruct(data.keys);
   is_elements_ = data.is_elements;
   network_ = data.network;
-  address_type_ = data.address_type;
+  hash_type_ = data.hash_type;
   ignore_items = data.ignore_items;
 }
 
@@ -86,7 +86,7 @@ CreateMultisigRequestStruct CreateMultisigRequest::ConvertToStruct() const {  //
   result.keys = keys_.ConvertToStruct();
   result.is_elements = is_elements_;
   result.network = network_;
-  result.address_type = address_type_;
+  result.hash_type = hash_type_;
   result.ignore_items = ignore_items;
   return result;
 }

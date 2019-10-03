@@ -128,19 +128,19 @@ void AddMultisigSignRequest::CollectFieldName() {
   json_mapper.emplace("tx", func_table);
   item_list.push_back("tx");
   func_table = {
-    AddMultisigSignRequest::GetTxinTxidString,
-    AddMultisigSignRequest::SetTxinTxidString,
-    AddMultisigSignRequest::GetTxinTxidFieldType,
+    AddMultisigSignRequest::GetTxidString,
+    AddMultisigSignRequest::SetTxidString,
+    AddMultisigSignRequest::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    AddMultisigSignRequest::GetTxinVoutString,
-    AddMultisigSignRequest::SetTxinVoutString,
-    AddMultisigSignRequest::GetTxinVoutFieldType,
+    AddMultisigSignRequest::GetVoutString,
+    AddMultisigSignRequest::SetVoutString,
+    AddMultisigSignRequest::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     AddMultisigSignRequest::GetSignParamsString,
     AddMultisigSignRequest::SetSignParamsString,
@@ -163,12 +163,12 @@ void AddMultisigSignRequest::CollectFieldName() {
   json_mapper.emplace("witnessScript", func_table);
   item_list.push_back("witnessScript");
   func_table = {
-    AddMultisigSignRequest::GetTxinTypeString,
-    AddMultisigSignRequest::SetTxinTypeString,
-    AddMultisigSignRequest::GetTxinTypeFieldType,
+    AddMultisigSignRequest::GetHashTypeString,
+    AddMultisigSignRequest::SetHashTypeString,
+    AddMultisigSignRequest::GetHashTypeFieldType,
   };
-  json_mapper.emplace("txinType", func_table);
-  item_list.push_back("txinType");
+  json_mapper.emplace("hashType", func_table);
+  item_list.push_back("hashType");
   func_table = {
     AddMultisigSignRequest::GetClearStackString,
     AddMultisigSignRequest::SetClearStackString,
@@ -182,12 +182,12 @@ void AddMultisigSignRequest::ConvertFromStruct(
     const AddMultisigSignRequestStruct& data) {
   is_elements_ = data.is_elements;
   tx_ = data.tx;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   sign_params_.ConvertFromStruct(data.sign_params);
   redeem_script_ = data.redeem_script;
   witness_script_ = data.witness_script;
-  txin_type_ = data.txin_type;
+  hash_type_ = data.hash_type;
   clear_stack_ = data.clear_stack;
   ignore_items = data.ignore_items;
 }
@@ -196,12 +196,12 @@ AddMultisigSignRequestStruct AddMultisigSignRequest::ConvertToStruct() const {  
   AddMultisigSignRequestStruct result;
   result.is_elements = is_elements_;
   result.tx = tx_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.sign_params = sign_params_.ConvertToStruct();
   result.redeem_script = redeem_script_;
   result.witness_script = witness_script_;
-  result.txin_type = txin_type_;
+  result.hash_type = hash_type_;
   result.clear_stack = clear_stack_;
   result.ignore_items = ignore_items;
   return result;

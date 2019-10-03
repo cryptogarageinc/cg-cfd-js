@@ -128,19 +128,19 @@ void UpdateWitnessStackRequest::CollectFieldName() {
   json_mapper.emplace("isElements", func_table);
   item_list.push_back("isElements");
   func_table = {
-    UpdateWitnessStackRequest::GetTxinTxidString,
-    UpdateWitnessStackRequest::SetTxinTxidString,
-    UpdateWitnessStackRequest::GetTxinTxidFieldType,
+    UpdateWitnessStackRequest::GetTxidString,
+    UpdateWitnessStackRequest::SetTxidString,
+    UpdateWitnessStackRequest::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    UpdateWitnessStackRequest::GetTxinVoutString,
-    UpdateWitnessStackRequest::SetTxinVoutString,
-    UpdateWitnessStackRequest::GetTxinVoutFieldType,
+    UpdateWitnessStackRequest::GetVoutString,
+    UpdateWitnessStackRequest::SetVoutString,
+    UpdateWitnessStackRequest::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     UpdateWitnessStackRequest::GetWitnessStackString,
     UpdateWitnessStackRequest::SetWitnessStackString,
@@ -154,8 +154,8 @@ void UpdateWitnessStackRequest::ConvertFromStruct(
     const UpdateWitnessStackRequestStruct& data) {
   tx_ = data.tx;
   is_elements_ = data.is_elements;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   witness_stack_.ConvertFromStruct(data.witness_stack);
   ignore_items = data.ignore_items;
 }
@@ -164,8 +164,8 @@ UpdateWitnessStackRequestStruct UpdateWitnessStackRequest::ConvertToStruct() con
   UpdateWitnessStackRequestStruct result;
   result.tx = tx_;
   result.is_elements = is_elements_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.witness_stack = witness_stack_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;

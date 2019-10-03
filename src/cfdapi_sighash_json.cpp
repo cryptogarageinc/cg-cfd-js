@@ -85,19 +85,19 @@ void CreateSignatureHashRequest::CollectFieldName() {
   json_mapper.emplace("tx", func_table);
   item_list.push_back("tx");
   func_table = {
-    CreateSignatureHashRequest::GetTxinTxidString,
-    CreateSignatureHashRequest::SetTxinTxidString,
-    CreateSignatureHashRequest::GetTxinTxidFieldType,
+    CreateSignatureHashRequest::GetTxidString,
+    CreateSignatureHashRequest::SetTxidString,
+    CreateSignatureHashRequest::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    CreateSignatureHashRequest::GetTxinVoutString,
-    CreateSignatureHashRequest::SetTxinVoutString,
-    CreateSignatureHashRequest::GetTxinVoutFieldType,
+    CreateSignatureHashRequest::GetVoutString,
+    CreateSignatureHashRequest::SetVoutString,
+    CreateSignatureHashRequest::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     CreateSignatureHashRequest::GetKeyDataString,
     CreateSignatureHashRequest::SetKeyDataString,
@@ -138,8 +138,8 @@ void CreateSignatureHashRequest::CollectFieldName() {
 void CreateSignatureHashRequest::ConvertFromStruct(
     const CreateSignatureHashRequestStruct& data) {
   tx_ = data.tx;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   key_data_.ConvertFromStruct(data.key_data);
   amount_ = data.amount;
   hash_type_ = data.hash_type;
@@ -151,8 +151,8 @@ void CreateSignatureHashRequest::ConvertFromStruct(
 CreateSignatureHashRequestStruct CreateSignatureHashRequest::ConvertToStruct() const {  // NOLINT
   CreateSignatureHashRequestStruct result;
   result.tx = tx_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.key_data = key_data_.ConvertToStruct();
   result.amount = amount_;
   result.hash_type = hash_type_;

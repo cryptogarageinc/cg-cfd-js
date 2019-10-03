@@ -132,92 +132,6 @@ class TxInRequest
   }
 
   /**
-   * @brief data 取得処理
-   * @return data
-   */
-  std::string GetData() {
-    return data_;
-  }
-  /**
-   * @brief data 設定処理
-   * @param[in] data    設定値
-   */
-  void SetData(  // line separate
-    const std::string& data) {  // NOLINT
-    this->data_ = data;
-  }
-  /**
-   * @brief data データ型の取得処理
-   * @return dataのデータ型
-   */
-  static std::string GetDataFieldType() {
-    return "std::string";
-  }
-  /**
-   * @brief data フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
-   */
-  static std::string GetDataString(  // line separate
-      const TxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.data_);
-  }
-  /**
-   * @brief data フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
-   */
-  static void SetDataString(  // line separate
-      TxInRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
-      obj.data_, json_value);
-  }
-
-  /**
-   * @brief addrType 取得処理
-   * @return addrType
-   */
-  std::string GetAddrType() {
-    return addr_type_;
-  }
-  /**
-   * @brief addrType 設定処理
-   * @param[in] addr_type    設定値
-   */
-  void SetAddrType(  // line separate
-    const std::string& addr_type) {  // NOLINT
-    this->addr_type_ = addr_type;
-  }
-  /**
-   * @brief addrType データ型の取得処理
-   * @return addrTypeのデータ型
-   */
-  static std::string GetAddrTypeFieldType() {
-    return "std::string";
-  }
-  /**
-   * @brief addrType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
-   */
-  static std::string GetAddrTypeString(  // line separate
-      const TxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.addr_type_);
-  }
-  /**
-   * @brief addrType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
-   */
-  static void SetAddrTypeString(  // line separate
-      TxInRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
-      obj.addr_type_, json_value);
-  }
-
-  /**
    * @brief sequence 取得処理
    * @return sequence
    */
@@ -337,14 +251,6 @@ class TxInRequest
    * @brief JsonAPI(vout) のvalue
    */
   uint32_t vout_ = 0;
-  /**
-   * @brief JsonAPI(data) のvalue
-   */
-  std::string data_ = "";
-  /**
-   * @brief JsonAPI(addrType) のvalue
-   */
-  std::string addr_type_ = "mainnet";
   /**
    * @brief JsonAPI(sequence) のvalue
    */

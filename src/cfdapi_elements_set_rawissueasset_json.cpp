@@ -34,19 +34,19 @@ void IssuanceDataRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<IssuanceDataRequest> func_table;  // NOLINT
 
   func_table = {
-    IssuanceDataRequest::GetTxinTxidString,
-    IssuanceDataRequest::SetTxinTxidString,
-    IssuanceDataRequest::GetTxinTxidFieldType,
+    IssuanceDataRequest::GetTxidString,
+    IssuanceDataRequest::SetTxidString,
+    IssuanceDataRequest::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    IssuanceDataRequest::GetTxinVoutString,
-    IssuanceDataRequest::SetTxinVoutString,
-    IssuanceDataRequest::GetTxinVoutFieldType,
+    IssuanceDataRequest::GetVoutString,
+    IssuanceDataRequest::SetVoutString,
+    IssuanceDataRequest::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     IssuanceDataRequest::GetAssetAmountString,
     IssuanceDataRequest::SetAssetAmountString,
@@ -100,8 +100,8 @@ void IssuanceDataRequest::CollectFieldName() {
 
 void IssuanceDataRequest::ConvertFromStruct(
     const IssuanceDataRequestStruct& data) {
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   asset_amount_ = data.asset_amount;
   asset_address_ = data.asset_address;
   token_amount_ = data.token_amount;
@@ -114,8 +114,8 @@ void IssuanceDataRequest::ConvertFromStruct(
 
 IssuanceDataRequestStruct IssuanceDataRequest::ConvertToStruct() const {  // NOLINT
   IssuanceDataRequestStruct result;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.asset_amount = asset_amount_;
   result.asset_address = asset_address_;
   result.token_amount = token_amount_;
@@ -194,19 +194,19 @@ void IssuanceDataResponse::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<IssuanceDataResponse> func_table;  // NOLINT
 
   func_table = {
-    IssuanceDataResponse::GetTxinTxidString,
-    IssuanceDataResponse::SetTxinTxidString,
-    IssuanceDataResponse::GetTxinTxidFieldType,
+    IssuanceDataResponse::GetTxidString,
+    IssuanceDataResponse::SetTxidString,
+    IssuanceDataResponse::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    IssuanceDataResponse::GetTxinVoutString,
-    IssuanceDataResponse::SetTxinVoutString,
-    IssuanceDataResponse::GetTxinVoutFieldType,
+    IssuanceDataResponse::GetVoutString,
+    IssuanceDataResponse::SetVoutString,
+    IssuanceDataResponse::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     IssuanceDataResponse::GetAssetString,
     IssuanceDataResponse::SetAssetString,
@@ -232,8 +232,8 @@ void IssuanceDataResponse::CollectFieldName() {
 
 void IssuanceDataResponse::ConvertFromStruct(
     const IssuanceDataResponseStruct& data) {
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   asset_ = data.asset;
   entropy_ = data.entropy;
   token_ = data.token;
@@ -242,8 +242,8 @@ void IssuanceDataResponse::ConvertFromStruct(
 
 IssuanceDataResponseStruct IssuanceDataResponse::ConvertToStruct() const {  // NOLINT
   IssuanceDataResponseStruct result;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.asset = asset_;
   result.entropy = entropy_;
   result.token = token_;

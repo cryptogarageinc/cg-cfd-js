@@ -112,19 +112,19 @@ void AddCETxSignRequest::CollectFieldName() {
   json_mapper.emplace("tx", func_table);
   item_list.push_back("tx");
   func_table = {
-    AddCETxSignRequest::GetTxinTxidString,
-    AddCETxSignRequest::SetTxinTxidString,
-    AddCETxSignRequest::GetTxinTxidFieldType,
+    AddCETxSignRequest::GetTxidString,
+    AddCETxSignRequest::SetTxidString,
+    AddCETxSignRequest::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    AddCETxSignRequest::GetTxinVoutString,
-    AddCETxSignRequest::SetTxinVoutString,
-    AddCETxSignRequest::GetTxinVoutFieldType,
+    AddCETxSignRequest::GetVoutString,
+    AddCETxSignRequest::SetVoutString,
+    AddCETxSignRequest::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     AddCETxSignRequest::GetSignString,
     AddCETxSignRequest::SetSignString,
@@ -151,8 +151,8 @@ void AddCETxSignRequest::CollectFieldName() {
 void AddCETxSignRequest::ConvertFromStruct(
     const AddCETxSignRequestStruct& data) {
   tx_ = data.tx;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   sign_.ConvertFromStruct(data.sign);
   delayed_unlocking_ = data.delayed_unlocking;
   redeem_script_ = data.redeem_script;
@@ -162,8 +162,8 @@ void AddCETxSignRequest::ConvertFromStruct(
 AddCETxSignRequestStruct AddCETxSignRequest::ConvertToStruct() const {  // NOLINT
   AddCETxSignRequestStruct result;
   result.tx = tx_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.sign = sign_.ConvertToStruct();
   result.delayed_unlocking = delayed_unlocking_;
   result.redeem_script = redeem_script_;
