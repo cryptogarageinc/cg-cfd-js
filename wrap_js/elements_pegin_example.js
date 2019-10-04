@@ -185,8 +185,8 @@ else {
           const reqJson = {
             "tx": rawPeginTx.hex,
             "isElements": true,
-            "txinTxid": peginParams.txid,
-            "txinVout": peginParams.vout,
+            "txid": peginParams.txid,
+            "vout": peginParams.vout,
             "keyData": {
               "hex": peginKeyPair.pubkey,
               "type": "pubkey"
@@ -213,8 +213,8 @@ else {
           const reqJson = {
             "tx": rawPeginTx.hex,
             "isElements": true,
-            "txinTxid": peginParams.txid,
-            "txinVout": peginParams.vout,
+            "txid": peginParams.txid,
+            "vout": peginParams.vout,
             "isWitness": true,
             "signParam": [
               {

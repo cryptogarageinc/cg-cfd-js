@@ -48,20 +48,6 @@ void TxInRequest::CollectFieldName() {
   json_mapper.emplace("vout", func_table);
   item_list.push_back("vout");
   func_table = {
-    TxInRequest::GetDataString,
-    TxInRequest::SetDataString,
-    TxInRequest::GetDataFieldType,
-  };
-  json_mapper.emplace("data", func_table);
-  item_list.push_back("data");
-  func_table = {
-    TxInRequest::GetAddrTypeString,
-    TxInRequest::SetAddrTypeString,
-    TxInRequest::GetAddrTypeFieldType,
-  };
-  json_mapper.emplace("addrType", func_table);
-  item_list.push_back("addrType");
-  func_table = {
     TxInRequest::GetSequenceString,
     TxInRequest::SetSequenceString,
     TxInRequest::GetSequenceFieldType,
@@ -74,8 +60,6 @@ void TxInRequest::ConvertFromStruct(
     const TxInRequestStruct& data) {
   txid_ = data.txid;
   vout_ = data.vout;
-  data_ = data.data;
-  addr_type_ = data.addr_type;
   sequence_ = data.sequence;
   ignore_items = data.ignore_items;
 }
@@ -84,8 +68,6 @@ TxInRequestStruct TxInRequest::ConvertToStruct() const {  // NOLINT
   TxInRequestStruct result;
   result.txid = txid_;
   result.vout = vout_;
-  result.data = data_;
-  result.addr_type = addr_type_;
   result.sequence = sequence_;
   result.ignore_items = ignore_items;
   return result;

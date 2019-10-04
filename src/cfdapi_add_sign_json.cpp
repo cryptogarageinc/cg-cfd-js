@@ -92,6 +92,77 @@ SignDataStruct SignData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// AddSignTxInRequest
+// ------------------------------------------------------------------------
+cfdcore::JsonTableMap<AddSignTxInRequest>
+  AddSignTxInRequest::json_mapper;
+std::vector<std::string> AddSignTxInRequest::item_list;
+
+void AddSignTxInRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfdcore::CLASS_FUNCTION_TABLE<AddSignTxInRequest> func_table;  // NOLINT
+
+  func_table = {
+    AddSignTxInRequest::GetTxidString,
+    AddSignTxInRequest::SetTxidString,
+    AddSignTxInRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    AddSignTxInRequest::GetVoutString,
+    AddSignTxInRequest::SetVoutString,
+    AddSignTxInRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    AddSignTxInRequest::GetIsWitnessString,
+    AddSignTxInRequest::SetIsWitnessString,
+    AddSignTxInRequest::GetIsWitnessFieldType,
+  };
+  json_mapper.emplace("isWitness", func_table);
+  item_list.push_back("isWitness");
+  func_table = {
+    AddSignTxInRequest::GetSignParamString,
+    AddSignTxInRequest::SetSignParamString,
+    AddSignTxInRequest::GetSignParamFieldType,
+  };
+  json_mapper.emplace("signParam", func_table);
+  item_list.push_back("signParam");
+  func_table = {
+    AddSignTxInRequest::GetClearStackString,
+    AddSignTxInRequest::SetClearStackString,
+    AddSignTxInRequest::GetClearStackFieldType,
+  };
+  json_mapper.emplace("clearStack", func_table);
+  item_list.push_back("clearStack");
+}
+
+void AddSignTxInRequest::ConvertFromStruct(
+    const AddSignTxInRequestStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  is_witness_ = data.is_witness;
+  sign_param_.ConvertFromStruct(data.sign_param);
+  clear_stack_ = data.clear_stack;
+  ignore_items = data.ignore_items;
+}
+
+AddSignTxInRequestStruct AddSignTxInRequest::ConvertToStruct() const {  // NOLINT
+  AddSignTxInRequestStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.is_witness = is_witness_;
+  result.sign_param = sign_param_.ConvertToStruct();
+  result.clear_stack = clear_stack_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // AddSignRequest
 // ------------------------------------------------------------------------
 cfdcore::JsonTableMap<AddSignRequest>
@@ -119,51 +190,19 @@ void AddSignRequest::CollectFieldName() {
   json_mapper.emplace("isElements", func_table);
   item_list.push_back("isElements");
   func_table = {
-    AddSignRequest::GetTxinTxidString,
-    AddSignRequest::SetTxinTxidString,
-    AddSignRequest::GetTxinTxidFieldType,
+    AddSignRequest::GetTxinString,
+    AddSignRequest::SetTxinString,
+    AddSignRequest::GetTxinFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
-  func_table = {
-    AddSignRequest::GetTxinVoutString,
-    AddSignRequest::SetTxinVoutString,
-    AddSignRequest::GetTxinVoutFieldType,
-  };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
-  func_table = {
-    AddSignRequest::GetIsWitnessString,
-    AddSignRequest::SetIsWitnessString,
-    AddSignRequest::GetIsWitnessFieldType,
-  };
-  json_mapper.emplace("isWitness", func_table);
-  item_list.push_back("isWitness");
-  func_table = {
-    AddSignRequest::GetSignParamString,
-    AddSignRequest::SetSignParamString,
-    AddSignRequest::GetSignParamFieldType,
-  };
-  json_mapper.emplace("signParam", func_table);
-  item_list.push_back("signParam");
-  func_table = {
-    AddSignRequest::GetClearStackString,
-    AddSignRequest::SetClearStackString,
-    AddSignRequest::GetClearStackFieldType,
-  };
-  json_mapper.emplace("clearStack", func_table);
-  item_list.push_back("clearStack");
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
 }
 
 void AddSignRequest::ConvertFromStruct(
     const AddSignRequestStruct& data) {
   tx_ = data.tx;
   is_elements_ = data.is_elements;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
-  is_witness_ = data.is_witness;
-  sign_param_.ConvertFromStruct(data.sign_param);
-  clear_stack_ = data.clear_stack;
+  txin_.ConvertFromStruct(data.txin);
   ignore_items = data.ignore_items;
 }
 
@@ -171,11 +210,7 @@ AddSignRequestStruct AddSignRequest::ConvertToStruct() const {  // NOLINT
   AddSignRequestStruct result;
   result.tx = tx_;
   result.is_elements = is_elements_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
-  result.is_witness = is_witness_;
-  result.sign_param = sign_param_.ConvertToStruct();
-  result.clear_stack = clear_stack_;
+  result.txin = txin_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }

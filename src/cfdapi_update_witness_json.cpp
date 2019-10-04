@@ -101,6 +101,59 @@ WitnessStackDataStruct WitnessStackData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// UpdateWitnessStackTxInRequest
+// ------------------------------------------------------------------------
+cfdcore::JsonTableMap<UpdateWitnessStackTxInRequest>
+  UpdateWitnessStackTxInRequest::json_mapper;
+std::vector<std::string> UpdateWitnessStackTxInRequest::item_list;
+
+void UpdateWitnessStackTxInRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfdcore::CLASS_FUNCTION_TABLE<UpdateWitnessStackTxInRequest> func_table;  // NOLINT
+
+  func_table = {
+    UpdateWitnessStackTxInRequest::GetTxidString,
+    UpdateWitnessStackTxInRequest::SetTxidString,
+    UpdateWitnessStackTxInRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    UpdateWitnessStackTxInRequest::GetVoutString,
+    UpdateWitnessStackTxInRequest::SetVoutString,
+    UpdateWitnessStackTxInRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    UpdateWitnessStackTxInRequest::GetWitnessStackString,
+    UpdateWitnessStackTxInRequest::SetWitnessStackString,
+    UpdateWitnessStackTxInRequest::GetWitnessStackFieldType,
+  };
+  json_mapper.emplace("witnessStack", func_table);
+  item_list.push_back("witnessStack");
+}
+
+void UpdateWitnessStackTxInRequest::ConvertFromStruct(
+    const UpdateWitnessStackTxInRequestStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  witness_stack_.ConvertFromStruct(data.witness_stack);
+  ignore_items = data.ignore_items;
+}
+
+UpdateWitnessStackTxInRequestStruct UpdateWitnessStackTxInRequest::ConvertToStruct() const {  // NOLINT
+  UpdateWitnessStackTxInRequestStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.witness_stack = witness_stack_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // UpdateWitnessStackRequest
 // ------------------------------------------------------------------------
 cfdcore::JsonTableMap<UpdateWitnessStackRequest>
@@ -128,35 +181,19 @@ void UpdateWitnessStackRequest::CollectFieldName() {
   json_mapper.emplace("isElements", func_table);
   item_list.push_back("isElements");
   func_table = {
-    UpdateWitnessStackRequest::GetTxinTxidString,
-    UpdateWitnessStackRequest::SetTxinTxidString,
-    UpdateWitnessStackRequest::GetTxinTxidFieldType,
+    UpdateWitnessStackRequest::GetTxinString,
+    UpdateWitnessStackRequest::SetTxinString,
+    UpdateWitnessStackRequest::GetTxinFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
-  func_table = {
-    UpdateWitnessStackRequest::GetTxinVoutString,
-    UpdateWitnessStackRequest::SetTxinVoutString,
-    UpdateWitnessStackRequest::GetTxinVoutFieldType,
-  };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
-  func_table = {
-    UpdateWitnessStackRequest::GetWitnessStackString,
-    UpdateWitnessStackRequest::SetWitnessStackString,
-    UpdateWitnessStackRequest::GetWitnessStackFieldType,
-  };
-  json_mapper.emplace("witnessStack", func_table);
-  item_list.push_back("witnessStack");
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
 }
 
 void UpdateWitnessStackRequest::ConvertFromStruct(
     const UpdateWitnessStackRequestStruct& data) {
   tx_ = data.tx;
   is_elements_ = data.is_elements;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
-  witness_stack_.ConvertFromStruct(data.witness_stack);
+  txin_.ConvertFromStruct(data.txin);
   ignore_items = data.ignore_items;
 }
 
@@ -164,9 +201,7 @@ UpdateWitnessStackRequestStruct UpdateWitnessStackRequest::ConvertToStruct() con
   UpdateWitnessStackRequestStruct result;
   result.tx = tx_;
   result.is_elements = is_elements_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
-  result.witness_stack = witness_stack_.ConvertToStruct();
+  result.txin = txin_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }

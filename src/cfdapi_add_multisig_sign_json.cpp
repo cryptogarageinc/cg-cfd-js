@@ -101,6 +101,95 @@ MultisigSignDataStruct MultisigSignData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// AddMultisigSignTxInRequest
+// ------------------------------------------------------------------------
+cfdcore::JsonTableMap<AddMultisigSignTxInRequest>
+  AddMultisigSignTxInRequest::json_mapper;
+std::vector<std::string> AddMultisigSignTxInRequest::item_list;
+
+void AddMultisigSignTxInRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfdcore::CLASS_FUNCTION_TABLE<AddMultisigSignTxInRequest> func_table;  // NOLINT
+
+  func_table = {
+    AddMultisigSignTxInRequest::GetTxidString,
+    AddMultisigSignTxInRequest::SetTxidString,
+    AddMultisigSignTxInRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    AddMultisigSignTxInRequest::GetVoutString,
+    AddMultisigSignTxInRequest::SetVoutString,
+    AddMultisigSignTxInRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    AddMultisigSignTxInRequest::GetSignParamsString,
+    AddMultisigSignTxInRequest::SetSignParamsString,
+    AddMultisigSignTxInRequest::GetSignParamsFieldType,
+  };
+  json_mapper.emplace("signParams", func_table);
+  item_list.push_back("signParams");
+  func_table = {
+    AddMultisigSignTxInRequest::GetRedeemScriptString,
+    AddMultisigSignTxInRequest::SetRedeemScriptString,
+    AddMultisigSignTxInRequest::GetRedeemScriptFieldType,
+  };
+  json_mapper.emplace("redeemScript", func_table);
+  item_list.push_back("redeemScript");
+  func_table = {
+    AddMultisigSignTxInRequest::GetWitnessScriptString,
+    AddMultisigSignTxInRequest::SetWitnessScriptString,
+    AddMultisigSignTxInRequest::GetWitnessScriptFieldType,
+  };
+  json_mapper.emplace("witnessScript", func_table);
+  item_list.push_back("witnessScript");
+  func_table = {
+    AddMultisigSignTxInRequest::GetHashTypeString,
+    AddMultisigSignTxInRequest::SetHashTypeString,
+    AddMultisigSignTxInRequest::GetHashTypeFieldType,
+  };
+  json_mapper.emplace("hashType", func_table);
+  item_list.push_back("hashType");
+  func_table = {
+    AddMultisigSignTxInRequest::GetClearStackString,
+    AddMultisigSignTxInRequest::SetClearStackString,
+    AddMultisigSignTxInRequest::GetClearStackFieldType,
+  };
+  json_mapper.emplace("clearStack", func_table);
+  item_list.push_back("clearStack");
+}
+
+void AddMultisigSignTxInRequest::ConvertFromStruct(
+    const AddMultisigSignTxInRequestStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  sign_params_.ConvertFromStruct(data.sign_params);
+  redeem_script_ = data.redeem_script;
+  witness_script_ = data.witness_script;
+  hash_type_ = data.hash_type;
+  clear_stack_ = data.clear_stack;
+  ignore_items = data.ignore_items;
+}
+
+AddMultisigSignTxInRequestStruct AddMultisigSignTxInRequest::ConvertToStruct() const {  // NOLINT
+  AddMultisigSignTxInRequestStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.sign_params = sign_params_.ConvertToStruct();
+  result.redeem_script = redeem_script_;
+  result.witness_script = witness_script_;
+  result.hash_type = hash_type_;
+  result.clear_stack = clear_stack_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // AddMultisigSignRequest
 // ------------------------------------------------------------------------
 cfdcore::JsonTableMap<AddMultisigSignRequest>
@@ -128,67 +217,19 @@ void AddMultisigSignRequest::CollectFieldName() {
   json_mapper.emplace("tx", func_table);
   item_list.push_back("tx");
   func_table = {
-    AddMultisigSignRequest::GetTxinTxidString,
-    AddMultisigSignRequest::SetTxinTxidString,
-    AddMultisigSignRequest::GetTxinTxidFieldType,
+    AddMultisigSignRequest::GetTxinString,
+    AddMultisigSignRequest::SetTxinString,
+    AddMultisigSignRequest::GetTxinFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
-  func_table = {
-    AddMultisigSignRequest::GetTxinVoutString,
-    AddMultisigSignRequest::SetTxinVoutString,
-    AddMultisigSignRequest::GetTxinVoutFieldType,
-  };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
-  func_table = {
-    AddMultisigSignRequest::GetSignParamsString,
-    AddMultisigSignRequest::SetSignParamsString,
-    AddMultisigSignRequest::GetSignParamsFieldType,
-  };
-  json_mapper.emplace("signParams", func_table);
-  item_list.push_back("signParams");
-  func_table = {
-    AddMultisigSignRequest::GetRedeemScriptString,
-    AddMultisigSignRequest::SetRedeemScriptString,
-    AddMultisigSignRequest::GetRedeemScriptFieldType,
-  };
-  json_mapper.emplace("redeemScript", func_table);
-  item_list.push_back("redeemScript");
-  func_table = {
-    AddMultisigSignRequest::GetWitnessScriptString,
-    AddMultisigSignRequest::SetWitnessScriptString,
-    AddMultisigSignRequest::GetWitnessScriptFieldType,
-  };
-  json_mapper.emplace("witnessScript", func_table);
-  item_list.push_back("witnessScript");
-  func_table = {
-    AddMultisigSignRequest::GetTxinTypeString,
-    AddMultisigSignRequest::SetTxinTypeString,
-    AddMultisigSignRequest::GetTxinTypeFieldType,
-  };
-  json_mapper.emplace("txinType", func_table);
-  item_list.push_back("txinType");
-  func_table = {
-    AddMultisigSignRequest::GetClearStackString,
-    AddMultisigSignRequest::SetClearStackString,
-    AddMultisigSignRequest::GetClearStackFieldType,
-  };
-  json_mapper.emplace("clearStack", func_table);
-  item_list.push_back("clearStack");
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
 }
 
 void AddMultisigSignRequest::ConvertFromStruct(
     const AddMultisigSignRequestStruct& data) {
   is_elements_ = data.is_elements;
   tx_ = data.tx;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
-  sign_params_.ConvertFromStruct(data.sign_params);
-  redeem_script_ = data.redeem_script;
-  witness_script_ = data.witness_script;
-  txin_type_ = data.txin_type;
-  clear_stack_ = data.clear_stack;
+  txin_.ConvertFromStruct(data.txin);
   ignore_items = data.ignore_items;
 }
 
@@ -196,13 +237,7 @@ AddMultisigSignRequestStruct AddMultisigSignRequest::ConvertToStruct() const {  
   AddMultisigSignRequestStruct result;
   result.is_elements = is_elements_;
   result.tx = tx_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
-  result.sign_params = sign_params_.ConvertToStruct();
-  result.redeem_script = redeem_script_;
-  result.witness_script = witness_script_;
-  result.txin_type = txin_type_;
-  result.clear_stack = clear_stack_;
+  result.txin = txin_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }
