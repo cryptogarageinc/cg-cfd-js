@@ -67,7 +67,7 @@ let createMultisigResult
       "02be61f4350b4ae7544f99649a917f48ba16cf48c983ac1599774958d88ad17ec5"
     ],
     "network": NET_TYPE,
-    "addressType": "p2wsh"
+    "hashType": "p2wsh"
   }
   console.log("*** Request ***\n", createMultisigParamJson)
   const resStr = CreateMultisig(JSON.stringify(createMultisigParamJson))
@@ -195,8 +195,8 @@ let createSignatureHash
   // build json parameter
   const addrParamJson = {
     tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
-    txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-    txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
+    txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
+    vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
     "keyData": {
       "hex": createMultisigResult.witnessScript, // FundTxのRedeemScript
       "type": "redeem_script"
@@ -218,8 +218,8 @@ let getWitnessStackNum1
   // build json parameter
   const getWitnessJson = {
     tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
-    txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-    txinVout: 0                        // TxInのvout（FundTxのTxoutのvout）
+    txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
+    vout: 0                        // TxInのvout（FundTxのTxoutのvout）
   }
   console.log("\n*** Request ***\n", getWitnessJson)
   const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
@@ -234,8 +234,8 @@ let addWitnessStack
   // build json parameter
   const getWitnessJson = {
     tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
-    txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-    txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
+    txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
+    vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
     signParam: [
       {
         hex: "11111111",
@@ -264,8 +264,8 @@ let updateWitnessStack
   // build json parameter
   const getWitnessJson = {
     tx: addWitnessStack.hex,
-    txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-    txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
+    txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
+    vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
     witnessStack: {
       index: 1,
       hex: "33333333",
@@ -285,8 +285,8 @@ let getWitnessStackNum2
   // build json parameter
   const getWitnessJson = {
     tx: updateWitnessStack.hex,
-    txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-    txinVout: 0                        // TxInのvout（FundTxのTxoutのvout）
+    txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
+    vout: 0                        // TxInのvout（FundTxのTxoutのvout）
   }
   console.log("\n*** Request ***\n", getWitnessJson)
   const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
@@ -301,15 +301,15 @@ let resultAddMultisigSign
   // build json parameter
   const addWitnessJson = {
     tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
-    txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-    txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
+    txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
+    vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
     signParams: [
       {
         hex: "47ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb"
       }
     ],
     witnessScript: createMultisigResult.witnessScript,
-    txinType: 'p2wsh',
+    hashType: 'p2wsh',
   }
   // signed value: 3044022047ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f0220217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb01
   console.log("\n*** Request ***\n", addWitnessJson)
@@ -325,8 +325,8 @@ let addCETxSign
   // build json parameter
   const addWitnessJson = {
     tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
-    txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-    txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
+    txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
+    vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
     sign: {
       hex: "47ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb"
     },
@@ -388,8 +388,8 @@ let CreateP2shP2wpkhSignatureHashResult
   const txInAmtAlice = 3000000000   // dummy txin amount
   const signatureHashParamJson = {
     tx: createP2shP2wpkhTxResult.hex,
-    txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",
-    txinVout: 0,
+    txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",
+    vout: 0,
     "keyData": {
       "hex": "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
       "type": "pubkey"
@@ -411,8 +411,8 @@ let addP2shP2wpkhTxWitness
   // const signature = CalculateEcSignature(CreateP2shP2wpkhSignatureHashResult.sighash, privkey, NET_TYPE);
   const getWitnessJson = {
     tx: createP2shP2wpkhTxResult.hex,
-    txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
-    txinVout: 0,
+    txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
+    vout: 0,
     signParam: [
       {
         hex: signature,
@@ -435,8 +435,8 @@ let addP2shP2wpkhTxStack
   console.log("\n===== AddSign =====")
   const getWitnessJson = {
     tx: addP2shP2wpkhTxWitness.hex,
-    txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
-    txinVout: 0,
+    txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
+    vout: 0,
     isWitness: false,   // P2SH用のscriptSig追加のため
     signParam: [
       {
@@ -474,7 +474,7 @@ let createP2shMultisigAddressResult
       "02be61f4350b4ae7544f99649a917f48ba16cf48c983ac1599774958d88ad17ec5"
     ],
     "network": NET_TYPE,
-    "addressType": "p2sh-p2wsh"
+    "hashType": "p2sh-p2wsh"
   }
   console.log("*** Request ***\n", createMultisigParamJson)
   const resStr = CreateMultisig(JSON.stringify(createMultisigParamJson))
@@ -513,8 +513,8 @@ let addP2shSegWitMultisigTxStack
   console.log("\n===== AddSign =====")
   const getWitnessJson = {
     tx: createP2shSegWitMultisigTxResult.hex,
-    txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
-    txinVout: 0,
+    txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
+    vout: 0,
     isWitness: false,   // P2SH用のscriptSig追加のため
     signParam: [
       {
@@ -604,8 +604,8 @@ let addP2shP2wshTxStack
   console.log("\n===== AddSign =====")
   const getWitnessJson = {
     tx: createP2shP2wshTxResult.hex,
-    txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
-    txinVout: 0,
+    txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
+    vout: 0,
     isWitness: false,   // P2SH用のscriptSig追加のため
     signParam: [
       {
@@ -653,8 +653,8 @@ let addP2WPKHTxSign1
   console.log("\n===== AddSign1(P2WPKH) =====")
   const getWitnessJson = {
     tx: '0100000002fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000000eeffffffef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a0100000000ffffffff02202cb206000000001976a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac9093510d000000001976a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac11000000',
-    txinTxid: "9f96ade4b41d5433f4eda31e1738ec2b36f6e7d1420d94a6af99801a88f7f7ff",   // dummy txid
-    txinVout: 0,
+    txid: "9f96ade4b41d5433f4eda31e1738ec2b36f6e7d1420d94a6af99801a88f7f7ff",   // dummy txid
+    vout: 0,
     isWitness: false,
     signParam: [
       {
@@ -676,8 +676,8 @@ let getP2WPKHTxSigHash2
   console.log("\n===== AddSign2(P2WPKH) =====")
   const getWitnessJson = {
     tx: addP2WPKHTxSign1.hex,
-    txinTxid: "8ac60eb9575db5b2d987e29f301b5b819ea83a5c6579d282d189cc04b8e151ef",   // dummy txid
-    txinVout: 1,
+    txid: "8ac60eb9575db5b2d987e29f301b5b819ea83a5c6579d282d189cc04b8e151ef",   // dummy txid
+    vout: 1,
     "keyData": {
       "hex": "025476c2e83188368da1ff3e292e7acafcdb3566bb0ad253f62fc70f07aeee6357",
       "type": "pubkey"
@@ -706,8 +706,8 @@ let addP2WPKHTxSign2
   console.log("\n===== AddSign2(P2WPKH) =====")
   const getWitnessJson = {
     tx: addP2WPKHTxSign1.hex,
-    txinTxid: "8ac60eb9575db5b2d987e29f301b5b819ea83a5c6579d282d189cc04b8e151ef",   // dummy txid
-    txinVout: 1,
+    txid: "8ac60eb9575db5b2d987e29f301b5b819ea83a5c6579d282d189cc04b8e151ef",   // dummy txid
+    vout: 1,
     signParam: [
       {
         hex: getP2WPKHTxSign2.sign,

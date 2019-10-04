@@ -60,7 +60,7 @@ if (!supportFunctions.elements) {
         "02be61f4350b4ae7544f99649a917f48ba16cf48c983ac1599774958d88ad17ec5"
       ],
       "network": "liquidv1",
-      "addressType": "p2sh-p2wsh",
+      "hashType": "p2sh-p2wsh",
       "isElements": true
     }
     console.log("*** Request ***\n", createMultisigParamJson)
@@ -139,8 +139,8 @@ if (!supportFunctions.elements) {
     const signatureHashParamJson = {
       tx: ConfidentialTxHex,
       // TODO: modify after CreateRawElementsTransaction
-      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
-      txinVout: 1,
+      txid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      vout: 1,
       "keyData": {
         "hex": "020ff7000e2754f34aeb894f1e4dc985e3f9742b194fac2350f963dfa219f177c4",
         "type": "pubkey"
@@ -162,8 +162,8 @@ if (!supportFunctions.elements) {
     const getWitnessJson = {
       tx: ConfidentialTxHex,
       isElements: true,
-      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
-      txinVout: 1
+      txid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      vout: 1
     }
     console.log("\n*** Request ***\n", getWitnessJson)
     const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
@@ -179,8 +179,8 @@ if (!supportFunctions.elements) {
     const getWitnessJson = {
       tx: ConfidentialTxHex,
       isElements: true,
-      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
-      txinVout: 1,
+      txid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      vout: 1,
       signParam: [
         {
           hex: "11111111",
@@ -210,8 +210,8 @@ if (!supportFunctions.elements) {
     const getWitnessJson = {
       tx: addWitnessStack1.hex,
       isElements: true,
-      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
-      txinVout: 1,
+      txid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      vout: 1,
       witnessStack: {
         index: 1,
         hex: "33333333",
@@ -232,8 +232,8 @@ if (!supportFunctions.elements) {
     const getWitnessJson = {
       tx: updateWitnessStack1.hex,
       isElements: true,
-      txinTxid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
-      txinVout: 1
+      txid: "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
+      vout: 1
     }
     console.log("\n*** Request ***\n", getWitnessJson)
     const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
@@ -309,8 +309,8 @@ if (!supportFunctions.elements) {
       "tx": "0200000000011cbdfb4c92e7c758d3dc1b53db0f1dd3426d7f9730eb545524fef1583cda06020000000000fdffffff03017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c1801000000000000000000036a0100017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c18010000000005f2eacc03d8f0342ad623743d5f15c76bbdb38b4388986e68681a20b15ec2f1997169b52f17a914feeb109e7e9fee99ce9ae550751e0c25d400dd8787017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c180100000000000052bc000000000000",
       "isRandomize": false,
       "issuances": [{
-        "txinTxid": "0206da3c58f1fe245554eb30977f6d42d31d0fdb531bdcd358c7e7924cfbbd1c",
-        "txinVout": 0,
+        "txid": "0206da3c58f1fe245554eb30977f6d42d31d0fdb531bdcd358c7e7924cfbbd1c",
+        "vout": 0,
         "assetAmount": 1000000000,
         "assetAddress": "CTEkixoGGeTsw1hEBJgCaVQwBNDYQ8c3Hr45hbVaZgiccXwG7QVy9CwiN4AwaDaweCh5GZQmJEpVDYww",
         "tokenAmount": 500000000,
@@ -421,8 +421,8 @@ if (!supportFunctions.elements) {
     const signatureHashParamJson = {
       tx: blindRawTransactionResult2.hex,
       // TODO: modify after CreateRawElementsTransaction
-      txinTxid: "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
-      txinVout: 0,
+      txid: "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
+      vout: 0,
       "keyData": {
         "hex": "03f942716865bb9b62678d99aa34de4632249d066d99de2b5a2e542e54908450d6",
         "type": "pubkey"
@@ -453,8 +453,8 @@ if (!supportFunctions.elements) {
     const getWitnessJson = {
       tx: blindRawTransactionResult2.hex,
       isElements: true,
-      txinTxid: "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
-      txinVout: 0,
+      txid: "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
+      vout: 0,
       signParam: [
         {
           hex: signature1,
@@ -480,8 +480,8 @@ if (!supportFunctions.elements) {
     const getWitnessJson = {
       tx: addSign1.hex,
       isElements: true,
-      txinTxid: "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
-      txinVout: 0,
+      txid: "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
+      vout: 0,
       isWitness: false,   // P2SH用のscriptSig追加のため
       signParam: [
         {
@@ -532,8 +532,8 @@ if (!supportFunctions.elements) {
       "tx": Issuance_CreateRawTransactionResult.hex,
       "isRandomize": false,
       "issuances": [{
-        "txinTxid": "7a8ee90c484cff3e1f7f8eed5acd6f4e6ad3e6ce4114d02a71f443e671d79925",
-        "txinVout": 0,
+        "txid": "7a8ee90c484cff3e1f7f8eed5acd6f4e6ad3e6ce4114d02a71f443e671d79925",
+        "vout": 0,
         "assetAmount": 500000000,
         "assetAddress": "CTEwjAgy9r5T5szQJNH1acjCrv6Pikvo5ujfY4XRPviSE5U5Be3qAwfH1UPZJbUnJo6De1gXwhVuLjKr",
         "tokenAmount": 1000000000,
@@ -690,8 +690,8 @@ if (!supportFunctions.elements) {
       "tx":Reissuance_CreateRawTransactionResult.hex,
       "isRandomize": false,
       "issuances": [{
-        "txinTxid": utxo_issuance.txid,
-        "txinVout": utxo_issuance.vout,
+        "txid": utxo_issuance.txid,
+        "vout": utxo_issuance.vout,
         "amount": reissueData.amount,
         "address": address[2],
         "assetBlindingNonce": utxo_issuance.assetBlindFactor,
