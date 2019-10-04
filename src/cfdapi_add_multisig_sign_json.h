@@ -89,6 +89,49 @@ class MultisigSignData
   }
 
   /**
+   * @brief type 取得処理
+   * @return type
+   */
+  std::string GetType() {
+    return type_;
+  }
+  /**
+   * @brief type 設定処理
+   * @param[in] type    設定値
+   */
+  void SetType(  // line separate
+    const std::string& type) {  // NOLINT
+    this->type_ = type;
+  }
+  /**
+   * @brief type データ型の取得処理
+   * @return typeのデータ型
+   */
+  static std::string GetTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief type フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTypeString(  // line separate
+      const MultisigSignData& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.type_);
+  }
+  /**
+   * @brief type フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTypeString(  // line separate
+      MultisigSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.type_, json_value);
+  }
+
+  /**
    * @brief derEncode 取得処理
    * @return derEncode
    */
@@ -334,6 +377,10 @@ class MultisigSignData
    */
   std::string hex_ = "";
   /**
+   * @brief JsonAPI(type) のvalue
+   */
+  std::string type_ = "sign";
+  /**
    * @brief JsonAPI(derEncode) のvalue
    */
   bool der_encode_ = true;
@@ -415,46 +462,46 @@ class AddMultisigSignRequest
   }
 
   /**
-   * @brief txHex 取得処理
-   * @return txHex
+   * @brief tx 取得処理
+   * @return tx
    */
-  std::string GetTxHex() {
-    return tx_hex_;
+  std::string GetTx() {
+    return tx_;
   }
   /**
-   * @brief txHex 設定処理
-   * @param[in] tx_hex    設定値
+   * @brief tx 設定処理
+   * @param[in] tx    設定値
    */
-  void SetTxHex(  // line separate
-    const std::string& tx_hex) {  // NOLINT
-    this->tx_hex_ = tx_hex;
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
   }
   /**
-   * @brief txHex データ型の取得処理
-   * @return txHexのデータ型
+   * @brief tx データ型の取得処理
+   * @return txのデータ型
    */
-  static std::string GetTxHexFieldType() {
+  static std::string GetTxFieldType() {
     return "std::string";
   }
   /**
-   * @brief txHex フィールドのJSON文字列取得処理
+   * @brief tx フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxHexString(  // line separate
+  static std::string GetTxString(  // line separate
       const AddMultisigSignRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_hex_);
+    return cfdcore::ConvertToString(obj.tx_);
   }
   /**
-   * @brief txHex フィールドへのJSON情報設定処理
+   * @brief tx フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxHexString(  // line separate
+  static void SetTxString(  // line separate
       AddMultisigSignRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.tx_hex_, json_value);
+      obj.tx_, json_value);
   }
 
   /**
@@ -832,9 +879,9 @@ class AddMultisigSignRequest
    */
   bool is_elements_ = false;
   /**
-   * @brief JsonAPI(txHex) のvalue
+   * @brief JsonAPI(tx) のvalue
    */
-  std::string tx_hex_ = "";
+  std::string tx_ = "";
   /**
    * @brief JsonAPI(txinTxid) のvalue
    */

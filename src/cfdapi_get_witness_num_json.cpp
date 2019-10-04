@@ -34,12 +34,12 @@ void GetWitnessStackNumRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<GetWitnessStackNumRequest> func_table;  // NOLINT
 
   func_table = {
-    GetWitnessStackNumRequest::GetTxHexString,
-    GetWitnessStackNumRequest::SetTxHexString,
-    GetWitnessStackNumRequest::GetTxHexFieldType,
+    GetWitnessStackNumRequest::GetTxString,
+    GetWitnessStackNumRequest::SetTxString,
+    GetWitnessStackNumRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     GetWitnessStackNumRequest::GetIsElementsString,
     GetWitnessStackNumRequest::SetIsElementsString,
@@ -65,7 +65,7 @@ void GetWitnessStackNumRequest::CollectFieldName() {
 
 void GetWitnessStackNumRequest::ConvertFromStruct(
     const GetWitnessStackNumRequestStruct& data) {
-  tx_hex_ = data.tx_hex;
+  tx_ = data.tx;
   is_elements_ = data.is_elements;
   txin_txid_ = data.txin_txid;
   txin_vout_ = data.txin_vout;
@@ -74,7 +74,7 @@ void GetWitnessStackNumRequest::ConvertFromStruct(
 
 GetWitnessStackNumRequestStruct GetWitnessStackNumRequest::ConvertToStruct() const {  // NOLINT
   GetWitnessStackNumRequestStruct result;
-  result.tx_hex = tx_hex_;
+  result.tx = tx_;
   result.is_elements = is_elements_;
   result.txin_txid = txin_txid_;
   result.txin_vout = txin_vout_;

@@ -41,6 +41,13 @@ void CETxSignData::CollectFieldName() {
   json_mapper.emplace("hex", func_table);
   item_list.push_back("hex");
   func_table = {
+    CETxSignData::GetTypeString,
+    CETxSignData::SetTypeString,
+    CETxSignData::GetTypeFieldType,
+  };
+  json_mapper.emplace("type", func_table);
+  item_list.push_back("type");
+  func_table = {
     CETxSignData::GetDerEncodeString,
     CETxSignData::SetDerEncodeString,
     CETxSignData::GetDerEncodeFieldType,
@@ -66,6 +73,7 @@ void CETxSignData::CollectFieldName() {
 void CETxSignData::ConvertFromStruct(
     const CETxSignDataStruct& data) {
   hex_ = data.hex;
+  type_ = data.type;
   der_encode_ = data.der_encode;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
@@ -75,6 +83,7 @@ void CETxSignData::ConvertFromStruct(
 CETxSignDataStruct CETxSignData::ConvertToStruct() const {  // NOLINT
   CETxSignDataStruct result;
   result.hex = hex_;
+  result.type = type_;
   result.der_encode = der_encode_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
@@ -96,12 +105,12 @@ void AddCETxSignRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<AddCETxSignRequest> func_table;  // NOLINT
 
   func_table = {
-    AddCETxSignRequest::GetTxHexString,
-    AddCETxSignRequest::SetTxHexString,
-    AddCETxSignRequest::GetTxHexFieldType,
+    AddCETxSignRequest::GetTxString,
+    AddCETxSignRequest::SetTxString,
+    AddCETxSignRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     AddCETxSignRequest::GetTxinTxidString,
     AddCETxSignRequest::SetTxinTxidString,
@@ -141,7 +150,7 @@ void AddCETxSignRequest::CollectFieldName() {
 
 void AddCETxSignRequest::ConvertFromStruct(
     const AddCETxSignRequestStruct& data) {
-  tx_hex_ = data.tx_hex;
+  tx_ = data.tx;
   txin_txid_ = data.txin_txid;
   txin_vout_ = data.txin_vout;
   sign_.ConvertFromStruct(data.sign);
@@ -152,7 +161,7 @@ void AddCETxSignRequest::ConvertFromStruct(
 
 AddCETxSignRequestStruct AddCETxSignRequest::ConvertToStruct() const {  // NOLINT
   AddCETxSignRequestStruct result;
-  result.tx_hex = tx_hex_;
+  result.tx = tx_;
   result.txin_txid = txin_txid_;
   result.txin_vout = txin_vout_;
   result.sign = sign_.ConvertToStruct();

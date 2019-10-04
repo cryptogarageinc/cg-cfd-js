@@ -130,7 +130,10 @@ else {
           // create unblinded address
           {
             const reqJson = {
-              "pubkeyHex": keypair.pubkey,
+              "keyData": {
+                "hex": keypair.pubkey,
+                "type": "pubkey"
+              },
               "network": ELEMENTS_NET_TYPE,
               "hashType": "p2pkh",
               "isElements": true
@@ -180,11 +183,14 @@ else {
         let signatureHash
         {
           const reqJson = {
-            "txHex": rawPeginTx.hex,
+            "tx": rawPeginTx.hex,
             "isElements": true,
             "txinTxid": peginParams.txid,
             "txinVout": peginParams.vout,
-            "pubkeyHex": peginKeyPair.pubkey,
+            "keyData": {
+              "hex": peginKeyPair.pubkey,
+              "type": "pubkey"
+            },
             "amount": peginParams.amount,
             "hashType": "p2wpkh",
             "sighashType": "all",
@@ -205,7 +211,7 @@ else {
             true, true)
 
           const reqJson = {
-            "txHex": rawPeginTx.hex,
+            "tx": rawPeginTx.hex,
             "isElements": true,
             "txinTxid": peginParams.txid,
             "txinVout": peginParams.vout,

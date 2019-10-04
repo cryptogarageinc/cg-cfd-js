@@ -194,10 +194,13 @@ let createSignatureHash
 
   // build json parameter
   const addrParamJson = {
-    txHex: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
+    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
     txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
     txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
-    scriptHex: createMultisigResult.witnessScript, // FundTxのRedeemScript
+    "keyData": {
+      "hex": createMultisigResult.witnessScript, // FundTxのRedeemScript
+      "type": "redeem_script"
+    },
     amount: 5000016000,                 // FundTx txout[vout].amount
     hashType: "p2wsh",
     sighashType: "all"
@@ -214,7 +217,7 @@ let getWitnessStackNum1
 
   // build json parameter
   const getWitnessJson = {
-    txHex: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
+    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
     txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
     txinVout: 0                        // TxInのvout（FundTxのTxoutのvout）
   }
@@ -230,7 +233,7 @@ let addWitnessStack
 
   // build json parameter
   const getWitnessJson = {
-    txHex: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
+    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
     txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
     txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
     signParam: [
@@ -260,7 +263,7 @@ let updateWitnessStack
 
   // build json parameter
   const getWitnessJson = {
-    txHex: addWitnessStack.hex,
+    tx: addWitnessStack.hex,
     txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
     txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
     witnessStack: {
@@ -281,7 +284,7 @@ let getWitnessStackNum2
 
   // build json parameter
   const getWitnessJson = {
-    txHex: updateWitnessStack.hex,
+    tx: updateWitnessStack.hex,
     txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
     txinVout: 0                        // TxInのvout（FundTxのTxoutのvout）
   }
@@ -297,7 +300,7 @@ let resultAddMultisigSign
 
   // build json parameter
   const addWitnessJson = {
-    txHex: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
+    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
     txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
     txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
     signParams: [
@@ -321,7 +324,7 @@ let addCETxSign
 
   // build json parameter
   const addWitnessJson = {
-    txHex: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
+    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
     txinTxid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
     txinVout: 0,                       // TxInのvout（FundTxのTxoutのvout）
     sign: {
@@ -342,7 +345,10 @@ let createP2shP2wpkhAddressResult
 {
   console.log("\n===== CreateP2shP2wpkhAddress =====")
   const createAddressParamJson = {
-    "pubkeyHex": "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+    "keyData": {
+      "hex": "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "type": "pubkey"
+    },
     "network": NET_TYPE,
     "hashType": "p2sh-p2wpkh"
   }
@@ -381,10 +387,13 @@ let CreateP2shP2wpkhSignatureHashResult
   console.log("\n===== CreateP2shP2wpkhSignatureHash =====")
   const txInAmtAlice = 3000000000   // dummy txin amount
   const signatureHashParamJson = {
-    txHex: createP2shP2wpkhTxResult.hex,
+    tx: createP2shP2wpkhTxResult.hex,
     txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",
     txinVout: 0,
-    pubkeyHex: '0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798',
+    "keyData": {
+      "hex": "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "type": "pubkey"
+    },
     amount: txInAmtAlice + 2000,
     hashType: 'p2wpkh'
   }
@@ -401,7 +410,7 @@ let addP2shP2wpkhTxWitness
   // const privkey = 'cU4KjNUT7GjHm7CkjRjG46SzLrXHXoH3ekXmqa2jTCFPMkQ64sw1';
   // const signature = CalculateEcSignature(CreateP2shP2wpkhSignatureHashResult.sighash, privkey, NET_TYPE);
   const getWitnessJson = {
-    txHex: createP2shP2wpkhTxResult.hex,
+    tx: createP2shP2wpkhTxResult.hex,
     txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
     txinVout: 0,
     signParam: [
@@ -425,7 +434,7 @@ let addP2shP2wpkhTxStack
 {
   console.log("\n===== AddSign =====")
   const getWitnessJson = {
-    txHex: addP2shP2wpkhTxWitness.hex,
+    tx: addP2shP2wpkhTxWitness.hex,
     txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
     txinVout: 0,
     isWitness: false,   // P2SH用のscriptSig追加のため
@@ -503,7 +512,7 @@ let addP2shSegWitMultisigTxStack
 {
   console.log("\n===== AddSign =====")
   const getWitnessJson = {
-    txHex: createP2shSegWitMultisigTxResult.hex,
+    tx: createP2shSegWitMultisigTxResult.hex,
     txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
     txinVout: 0,
     isWitness: false,   // P2SH用のscriptSig追加のため
@@ -537,7 +546,10 @@ let createP2wshAddressResult
 {
   console.log("\n===== CreateP2wshAddress =====")
   const createAddressParamJson = {
-    "scriptHex": multisigWitnessScript,
+    "keyData": {
+      "hex": multisigWitnessScript,
+      "type": "redeem_script"
+    },
     "network": NET_TYPE,
     "hashType": "p2wsh"
   }
@@ -550,7 +562,10 @@ let createP2shP2wshAddressResult
 {
   console.log("\n===== CreateP2shP2wshAddress =====")
   const createAddressParamJson = {
-    "scriptHex": createP2wshAddressResult.lockingScript,
+    "keyData": {
+      "hex": createP2wshAddressResult.lockingScript,
+      "type": "redeem_script"
+    },
     "network": NET_TYPE,
     "hashType": "p2sh"
   }
@@ -588,7 +603,7 @@ let addP2shP2wshTxStack
 {
   console.log("\n===== AddSign =====")
   const getWitnessJson = {
-    txHex: createP2shP2wshTxResult.hex,
+    tx: createP2shP2wshTxResult.hex,
     txinTxid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
     txinVout: 0,
     isWitness: false,   // P2SH用のscriptSig追加のため
@@ -637,7 +652,7 @@ let addP2WPKHTxSign1
 {
   console.log("\n===== AddSign1(P2WPKH) =====")
   const getWitnessJson = {
-    txHex: '0100000002fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000000eeffffffef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a0100000000ffffffff02202cb206000000001976a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac9093510d000000001976a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac11000000',
+    tx: '0100000002fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000000eeffffffef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a0100000000ffffffff02202cb206000000001976a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac9093510d000000001976a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac11000000',
     txinTxid: "9f96ade4b41d5433f4eda31e1738ec2b36f6e7d1420d94a6af99801a88f7f7ff",   // dummy txid
     txinVout: 0,
     isWitness: false,
@@ -660,10 +675,13 @@ let getP2WPKHTxSigHash2
 {
   console.log("\n===== AddSign2(P2WPKH) =====")
   const getWitnessJson = {
-    txHex: addP2WPKHTxSign1.hex,
+    tx: addP2WPKHTxSign1.hex,
     txinTxid: "8ac60eb9575db5b2d987e29f301b5b819ea83a5c6579d282d189cc04b8e151ef",   // dummy txid
     txinVout: 1,
-    pubkeyHex: '025476c2e83188368da1ff3e292e7acafcdb3566bb0ad253f62fc70f07aeee6357',
+    "keyData": {
+      "hex": "025476c2e83188368da1ff3e292e7acafcdb3566bb0ad253f62fc70f07aeee6357",
+      "type": "pubkey"
+    },
     amount: 600000000,
     hashType: 'p2wpkh'
   }
@@ -687,7 +705,7 @@ let addP2WPKHTxSign2
 {
   console.log("\n===== AddSign2(P2WPKH) =====")
   const getWitnessJson = {
-    txHex: addP2WPKHTxSign1.hex,
+    tx: addP2WPKHTxSign1.hex,
     txinTxid: "8ac60eb9575db5b2d987e29f301b5b819ea83a5c6579d282d189cc04b8e151ef",   // dummy txid
     txinVout: 1,
     signParam: [
