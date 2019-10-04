@@ -399,6 +399,191 @@ class BlindTxInRequest
 };
 
 // ------------------------------------------------------------------------
+// BlindTxOutRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API（BlindTxOutRequest）クラス
+ */
+class BlindTxOutRequest
+  : public cfdcore::JsonClassBase<BlindTxOutRequest> {
+ public:
+  BlindTxOutRequest() {
+    CollectFieldName();
+  }
+  virtual ~BlindTxOutRequest() {
+    // do nothing
+  }
+  /**
+   * @brief フィールド名を収集する.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief index 取得処理
+   * @return index
+   */
+  uint32_t GetIndex() {
+    return index_;
+  }
+  /**
+   * @brief index 設定処理
+   * @param[in] index    設定値
+   */
+  void SetIndex(  // line separate
+    const uint32_t& index) {  // NOLINT
+    this->index_ = index;
+  }
+  /**
+   * @brief index データ型の取得処理
+   * @return indexのデータ型
+   */
+  static std::string GetIndexFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief index フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetIndexString(  // line separate
+      const BlindTxOutRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.index_);
+  }
+  /**
+   * @brief index フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetIndexString(  // line separate
+      BlindTxOutRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.index_, json_value);
+  }
+
+  /**
+   * @brief blindPubkey 取得処理
+   * @return blindPubkey
+   */
+  std::string GetBlindPubkey() {
+    return blind_pubkey_;
+  }
+  /**
+   * @brief blindPubkey 設定処理
+   * @param[in] blind_pubkey    設定値
+   */
+  void SetBlindPubkey(  // line separate
+    const std::string& blind_pubkey) {  // NOLINT
+    this->blind_pubkey_ = blind_pubkey;
+  }
+  /**
+   * @brief blindPubkey データ型の取得処理
+   * @return blindPubkeyのデータ型
+   */
+  static std::string GetBlindPubkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief blindPubkey フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetBlindPubkeyString(  // line separate
+      const BlindTxOutRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.blind_pubkey_);
+  }
+  /**
+   * @brief blindPubkey フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetBlindPubkeyString(  // line separate
+      BlindTxOutRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.blind_pubkey_, json_value);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void ConvertFromStruct(
+      const BlindTxOutRequestStruct& data);
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  BlindTxOutRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief Mapテーブルの型名定義
+   */
+  using BlindTxOutRequestMapTable =
+    cfdcore::JsonTableMap<BlindTxOutRequest>;
+
+  /**
+   * @brief JSONマッピングオブジェクトを取得する。
+   * @return JSONマッピングオブジェクト
+   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   */
+  virtual const BlindTxOutRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief JSONマッピングのアイテム一覧を取得する。
+   * 対象の変数名を、定義順序に従い一覧取得する。
+   * @return JSONマッピングのアイテム一覧
+   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
+   * Serialize時に対象の変数を無視する。
+   * @return JSONマッピング時に無視するアイテム一覧
+   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMapテーブル
+  */
+  static BlindTxOutRequestMapTable json_mapper;
+  /**
+   * @brief フィールド名リスト
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief 無視リスト
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(index) のvalue
+   */
+  uint32_t index_ = 0;
+  /**
+   * @brief JsonAPI(blindPubkey) のvalue
+   */
+  std::string blind_pubkey_ = "";
+};
+
+// ------------------------------------------------------------------------
 // BlindIssuanceRequest
 // ------------------------------------------------------------------------
 /**
@@ -784,46 +969,46 @@ class BlindRawTransactionRequest
   }
 
   /**
-   * @brief blindPubkeys 取得処理
-   * @return blindPubkeys
+   * @brief txouts 取得処理
+   * @return txouts
    */
-  JsonValueVector<std::string>& GetBlindPubkeys() {  // NOLINT
-    return blind_pubkeys_;
+  JsonObjectVector<BlindTxOutRequest, BlindTxOutRequestStruct>& GetTxouts() {  // NOLINT
+    return txouts_;
   }
   /**
-   * @brief blindPubkeys 設定処理
-   * @param[in] blind_pubkeys    設定値
+   * @brief txouts 設定処理
+   * @param[in] txouts    設定値
    */
-  void SetBlindPubkeys(  // line separate
-      const JsonValueVector<std::string>& blind_pubkeys) {  // NOLINT
-    this->blind_pubkeys_ = blind_pubkeys;
+  void SetTxouts(  // line separate
+      const JsonObjectVector<BlindTxOutRequest, BlindTxOutRequestStruct>& txouts) {  // NOLINT
+    this->txouts_ = txouts;
   }
   /**
-   * @brief blindPubkeys データ型の取得処理
-   * @return blindPubkeysのデータ型
+   * @brief txouts データ型の取得処理
+   * @return txoutsのデータ型
    */
-  static std::string GetBlindPubkeysFieldType() {
-    return "JsonValueVector<std::string>";  // NOLINT
+  static std::string GetTxoutsFieldType() {
+    return "JsonObjectVector<BlindTxOutRequest, BlindTxOutRequestStruct>";  // NOLINT
   }
   /**
-   * @brief blindPubkeys フィールドのJSON文字列取得処理
+   * @brief txouts フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetBlindPubkeysString(  // line separate
+  static std::string GetTxoutsString(  // line separate
       const BlindRawTransactionRequest& obj) {  // NOLINT
     // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
-    return obj.blind_pubkeys_.Serialize();
+    return obj.txouts_.Serialize();
   }
   /**
-   * @brief blindPubkeys フィールドへのJSON情報設定処理
+   * @brief txouts フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetBlindPubkeysString(  // line separate
+  static void SetTxoutsString(  // line separate
       BlindRawTransactionRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    obj.blind_pubkeys_.DeserializeUniValue(json_value);
+    obj.txouts_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -947,9 +1132,9 @@ class BlindRawTransactionRequest
    */
   JsonObjectVector<BlindTxInRequest, BlindTxInRequestStruct> txins_;  // NOLINT
   /**
-   * @brief JsonAPI(blindPubkeys) のvalue
+   * @brief JsonAPI(txouts) のvalue
    */
-  JsonValueVector<std::string> blind_pubkeys_;  // NOLINT
+  JsonObjectVector<BlindTxOutRequest, BlindTxOutRequestStruct> txouts_;  // NOLINT
   /**
    * @brief JsonAPI(issuances) のvalue
    */

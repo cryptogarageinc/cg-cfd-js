@@ -603,46 +603,46 @@ class SetRawIssueAssetRequest
   }
 
   /**
-   * @brief isRandomize 取得処理
-   * @return isRandomize
+   * @brief isRandomSortTxOut 取得処理
+   * @return isRandomSortTxOut
    */
-  bool GetIsRandomize() {
-    return is_randomize_;
+  bool GetIsRandomSortTxOut() {
+    return is_random_sort_tx_out_;
   }
   /**
-   * @brief isRandomize 設定処理
-   * @param[in] is_randomize    設定値
+   * @brief isRandomSortTxOut 設定処理
+   * @param[in] is_random_sort_tx_out    設定値
    */
-  void SetIsRandomize(  // line separate
-    const bool& is_randomize) {  // NOLINT
-    this->is_randomize_ = is_randomize;
+  void SetIsRandomSortTxOut(  // line separate
+    const bool& is_random_sort_tx_out) {  // NOLINT
+    this->is_random_sort_tx_out_ = is_random_sort_tx_out;
   }
   /**
-   * @brief isRandomize データ型の取得処理
-   * @return isRandomizeのデータ型
+   * @brief isRandomSortTxOut データ型の取得処理
+   * @return isRandomSortTxOutのデータ型
    */
-  static std::string GetIsRandomizeFieldType() {
+  static std::string GetIsRandomSortTxOutFieldType() {
     return "bool";
   }
   /**
-   * @brief isRandomize フィールドのJSON文字列取得処理
+   * @brief isRandomSortTxOut フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetIsRandomizeString(  // line separate
+  static std::string GetIsRandomSortTxOutString(  // line separate
       const SetRawIssueAssetRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_randomize_);
+    return cfdcore::ConvertToString(obj.is_random_sort_tx_out_);
   }
   /**
-   * @brief isRandomize フィールドへのJSON情報設定処理
+   * @brief isRandomSortTxOut フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetIsRandomizeString(  // line separate
+  static void SetIsRandomSortTxOutString(  // line separate
       SetRawIssueAssetRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.is_randomize_, json_value);
+      obj.is_random_sort_tx_out_, json_value);
   }
 
   /**
@@ -762,9 +762,9 @@ class SetRawIssueAssetRequest
    */
   std::string tx_ = "";
   /**
-   * @brief JsonAPI(isRandomize) のvalue
+   * @brief JsonAPI(isRandomSortTxOut) のvalue
    */
-  bool is_randomize_ = false;
+  bool is_random_sort_tx_out_ = false;
   /**
    * @brief JsonAPI(issuances) のvalue
    */

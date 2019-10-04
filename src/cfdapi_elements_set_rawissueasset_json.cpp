@@ -148,12 +148,12 @@ void SetRawIssueAssetRequest::CollectFieldName() {
   json_mapper.emplace("tx", func_table);
   item_list.push_back("tx");
   func_table = {
-    SetRawIssueAssetRequest::GetIsRandomizeString,
-    SetRawIssueAssetRequest::SetIsRandomizeString,
-    SetRawIssueAssetRequest::GetIsRandomizeFieldType,
+    SetRawIssueAssetRequest::GetIsRandomSortTxOutString,
+    SetRawIssueAssetRequest::SetIsRandomSortTxOutString,
+    SetRawIssueAssetRequest::GetIsRandomSortTxOutFieldType,
   };
-  json_mapper.emplace("isRandomize", func_table);
-  item_list.push_back("isRandomize");
+  json_mapper.emplace("isRandomSortTxOut", func_table);
+  item_list.push_back("isRandomSortTxOut");
   func_table = {
     SetRawIssueAssetRequest::GetIssuancesString,
     SetRawIssueAssetRequest::SetIssuancesString,
@@ -166,7 +166,7 @@ void SetRawIssueAssetRequest::CollectFieldName() {
 void SetRawIssueAssetRequest::ConvertFromStruct(
     const SetRawIssueAssetRequestStruct& data) {
   tx_ = data.tx;
-  is_randomize_ = data.is_randomize;
+  is_random_sort_tx_out_ = data.is_random_sort_tx_out;
   issuances_.ConvertFromStruct(data.issuances);
   ignore_items = data.ignore_items;
 }
@@ -174,7 +174,7 @@ void SetRawIssueAssetRequest::ConvertFromStruct(
 SetRawIssueAssetRequestStruct SetRawIssueAssetRequest::ConvertToStruct() const {  // NOLINT
   SetRawIssueAssetRequestStruct result;
   result.tx = tx_;
-  result.is_randomize = is_randomize_;
+  result.is_random_sort_tx_out = is_random_sort_tx_out_;
   result.issuances = issuances_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
