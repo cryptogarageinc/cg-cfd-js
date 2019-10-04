@@ -21,8 +21,9 @@
 
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
-#include "cfdapi_get_mnemonic_wordlist_json.h"                 // NOLINT
 #include "cfdapi_blind_raw_transaction_json.h"              // NOLINT
+#include "cfdapi_convert_entropy_to_mnemonic_json.h"        // NOLINT
+#include "cfdapi_convert_mnemonic_to_seed_json.h"           // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
 #include "cfdapi_decode_transaction_json.h"                 // NOLINT
@@ -40,6 +41,7 @@
 #include "cfdapi_error_base_json.h"                         // NOLINT
 #include "cfdapi_error_json.h"                              // NOLINT
 #include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
+#include "cfdapi_get_mnemonic_wordlist_json.h"              // NOLINT
 #include "cfdapi_get_witness_num_json.h"                    // NOLINT
 #include "cfdapi_multisig_address_json.h"                   // NOLINT
 #include "cfdapi_sighash_elements_json.h"                   // NOLINT
@@ -52,7 +54,7 @@
 
 // using
 using cfd::api::AddressApi;
-using cfd::api::HDWalletApi;
+using cfd::api::HDWalletStructApi;
 using cfd::api::KeyApi;
 using cfd::api::SigHashApi;
 using cfd::api::TransactionApi;
@@ -295,6 +297,21 @@ Value DecodeRawTransaction(const CallbackInfo &information) {
       information, TransactionApi::DecodeRawTransaction);
 }
 
+Value ConvertEntropyToMnemonic(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      ConvertEntropyToMnemonicRequest, ConvertEntropyToMnemonicResponse,
+      ConvertEntropyToMnemonicRequestStruct,
+      ConvertEntropyToMnemonicResponseStruct>(
+      information, HDWalletStructApi::ConvertEntropyToMnemonic);
+}
+
+Value ConvertMnemonicToSeed(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      ConvertMnemonicToSeedRequest, ConvertMnemonicToSeedResponse,
+      ConvertMnemonicToSeedRequestStruct, ConvertMnemonicToSeedResponseStruct>(
+      information, HDWalletStructApi::ConvertMnemonicToSeed);
+}
+
 Value CreateAddress(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       CreateAddressRequest, CreateAddressResponse, CreateAddressRequestStruct,
@@ -322,7 +339,7 @@ Value GetMnemonicWordlist(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       GetMnemonicWordlistRequest, GetMnemonicWordlistResponse,
       GetMnemonicWordlistRequestStruct, GetMnemonicWordlistResponseStruct>(
-      information, HDWalletApi::GetMnemonicWordlist);
+      information, HDWalletStructApi::GetMnemonicWordlist);
 }
 
 Value CreateKeyPair(const CallbackInfo &information) {
@@ -508,6 +525,12 @@ Object Init(Env env, Object exports) {
   exports.Set(
       String::New(env, "DecodeRawTransaction"),
       Function::New(env, cfd::api::DecodeRawTransaction));
+  exports.Set(
+      String::New(env, "ConvertEntropyToMnemonic"),
+      Function::New(env, cfd::api::ConvertEntropyToMnemonic));
+  exports.Set(
+      String::New(env, "ConvertMnemonicToSeed"),
+      Function::New(env, cfd::api::ConvertMnemonicToSeed));
   exports.Set(
       String::New(env, "CreateAddress"),
       Function::New(env, cfd::api::CreateAddress));
