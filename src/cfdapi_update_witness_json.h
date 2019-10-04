@@ -399,6 +399,238 @@ class WitnessStackData
 };
 
 // ------------------------------------------------------------------------
+// UpdateWitnessStackTxInRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API（UpdateWitnessStackTxInRequest）クラス
+ */
+class UpdateWitnessStackTxInRequest
+  : public cfdcore::JsonClassBase<UpdateWitnessStackTxInRequest> {
+ public:
+  UpdateWitnessStackTxInRequest() {
+    CollectFieldName();
+  }
+  virtual ~UpdateWitnessStackTxInRequest() {
+    // do nothing
+  }
+  /**
+   * @brief フィールド名を収集する.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief txid 取得処理
+   * @return txid
+   */
+  std::string GetTxid() {
+    return txid_;
+  }
+  /**
+   * @brief txid 設定処理
+   * @param[in] txid    設定値
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief txid データ型の取得処理
+   * @return txidのデータ型
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief txid フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTxidString(  // line separate
+      const UpdateWitnessStackTxInRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief txid フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTxidString(  // line separate
+      UpdateWitnessStackTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief vout 取得処理
+   * @return vout
+   */
+  uint32_t GetVout() {
+    return vout_;
+  }
+  /**
+   * @brief vout 設定処理
+   * @param[in] vout    設定値
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief vout データ型の取得処理
+   * @return voutのデータ型
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief vout フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetVoutString(  // line separate
+      const UpdateWitnessStackTxInRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief vout フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetVoutString(  // line separate
+      UpdateWitnessStackTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief witnessStack 取得処理
+   * @return witnessStack
+   */
+  WitnessStackData& GetWitnessStack() {  // NOLINT
+    return witness_stack_;
+  }
+  /**
+   * @brief witnessStack 設定処理
+   * @param[in] witness_stack    設定値
+   */
+  void SetWitnessStack(  // line separate
+      const WitnessStackData& witness_stack) {  // NOLINT
+    this->witness_stack_ = witness_stack;
+  }
+  /**
+   * @brief witnessStack データ型の取得処理
+   * @return witnessStackのデータ型
+   */
+  static std::string GetWitnessStackFieldType() {
+    return "WitnessStackData";  // NOLINT
+  }
+  /**
+   * @brief witnessStack フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetWitnessStackString(  // line separate
+      const UpdateWitnessStackTxInRequest& obj) {  // NOLINT
+    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    return obj.witness_stack_.Serialize();
+  }
+  /**
+   * @brief witnessStack フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetWitnessStackString(  // line separate
+      UpdateWitnessStackTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.witness_stack_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void ConvertFromStruct(
+      const UpdateWitnessStackTxInRequestStruct& data);
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  UpdateWitnessStackTxInRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief Mapテーブルの型名定義
+   */
+  using UpdateWitnessStackTxInRequestMapTable =
+    cfdcore::JsonTableMap<UpdateWitnessStackTxInRequest>;
+
+  /**
+   * @brief JSONマッピングオブジェクトを取得する。
+   * @return JSONマッピングオブジェクト
+   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   */
+  virtual const UpdateWitnessStackTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief JSONマッピングのアイテム一覧を取得する。
+   * 対象の変数名を、定義順序に従い一覧取得する。
+   * @return JSONマッピングのアイテム一覧
+   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
+   * Serialize時に対象の変数を無視する。
+   * @return JSONマッピング時に無視するアイテム一覧
+   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMapテーブル
+  */
+  static UpdateWitnessStackTxInRequestMapTable json_mapper;
+  /**
+   * @brief フィールド名リスト
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief 無視リスト
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) のvalue
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) のvalue
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(witnessStack) のvalue
+   */
+  WitnessStackData witness_stack_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
 // UpdateWitnessStackRequest
 // ------------------------------------------------------------------------
 /**
@@ -505,132 +737,46 @@ class UpdateWitnessStackRequest
   }
 
   /**
-   * @brief txid 取得処理
-   * @return txid
+   * @brief txin 取得処理
+   * @return txin
    */
-  std::string GetTxid() {
-    return txid_;
+  UpdateWitnessStackTxInRequest& GetTxin() {  // NOLINT
+    return txin_;
   }
   /**
-   * @brief txid 設定処理
-   * @param[in] txid    設定値
+   * @brief txin 設定処理
+   * @param[in] txin    設定値
    */
-  void SetTxid(  // line separate
-    const std::string& txid) {  // NOLINT
-    this->txid_ = txid;
+  void SetTxin(  // line separate
+      const UpdateWitnessStackTxInRequest& txin) {  // NOLINT
+    this->txin_ = txin;
   }
   /**
-   * @brief txid データ型の取得処理
-   * @return txidのデータ型
+   * @brief txin データ型の取得処理
+   * @return txinのデータ型
    */
-  static std::string GetTxidFieldType() {
-    return "std::string";
+  static std::string GetTxinFieldType() {
+    return "UpdateWitnessStackTxInRequest";  // NOLINT
   }
   /**
-   * @brief txid フィールドのJSON文字列取得処理
+   * @brief txin フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxidString(  // line separate
-      const UpdateWitnessStackRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
-  }
-  /**
-   * @brief txid フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
-   */
-  static void SetTxidString(  // line separate
-      UpdateWitnessStackRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
-      obj.txid_, json_value);
-  }
-
-  /**
-   * @brief vout 取得処理
-   * @return vout
-   */
-  uint32_t GetVout() {
-    return vout_;
-  }
-  /**
-   * @brief vout 設定処理
-   * @param[in] vout    設定値
-   */
-  void SetVout(  // line separate
-    const uint32_t& vout) {  // NOLINT
-    this->vout_ = vout;
-  }
-  /**
-   * @brief vout データ型の取得処理
-   * @return voutのデータ型
-   */
-  static std::string GetVoutFieldType() {
-    return "uint32_t";
-  }
-  /**
-   * @brief vout フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
-   */
-  static std::string GetVoutString(  // line separate
-      const UpdateWitnessStackRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
-  }
-  /**
-   * @brief vout フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
-   */
-  static void SetVoutString(  // line separate
-      UpdateWitnessStackRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
-      obj.vout_, json_value);
-  }
-
-  /**
-   * @brief witnessStack 取得処理
-   * @return witnessStack
-   */
-  WitnessStackData& GetWitnessStack() {  // NOLINT
-    return witness_stack_;
-  }
-  /**
-   * @brief witnessStack 設定処理
-   * @param[in] witness_stack    設定値
-   */
-  void SetWitnessStack(  // line separate
-      const WitnessStackData& witness_stack) {  // NOLINT
-    this->witness_stack_ = witness_stack;
-  }
-  /**
-   * @brief witnessStack データ型の取得処理
-   * @return witnessStackのデータ型
-   */
-  static std::string GetWitnessStackFieldType() {
-    return "WitnessStackData";  // NOLINT
-  }
-  /**
-   * @brief witnessStack フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
-   */
-  static std::string GetWitnessStackString(  // line separate
+  static std::string GetTxinString(  // line separate
       const UpdateWitnessStackRequest& obj) {  // NOLINT
     // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
-    return obj.witness_stack_.Serialize();
+    return obj.txin_.Serialize();
   }
   /**
-   * @brief witnessStack フィールドへのJSON情報設定処理
+   * @brief txin フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetWitnessStackString(  // line separate
+  static void SetTxinString(  // line separate
       UpdateWitnessStackRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    obj.witness_stack_.DeserializeUniValue(json_value);
+    obj.txin_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -711,17 +857,9 @@ class UpdateWitnessStackRequest
    */
   bool is_elements_ = false;
   /**
-   * @brief JsonAPI(txid) のvalue
+   * @brief JsonAPI(txin) のvalue
    */
-  std::string txid_ = "";
-  /**
-   * @brief JsonAPI(vout) のvalue
-   */
-  uint32_t vout_ = 0;
-  /**
-   * @brief JsonAPI(witnessStack) のvalue
-   */
-  WitnessStackData witness_stack_;  // NOLINT
+  UpdateWitnessStackTxInRequest txin_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
