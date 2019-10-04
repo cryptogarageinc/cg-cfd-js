@@ -52,13 +52,13 @@ const errorCase = [
     "GetMnemonicWordlist Error(invalid language)",
     GetMnemonicWordlist,
     ['{"language":"zzz"}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"Not support language passed."}}'
+    '{"error":{"code":1,"type":"illegal_argument","message":"Failed to ConvertMnemonicToSeed. Not support language passed."}}'
   ),
   TestHelper.createTestCase(
     "GetMnemonicWordlist Error(empty language)",
     GetMnemonicWordlist,
     ['{"language":""}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"Not support language passed."}}'
+    '{"error":{"code":1,"type":"illegal_argument","message":"Failed to ConvertMnemonicToSeed. Not support language passed."}}'
   ),
 ]
 
