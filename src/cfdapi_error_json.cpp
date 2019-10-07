@@ -13,7 +13,7 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::CfdException;
+using cfd::core::CfdException;
 // @formatter:off
 
 // ------------------------------------------------------------------------
