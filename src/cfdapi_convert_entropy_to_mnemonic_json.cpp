@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ConvertEntropyToMnemonicRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ConvertEntropyToMnemonicRequest>
+cfd::core::JsonTableMap<ConvertEntropyToMnemonicRequest>
   ConvertEntropyToMnemonicRequest::json_mapper;
 std::vector<std::string> ConvertEntropyToMnemonicRequest::item_list;
 
@@ -31,7 +31,7 @@ void ConvertEntropyToMnemonicRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ConvertEntropyToMnemonicRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ConvertEntropyToMnemonicRequest> func_table;  // NOLINT
 
   func_table = {
     ConvertEntropyToMnemonicRequest::GetEntropyString,
@@ -67,7 +67,7 @@ ConvertEntropyToMnemonicRequestStruct ConvertEntropyToMnemonicRequest::ConvertTo
 // ------------------------------------------------------------------------
 // ConvertEntropyToMnemonicResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ConvertEntropyToMnemonicResponse>
+cfd::core::JsonTableMap<ConvertEntropyToMnemonicResponse>
   ConvertEntropyToMnemonicResponse::json_mapper;
 std::vector<std::string> ConvertEntropyToMnemonicResponse::item_list;
 
@@ -75,7 +75,7 @@ void ConvertEntropyToMnemonicResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ConvertEntropyToMnemonicResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ConvertEntropyToMnemonicResponse> func_table;  // NOLINT
 
   func_table = {
     ConvertEntropyToMnemonicResponse::GetMnemonicString,

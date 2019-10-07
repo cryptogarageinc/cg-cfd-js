@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // CreateKeyPairRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateKeyPairRequest>
+cfd::core::JsonTableMap<CreateKeyPairRequest>
   CreateKeyPairRequest::json_mapper;
 std::vector<std::string> CreateKeyPairRequest::item_list;
 
@@ -31,7 +31,7 @@ void CreateKeyPairRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateKeyPairRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateKeyPairRequest> func_table;  // NOLINT
 
   func_table = {
     CreateKeyPairRequest::GetWifString,
@@ -76,7 +76,7 @@ CreateKeyPairRequestStruct CreateKeyPairRequest::ConvertToStruct() const {  // N
 // ------------------------------------------------------------------------
 // CreateKeyPairResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateKeyPairResponse>
+cfd::core::JsonTableMap<CreateKeyPairResponse>
   CreateKeyPairResponse::json_mapper;
 std::vector<std::string> CreateKeyPairResponse::item_list;
 
@@ -84,7 +84,7 @@ void CreateKeyPairResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateKeyPairResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateKeyPairResponse> func_table;  // NOLINT
 
   func_table = {
     CreateKeyPairResponse::GetPrivkeyString,

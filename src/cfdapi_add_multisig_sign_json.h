@@ -18,10 +18,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（MultisigSignData）クラス
  */
 class MultisigSignData
-  : public cfdcore::JsonClassBase<MultisigSignData> {
+  : public cfd::core::JsonClassBase<MultisigSignData> {
  public:
   MultisigSignData() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class MultisigSignData
    */
   static std::string GetHexString(  // line separate
       const MultisigSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class MultisigSignData
   static void SetHexString(  // line separate
       MultisigSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -117,7 +117,7 @@ class MultisigSignData
    */
   static std::string GetTypeString(  // line separate
       const MultisigSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.type_);
+    return cfd::core::ConvertToString(obj.type_);
   }
   /**
    * @brief type フィールドへのJSON情報設定処理
@@ -127,7 +127,7 @@ class MultisigSignData
   static void SetTypeString(  // line separate
       MultisigSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.type_, json_value);
   }
 
@@ -160,7 +160,7 @@ class MultisigSignData
    */
   static std::string GetDerEncodeString(  // line separate
       const MultisigSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.der_encode_);
+    return cfd::core::ConvertToString(obj.der_encode_);
   }
   /**
    * @brief derEncode フィールドへのJSON情報設定処理
@@ -170,7 +170,7 @@ class MultisigSignData
   static void SetDerEncodeString(  // line separate
       MultisigSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.der_encode_, json_value);
   }
 
@@ -203,7 +203,7 @@ class MultisigSignData
    */
   static std::string GetSighashTypeString(  // line separate
       const MultisigSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_type_);
+    return cfd::core::ConvertToString(obj.sighash_type_);
   }
   /**
    * @brief sighashType フィールドへのJSON情報設定処理
@@ -213,7 +213,7 @@ class MultisigSignData
   static void SetSighashTypeString(  // line separate
       MultisigSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_type_, json_value);
   }
 
@@ -246,7 +246,7 @@ class MultisigSignData
    */
   static std::string GetSighashAnyoneCanPayString(  // line separate
       const MultisigSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_anyone_can_pay_);
+    return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
   }
   /**
    * @brief sighashAnyoneCanPay フィールドへのJSON情報設定処理
@@ -256,7 +256,7 @@ class MultisigSignData
   static void SetSighashAnyoneCanPayString(  // line separate
       MultisigSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_anyone_can_pay_, json_value);
   }
 
@@ -289,7 +289,7 @@ class MultisigSignData
    */
   static std::string GetRelatedPubkeyString(  // line separate
       const MultisigSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.related_pubkey_);
+    return cfd::core::ConvertToString(obj.related_pubkey_);
   }
   /**
    * @brief relatedPubkey フィールドへのJSON情報設定処理
@@ -299,7 +299,7 @@ class MultisigSignData
   static void SetRelatedPubkeyString(  // line separate
       MultisigSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.related_pubkey_, json_value);
   }
 
@@ -329,12 +329,12 @@ class MultisigSignData
    * @brief Mapテーブルの型名定義
    */
   using MultisigSignDataMapTable =
-    cfdcore::JsonTableMap<MultisigSignData>;
+    cfd::core::JsonTableMap<MultisigSignData>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const MultisigSignDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -343,7 +343,7 @@ class MultisigSignData
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -352,7 +352,7 @@ class MultisigSignData
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -405,7 +405,7 @@ class MultisigSignData
  * @brief JSON-API（AddMultisigSignTxInRequest）クラス
  */
 class AddMultisigSignTxInRequest
-  : public cfdcore::JsonClassBase<AddMultisigSignTxInRequest> {
+  : public cfd::core::JsonClassBase<AddMultisigSignTxInRequest> {
  public:
   AddMultisigSignTxInRequest() {
     CollectFieldName();
@@ -447,7 +447,7 @@ class AddMultisigSignTxInRequest
    */
   static std::string GetTxidString(  // line separate
       const AddMultisigSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -457,7 +457,7 @@ class AddMultisigSignTxInRequest
   static void SetTxidString(  // line separate
       AddMultisigSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -490,7 +490,7 @@ class AddMultisigSignTxInRequest
    */
   static std::string GetVoutString(  // line separate
       const AddMultisigSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -500,7 +500,7 @@ class AddMultisigSignTxInRequest
   static void SetVoutString(  // line separate
       AddMultisigSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -576,7 +576,7 @@ class AddMultisigSignTxInRequest
    */
   static std::string GetRedeemScriptString(  // line separate
       const AddMultisigSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.redeem_script_);
+    return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
    * @brief redeemScript フィールドへのJSON情報設定処理
@@ -586,7 +586,7 @@ class AddMultisigSignTxInRequest
   static void SetRedeemScriptString(  // line separate
       AddMultisigSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.redeem_script_, json_value);
   }
 
@@ -619,7 +619,7 @@ class AddMultisigSignTxInRequest
    */
   static std::string GetWitnessScriptString(  // line separate
       const AddMultisigSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.witness_script_);
+    return cfd::core::ConvertToString(obj.witness_script_);
   }
   /**
    * @brief witnessScript フィールドへのJSON情報設定処理
@@ -629,7 +629,7 @@ class AddMultisigSignTxInRequest
   static void SetWitnessScriptString(  // line separate
       AddMultisigSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.witness_script_, json_value);
   }
 
@@ -662,7 +662,7 @@ class AddMultisigSignTxInRequest
    */
   static std::string GetHashTypeString(  // line separate
       const AddMultisigSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hash_type_);
+    return cfd::core::ConvertToString(obj.hash_type_);
   }
   /**
    * @brief hashType フィールドへのJSON情報設定処理
@@ -672,7 +672,7 @@ class AddMultisigSignTxInRequest
   static void SetHashTypeString(  // line separate
       AddMultisigSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hash_type_, json_value);
   }
 
@@ -705,7 +705,7 @@ class AddMultisigSignTxInRequest
    */
   static std::string GetClearStackString(  // line separate
       const AddMultisigSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.clear_stack_);
+    return cfd::core::ConvertToString(obj.clear_stack_);
   }
   /**
    * @brief clearStack フィールドへのJSON情報設定処理
@@ -715,7 +715,7 @@ class AddMultisigSignTxInRequest
   static void SetClearStackString(  // line separate
       AddMultisigSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.clear_stack_, json_value);
   }
 
@@ -745,12 +745,12 @@ class AddMultisigSignTxInRequest
    * @brief Mapテーブルの型名定義
    */
   using AddMultisigSignTxInRequestMapTable =
-    cfdcore::JsonTableMap<AddMultisigSignTxInRequest>;
+    cfd::core::JsonTableMap<AddMultisigSignTxInRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddMultisigSignTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -759,7 +759,7 @@ class AddMultisigSignTxInRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -768,7 +768,7 @@ class AddMultisigSignTxInRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -825,7 +825,7 @@ class AddMultisigSignTxInRequest
  * @brief JSON-API（AddMultisigSignRequest）クラス
  */
 class AddMultisigSignRequest
-  : public cfdcore::JsonClassBase<AddMultisigSignRequest> {
+  : public cfd::core::JsonClassBase<AddMultisigSignRequest> {
  public:
   AddMultisigSignRequest() {
     CollectFieldName();
@@ -867,7 +867,7 @@ class AddMultisigSignRequest
    */
   static std::string GetIsElementsString(  // line separate
       const AddMultisigSignRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_elements_);
+    return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
    * @brief isElements フィールドへのJSON情報設定処理
@@ -877,7 +877,7 @@ class AddMultisigSignRequest
   static void SetIsElementsString(  // line separate
       AddMultisigSignRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_elements_, json_value);
   }
 
@@ -910,7 +910,7 @@ class AddMultisigSignRequest
    */
   static std::string GetTxString(  // line separate
       const AddMultisigSignRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_);
+    return cfd::core::ConvertToString(obj.tx_);
   }
   /**
    * @brief tx フィールドへのJSON情報設定処理
@@ -920,7 +920,7 @@ class AddMultisigSignRequest
   static void SetTxString(  // line separate
       AddMultisigSignRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.tx_, json_value);
   }
 
@@ -993,12 +993,12 @@ class AddMultisigSignRequest
    * @brief Mapテーブルの型名定義
    */
   using AddMultisigSignRequestMapTable =
-    cfdcore::JsonTableMap<AddMultisigSignRequest>;
+    cfd::core::JsonTableMap<AddMultisigSignRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddMultisigSignRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1007,7 +1007,7 @@ class AddMultisigSignRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1016,7 +1016,7 @@ class AddMultisigSignRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1057,7 +1057,7 @@ class AddMultisigSignRequest
  * @brief JSON-API（AddMultisigSignResponse）クラス
  */
 class AddMultisigSignResponse
-  : public cfdcore::JsonClassBase<AddMultisigSignResponse> {
+  : public cfd::core::JsonClassBase<AddMultisigSignResponse> {
  public:
   AddMultisigSignResponse() {
     CollectFieldName();
@@ -1099,7 +1099,7 @@ class AddMultisigSignResponse
    */
   static std::string GetHexString(  // line separate
       const AddMultisigSignResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -1109,7 +1109,7 @@ class AddMultisigSignResponse
   static void SetHexString(  // line separate
       AddMultisigSignResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -1139,12 +1139,12 @@ class AddMultisigSignResponse
    * @brief Mapテーブルの型名定義
    */
   using AddMultisigSignResponseMapTable =
-    cfdcore::JsonTableMap<AddMultisigSignResponse>;
+    cfd::core::JsonTableMap<AddMultisigSignResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddMultisigSignResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1153,7 +1153,7 @@ class AddMultisigSignResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1162,7 +1162,7 @@ class AddMultisigSignResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;

@@ -18,10 +18,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（GetMnemonicWordlistRequest）クラス
  */
 class GetMnemonicWordlistRequest
-  : public cfdcore::JsonClassBase<GetMnemonicWordlistRequest> {
+  : public cfd::core::JsonClassBase<GetMnemonicWordlistRequest> {
  public:
   GetMnemonicWordlistRequest() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class GetMnemonicWordlistRequest
    */
   static std::string GetLanguageString(  // line separate
       const GetMnemonicWordlistRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.language_);
+    return cfd::core::ConvertToString(obj.language_);
   }
   /**
    * @brief language フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class GetMnemonicWordlistRequest
   static void SetLanguageString(  // line separate
       GetMnemonicWordlistRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.language_, json_value);
   }
 
@@ -114,12 +114,12 @@ class GetMnemonicWordlistRequest
    * @brief Mapテーブルの型名定義
    */
   using GetMnemonicWordlistRequestMapTable =
-    cfdcore::JsonTableMap<GetMnemonicWordlistRequest>;
+    cfd::core::JsonTableMap<GetMnemonicWordlistRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetMnemonicWordlistRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -128,7 +128,7 @@ class GetMnemonicWordlistRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -137,7 +137,7 @@ class GetMnemonicWordlistRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -170,7 +170,7 @@ class GetMnemonicWordlistRequest
  * @brief JSON-API（GetMnemonicWordlistResponse）クラス
  */
 class GetMnemonicWordlistResponse
-  : public cfdcore::JsonClassBase<GetMnemonicWordlistResponse> {
+  : public cfd::core::JsonClassBase<GetMnemonicWordlistResponse> {
  public:
   GetMnemonicWordlistResponse() {
     CollectFieldName();
@@ -252,12 +252,12 @@ class GetMnemonicWordlistResponse
    * @brief Mapテーブルの型名定義
    */
   using GetMnemonicWordlistResponseMapTable =
-    cfdcore::JsonTableMap<GetMnemonicWordlistResponse>;
+    cfd::core::JsonTableMap<GetMnemonicWordlistResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetMnemonicWordlistResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -266,7 +266,7 @@ class GetMnemonicWordlistResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -275,7 +275,7 @@ class GetMnemonicWordlistResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;

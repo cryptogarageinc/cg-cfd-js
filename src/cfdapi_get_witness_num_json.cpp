@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // GetWitnessStackNumTxInRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetWitnessStackNumTxInRequest>
+cfd::core::JsonTableMap<GetWitnessStackNumTxInRequest>
   GetWitnessStackNumTxInRequest::json_mapper;
 std::vector<std::string> GetWitnessStackNumTxInRequest::item_list;
 
@@ -31,7 +31,7 @@ void GetWitnessStackNumTxInRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetWitnessStackNumTxInRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetWitnessStackNumTxInRequest> func_table;  // NOLINT
 
   func_table = {
     GetWitnessStackNumTxInRequest::GetTxidString,
@@ -67,7 +67,7 @@ GetWitnessStackNumTxInRequestStruct GetWitnessStackNumTxInRequest::ConvertToStru
 // ------------------------------------------------------------------------
 // GetWitnessStackNumRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetWitnessStackNumRequest>
+cfd::core::JsonTableMap<GetWitnessStackNumRequest>
   GetWitnessStackNumRequest::json_mapper;
 std::vector<std::string> GetWitnessStackNumRequest::item_list;
 
@@ -75,7 +75,7 @@ void GetWitnessStackNumRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetWitnessStackNumRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetWitnessStackNumRequest> func_table;  // NOLINT
 
   func_table = {
     GetWitnessStackNumRequest::GetTxString,
@@ -120,7 +120,7 @@ GetWitnessStackNumRequestStruct GetWitnessStackNumRequest::ConvertToStruct() con
 // ------------------------------------------------------------------------
 // GetWitnessStackNumResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetWitnessStackNumResponse>
+cfd::core::JsonTableMap<GetWitnessStackNumResponse>
   GetWitnessStackNumResponse::json_mapper;
 std::vector<std::string> GetWitnessStackNumResponse::item_list;
 
@@ -128,7 +128,7 @@ void GetWitnessStackNumResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetWitnessStackNumResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetWitnessStackNumResponse> func_table;  // NOLINT
 
   func_table = {
     GetWitnessStackNumResponse::GetCountString,

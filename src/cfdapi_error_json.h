@@ -14,11 +14,11 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::CfdException;
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::CfdException;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------

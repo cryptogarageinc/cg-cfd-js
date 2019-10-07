@@ -18,10 +18,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（SignatureHashKeyData）クラス
  */
 class SignatureHashKeyData
-  : public cfdcore::JsonClassBase<SignatureHashKeyData> {
+  : public cfd::core::JsonClassBase<SignatureHashKeyData> {
  public:
   SignatureHashKeyData() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class SignatureHashKeyData
    */
   static std::string GetHexString(  // line separate
       const SignatureHashKeyData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class SignatureHashKeyData
   static void SetHexString(  // line separate
       SignatureHashKeyData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -117,7 +117,7 @@ class SignatureHashKeyData
    */
   static std::string GetTypeString(  // line separate
       const SignatureHashKeyData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.type_);
+    return cfd::core::ConvertToString(obj.type_);
   }
   /**
    * @brief type フィールドへのJSON情報設定処理
@@ -127,7 +127,7 @@ class SignatureHashKeyData
   static void SetTypeString(  // line separate
       SignatureHashKeyData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.type_, json_value);
   }
 
@@ -157,12 +157,12 @@ class SignatureHashKeyData
    * @brief Mapテーブルの型名定義
    */
   using SignatureHashKeyDataMapTable =
-    cfdcore::JsonTableMap<SignatureHashKeyData>;
+    cfd::core::JsonTableMap<SignatureHashKeyData>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const SignatureHashKeyDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -171,7 +171,7 @@ class SignatureHashKeyData
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -180,7 +180,7 @@ class SignatureHashKeyData
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -217,7 +217,7 @@ class SignatureHashKeyData
  * @brief JSON-API（CreateSignatureHashTxInRequest）クラス
  */
 class CreateSignatureHashTxInRequest
-  : public cfdcore::JsonClassBase<CreateSignatureHashTxInRequest> {
+  : public cfd::core::JsonClassBase<CreateSignatureHashTxInRequest> {
  public:
   CreateSignatureHashTxInRequest() {
     CollectFieldName();
@@ -259,7 +259,7 @@ class CreateSignatureHashTxInRequest
    */
   static std::string GetTxidString(  // line separate
       const CreateSignatureHashTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -269,7 +269,7 @@ class CreateSignatureHashTxInRequest
   static void SetTxidString(  // line separate
       CreateSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -302,7 +302,7 @@ class CreateSignatureHashTxInRequest
    */
   static std::string GetVoutString(  // line separate
       const CreateSignatureHashTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -312,7 +312,7 @@ class CreateSignatureHashTxInRequest
   static void SetVoutString(  // line separate
       CreateSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -388,7 +388,7 @@ class CreateSignatureHashTxInRequest
    */
   static std::string GetAmountString(  // line separate
       const CreateSignatureHashTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.amount_);
+    return cfd::core::ConvertToString(obj.amount_);
   }
   /**
    * @brief amount フィールドへのJSON情報設定処理
@@ -398,7 +398,7 @@ class CreateSignatureHashTxInRequest
   static void SetAmountString(  // line separate
       CreateSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
@@ -431,7 +431,7 @@ class CreateSignatureHashTxInRequest
    */
   static std::string GetHashTypeString(  // line separate
       const CreateSignatureHashTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hash_type_);
+    return cfd::core::ConvertToString(obj.hash_type_);
   }
   /**
    * @brief hashType フィールドへのJSON情報設定処理
@@ -441,7 +441,7 @@ class CreateSignatureHashTxInRequest
   static void SetHashTypeString(  // line separate
       CreateSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hash_type_, json_value);
   }
 
@@ -474,7 +474,7 @@ class CreateSignatureHashTxInRequest
    */
   static std::string GetSighashTypeString(  // line separate
       const CreateSignatureHashTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_type_);
+    return cfd::core::ConvertToString(obj.sighash_type_);
   }
   /**
    * @brief sighashType フィールドへのJSON情報設定処理
@@ -484,7 +484,7 @@ class CreateSignatureHashTxInRequest
   static void SetSighashTypeString(  // line separate
       CreateSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_type_, json_value);
   }
 
@@ -517,7 +517,7 @@ class CreateSignatureHashTxInRequest
    */
   static std::string GetSighashAnyoneCanPayString(  // line separate
       const CreateSignatureHashTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_anyone_can_pay_);
+    return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
   }
   /**
    * @brief sighashAnyoneCanPay フィールドへのJSON情報設定処理
@@ -527,7 +527,7 @@ class CreateSignatureHashTxInRequest
   static void SetSighashAnyoneCanPayString(  // line separate
       CreateSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_anyone_can_pay_, json_value);
   }
 
@@ -557,12 +557,12 @@ class CreateSignatureHashTxInRequest
    * @brief Mapテーブルの型名定義
    */
   using CreateSignatureHashTxInRequestMapTable =
-    cfdcore::JsonTableMap<CreateSignatureHashTxInRequest>;
+    cfd::core::JsonTableMap<CreateSignatureHashTxInRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateSignatureHashTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -571,7 +571,7 @@ class CreateSignatureHashTxInRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -580,7 +580,7 @@ class CreateSignatureHashTxInRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -637,7 +637,7 @@ class CreateSignatureHashTxInRequest
  * @brief JSON-API（CreateSignatureHashRequest）クラス
  */
 class CreateSignatureHashRequest
-  : public cfdcore::JsonClassBase<CreateSignatureHashRequest> {
+  : public cfd::core::JsonClassBase<CreateSignatureHashRequest> {
  public:
   CreateSignatureHashRequest() {
     CollectFieldName();
@@ -679,7 +679,7 @@ class CreateSignatureHashRequest
    */
   static std::string GetTxString(  // line separate
       const CreateSignatureHashRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_);
+    return cfd::core::ConvertToString(obj.tx_);
   }
   /**
    * @brief tx フィールドへのJSON情報設定処理
@@ -689,7 +689,7 @@ class CreateSignatureHashRequest
   static void SetTxString(  // line separate
       CreateSignatureHashRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.tx_, json_value);
   }
 
@@ -762,12 +762,12 @@ class CreateSignatureHashRequest
    * @brief Mapテーブルの型名定義
    */
   using CreateSignatureHashRequestMapTable =
-    cfdcore::JsonTableMap<CreateSignatureHashRequest>;
+    cfd::core::JsonTableMap<CreateSignatureHashRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateSignatureHashRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -776,7 +776,7 @@ class CreateSignatureHashRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -785,7 +785,7 @@ class CreateSignatureHashRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -822,7 +822,7 @@ class CreateSignatureHashRequest
  * @brief JSON-API（CreateSignatureHashResponse）クラス
  */
 class CreateSignatureHashResponse
-  : public cfdcore::JsonClassBase<CreateSignatureHashResponse> {
+  : public cfd::core::JsonClassBase<CreateSignatureHashResponse> {
  public:
   CreateSignatureHashResponse() {
     CollectFieldName();
@@ -864,7 +864,7 @@ class CreateSignatureHashResponse
    */
   static std::string GetSighashString(  // line separate
       const CreateSignatureHashResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_);
+    return cfd::core::ConvertToString(obj.sighash_);
   }
   /**
    * @brief sighash フィールドへのJSON情報設定処理
@@ -874,7 +874,7 @@ class CreateSignatureHashResponse
   static void SetSighashString(  // line separate
       CreateSignatureHashResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_, json_value);
   }
 
@@ -904,12 +904,12 @@ class CreateSignatureHashResponse
    * @brief Mapテーブルの型名定義
    */
   using CreateSignatureHashResponseMapTable =
-    cfdcore::JsonTableMap<CreateSignatureHashResponse>;
+    cfd::core::JsonTableMap<CreateSignatureHashResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateSignatureHashResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -918,7 +918,7 @@ class CreateSignatureHashResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -927,7 +927,7 @@ class CreateSignatureHashResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;

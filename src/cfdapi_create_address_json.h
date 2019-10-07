@@ -18,10 +18,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（CreateAddressKeyData）クラス
  */
 class CreateAddressKeyData
-  : public cfdcore::JsonClassBase<CreateAddressKeyData> {
+  : public cfd::core::JsonClassBase<CreateAddressKeyData> {
  public:
   CreateAddressKeyData() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class CreateAddressKeyData
    */
   static std::string GetHexString(  // line separate
       const CreateAddressKeyData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class CreateAddressKeyData
   static void SetHexString(  // line separate
       CreateAddressKeyData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -117,7 +117,7 @@ class CreateAddressKeyData
    */
   static std::string GetTypeString(  // line separate
       const CreateAddressKeyData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.type_);
+    return cfd::core::ConvertToString(obj.type_);
   }
   /**
    * @brief type フィールドへのJSON情報設定処理
@@ -127,7 +127,7 @@ class CreateAddressKeyData
   static void SetTypeString(  // line separate
       CreateAddressKeyData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.type_, json_value);
   }
 
@@ -157,12 +157,12 @@ class CreateAddressKeyData
    * @brief Mapテーブルの型名定義
    */
   using CreateAddressKeyDataMapTable =
-    cfdcore::JsonTableMap<CreateAddressKeyData>;
+    cfd::core::JsonTableMap<CreateAddressKeyData>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateAddressKeyDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -171,7 +171,7 @@ class CreateAddressKeyData
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -180,7 +180,7 @@ class CreateAddressKeyData
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -217,7 +217,7 @@ class CreateAddressKeyData
  * @brief JSON-API（CreateAddressRequest）クラス
  */
 class CreateAddressRequest
-  : public cfdcore::JsonClassBase<CreateAddressRequest> {
+  : public cfd::core::JsonClassBase<CreateAddressRequest> {
  public:
   CreateAddressRequest() {
     CollectFieldName();
@@ -259,7 +259,7 @@ class CreateAddressRequest
    */
   static std::string GetIsElementsString(  // line separate
       const CreateAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_elements_);
+    return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
    * @brief isElements フィールドへのJSON情報設定処理
@@ -269,7 +269,7 @@ class CreateAddressRequest
   static void SetIsElementsString(  // line separate
       CreateAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_elements_, json_value);
   }
 
@@ -345,7 +345,7 @@ class CreateAddressRequest
    */
   static std::string GetNetworkString(  // line separate
       const CreateAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.network_);
+    return cfd::core::ConvertToString(obj.network_);
   }
   /**
    * @brief network フィールドへのJSON情報設定処理
@@ -355,7 +355,7 @@ class CreateAddressRequest
   static void SetNetworkString(  // line separate
       CreateAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.network_, json_value);
   }
 
@@ -388,7 +388,7 @@ class CreateAddressRequest
    */
   static std::string GetHashTypeString(  // line separate
       const CreateAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hash_type_);
+    return cfd::core::ConvertToString(obj.hash_type_);
   }
   /**
    * @brief hashType フィールドへのJSON情報設定処理
@@ -398,7 +398,7 @@ class CreateAddressRequest
   static void SetHashTypeString(  // line separate
       CreateAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hash_type_, json_value);
   }
 
@@ -428,12 +428,12 @@ class CreateAddressRequest
    * @brief Mapテーブルの型名定義
    */
   using CreateAddressRequestMapTable =
-    cfdcore::JsonTableMap<CreateAddressRequest>;
+    cfd::core::JsonTableMap<CreateAddressRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateAddressRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -442,7 +442,7 @@ class CreateAddressRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -451,7 +451,7 @@ class CreateAddressRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -496,7 +496,7 @@ class CreateAddressRequest
  * @brief JSON-API（CreateAddressResponse）クラス
  */
 class CreateAddressResponse
-  : public cfdcore::JsonClassBase<CreateAddressResponse> {
+  : public cfd::core::JsonClassBase<CreateAddressResponse> {
  public:
   CreateAddressResponse() {
     CollectFieldName();
@@ -538,7 +538,7 @@ class CreateAddressResponse
    */
   static std::string GetAddressString(  // line separate
       const CreateAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.address_);
+    return cfd::core::ConvertToString(obj.address_);
   }
   /**
    * @brief address フィールドへのJSON情報設定処理
@@ -548,7 +548,7 @@ class CreateAddressResponse
   static void SetAddressString(  // line separate
       CreateAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.address_, json_value);
   }
 
@@ -581,7 +581,7 @@ class CreateAddressResponse
    */
   static std::string GetLockingScriptString(  // line separate
       const CreateAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.locking_script_);
+    return cfd::core::ConvertToString(obj.locking_script_);
   }
   /**
    * @brief lockingScript フィールドへのJSON情報設定処理
@@ -591,7 +591,7 @@ class CreateAddressResponse
   static void SetLockingScriptString(  // line separate
       CreateAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.locking_script_, json_value);
   }
 
@@ -624,7 +624,7 @@ class CreateAddressResponse
    */
   static std::string GetRedeemScriptString(  // line separate
       const CreateAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.redeem_script_);
+    return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
    * @brief redeemScript フィールドへのJSON情報設定処理
@@ -634,7 +634,7 @@ class CreateAddressResponse
   static void SetRedeemScriptString(  // line separate
       CreateAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.redeem_script_, json_value);
   }
 
@@ -664,12 +664,12 @@ class CreateAddressResponse
    * @brief Mapテーブルの型名定義
    */
   using CreateAddressResponseMapTable =
-    cfdcore::JsonTableMap<CreateAddressResponse>;
+    cfd::core::JsonTableMap<CreateAddressResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateAddressResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -678,7 +678,7 @@ class CreateAddressResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -687,7 +687,7 @@ class CreateAddressResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;

@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // InnerErrorResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<InnerErrorResponse>
+cfd::core::JsonTableMap<InnerErrorResponse>
   InnerErrorResponse::json_mapper;
 std::vector<std::string> InnerErrorResponse::item_list;
 
@@ -31,7 +31,7 @@ void InnerErrorResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<InnerErrorResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<InnerErrorResponse> func_table;  // NOLINT
 
   func_table = {
     InnerErrorResponse::GetCodeString,
@@ -76,7 +76,7 @@ InnerErrorResponseStruct InnerErrorResponse::ConvertToStruct() const {  // NOLIN
 // ------------------------------------------------------------------------
 // ErrorResponseBase
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ErrorResponseBase>
+cfd::core::JsonTableMap<ErrorResponseBase>
   ErrorResponseBase::json_mapper;
 std::vector<std::string> ErrorResponseBase::item_list;
 
@@ -84,7 +84,7 @@ void ErrorResponseBase::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ErrorResponseBase> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ErrorResponseBase> func_table;  // NOLINT
 
   func_table = {
     ErrorResponseBase::GetErrorString,
