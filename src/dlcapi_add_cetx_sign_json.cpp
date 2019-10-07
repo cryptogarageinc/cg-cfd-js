@@ -41,6 +41,13 @@ void CETxSignData::CollectFieldName() {
   json_mapper.emplace("hex", func_table);
   item_list.push_back("hex");
   func_table = {
+    CETxSignData::GetTypeString,
+    CETxSignData::SetTypeString,
+    CETxSignData::GetTypeFieldType,
+  };
+  json_mapper.emplace("type", func_table);
+  item_list.push_back("type");
+  func_table = {
     CETxSignData::GetDerEncodeString,
     CETxSignData::SetDerEncodeString,
     CETxSignData::GetDerEncodeFieldType,
@@ -66,6 +73,7 @@ void CETxSignData::CollectFieldName() {
 void CETxSignData::ConvertFromStruct(
     const CETxSignDataStruct& data) {
   hex_ = data.hex;
+  type_ = data.type;
   der_encode_ = data.der_encode;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
@@ -75,9 +83,81 @@ void CETxSignData::ConvertFromStruct(
 CETxSignDataStruct CETxSignData::ConvertToStruct() const {  // NOLINT
   CETxSignDataStruct result;
   result.hex = hex_;
+  result.type = type_;
   result.der_encode = der_encode_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AddCETxSignTxInRequest
+// ------------------------------------------------------------------------
+cfdcore::JsonTableMap<AddCETxSignTxInRequest>
+  AddCETxSignTxInRequest::json_mapper;
+std::vector<std::string> AddCETxSignTxInRequest::item_list;
+
+void AddCETxSignTxInRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfdcore::CLASS_FUNCTION_TABLE<AddCETxSignTxInRequest> func_table;  // NOLINT
+
+  func_table = {
+    AddCETxSignTxInRequest::GetTxidString,
+    AddCETxSignTxInRequest::SetTxidString,
+    AddCETxSignTxInRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    AddCETxSignTxInRequest::GetVoutString,
+    AddCETxSignTxInRequest::SetVoutString,
+    AddCETxSignTxInRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    AddCETxSignTxInRequest::GetSignString,
+    AddCETxSignTxInRequest::SetSignString,
+    AddCETxSignTxInRequest::GetSignFieldType,
+  };
+  json_mapper.emplace("sign", func_table);
+  item_list.push_back("sign");
+  func_table = {
+    AddCETxSignTxInRequest::GetDelayedUnlockingString,
+    AddCETxSignTxInRequest::SetDelayedUnlockingString,
+    AddCETxSignTxInRequest::GetDelayedUnlockingFieldType,
+  };
+  json_mapper.emplace("delayedUnlocking", func_table);
+  item_list.push_back("delayedUnlocking");
+  func_table = {
+    AddCETxSignTxInRequest::GetRedeemScriptString,
+    AddCETxSignTxInRequest::SetRedeemScriptString,
+    AddCETxSignTxInRequest::GetRedeemScriptFieldType,
+  };
+  json_mapper.emplace("redeemScript", func_table);
+  item_list.push_back("redeemScript");
+}
+
+void AddCETxSignTxInRequest::ConvertFromStruct(
+    const AddCETxSignTxInRequestStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  sign_.ConvertFromStruct(data.sign);
+  delayed_unlocking_ = data.delayed_unlocking;
+  redeem_script_ = data.redeem_script;
+  ignore_items = data.ignore_items;
+}
+
+AddCETxSignTxInRequestStruct AddCETxSignTxInRequest::ConvertToStruct() const {  // NOLINT
+  AddCETxSignTxInRequestStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.sign = sign_.ConvertToStruct();
+  result.delayed_unlocking = delayed_unlocking_;
+  result.redeem_script = redeem_script_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -96,68 +176,32 @@ void AddCETxSignRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<AddCETxSignRequest> func_table;  // NOLINT
 
   func_table = {
-    AddCETxSignRequest::GetTxHexString,
-    AddCETxSignRequest::SetTxHexString,
-    AddCETxSignRequest::GetTxHexFieldType,
+    AddCETxSignRequest::GetTxString,
+    AddCETxSignRequest::SetTxString,
+    AddCETxSignRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
-    AddCETxSignRequest::GetTxinTxidString,
-    AddCETxSignRequest::SetTxinTxidString,
-    AddCETxSignRequest::GetTxinTxidFieldType,
+    AddCETxSignRequest::GetTxinString,
+    AddCETxSignRequest::SetTxinString,
+    AddCETxSignRequest::GetTxinFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
-  func_table = {
-    AddCETxSignRequest::GetTxinVoutString,
-    AddCETxSignRequest::SetTxinVoutString,
-    AddCETxSignRequest::GetTxinVoutFieldType,
-  };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
-  func_table = {
-    AddCETxSignRequest::GetSignString,
-    AddCETxSignRequest::SetSignString,
-    AddCETxSignRequest::GetSignFieldType,
-  };
-  json_mapper.emplace("sign", func_table);
-  item_list.push_back("sign");
-  func_table = {
-    AddCETxSignRequest::GetDelayedUnlockingString,
-    AddCETxSignRequest::SetDelayedUnlockingString,
-    AddCETxSignRequest::GetDelayedUnlockingFieldType,
-  };
-  json_mapper.emplace("delayedUnlocking", func_table);
-  item_list.push_back("delayedUnlocking");
-  func_table = {
-    AddCETxSignRequest::GetRedeemScriptString,
-    AddCETxSignRequest::SetRedeemScriptString,
-    AddCETxSignRequest::GetRedeemScriptFieldType,
-  };
-  json_mapper.emplace("redeemScript", func_table);
-  item_list.push_back("redeemScript");
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
 }
 
 void AddCETxSignRequest::ConvertFromStruct(
     const AddCETxSignRequestStruct& data) {
-  tx_hex_ = data.tx_hex;
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
-  sign_.ConvertFromStruct(data.sign);
-  delayed_unlocking_ = data.delayed_unlocking;
-  redeem_script_ = data.redeem_script;
+  tx_ = data.tx;
+  txin_.ConvertFromStruct(data.txin);
   ignore_items = data.ignore_items;
 }
 
 AddCETxSignRequestStruct AddCETxSignRequest::ConvertToStruct() const {  // NOLINT
   AddCETxSignRequestStruct result;
-  result.tx_hex = tx_hex_;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
-  result.sign = sign_.ConvertToStruct();
-  result.delayed_unlocking = delayed_unlocking_;
-  result.redeem_script = redeem_script_;
+  result.tx = tx_;
+  result.txin = txin_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }

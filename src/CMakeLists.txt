@@ -101,13 +101,17 @@ target_sources(${PROJECT_NAME}
     cfdjs_node_addon.cpp
     cfdapi_add_multisig_sign_json.cpp
     cfdapi_add_sign_json.cpp
+    cfdapi_get_mnemonic_wordlist_json.cpp
     cfdapi_blind_raw_transaction_json.cpp
+    cfdapi_convert_entropy_to_mnemonic_json.cpp
+    cfdapi_convert_mnemonic_to_seed_json.cpp
     cfdapi_create_address_json.cpp
     cfdapi_create_key_pair_json.cpp
     cfdapi_decode_transaction_json.cpp
     cfdapi_elements_create_raw_transaction_json.cpp
     cfdapi_elements_create_raw_pegin_json.cpp
     cfdapi_elements_create_raw_pegout_json.cpp
+    cfdapi_elements_create_destroy_amount_json.cpp
     cfdapi_elements_create_pegin_address_json.cpp
     cfdapi_elements_decode_raw_transaction_json.cpp
     cfdapi_elements_unblind_raw_transaction_json.cpp
@@ -127,6 +131,7 @@ target_sources(${PROJECT_NAME}
     cfdapi_update_witness_json.cpp
     dlcapi_add_cetx_sign_json.cpp
     dlcapi_address_json.cpp
+    ${CMAKE_JS_SRC}
 )
 
 target_compile_options(${PROJECT_NAME}

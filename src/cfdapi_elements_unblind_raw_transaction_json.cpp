@@ -96,12 +96,12 @@ void UnblindRawTransactionRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<UnblindRawTransactionRequest> func_table;  // NOLINT
 
   func_table = {
-    UnblindRawTransactionRequest::GetTxHexString,
-    UnblindRawTransactionRequest::SetTxHexString,
-    UnblindRawTransactionRequest::GetTxHexFieldType,
+    UnblindRawTransactionRequest::GetTxString,
+    UnblindRawTransactionRequest::SetTxString,
+    UnblindRawTransactionRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     UnblindRawTransactionRequest::GetTargetOutputIndexString,
     UnblindRawTransactionRequest::SetTargetOutputIndexString,
@@ -127,7 +127,7 @@ void UnblindRawTransactionRequest::CollectFieldName() {
 
 void UnblindRawTransactionRequest::ConvertFromStruct(
     const UnblindRawTransactionRequestStruct& data) {
-  tx_hex_ = data.tx_hex;
+  tx_ = data.tx;
   target_output_index_ = data.target_output_index;
   blinding_keys_.ConvertFromStruct(data.blinding_keys);
   issuances_.ConvertFromStruct(data.issuances);
@@ -136,7 +136,7 @@ void UnblindRawTransactionRequest::ConvertFromStruct(
 
 UnblindRawTransactionRequestStruct UnblindRawTransactionRequest::ConvertToStruct() const {  // NOLINT
   UnblindRawTransactionRequestStruct result;
-  result.tx_hex = tx_hex_;
+  result.tx = tx_;
   result.target_output_index = target_output_index_;
   result.blinding_keys = blinding_keys_.ConvertToStruct();
   result.issuances = issuances_.ConvertToStruct();

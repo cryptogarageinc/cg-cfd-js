@@ -46,89 +46,89 @@ class IssuanceDataRequest
   static void CollectFieldName();
 
   /**
-   * @brief txinTxid 取得処理
-   * @return txinTxid
+   * @brief txid 取得処理
+   * @return txid
    */
-  std::string GetTxinTxid() {
-    return txin_txid_;
+  std::string GetTxid() {
+    return txid_;
   }
   /**
-   * @brief txinTxid 設定処理
-   * @param[in] txin_txid    設定値
+   * @brief txid 設定処理
+   * @param[in] txid    設定値
    */
-  void SetTxinTxid(  // line separate
-    const std::string& txin_txid) {  // NOLINT
-    this->txin_txid_ = txin_txid;
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
   }
   /**
-   * @brief txinTxid データ型の取得処理
-   * @return txinTxidのデータ型
+   * @brief txid データ型の取得処理
+   * @return txidのデータ型
    */
-  static std::string GetTxinTxidFieldType() {
+  static std::string GetTxidFieldType() {
     return "std::string";
   }
   /**
-   * @brief txinTxid フィールドのJSON文字列取得処理
+   * @brief txid フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxinTxidString(  // line separate
+  static std::string GetTxidString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_txid_);
+    return cfdcore::ConvertToString(obj.txid_);
   }
   /**
-   * @brief txinTxid フィールドへのJSON情報設定処理
+   * @brief txid フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxinTxidString(  // line separate
+  static void SetTxidString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_txid_, json_value);
+      obj.txid_, json_value);
   }
 
   /**
-   * @brief txinVout 取得処理
-   * @return txinVout
+   * @brief vout 取得処理
+   * @return vout
    */
-  uint32_t GetTxinVout() {
-    return txin_vout_;
+  uint32_t GetVout() {
+    return vout_;
   }
   /**
-   * @brief txinVout 設定処理
-   * @param[in] txin_vout    設定値
+   * @brief vout 設定処理
+   * @param[in] vout    設定値
    */
-  void SetTxinVout(  // line separate
-    const uint32_t& txin_vout) {  // NOLINT
-    this->txin_vout_ = txin_vout;
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
   }
   /**
-   * @brief txinVout データ型の取得処理
-   * @return txinVoutのデータ型
+   * @brief vout データ型の取得処理
+   * @return voutのデータ型
    */
-  static std::string GetTxinVoutFieldType() {
+  static std::string GetVoutFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief txinVout フィールドのJSON文字列取得処理
+   * @brief vout フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxinVoutString(  // line separate
+  static std::string GetVoutString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_vout_);
+    return cfdcore::ConvertToString(obj.vout_);
   }
   /**
-   * @brief txinVout フィールドへのJSON情報設定処理
+   * @brief vout フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxinVoutString(  // line separate
+  static void SetVoutString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_vout_, json_value);
+      obj.vout_, json_value);
   }
 
   /**
@@ -502,13 +502,13 @@ class IssuanceDataRequest
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txinTxid) のvalue
+   * @brief JsonAPI(txid) のvalue
    */
-  std::string txin_txid_ = "";
+  std::string txid_ = "";
   /**
-   * @brief JsonAPI(txinVout) のvalue
+   * @brief JsonAPI(vout) のvalue
    */
-  uint32_t txin_vout_ = 0;
+  uint32_t vout_ = 0;
   /**
    * @brief JsonAPI(assetAmount) のvalue
    */
@@ -560,46 +560,46 @@ class SetRawIssueAssetRequest
   static void CollectFieldName();
 
   /**
-   * @brief txHex 取得処理
-   * @return txHex
+   * @brief tx 取得処理
+   * @return tx
    */
-  std::string GetTxHex() {
-    return tx_hex_;
+  std::string GetTx() {
+    return tx_;
   }
   /**
-   * @brief txHex 設定処理
-   * @param[in] tx_hex    設定値
+   * @brief tx 設定処理
+   * @param[in] tx    設定値
    */
-  void SetTxHex(  // line separate
-    const std::string& tx_hex) {  // NOLINT
-    this->tx_hex_ = tx_hex;
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
   }
   /**
-   * @brief txHex データ型の取得処理
-   * @return txHexのデータ型
+   * @brief tx データ型の取得処理
+   * @return txのデータ型
    */
-  static std::string GetTxHexFieldType() {
+  static std::string GetTxFieldType() {
     return "std::string";
   }
   /**
-   * @brief txHex フィールドのJSON文字列取得処理
+   * @brief tx フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxHexString(  // line separate
+  static std::string GetTxString(  // line separate
       const SetRawIssueAssetRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_hex_);
+    return cfdcore::ConvertToString(obj.tx_);
   }
   /**
-   * @brief txHex フィールドへのJSON情報設定処理
+   * @brief tx フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxHexString(  // line separate
+  static void SetTxString(  // line separate
       SetRawIssueAssetRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.tx_hex_, json_value);
+      obj.tx_, json_value);
   }
 
   /**
@@ -758,9 +758,9 @@ class SetRawIssueAssetRequest
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txHex) のvalue
+   * @brief JsonAPI(tx) のvalue
    */
-  std::string tx_hex_ = "";
+  std::string tx_ = "";
   /**
    * @brief JsonAPI(isRandomize) のvalue
    */
@@ -792,89 +792,89 @@ class IssuanceDataResponse
   static void CollectFieldName();
 
   /**
-   * @brief txinTxid 取得処理
-   * @return txinTxid
+   * @brief txid 取得処理
+   * @return txid
    */
-  std::string GetTxinTxid() {
-    return txin_txid_;
+  std::string GetTxid() {
+    return txid_;
   }
   /**
-   * @brief txinTxid 設定処理
-   * @param[in] txin_txid    設定値
+   * @brief txid 設定処理
+   * @param[in] txid    設定値
    */
-  void SetTxinTxid(  // line separate
-    const std::string& txin_txid) {  // NOLINT
-    this->txin_txid_ = txin_txid;
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
   }
   /**
-   * @brief txinTxid データ型の取得処理
-   * @return txinTxidのデータ型
+   * @brief txid データ型の取得処理
+   * @return txidのデータ型
    */
-  static std::string GetTxinTxidFieldType() {
+  static std::string GetTxidFieldType() {
     return "std::string";
   }
   /**
-   * @brief txinTxid フィールドのJSON文字列取得処理
+   * @brief txid フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxinTxidString(  // line separate
+  static std::string GetTxidString(  // line separate
       const IssuanceDataResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_txid_);
+    return cfdcore::ConvertToString(obj.txid_);
   }
   /**
-   * @brief txinTxid フィールドへのJSON情報設定処理
+   * @brief txid フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxinTxidString(  // line separate
+  static void SetTxidString(  // line separate
       IssuanceDataResponse& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_txid_, json_value);
+      obj.txid_, json_value);
   }
 
   /**
-   * @brief txinVout 取得処理
-   * @return txinVout
+   * @brief vout 取得処理
+   * @return vout
    */
-  uint32_t GetTxinVout() {
-    return txin_vout_;
+  uint32_t GetVout() {
+    return vout_;
   }
   /**
-   * @brief txinVout 設定処理
-   * @param[in] txin_vout    設定値
+   * @brief vout 設定処理
+   * @param[in] vout    設定値
    */
-  void SetTxinVout(  // line separate
-    const uint32_t& txin_vout) {  // NOLINT
-    this->txin_vout_ = txin_vout;
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
   }
   /**
-   * @brief txinVout データ型の取得処理
-   * @return txinVoutのデータ型
+   * @brief vout データ型の取得処理
+   * @return voutのデータ型
    */
-  static std::string GetTxinVoutFieldType() {
+  static std::string GetVoutFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief txinVout フィールドのJSON文字列取得処理
+   * @brief vout フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxinVoutString(  // line separate
+  static std::string GetVoutString(  // line separate
       const IssuanceDataResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_vout_);
+    return cfdcore::ConvertToString(obj.vout_);
   }
   /**
-   * @brief txinVout フィールドへのJSON情報設定処理
+   * @brief vout フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxinVoutString(  // line separate
+  static void SetVoutString(  // line separate
       IssuanceDataResponse& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_vout_, json_value);
+      obj.vout_, json_value);
   }
 
   /**
@@ -1076,13 +1076,13 @@ class IssuanceDataResponse
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txinTxid) のvalue
+   * @brief JsonAPI(txid) のvalue
    */
-  std::string txin_txid_ = "";
+  std::string txid_ = "";
   /**
-   * @brief JsonAPI(txinVout) のvalue
+   * @brief JsonAPI(vout) のvalue
    */
-  uint32_t txin_vout_ = 0;
+  uint32_t vout_ = 0;
   /**
    * @brief JsonAPI(asset) のvalue
    */
