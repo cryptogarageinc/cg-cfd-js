@@ -18,10 +18,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（WitnessStackData）クラス
  */
 class WitnessStackData
-  : public cfdcore::JsonClassBase<WitnessStackData> {
+  : public cfd::core::JsonClassBase<WitnessStackData> {
  public:
   WitnessStackData() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class WitnessStackData
    */
   static std::string GetIndexString(  // line separate
       const WitnessStackData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.index_);
+    return cfd::core::ConvertToString(obj.index_);
   }
   /**
    * @brief index フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class WitnessStackData
   static void SetIndexString(  // line separate
       WitnessStackData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.index_, json_value);
   }
 
@@ -117,7 +117,7 @@ class WitnessStackData
    */
   static std::string GetHexString(  // line separate
       const WitnessStackData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -127,7 +127,7 @@ class WitnessStackData
   static void SetHexString(  // line separate
       WitnessStackData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -160,7 +160,7 @@ class WitnessStackData
    */
   static std::string GetTypeString(  // line separate
       const WitnessStackData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.type_);
+    return cfd::core::ConvertToString(obj.type_);
   }
   /**
    * @brief type フィールドへのJSON情報設定処理
@@ -170,7 +170,7 @@ class WitnessStackData
   static void SetTypeString(  // line separate
       WitnessStackData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.type_, json_value);
   }
 
@@ -203,7 +203,7 @@ class WitnessStackData
    */
   static std::string GetDerEncodeString(  // line separate
       const WitnessStackData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.der_encode_);
+    return cfd::core::ConvertToString(obj.der_encode_);
   }
   /**
    * @brief derEncode フィールドへのJSON情報設定処理
@@ -213,7 +213,7 @@ class WitnessStackData
   static void SetDerEncodeString(  // line separate
       WitnessStackData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.der_encode_, json_value);
   }
 
@@ -246,7 +246,7 @@ class WitnessStackData
    */
   static std::string GetSighashTypeString(  // line separate
       const WitnessStackData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_type_);
+    return cfd::core::ConvertToString(obj.sighash_type_);
   }
   /**
    * @brief sighashType フィールドへのJSON情報設定処理
@@ -256,7 +256,7 @@ class WitnessStackData
   static void SetSighashTypeString(  // line separate
       WitnessStackData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_type_, json_value);
   }
 
@@ -289,7 +289,7 @@ class WitnessStackData
    */
   static std::string GetSighashAnyoneCanPayString(  // line separate
       const WitnessStackData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_anyone_can_pay_);
+    return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
   }
   /**
    * @brief sighashAnyoneCanPay フィールドへのJSON情報設定処理
@@ -299,7 +299,7 @@ class WitnessStackData
   static void SetSighashAnyoneCanPayString(  // line separate
       WitnessStackData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_anyone_can_pay_, json_value);
   }
 
@@ -329,12 +329,12 @@ class WitnessStackData
    * @brief Mapテーブルの型名定義
    */
   using WitnessStackDataMapTable =
-    cfdcore::JsonTableMap<WitnessStackData>;
+    cfd::core::JsonTableMap<WitnessStackData>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const WitnessStackDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -343,7 +343,7 @@ class WitnessStackData
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -352,7 +352,7 @@ class WitnessStackData
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -405,7 +405,7 @@ class WitnessStackData
  * @brief JSON-API（UpdateWitnessStackTxInRequest）クラス
  */
 class UpdateWitnessStackTxInRequest
-  : public cfdcore::JsonClassBase<UpdateWitnessStackTxInRequest> {
+  : public cfd::core::JsonClassBase<UpdateWitnessStackTxInRequest> {
  public:
   UpdateWitnessStackTxInRequest() {
     CollectFieldName();
@@ -447,7 +447,7 @@ class UpdateWitnessStackTxInRequest
    */
   static std::string GetTxidString(  // line separate
       const UpdateWitnessStackTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -457,7 +457,7 @@ class UpdateWitnessStackTxInRequest
   static void SetTxidString(  // line separate
       UpdateWitnessStackTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -490,7 +490,7 @@ class UpdateWitnessStackTxInRequest
    */
   static std::string GetVoutString(  // line separate
       const UpdateWitnessStackTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -500,7 +500,7 @@ class UpdateWitnessStackTxInRequest
   static void SetVoutString(  // line separate
       UpdateWitnessStackTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -573,12 +573,12 @@ class UpdateWitnessStackTxInRequest
    * @brief Mapテーブルの型名定義
    */
   using UpdateWitnessStackTxInRequestMapTable =
-    cfdcore::JsonTableMap<UpdateWitnessStackTxInRequest>;
+    cfd::core::JsonTableMap<UpdateWitnessStackTxInRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const UpdateWitnessStackTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -587,7 +587,7 @@ class UpdateWitnessStackTxInRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -596,7 +596,7 @@ class UpdateWitnessStackTxInRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -637,7 +637,7 @@ class UpdateWitnessStackTxInRequest
  * @brief JSON-API（UpdateWitnessStackRequest）クラス
  */
 class UpdateWitnessStackRequest
-  : public cfdcore::JsonClassBase<UpdateWitnessStackRequest> {
+  : public cfd::core::JsonClassBase<UpdateWitnessStackRequest> {
  public:
   UpdateWitnessStackRequest() {
     CollectFieldName();
@@ -679,7 +679,7 @@ class UpdateWitnessStackRequest
    */
   static std::string GetTxString(  // line separate
       const UpdateWitnessStackRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_);
+    return cfd::core::ConvertToString(obj.tx_);
   }
   /**
    * @brief tx フィールドへのJSON情報設定処理
@@ -689,7 +689,7 @@ class UpdateWitnessStackRequest
   static void SetTxString(  // line separate
       UpdateWitnessStackRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.tx_, json_value);
   }
 
@@ -722,7 +722,7 @@ class UpdateWitnessStackRequest
    */
   static std::string GetIsElementsString(  // line separate
       const UpdateWitnessStackRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_elements_);
+    return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
    * @brief isElements フィールドへのJSON情報設定処理
@@ -732,7 +732,7 @@ class UpdateWitnessStackRequest
   static void SetIsElementsString(  // line separate
       UpdateWitnessStackRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_elements_, json_value);
   }
 
@@ -805,12 +805,12 @@ class UpdateWitnessStackRequest
    * @brief Mapテーブルの型名定義
    */
   using UpdateWitnessStackRequestMapTable =
-    cfdcore::JsonTableMap<UpdateWitnessStackRequest>;
+    cfd::core::JsonTableMap<UpdateWitnessStackRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const UpdateWitnessStackRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -819,7 +819,7 @@ class UpdateWitnessStackRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -828,7 +828,7 @@ class UpdateWitnessStackRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -869,7 +869,7 @@ class UpdateWitnessStackRequest
  * @brief JSON-API（UpdateWitnessStackResponse）クラス
  */
 class UpdateWitnessStackResponse
-  : public cfdcore::JsonClassBase<UpdateWitnessStackResponse> {
+  : public cfd::core::JsonClassBase<UpdateWitnessStackResponse> {
  public:
   UpdateWitnessStackResponse() {
     CollectFieldName();
@@ -911,7 +911,7 @@ class UpdateWitnessStackResponse
    */
   static std::string GetHexString(  // line separate
       const UpdateWitnessStackResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -921,7 +921,7 @@ class UpdateWitnessStackResponse
   static void SetHexString(  // line separate
       UpdateWitnessStackResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -951,12 +951,12 @@ class UpdateWitnessStackResponse
    * @brief Mapテーブルの型名定義
    */
   using UpdateWitnessStackResponseMapTable =
-    cfdcore::JsonTableMap<UpdateWitnessStackResponse>;
+    cfd::core::JsonTableMap<UpdateWitnessStackResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const UpdateWitnessStackResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -965,7 +965,7 @@ class UpdateWitnessStackResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -974,7 +974,7 @@ class UpdateWitnessStackResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;

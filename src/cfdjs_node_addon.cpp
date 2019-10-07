@@ -65,8 +65,8 @@ using cfd::api::ElementsTransactionApi;
 #endif  // CFD_DISABLE_ELEMENTS
 using cfd::api::ErrorResponse;
 using cfd::api::InnerErrorResponse;
-using cfdcore::CfdError;
-using cfdcore::CfdException;
+using cfd::core::CfdError;
+using cfd::core::CfdException;
 using Napi::CallbackInfo;
 using Napi::Env;
 using Napi::Function;

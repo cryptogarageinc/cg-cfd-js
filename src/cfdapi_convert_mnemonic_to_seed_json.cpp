@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ConvertMnemonicToSeedRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ConvertMnemonicToSeedRequest>
+cfd::core::JsonTableMap<ConvertMnemonicToSeedRequest>
   ConvertMnemonicToSeedRequest::json_mapper;
 std::vector<std::string> ConvertMnemonicToSeedRequest::item_list;
 
@@ -31,7 +31,7 @@ void ConvertMnemonicToSeedRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ConvertMnemonicToSeedRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ConvertMnemonicToSeedRequest> func_table;  // NOLINT
 
   func_table = {
     ConvertMnemonicToSeedRequest::GetMnemonicString,
@@ -94,7 +94,7 @@ ConvertMnemonicToSeedRequestStruct ConvertMnemonicToSeedRequest::ConvertToStruct
 // ------------------------------------------------------------------------
 // ConvertMnemonicToSeedResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ConvertMnemonicToSeedResponse>
+cfd::core::JsonTableMap<ConvertMnemonicToSeedResponse>
   ConvertMnemonicToSeedResponse::json_mapper;
 std::vector<std::string> ConvertMnemonicToSeedResponse::item_list;
 
@@ -102,7 +102,7 @@ void ConvertMnemonicToSeedResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ConvertMnemonicToSeedResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ConvertMnemonicToSeedResponse> func_table;  // NOLINT
 
   func_table = {
     ConvertMnemonicToSeedResponse::GetSeedString,

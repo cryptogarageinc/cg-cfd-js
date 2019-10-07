@@ -18,10 +18,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（GetUnblindedAddressRequest）クラス
  */
 class GetUnblindedAddressRequest
-  : public cfdcore::JsonClassBase<GetUnblindedAddressRequest> {
+  : public cfd::core::JsonClassBase<GetUnblindedAddressRequest> {
  public:
   GetUnblindedAddressRequest() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class GetUnblindedAddressRequest
    */
   static std::string GetConfidentialAddressString(  // line separate
       const GetUnblindedAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.confidential_address_);
+    return cfd::core::ConvertToString(obj.confidential_address_);
   }
   /**
    * @brief confidentialAddress フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class GetUnblindedAddressRequest
   static void SetConfidentialAddressString(  // line separate
       GetUnblindedAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.confidential_address_, json_value);
   }
 
@@ -114,12 +114,12 @@ class GetUnblindedAddressRequest
    * @brief Mapテーブルの型名定義
    */
   using GetUnblindedAddressRequestMapTable =
-    cfdcore::JsonTableMap<GetUnblindedAddressRequest>;
+    cfd::core::JsonTableMap<GetUnblindedAddressRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetUnblindedAddressRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -128,7 +128,7 @@ class GetUnblindedAddressRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -137,7 +137,7 @@ class GetUnblindedAddressRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -170,7 +170,7 @@ class GetUnblindedAddressRequest
  * @brief JSON-API（GetUnblindedAddressResponse）クラス
  */
 class GetUnblindedAddressResponse
-  : public cfdcore::JsonClassBase<GetUnblindedAddressResponse> {
+  : public cfd::core::JsonClassBase<GetUnblindedAddressResponse> {
  public:
   GetUnblindedAddressResponse() {
     CollectFieldName();
@@ -212,7 +212,7 @@ class GetUnblindedAddressResponse
    */
   static std::string GetUnblindedAddressString(  // line separate
       const GetUnblindedAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.unblinded_address_);
+    return cfd::core::ConvertToString(obj.unblinded_address_);
   }
   /**
    * @brief unblindedAddress フィールドへのJSON情報設定処理
@@ -222,7 +222,7 @@ class GetUnblindedAddressResponse
   static void SetUnblindedAddressString(  // line separate
       GetUnblindedAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.unblinded_address_, json_value);
   }
 
@@ -252,12 +252,12 @@ class GetUnblindedAddressResponse
    * @brief Mapテーブルの型名定義
    */
   using GetUnblindedAddressResponseMapTable =
-    cfdcore::JsonTableMap<GetUnblindedAddressResponse>;
+    cfd::core::JsonTableMap<GetUnblindedAddressResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetUnblindedAddressResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -266,7 +266,7 @@ class GetUnblindedAddressResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -275,7 +275,7 @@ class GetUnblindedAddressResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;

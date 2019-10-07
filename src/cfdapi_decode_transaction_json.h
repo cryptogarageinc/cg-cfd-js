@@ -18,10 +18,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（DecodeRawTransactionRequest）クラス
  */
 class DecodeRawTransactionRequest
-  : public cfdcore::JsonClassBase<DecodeRawTransactionRequest> {
+  : public cfd::core::JsonClassBase<DecodeRawTransactionRequest> {
  public:
   DecodeRawTransactionRequest() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class DecodeRawTransactionRequest
    */
   static std::string GetHexString(  // line separate
       const DecodeRawTransactionRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class DecodeRawTransactionRequest
   static void SetHexString(  // line separate
       DecodeRawTransactionRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -117,7 +117,7 @@ class DecodeRawTransactionRequest
    */
   static std::string GetNetworkString(  // line separate
       const DecodeRawTransactionRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.network_);
+    return cfd::core::ConvertToString(obj.network_);
   }
   /**
    * @brief network フィールドへのJSON情報設定処理
@@ -127,7 +127,7 @@ class DecodeRawTransactionRequest
   static void SetNetworkString(  // line separate
       DecodeRawTransactionRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.network_, json_value);
   }
 
@@ -160,7 +160,7 @@ class DecodeRawTransactionRequest
    */
   static std::string GetIswitnessString(  // line separate
       const DecodeRawTransactionRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.iswitness_);
+    return cfd::core::ConvertToString(obj.iswitness_);
   }
   /**
    * @brief iswitness フィールドへのJSON情報設定処理
@@ -170,7 +170,7 @@ class DecodeRawTransactionRequest
   static void SetIswitnessString(  // line separate
       DecodeRawTransactionRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.iswitness_, json_value);
   }
 
@@ -200,12 +200,12 @@ class DecodeRawTransactionRequest
    * @brief Mapテーブルの型名定義
    */
   using DecodeRawTransactionRequestMapTable =
-    cfdcore::JsonTableMap<DecodeRawTransactionRequest>;
+    cfd::core::JsonTableMap<DecodeRawTransactionRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const DecodeRawTransactionRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -214,7 +214,7 @@ class DecodeRawTransactionRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -223,7 +223,7 @@ class DecodeRawTransactionRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -264,7 +264,7 @@ class DecodeRawTransactionRequest
  * @brief JSON-API（DecodeUnlockingScript）クラス
  */
 class DecodeUnlockingScript
-  : public cfdcore::JsonClassBase<DecodeUnlockingScript> {
+  : public cfd::core::JsonClassBase<DecodeUnlockingScript> {
  public:
   DecodeUnlockingScript() {
     CollectFieldName();
@@ -306,7 +306,7 @@ class DecodeUnlockingScript
    */
   static std::string GetAsmString(  // line separate
       const DecodeUnlockingScript& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asm__);
+    return cfd::core::ConvertToString(obj.asm__);
   }
   /**
    * @brief asm フィールドへのJSON情報設定処理
@@ -316,7 +316,7 @@ class DecodeUnlockingScript
   static void SetAsmString(  // line separate
       DecodeUnlockingScript& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asm__, json_value);
   }
 
@@ -349,7 +349,7 @@ class DecodeUnlockingScript
    */
   static std::string GetHexString(  // line separate
       const DecodeUnlockingScript& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -359,7 +359,7 @@ class DecodeUnlockingScript
   static void SetHexString(  // line separate
       DecodeUnlockingScript& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -389,12 +389,12 @@ class DecodeUnlockingScript
    * @brief Mapテーブルの型名定義
    */
   using DecodeUnlockingScriptMapTable =
-    cfdcore::JsonTableMap<DecodeUnlockingScript>;
+    cfd::core::JsonTableMap<DecodeUnlockingScript>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const DecodeUnlockingScriptMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -403,7 +403,7 @@ class DecodeUnlockingScript
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -412,7 +412,7 @@ class DecodeUnlockingScript
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -449,7 +449,7 @@ class DecodeUnlockingScript
  * @brief JSON-API（DecodeRawTransactionTxIn）クラス
  */
 class DecodeRawTransactionTxIn
-  : public cfdcore::JsonClassBase<DecodeRawTransactionTxIn> {
+  : public cfd::core::JsonClassBase<DecodeRawTransactionTxIn> {
  public:
   DecodeRawTransactionTxIn() {
     CollectFieldName();
@@ -491,7 +491,7 @@ class DecodeRawTransactionTxIn
    */
   static std::string GetCoinbaseString(  // line separate
       const DecodeRawTransactionTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.coinbase_);
+    return cfd::core::ConvertToString(obj.coinbase_);
   }
   /**
    * @brief coinbase フィールドへのJSON情報設定処理
@@ -501,7 +501,7 @@ class DecodeRawTransactionTxIn
   static void SetCoinbaseString(  // line separate
       DecodeRawTransactionTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.coinbase_, json_value);
   }
 
@@ -534,7 +534,7 @@ class DecodeRawTransactionTxIn
    */
   static std::string GetTxidString(  // line separate
       const DecodeRawTransactionTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -544,7 +544,7 @@ class DecodeRawTransactionTxIn
   static void SetTxidString(  // line separate
       DecodeRawTransactionTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -577,7 +577,7 @@ class DecodeRawTransactionTxIn
    */
   static std::string GetVoutString(  // line separate
       const DecodeRawTransactionTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -587,7 +587,7 @@ class DecodeRawTransactionTxIn
   static void SetVoutString(  // line separate
       DecodeRawTransactionTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -706,7 +706,7 @@ class DecodeRawTransactionTxIn
    */
   static std::string GetSequenceString(  // line separate
       const DecodeRawTransactionTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sequence_);
+    return cfd::core::ConvertToString(obj.sequence_);
   }
   /**
    * @brief sequence フィールドへのJSON情報設定処理
@@ -716,7 +716,7 @@ class DecodeRawTransactionTxIn
   static void SetSequenceString(  // line separate
       DecodeRawTransactionTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sequence_, json_value);
   }
 
@@ -746,12 +746,12 @@ class DecodeRawTransactionTxIn
    * @brief Mapテーブルの型名定義
    */
   using DecodeRawTransactionTxInMapTable =
-    cfdcore::JsonTableMap<DecodeRawTransactionTxIn>;
+    cfd::core::JsonTableMap<DecodeRawTransactionTxIn>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const DecodeRawTransactionTxInMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -760,7 +760,7 @@ class DecodeRawTransactionTxIn
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -769,7 +769,7 @@ class DecodeRawTransactionTxIn
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -822,7 +822,7 @@ class DecodeRawTransactionTxIn
  * @brief JSON-API（DecodeLockingScript）クラス
  */
 class DecodeLockingScript
-  : public cfdcore::JsonClassBase<DecodeLockingScript> {
+  : public cfd::core::JsonClassBase<DecodeLockingScript> {
  public:
   DecodeLockingScript() {
     CollectFieldName();
@@ -864,7 +864,7 @@ class DecodeLockingScript
    */
   static std::string GetAsmString(  // line separate
       const DecodeLockingScript& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asm__);
+    return cfd::core::ConvertToString(obj.asm__);
   }
   /**
    * @brief asm フィールドへのJSON情報設定処理
@@ -874,7 +874,7 @@ class DecodeLockingScript
   static void SetAsmString(  // line separate
       DecodeLockingScript& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asm__, json_value);
   }
 
@@ -907,7 +907,7 @@ class DecodeLockingScript
    */
   static std::string GetHexString(  // line separate
       const DecodeLockingScript& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -917,7 +917,7 @@ class DecodeLockingScript
   static void SetHexString(  // line separate
       DecodeLockingScript& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -950,7 +950,7 @@ class DecodeLockingScript
    */
   static std::string GetReqSigsString(  // line separate
       const DecodeLockingScript& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.req_sigs_);
+    return cfd::core::ConvertToString(obj.req_sigs_);
   }
   /**
    * @brief reqSigs フィールドへのJSON情報設定処理
@@ -960,7 +960,7 @@ class DecodeLockingScript
   static void SetReqSigsString(  // line separate
       DecodeLockingScript& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.req_sigs_, json_value);
   }
 
@@ -993,7 +993,7 @@ class DecodeLockingScript
    */
   static std::string GetTypeString(  // line separate
       const DecodeLockingScript& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.type_);
+    return cfd::core::ConvertToString(obj.type_);
   }
   /**
    * @brief type フィールドへのJSON情報設定処理
@@ -1003,7 +1003,7 @@ class DecodeLockingScript
   static void SetTypeString(  // line separate
       DecodeLockingScript& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.type_, json_value);
   }
 
@@ -1076,12 +1076,12 @@ class DecodeLockingScript
    * @brief Mapテーブルの型名定義
    */
   using DecodeLockingScriptMapTable =
-    cfdcore::JsonTableMap<DecodeLockingScript>;
+    cfd::core::JsonTableMap<DecodeLockingScript>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const DecodeLockingScriptMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1090,7 +1090,7 @@ class DecodeLockingScript
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1099,7 +1099,7 @@ class DecodeLockingScript
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1148,7 +1148,7 @@ class DecodeLockingScript
  * @brief JSON-API（DecodeRawTransactionTxOut）クラス
  */
 class DecodeRawTransactionTxOut
-  : public cfdcore::JsonClassBase<DecodeRawTransactionTxOut> {
+  : public cfd::core::JsonClassBase<DecodeRawTransactionTxOut> {
  public:
   DecodeRawTransactionTxOut() {
     CollectFieldName();
@@ -1190,7 +1190,7 @@ class DecodeRawTransactionTxOut
    */
   static std::string GetValueString(  // line separate
       const DecodeRawTransactionTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.value_);
+    return cfd::core::ConvertToString(obj.value_);
   }
   /**
    * @brief value フィールドへのJSON情報設定処理
@@ -1200,7 +1200,7 @@ class DecodeRawTransactionTxOut
   static void SetValueString(  // line separate
       DecodeRawTransactionTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.value_, json_value);
   }
 
@@ -1233,7 +1233,7 @@ class DecodeRawTransactionTxOut
    */
   static std::string GetNString(  // line separate
       const DecodeRawTransactionTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.n_);
+    return cfd::core::ConvertToString(obj.n_);
   }
   /**
    * @brief n フィールドへのJSON情報設定処理
@@ -1243,7 +1243,7 @@ class DecodeRawTransactionTxOut
   static void SetNString(  // line separate
       DecodeRawTransactionTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.n_, json_value);
   }
 
@@ -1316,12 +1316,12 @@ class DecodeRawTransactionTxOut
    * @brief Mapテーブルの型名定義
    */
   using DecodeRawTransactionTxOutMapTable =
-    cfdcore::JsonTableMap<DecodeRawTransactionTxOut>;
+    cfd::core::JsonTableMap<DecodeRawTransactionTxOut>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const DecodeRawTransactionTxOutMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1330,7 +1330,7 @@ class DecodeRawTransactionTxOut
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1339,7 +1339,7 @@ class DecodeRawTransactionTxOut
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1380,7 +1380,7 @@ class DecodeRawTransactionTxOut
  * @brief JSON-API（DecodeRawTransactionResponse）クラス
  */
 class DecodeRawTransactionResponse
-  : public cfdcore::JsonClassBase<DecodeRawTransactionResponse> {
+  : public cfd::core::JsonClassBase<DecodeRawTransactionResponse> {
  public:
   DecodeRawTransactionResponse() {
     CollectFieldName();
@@ -1422,7 +1422,7 @@ class DecodeRawTransactionResponse
    */
   static std::string GetTxidString(  // line separate
       const DecodeRawTransactionResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -1432,7 +1432,7 @@ class DecodeRawTransactionResponse
   static void SetTxidString(  // line separate
       DecodeRawTransactionResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -1465,7 +1465,7 @@ class DecodeRawTransactionResponse
    */
   static std::string GetHashString(  // line separate
       const DecodeRawTransactionResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hash_);
+    return cfd::core::ConvertToString(obj.hash_);
   }
   /**
    * @brief hash フィールドへのJSON情報設定処理
@@ -1475,7 +1475,7 @@ class DecodeRawTransactionResponse
   static void SetHashString(  // line separate
       DecodeRawTransactionResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hash_, json_value);
   }
 
@@ -1508,7 +1508,7 @@ class DecodeRawTransactionResponse
    */
   static std::string GetVersionString(  // line separate
       const DecodeRawTransactionResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.version_);
+    return cfd::core::ConvertToString(obj.version_);
   }
   /**
    * @brief version フィールドへのJSON情報設定処理
@@ -1518,7 +1518,7 @@ class DecodeRawTransactionResponse
   static void SetVersionString(  // line separate
       DecodeRawTransactionResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.version_, json_value);
   }
 
@@ -1551,7 +1551,7 @@ class DecodeRawTransactionResponse
    */
   static std::string GetSizeString(  // line separate
       const DecodeRawTransactionResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.size_);
+    return cfd::core::ConvertToString(obj.size_);
   }
   /**
    * @brief size フィールドへのJSON情報設定処理
@@ -1561,7 +1561,7 @@ class DecodeRawTransactionResponse
   static void SetSizeString(  // line separate
       DecodeRawTransactionResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.size_, json_value);
   }
 
@@ -1594,7 +1594,7 @@ class DecodeRawTransactionResponse
    */
   static std::string GetVsizeString(  // line separate
       const DecodeRawTransactionResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vsize_);
+    return cfd::core::ConvertToString(obj.vsize_);
   }
   /**
    * @brief vsize フィールドへのJSON情報設定処理
@@ -1604,7 +1604,7 @@ class DecodeRawTransactionResponse
   static void SetVsizeString(  // line separate
       DecodeRawTransactionResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vsize_, json_value);
   }
 
@@ -1637,7 +1637,7 @@ class DecodeRawTransactionResponse
    */
   static std::string GetWeightString(  // line separate
       const DecodeRawTransactionResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.weight_);
+    return cfd::core::ConvertToString(obj.weight_);
   }
   /**
    * @brief weight フィールドへのJSON情報設定処理
@@ -1647,7 +1647,7 @@ class DecodeRawTransactionResponse
   static void SetWeightString(  // line separate
       DecodeRawTransactionResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.weight_, json_value);
   }
 
@@ -1680,7 +1680,7 @@ class DecodeRawTransactionResponse
    */
   static std::string GetLocktimeString(  // line separate
       const DecodeRawTransactionResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.locktime_);
+    return cfd::core::ConvertToString(obj.locktime_);
   }
   /**
    * @brief locktime フィールドへのJSON情報設定処理
@@ -1690,7 +1690,7 @@ class DecodeRawTransactionResponse
   static void SetLocktimeString(  // line separate
       DecodeRawTransactionResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.locktime_, json_value);
   }
 
@@ -1806,12 +1806,12 @@ class DecodeRawTransactionResponse
    * @brief Mapテーブルの型名定義
    */
   using DecodeRawTransactionResponseMapTable =
-    cfdcore::JsonTableMap<DecodeRawTransactionResponse>;
+    cfd::core::JsonTableMap<DecodeRawTransactionResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const DecodeRawTransactionResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1820,7 +1820,7 @@ class DecodeRawTransactionResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1829,7 +1829,7 @@ class DecodeRawTransactionResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;

@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ElementsCreatePegInAddressRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreatePegInAddressRequest>
+cfd::core::JsonTableMap<ElementsCreatePegInAddressRequest>
   ElementsCreatePegInAddressRequest::json_mapper;
 std::vector<std::string> ElementsCreatePegInAddressRequest::item_list;
 
@@ -31,7 +31,7 @@ void ElementsCreatePegInAddressRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreatePegInAddressRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreatePegInAddressRequest> func_table;  // NOLINT
 
   func_table = {
     ElementsCreatePegInAddressRequest::GetFedpegscriptString,
@@ -76,7 +76,7 @@ ElementsCreatePegInAddressRequestStruct ElementsCreatePegInAddressRequest::Conve
 // ------------------------------------------------------------------------
 // ElementsCreatePegInAddressResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreatePegInAddressResponse>
+cfd::core::JsonTableMap<ElementsCreatePegInAddressResponse>
   ElementsCreatePegInAddressResponse::json_mapper;
 std::vector<std::string> ElementsCreatePegInAddressResponse::item_list;
 
@@ -84,7 +84,7 @@ void ElementsCreatePegInAddressResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreatePegInAddressResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreatePegInAddressResponse> func_table;  // NOLINT
 
   func_table = {
     ElementsCreatePegInAddressResponse::GetMainchainAddressString,

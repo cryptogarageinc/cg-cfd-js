@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ElementsSignatureHashKeyData
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsSignatureHashKeyData>
+cfd::core::JsonTableMap<ElementsSignatureHashKeyData>
   ElementsSignatureHashKeyData::json_mapper;
 std::vector<std::string> ElementsSignatureHashKeyData::item_list;
 
@@ -31,7 +31,7 @@ void ElementsSignatureHashKeyData::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsSignatureHashKeyData> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsSignatureHashKeyData> func_table;  // NOLINT
 
   func_table = {
     ElementsSignatureHashKeyData::GetHexString,
@@ -67,7 +67,7 @@ ElementsSignatureHashKeyDataStruct ElementsSignatureHashKeyData::ConvertToStruct
 // ------------------------------------------------------------------------
 // CreateElementsSignatureHashTxInRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateElementsSignatureHashTxInRequest>
+cfd::core::JsonTableMap<CreateElementsSignatureHashTxInRequest>
   CreateElementsSignatureHashTxInRequest::json_mapper;
 std::vector<std::string> CreateElementsSignatureHashTxInRequest::item_list;
 
@@ -75,7 +75,7 @@ void CreateElementsSignatureHashTxInRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashTxInRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashTxInRequest> func_table;  // NOLINT
 
   func_table = {
     CreateElementsSignatureHashTxInRequest::GetTxidString,
@@ -165,7 +165,7 @@ CreateElementsSignatureHashTxInRequestStruct CreateElementsSignatureHashTxInRequ
 // ------------------------------------------------------------------------
 // CreateElementsSignatureHashRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateElementsSignatureHashRequest>
+cfd::core::JsonTableMap<CreateElementsSignatureHashRequest>
   CreateElementsSignatureHashRequest::json_mapper;
 std::vector<std::string> CreateElementsSignatureHashRequest::item_list;
 
@@ -173,7 +173,7 @@ void CreateElementsSignatureHashRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashRequest> func_table;  // NOLINT
 
   func_table = {
     CreateElementsSignatureHashRequest::GetTxString,
@@ -209,7 +209,7 @@ CreateElementsSignatureHashRequestStruct CreateElementsSignatureHashRequest::Con
 // ------------------------------------------------------------------------
 // CreateElementsSignatureHashResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateElementsSignatureHashResponse>
+cfd::core::JsonTableMap<CreateElementsSignatureHashResponse>
   CreateElementsSignatureHashResponse::json_mapper;
 std::vector<std::string> CreateElementsSignatureHashResponse::item_list;
 
@@ -217,7 +217,7 @@ void CreateElementsSignatureHashResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashResponse> func_table;  // NOLINT
 
   func_table = {
     CreateElementsSignatureHashResponse::GetSighashString,

@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // GetMnemonicWordlistRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetMnemonicWordlistRequest>
+cfd::core::JsonTableMap<GetMnemonicWordlistRequest>
   GetMnemonicWordlistRequest::json_mapper;
 std::vector<std::string> GetMnemonicWordlistRequest::item_list;
 
@@ -31,7 +31,7 @@ void GetMnemonicWordlistRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetMnemonicWordlistRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetMnemonicWordlistRequest> func_table;  // NOLINT
 
   func_table = {
     GetMnemonicWordlistRequest::GetLanguageString,
@@ -58,7 +58,7 @@ GetMnemonicWordlistRequestStruct GetMnemonicWordlistRequest::ConvertToStruct() c
 // ------------------------------------------------------------------------
 // GetMnemonicWordlistResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetMnemonicWordlistResponse>
+cfd::core::JsonTableMap<GetMnemonicWordlistResponse>
   GetMnemonicWordlistResponse::json_mapper;
 std::vector<std::string> GetMnemonicWordlistResponse::item_list;
 
@@ -66,7 +66,7 @@ void GetMnemonicWordlistResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetMnemonicWordlistResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetMnemonicWordlistResponse> func_table;  // NOLINT
 
   func_table = {
     GetMnemonicWordlistResponse::GetWordlistString,
