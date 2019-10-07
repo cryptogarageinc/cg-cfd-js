@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ReissuanceDataRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ReissuanceDataRequest>
+cfd::core::JsonTableMap<ReissuanceDataRequest>
   ReissuanceDataRequest::json_mapper;
 std::vector<std::string> ReissuanceDataRequest::item_list;
 
@@ -31,7 +31,7 @@ void ReissuanceDataRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ReissuanceDataRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ReissuanceDataRequest> func_table;  // NOLINT
 
   func_table = {
     ReissuanceDataRequest::GetTxidString,
@@ -112,7 +112,7 @@ ReissuanceDataRequestStruct ReissuanceDataRequest::ConvertToStruct() const {  //
 // ------------------------------------------------------------------------
 // SetRawReissueAssetRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<SetRawReissueAssetRequest>
+cfd::core::JsonTableMap<SetRawReissueAssetRequest>
   SetRawReissueAssetRequest::json_mapper;
 std::vector<std::string> SetRawReissueAssetRequest::item_list;
 
@@ -120,7 +120,7 @@ void SetRawReissueAssetRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<SetRawReissueAssetRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<SetRawReissueAssetRequest> func_table;  // NOLINT
 
   func_table = {
     SetRawReissueAssetRequest::GetTxString,
@@ -165,7 +165,7 @@ SetRawReissueAssetRequestStruct SetRawReissueAssetRequest::ConvertToStruct() con
 // ------------------------------------------------------------------------
 // ReissuanceDataResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ReissuanceDataResponse>
+cfd::core::JsonTableMap<ReissuanceDataResponse>
   ReissuanceDataResponse::json_mapper;
 std::vector<std::string> ReissuanceDataResponse::item_list;
 
@@ -173,7 +173,7 @@ void ReissuanceDataResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ReissuanceDataResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ReissuanceDataResponse> func_table;  // NOLINT
 
   func_table = {
     ReissuanceDataResponse::GetTxidString,
@@ -227,7 +227,7 @@ ReissuanceDataResponseStruct ReissuanceDataResponse::ConvertToStruct() const {  
 // ------------------------------------------------------------------------
 // SetRawReissueAssetResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<SetRawReissueAssetResponse>
+cfd::core::JsonTableMap<SetRawReissueAssetResponse>
   SetRawReissueAssetResponse::json_mapper;
 std::vector<std::string> SetRawReissueAssetResponse::item_list;
 
@@ -235,7 +235,7 @@ void SetRawReissueAssetResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<SetRawReissueAssetResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<SetRawReissueAssetResponse> func_table;  // NOLINT
 
   func_table = {
     SetRawReissueAssetResponse::GetHexString,

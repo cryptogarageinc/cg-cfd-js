@@ -13,10 +13,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -67,7 +67,7 @@ UnblindTxOutStruct UnblindTxOut::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // UnblindIssuance
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<UnblindIssuance>
+cfd::core::JsonTableMap<UnblindIssuance>
   UnblindIssuance::json_mapper;
 std::vector<std::string> UnblindIssuance::item_list;
 
@@ -75,7 +75,7 @@ void UnblindIssuance::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<UnblindIssuance> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<UnblindIssuance> func_table;  // NOLINT
 
   func_table = {
     UnblindIssuance::GetTxidString,
@@ -129,7 +129,7 @@ UnblindIssuanceStruct UnblindIssuance::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // UnblindRawTransactionRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<UnblindRawTransactionRequest>
+cfd::core::JsonTableMap<UnblindRawTransactionRequest>
   UnblindRawTransactionRequest::json_mapper;
 std::vector<std::string> UnblindRawTransactionRequest::item_list;
 
@@ -137,7 +137,7 @@ void UnblindRawTransactionRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<UnblindRawTransactionRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<UnblindRawTransactionRequest> func_table;  // NOLINT
 
   func_table = {
     UnblindRawTransactionRequest::GetTxString,
@@ -182,7 +182,7 @@ UnblindRawTransactionRequestStruct UnblindRawTransactionRequest::ConvertToStruct
 // ------------------------------------------------------------------------
 // UnblindOutput
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<UnblindOutput>
+cfd::core::JsonTableMap<UnblindOutput>
   UnblindOutput::json_mapper;
 std::vector<std::string> UnblindOutput::item_list;
 
@@ -190,7 +190,7 @@ void UnblindOutput::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<UnblindOutput> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<UnblindOutput> func_table;  // NOLINT
 
   func_table = {
     UnblindOutput::GetIndexString,
@@ -253,7 +253,7 @@ UnblindOutputStruct UnblindOutput::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // UnblindIssuanceOutput
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<UnblindIssuanceOutput>
+cfd::core::JsonTableMap<UnblindIssuanceOutput>
   UnblindIssuanceOutput::json_mapper;
 std::vector<std::string> UnblindIssuanceOutput::item_list;
 
@@ -261,7 +261,7 @@ void UnblindIssuanceOutput::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<UnblindIssuanceOutput> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<UnblindIssuanceOutput> func_table;  // NOLINT
 
   func_table = {
     UnblindIssuanceOutput::GetTxidString,
@@ -333,7 +333,7 @@ UnblindIssuanceOutputStruct UnblindIssuanceOutput::ConvertToStruct() const {  //
 // ------------------------------------------------------------------------
 // UnblindRawTransactionResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<UnblindRawTransactionResponse>
+cfd::core::JsonTableMap<UnblindRawTransactionResponse>
   UnblindRawTransactionResponse::json_mapper;
 std::vector<std::string> UnblindRawTransactionResponse::item_list;
 
@@ -341,7 +341,7 @@ void UnblindRawTransactionResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<UnblindRawTransactionResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<UnblindRawTransactionResponse> func_table;  // NOLINT
 
   func_table = {
     UnblindRawTransactionResponse::GetHexString,

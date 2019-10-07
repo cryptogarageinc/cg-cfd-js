@@ -13,17 +13,17 @@
 namespace dlc {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // CombineKeysRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CombineKeysRequest>
+cfd::core::JsonTableMap<CombineKeysRequest>
   CombineKeysRequest::json_mapper;
 std::vector<std::string> CombineKeysRequest::item_list;
 
@@ -31,7 +31,7 @@ void CombineKeysRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CombineKeysRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CombineKeysRequest> func_table;  // NOLINT
 
   func_table = {
     CombineKeysRequest::GetPubkeyString,
@@ -67,7 +67,7 @@ CombineKeysRequestStruct CombineKeysRequest::ConvertToStruct() const {  // NOLIN
 // ------------------------------------------------------------------------
 // CreateCETxAddressRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateCETxAddressRequest>
+cfd::core::JsonTableMap<CreateCETxAddressRequest>
   CreateCETxAddressRequest::json_mapper;
 std::vector<std::string> CreateCETxAddressRequest::item_list;
 
@@ -75,7 +75,7 @@ void CreateCETxAddressRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateCETxAddressRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateCETxAddressRequest> func_table;  // NOLINT
 
   func_table = {
     CreateCETxAddressRequest::GetNetworkString,
@@ -129,7 +129,7 @@ CreateCETxAddressRequestStruct CreateCETxAddressRequest::ConvertToStruct() const
 // ------------------------------------------------------------------------
 // CreateCETxAddressResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateCETxAddressResponse>
+cfd::core::JsonTableMap<CreateCETxAddressResponse>
   CreateCETxAddressResponse::json_mapper;
 std::vector<std::string> CreateCETxAddressResponse::item_list;
 
@@ -137,7 +137,7 @@ void CreateCETxAddressResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateCETxAddressResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateCETxAddressResponse> func_table;  // NOLINT
 
   func_table = {
     CreateCETxAddressResponse::GetAddressString,

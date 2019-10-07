@@ -26,14 +26,14 @@ using Napi::Function;
 using Napi::String;
 using Napi::Boolean;
 
-using cfdcore::Pubkey;
-using cfdcore::Privkey;
-using cfdcore::Address;
-using cfdcore::NetType;
-using cfdcore::WitnessVersion;
-using cfdcore::SignatureUtil;
-using cfdcore::ByteData;
-using cfdcore::ByteData256;
+using cfd::core::Pubkey;
+using cfd::core::Privkey;
+using cfd::core::Address;
+using cfd::core::NetType;
+using cfd::core::WitnessVersion;
+using cfd::core::SignatureUtil;
+using cfd::core::ByteData;
+using cfd::core::ByteData256;
 
 /**
  * @brief Pubkeyを合成する。

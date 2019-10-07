@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // GetIssuanceBlindingKeyRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetIssuanceBlindingKeyRequest>
+cfd::core::JsonTableMap<GetIssuanceBlindingKeyRequest>
   GetIssuanceBlindingKeyRequest::json_mapper;
 std::vector<std::string> GetIssuanceBlindingKeyRequest::item_list;
 
@@ -31,7 +31,7 @@ void GetIssuanceBlindingKeyRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetIssuanceBlindingKeyRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetIssuanceBlindingKeyRequest> func_table;  // NOLINT
 
   func_table = {
     GetIssuanceBlindingKeyRequest::GetMasterBlindingKeyString,
@@ -76,7 +76,7 @@ GetIssuanceBlindingKeyRequestStruct GetIssuanceBlindingKeyRequest::ConvertToStru
 // ------------------------------------------------------------------------
 // GetIssuanceBlindingKeyResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetIssuanceBlindingKeyResponse>
+cfd::core::JsonTableMap<GetIssuanceBlindingKeyResponse>
   GetIssuanceBlindingKeyResponse::json_mapper;
 std::vector<std::string> GetIssuanceBlindingKeyResponse::item_list;
 
@@ -84,7 +84,7 @@ void GetIssuanceBlindingKeyResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetIssuanceBlindingKeyResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetIssuanceBlindingKeyResponse> func_table;  // NOLINT
 
   func_table = {
     GetIssuanceBlindingKeyResponse::GetBlindingKeyString,

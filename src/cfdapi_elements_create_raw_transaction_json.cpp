@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ElementsTxInRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsTxInRequest>
+cfd::core::JsonTableMap<ElementsTxInRequest>
   ElementsTxInRequest::json_mapper;
 std::vector<std::string> ElementsTxInRequest::item_list;
 
@@ -31,7 +31,7 @@ void ElementsTxInRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsTxInRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsTxInRequest> func_table;  // NOLINT
 
   func_table = {
     ElementsTxInRequest::GetTxidString,
@@ -76,7 +76,7 @@ ElementsTxInRequestStruct ElementsTxInRequest::ConvertToStruct() const {  // NOL
 // ------------------------------------------------------------------------
 // ElementsTxOutRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsTxOutRequest>
+cfd::core::JsonTableMap<ElementsTxOutRequest>
   ElementsTxOutRequest::json_mapper;
 std::vector<std::string> ElementsTxOutRequest::item_list;
 
@@ -84,7 +84,7 @@ void ElementsTxOutRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsTxOutRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsTxOutRequest> func_table;  // NOLINT
 
   func_table = {
     ElementsTxOutRequest::GetAddressString,
@@ -138,7 +138,7 @@ ElementsTxOutRequestStruct ElementsTxOutRequest::ConvertToStruct() const {  // N
 // ------------------------------------------------------------------------
 // ElementsTxOutFeeRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsTxOutFeeRequest>
+cfd::core::JsonTableMap<ElementsTxOutFeeRequest>
   ElementsTxOutFeeRequest::json_mapper;
 std::vector<std::string> ElementsTxOutFeeRequest::item_list;
 
@@ -146,7 +146,7 @@ void ElementsTxOutFeeRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsTxOutFeeRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsTxOutFeeRequest> func_table;  // NOLINT
 
   func_table = {
     ElementsTxOutFeeRequest::GetAmountString,
@@ -182,7 +182,7 @@ ElementsTxOutFeeRequestStruct ElementsTxOutFeeRequest::ConvertToStruct() const {
 // ------------------------------------------------------------------------
 // ElementsCreateRawTransactionRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreateRawTransactionRequest>
+cfd::core::JsonTableMap<ElementsCreateRawTransactionRequest>
   ElementsCreateRawTransactionRequest::json_mapper;
 std::vector<std::string> ElementsCreateRawTransactionRequest::item_list;
 
@@ -190,7 +190,7 @@ void ElementsCreateRawTransactionRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreateRawTransactionRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreateRawTransactionRequest> func_table;  // NOLINT
 
   func_table = {
     ElementsCreateRawTransactionRequest::GetVersionString,
@@ -253,7 +253,7 @@ ElementsCreateRawTransactionRequestStruct ElementsCreateRawTransactionRequest::C
 // ------------------------------------------------------------------------
 // ElementsCreateRawTransactionResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreateRawTransactionResponse>
+cfd::core::JsonTableMap<ElementsCreateRawTransactionResponse>
   ElementsCreateRawTransactionResponse::json_mapper;
 std::vector<std::string> ElementsCreateRawTransactionResponse::item_list;
 
@@ -261,7 +261,7 @@ void ElementsCreateRawTransactionResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreateRawTransactionResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreateRawTransactionResponse> func_table;  // NOLINT
 
   func_table = {
     ElementsCreateRawTransactionResponse::GetHexString,

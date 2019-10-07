@@ -18,10 +18,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（ElementsTxInRequest）クラス
  */
 class ElementsTxInRequest
-  : public cfdcore::JsonClassBase<ElementsTxInRequest> {
+  : public cfd::core::JsonClassBase<ElementsTxInRequest> {
  public:
   ElementsTxInRequest() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class ElementsTxInRequest
    */
   static std::string GetTxidString(  // line separate
       const ElementsTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class ElementsTxInRequest
   static void SetTxidString(  // line separate
       ElementsTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -117,7 +117,7 @@ class ElementsTxInRequest
    */
   static std::string GetVoutString(  // line separate
       const ElementsTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -127,7 +127,7 @@ class ElementsTxInRequest
   static void SetVoutString(  // line separate
       ElementsTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -160,7 +160,7 @@ class ElementsTxInRequest
    */
   static std::string GetSequenceString(  // line separate
       const ElementsTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sequence_);
+    return cfd::core::ConvertToString(obj.sequence_);
   }
   /**
    * @brief sequence フィールドへのJSON情報設定処理
@@ -170,7 +170,7 @@ class ElementsTxInRequest
   static void SetSequenceString(  // line separate
       ElementsTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sequence_, json_value);
   }
 
@@ -200,12 +200,12 @@ class ElementsTxInRequest
    * @brief Mapテーブルの型名定義
    */
   using ElementsTxInRequestMapTable =
-    cfdcore::JsonTableMap<ElementsTxInRequest>;
+    cfd::core::JsonTableMap<ElementsTxInRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -214,7 +214,7 @@ class ElementsTxInRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -223,7 +223,7 @@ class ElementsTxInRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -264,7 +264,7 @@ class ElementsTxInRequest
  * @brief JSON-API（ElementsTxOutRequest）クラス
  */
 class ElementsTxOutRequest
-  : public cfdcore::JsonClassBase<ElementsTxOutRequest> {
+  : public cfd::core::JsonClassBase<ElementsTxOutRequest> {
  public:
   ElementsTxOutRequest() {
     CollectFieldName();
@@ -306,7 +306,7 @@ class ElementsTxOutRequest
    */
   static std::string GetAddressString(  // line separate
       const ElementsTxOutRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.address_);
+    return cfd::core::ConvertToString(obj.address_);
   }
   /**
    * @brief address フィールドへのJSON情報設定処理
@@ -316,7 +316,7 @@ class ElementsTxOutRequest
   static void SetAddressString(  // line separate
       ElementsTxOutRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.address_, json_value);
   }
 
@@ -349,7 +349,7 @@ class ElementsTxOutRequest
    */
   static std::string GetAmountString(  // line separate
       const ElementsTxOutRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.amount_);
+    return cfd::core::ConvertToString(obj.amount_);
   }
   /**
    * @brief amount フィールドへのJSON情報設定処理
@@ -359,7 +359,7 @@ class ElementsTxOutRequest
   static void SetAmountString(  // line separate
       ElementsTxOutRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
@@ -392,7 +392,7 @@ class ElementsTxOutRequest
    */
   static std::string GetAssetString(  // line separate
       const ElementsTxOutRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_);
+    return cfd::core::ConvertToString(obj.asset_);
   }
   /**
    * @brief asset フィールドへのJSON情報設定処理
@@ -402,7 +402,7 @@ class ElementsTxOutRequest
   static void SetAssetString(  // line separate
       ElementsTxOutRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_, json_value);
   }
 
@@ -435,7 +435,7 @@ class ElementsTxOutRequest
    */
   static std::string GetIsRemoveNonceString(  // line separate
       const ElementsTxOutRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_remove_nonce_);
+    return cfd::core::ConvertToString(obj.is_remove_nonce_);
   }
   /**
    * @brief isRemoveNonce フィールドへのJSON情報設定処理
@@ -445,7 +445,7 @@ class ElementsTxOutRequest
   static void SetIsRemoveNonceString(  // line separate
       ElementsTxOutRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_remove_nonce_, json_value);
   }
 
@@ -475,12 +475,12 @@ class ElementsTxOutRequest
    * @brief Mapテーブルの型名定義
    */
   using ElementsTxOutRequestMapTable =
-    cfdcore::JsonTableMap<ElementsTxOutRequest>;
+    cfd::core::JsonTableMap<ElementsTxOutRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsTxOutRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -489,7 +489,7 @@ class ElementsTxOutRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -498,7 +498,7 @@ class ElementsTxOutRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -543,7 +543,7 @@ class ElementsTxOutRequest
  * @brief JSON-API（ElementsTxOutFeeRequest）クラス
  */
 class ElementsTxOutFeeRequest
-  : public cfdcore::JsonClassBase<ElementsTxOutFeeRequest> {
+  : public cfd::core::JsonClassBase<ElementsTxOutFeeRequest> {
  public:
   ElementsTxOutFeeRequest() {
     CollectFieldName();
@@ -585,7 +585,7 @@ class ElementsTxOutFeeRequest
    */
   static std::string GetAmountString(  // line separate
       const ElementsTxOutFeeRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.amount_);
+    return cfd::core::ConvertToString(obj.amount_);
   }
   /**
    * @brief amount フィールドへのJSON情報設定処理
@@ -595,7 +595,7 @@ class ElementsTxOutFeeRequest
   static void SetAmountString(  // line separate
       ElementsTxOutFeeRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
@@ -628,7 +628,7 @@ class ElementsTxOutFeeRequest
    */
   static std::string GetAssetString(  // line separate
       const ElementsTxOutFeeRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_);
+    return cfd::core::ConvertToString(obj.asset_);
   }
   /**
    * @brief asset フィールドへのJSON情報設定処理
@@ -638,7 +638,7 @@ class ElementsTxOutFeeRequest
   static void SetAssetString(  // line separate
       ElementsTxOutFeeRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_, json_value);
   }
 
@@ -668,12 +668,12 @@ class ElementsTxOutFeeRequest
    * @brief Mapテーブルの型名定義
    */
   using ElementsTxOutFeeRequestMapTable =
-    cfdcore::JsonTableMap<ElementsTxOutFeeRequest>;
+    cfd::core::JsonTableMap<ElementsTxOutFeeRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsTxOutFeeRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -682,7 +682,7 @@ class ElementsTxOutFeeRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -691,7 +691,7 @@ class ElementsTxOutFeeRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -728,7 +728,7 @@ class ElementsTxOutFeeRequest
  * @brief JSON-API（ElementsCreateRawTransactionRequest）クラス
  */
 class ElementsCreateRawTransactionRequest
-  : public cfdcore::JsonClassBase<ElementsCreateRawTransactionRequest> {
+  : public cfd::core::JsonClassBase<ElementsCreateRawTransactionRequest> {
  public:
   ElementsCreateRawTransactionRequest() {
     CollectFieldName();
@@ -770,7 +770,7 @@ class ElementsCreateRawTransactionRequest
    */
   static std::string GetVersionString(  // line separate
       const ElementsCreateRawTransactionRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.version_);
+    return cfd::core::ConvertToString(obj.version_);
   }
   /**
    * @brief version フィールドへのJSON情報設定処理
@@ -780,7 +780,7 @@ class ElementsCreateRawTransactionRequest
   static void SetVersionString(  // line separate
       ElementsCreateRawTransactionRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.version_, json_value);
   }
 
@@ -813,7 +813,7 @@ class ElementsCreateRawTransactionRequest
    */
   static std::string GetLocktimeString(  // line separate
       const ElementsCreateRawTransactionRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.locktime_);
+    return cfd::core::ConvertToString(obj.locktime_);
   }
   /**
    * @brief locktime フィールドへのJSON情報設定処理
@@ -823,7 +823,7 @@ class ElementsCreateRawTransactionRequest
   static void SetLocktimeString(  // line separate
       ElementsCreateRawTransactionRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.locktime_, json_value);
   }
 
@@ -982,12 +982,12 @@ class ElementsCreateRawTransactionRequest
    * @brief Mapテーブルの型名定義
    */
   using ElementsCreateRawTransactionRequestMapTable =
-    cfdcore::JsonTableMap<ElementsCreateRawTransactionRequest>;
+    cfd::core::JsonTableMap<ElementsCreateRawTransactionRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreateRawTransactionRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -996,7 +996,7 @@ class ElementsCreateRawTransactionRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1005,7 +1005,7 @@ class ElementsCreateRawTransactionRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1054,7 +1054,7 @@ class ElementsCreateRawTransactionRequest
  * @brief JSON-API（ElementsCreateRawTransactionResponse）クラス
  */
 class ElementsCreateRawTransactionResponse
-  : public cfdcore::JsonClassBase<ElementsCreateRawTransactionResponse> {
+  : public cfd::core::JsonClassBase<ElementsCreateRawTransactionResponse> {
  public:
   ElementsCreateRawTransactionResponse() {
     CollectFieldName();
@@ -1096,7 +1096,7 @@ class ElementsCreateRawTransactionResponse
    */
   static std::string GetHexString(  // line separate
       const ElementsCreateRawTransactionResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -1106,7 +1106,7 @@ class ElementsCreateRawTransactionResponse
   static void SetHexString(  // line separate
       ElementsCreateRawTransactionResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -1136,12 +1136,12 @@ class ElementsCreateRawTransactionResponse
    * @brief Mapテーブルの型名定義
    */
   using ElementsCreateRawTransactionResponseMapTable =
-    cfdcore::JsonTableMap<ElementsCreateRawTransactionResponse>;
+    cfd::core::JsonTableMap<ElementsCreateRawTransactionResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreateRawTransactionResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1150,7 +1150,7 @@ class ElementsCreateRawTransactionResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1159,7 +1159,7 @@ class ElementsCreateRawTransactionResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;

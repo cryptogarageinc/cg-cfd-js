@@ -18,10 +18,10 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（ElementsPeginWitness）クラス
  */
 class ElementsPeginWitness
-  : public cfdcore::JsonClassBase<ElementsPeginWitness> {
+  : public cfd::core::JsonClassBase<ElementsPeginWitness> {
  public:
   ElementsPeginWitness() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class ElementsPeginWitness
    */
   static std::string GetAmountString(  // line separate
       const ElementsPeginWitness& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.amount_);
+    return cfd::core::ConvertToString(obj.amount_);
   }
   /**
    * @brief amount フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class ElementsPeginWitness
   static void SetAmountString(  // line separate
       ElementsPeginWitness& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
@@ -117,7 +117,7 @@ class ElementsPeginWitness
    */
   static std::string GetAssetString(  // line separate
       const ElementsPeginWitness& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_);
+    return cfd::core::ConvertToString(obj.asset_);
   }
   /**
    * @brief asset フィールドへのJSON情報設定処理
@@ -127,7 +127,7 @@ class ElementsPeginWitness
   static void SetAssetString(  // line separate
       ElementsPeginWitness& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_, json_value);
   }
 
@@ -160,7 +160,7 @@ class ElementsPeginWitness
    */
   static std::string GetMainchainGenesisBlockHashString(  // line separate
       const ElementsPeginWitness& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.mainchain_genesis_block_hash_);
+    return cfd::core::ConvertToString(obj.mainchain_genesis_block_hash_);
   }
   /**
    * @brief mainchainGenesisBlockHash フィールドへのJSON情報設定処理
@@ -170,7 +170,7 @@ class ElementsPeginWitness
   static void SetMainchainGenesisBlockHashString(  // line separate
       ElementsPeginWitness& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.mainchain_genesis_block_hash_, json_value);
   }
 
@@ -203,7 +203,7 @@ class ElementsPeginWitness
    */
   static std::string GetClaimScriptString(  // line separate
       const ElementsPeginWitness& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.claim_script_);
+    return cfd::core::ConvertToString(obj.claim_script_);
   }
   /**
    * @brief claimScript フィールドへのJSON情報設定処理
@@ -213,7 +213,7 @@ class ElementsPeginWitness
   static void SetClaimScriptString(  // line separate
       ElementsPeginWitness& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.claim_script_, json_value);
   }
 
@@ -246,7 +246,7 @@ class ElementsPeginWitness
    */
   static std::string GetMainchainRawTransactionString(  // line separate
       const ElementsPeginWitness& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.mainchain_raw_transaction_);
+    return cfd::core::ConvertToString(obj.mainchain_raw_transaction_);
   }
   /**
    * @brief mainchainRawTransaction フィールドへのJSON情報設定処理
@@ -256,7 +256,7 @@ class ElementsPeginWitness
   static void SetMainchainRawTransactionString(  // line separate
       ElementsPeginWitness& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.mainchain_raw_transaction_, json_value);
   }
 
@@ -289,7 +289,7 @@ class ElementsPeginWitness
    */
   static std::string GetMainchainTxoutproofString(  // line separate
       const ElementsPeginWitness& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.mainchain_txoutproof_);
+    return cfd::core::ConvertToString(obj.mainchain_txoutproof_);
   }
   /**
    * @brief mainchainTxoutproof フィールドへのJSON情報設定処理
@@ -299,7 +299,7 @@ class ElementsPeginWitness
   static void SetMainchainTxoutproofString(  // line separate
       ElementsPeginWitness& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.mainchain_txoutproof_, json_value);
   }
 
@@ -329,12 +329,12 @@ class ElementsPeginWitness
    * @brief Mapテーブルの型名定義
    */
   using ElementsPeginWitnessMapTable =
-    cfdcore::JsonTableMap<ElementsPeginWitness>;
+    cfd::core::JsonTableMap<ElementsPeginWitness>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsPeginWitnessMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -343,7 +343,7 @@ class ElementsPeginWitness
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -352,7 +352,7 @@ class ElementsPeginWitness
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -405,7 +405,7 @@ class ElementsPeginWitness
  * @brief JSON-API（ElementsPeginTxIn）クラス
  */
 class ElementsPeginTxIn
-  : public cfdcore::JsonClassBase<ElementsPeginTxIn> {
+  : public cfd::core::JsonClassBase<ElementsPeginTxIn> {
  public:
   ElementsPeginTxIn() {
     CollectFieldName();
@@ -447,7 +447,7 @@ class ElementsPeginTxIn
    */
   static std::string GetIsPeginString(  // line separate
       const ElementsPeginTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_pegin_);
+    return cfd::core::ConvertToString(obj.is_pegin_);
   }
   /**
    * @brief isPegin フィールドへのJSON情報設定処理
@@ -457,7 +457,7 @@ class ElementsPeginTxIn
   static void SetIsPeginString(  // line separate
       ElementsPeginTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_pegin_, json_value);
   }
 
@@ -490,7 +490,7 @@ class ElementsPeginTxIn
    */
   static std::string GetTxidString(  // line separate
       const ElementsPeginTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -500,7 +500,7 @@ class ElementsPeginTxIn
   static void SetTxidString(  // line separate
       ElementsPeginTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -533,7 +533,7 @@ class ElementsPeginTxIn
    */
   static std::string GetVoutString(  // line separate
       const ElementsPeginTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -543,7 +543,7 @@ class ElementsPeginTxIn
   static void SetVoutString(  // line separate
       ElementsPeginTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -576,7 +576,7 @@ class ElementsPeginTxIn
    */
   static std::string GetSequenceString(  // line separate
       const ElementsPeginTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sequence_);
+    return cfd::core::ConvertToString(obj.sequence_);
   }
   /**
    * @brief sequence フィールドへのJSON情報設定処理
@@ -586,7 +586,7 @@ class ElementsPeginTxIn
   static void SetSequenceString(  // line separate
       ElementsPeginTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sequence_, json_value);
   }
 
@@ -662,7 +662,7 @@ class ElementsPeginTxIn
    */
   static std::string GetIsRemoveMainchainTxWitnessString(  // line separate
       const ElementsPeginTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_remove_mainchain_tx_witness_);
+    return cfd::core::ConvertToString(obj.is_remove_mainchain_tx_witness_);
   }
   /**
    * @brief isRemoveMainchainTxWitness フィールドへのJSON情報設定処理
@@ -672,7 +672,7 @@ class ElementsPeginTxIn
   static void SetIsRemoveMainchainTxWitnessString(  // line separate
       ElementsPeginTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_remove_mainchain_tx_witness_, json_value);
   }
 
@@ -702,12 +702,12 @@ class ElementsPeginTxIn
    * @brief Mapテーブルの型名定義
    */
   using ElementsPeginTxInMapTable =
-    cfdcore::JsonTableMap<ElementsPeginTxIn>;
+    cfd::core::JsonTableMap<ElementsPeginTxIn>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsPeginTxInMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -716,7 +716,7 @@ class ElementsPeginTxIn
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -725,7 +725,7 @@ class ElementsPeginTxIn
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -778,7 +778,7 @@ class ElementsPeginTxIn
  * @brief JSON-API（ElementsPeginTxOut）クラス
  */
 class ElementsPeginTxOut
-  : public cfdcore::JsonClassBase<ElementsPeginTxOut> {
+  : public cfd::core::JsonClassBase<ElementsPeginTxOut> {
  public:
   ElementsPeginTxOut() {
     CollectFieldName();
@@ -820,7 +820,7 @@ class ElementsPeginTxOut
    */
   static std::string GetAddressString(  // line separate
       const ElementsPeginTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.address_);
+    return cfd::core::ConvertToString(obj.address_);
   }
   /**
    * @brief address フィールドへのJSON情報設定処理
@@ -830,7 +830,7 @@ class ElementsPeginTxOut
   static void SetAddressString(  // line separate
       ElementsPeginTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.address_, json_value);
   }
 
@@ -863,7 +863,7 @@ class ElementsPeginTxOut
    */
   static std::string GetAmountString(  // line separate
       const ElementsPeginTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.amount_);
+    return cfd::core::ConvertToString(obj.amount_);
   }
   /**
    * @brief amount フィールドへのJSON情報設定処理
@@ -873,7 +873,7 @@ class ElementsPeginTxOut
   static void SetAmountString(  // line separate
       ElementsPeginTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
@@ -906,7 +906,7 @@ class ElementsPeginTxOut
    */
   static std::string GetAssetString(  // line separate
       const ElementsPeginTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_);
+    return cfd::core::ConvertToString(obj.asset_);
   }
   /**
    * @brief asset フィールドへのJSON情報設定処理
@@ -916,7 +916,7 @@ class ElementsPeginTxOut
   static void SetAssetString(  // line separate
       ElementsPeginTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_, json_value);
   }
 
@@ -949,7 +949,7 @@ class ElementsPeginTxOut
    */
   static std::string GetIsRemoveNonceString(  // line separate
       const ElementsPeginTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_remove_nonce_);
+    return cfd::core::ConvertToString(obj.is_remove_nonce_);
   }
   /**
    * @brief isRemoveNonce フィールドへのJSON情報設定処理
@@ -959,7 +959,7 @@ class ElementsPeginTxOut
   static void SetIsRemoveNonceString(  // line separate
       ElementsPeginTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_remove_nonce_, json_value);
   }
 
@@ -989,12 +989,12 @@ class ElementsPeginTxOut
    * @brief Mapテーブルの型名定義
    */
   using ElementsPeginTxOutMapTable =
-    cfdcore::JsonTableMap<ElementsPeginTxOut>;
+    cfd::core::JsonTableMap<ElementsPeginTxOut>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsPeginTxOutMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1003,7 +1003,7 @@ class ElementsPeginTxOut
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1012,7 +1012,7 @@ class ElementsPeginTxOut
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1057,7 +1057,7 @@ class ElementsPeginTxOut
  * @brief JSON-API（ElementsPeginTxOutFee）クラス
  */
 class ElementsPeginTxOutFee
-  : public cfdcore::JsonClassBase<ElementsPeginTxOutFee> {
+  : public cfd::core::JsonClassBase<ElementsPeginTxOutFee> {
  public:
   ElementsPeginTxOutFee() {
     CollectFieldName();
@@ -1099,7 +1099,7 @@ class ElementsPeginTxOutFee
    */
   static std::string GetAmountString(  // line separate
       const ElementsPeginTxOutFee& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.amount_);
+    return cfd::core::ConvertToString(obj.amount_);
   }
   /**
    * @brief amount フィールドへのJSON情報設定処理
@@ -1109,7 +1109,7 @@ class ElementsPeginTxOutFee
   static void SetAmountString(  // line separate
       ElementsPeginTxOutFee& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
@@ -1142,7 +1142,7 @@ class ElementsPeginTxOutFee
    */
   static std::string GetAssetString(  // line separate
       const ElementsPeginTxOutFee& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_);
+    return cfd::core::ConvertToString(obj.asset_);
   }
   /**
    * @brief asset フィールドへのJSON情報設定処理
@@ -1152,7 +1152,7 @@ class ElementsPeginTxOutFee
   static void SetAssetString(  // line separate
       ElementsPeginTxOutFee& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_, json_value);
   }
 
@@ -1182,12 +1182,12 @@ class ElementsPeginTxOutFee
    * @brief Mapテーブルの型名定義
    */
   using ElementsPeginTxOutFeeMapTable =
-    cfdcore::JsonTableMap<ElementsPeginTxOutFee>;
+    cfd::core::JsonTableMap<ElementsPeginTxOutFee>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsPeginTxOutFeeMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1196,7 +1196,7 @@ class ElementsPeginTxOutFee
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1205,7 +1205,7 @@ class ElementsPeginTxOutFee
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1242,7 +1242,7 @@ class ElementsPeginTxOutFee
  * @brief JSON-API（ElementsCreateRawPeginRequest）クラス
  */
 class ElementsCreateRawPeginRequest
-  : public cfdcore::JsonClassBase<ElementsCreateRawPeginRequest> {
+  : public cfd::core::JsonClassBase<ElementsCreateRawPeginRequest> {
  public:
   ElementsCreateRawPeginRequest() {
     CollectFieldName();
@@ -1284,7 +1284,7 @@ class ElementsCreateRawPeginRequest
    */
   static std::string GetVersionString(  // line separate
       const ElementsCreateRawPeginRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.version_);
+    return cfd::core::ConvertToString(obj.version_);
   }
   /**
    * @brief version フィールドへのJSON情報設定処理
@@ -1294,7 +1294,7 @@ class ElementsCreateRawPeginRequest
   static void SetVersionString(  // line separate
       ElementsCreateRawPeginRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.version_, json_value);
   }
 
@@ -1327,7 +1327,7 @@ class ElementsCreateRawPeginRequest
    */
   static std::string GetLocktimeString(  // line separate
       const ElementsCreateRawPeginRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.locktime_);
+    return cfd::core::ConvertToString(obj.locktime_);
   }
   /**
    * @brief locktime フィールドへのJSON情報設定処理
@@ -1337,7 +1337,7 @@ class ElementsCreateRawPeginRequest
   static void SetLocktimeString(  // line separate
       ElementsCreateRawPeginRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.locktime_, json_value);
   }
 
@@ -1539,12 +1539,12 @@ class ElementsCreateRawPeginRequest
    * @brief Mapテーブルの型名定義
    */
   using ElementsCreateRawPeginRequestMapTable =
-    cfdcore::JsonTableMap<ElementsCreateRawPeginRequest>;
+    cfd::core::JsonTableMap<ElementsCreateRawPeginRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreateRawPeginRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1553,7 +1553,7 @@ class ElementsCreateRawPeginRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1562,7 +1562,7 @@ class ElementsCreateRawPeginRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1615,7 +1615,7 @@ class ElementsCreateRawPeginRequest
  * @brief JSON-API（ElementsCreateRawPeginResponse）クラス
  */
 class ElementsCreateRawPeginResponse
-  : public cfdcore::JsonClassBase<ElementsCreateRawPeginResponse> {
+  : public cfd::core::JsonClassBase<ElementsCreateRawPeginResponse> {
  public:
   ElementsCreateRawPeginResponse() {
     CollectFieldName();
@@ -1657,7 +1657,7 @@ class ElementsCreateRawPeginResponse
    */
   static std::string GetHexString(  // line separate
       const ElementsCreateRawPeginResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -1667,7 +1667,7 @@ class ElementsCreateRawPeginResponse
   static void SetHexString(  // line separate
       ElementsCreateRawPeginResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -1697,12 +1697,12 @@ class ElementsCreateRawPeginResponse
    * @brief Mapテーブルの型名定義
    */
   using ElementsCreateRawPeginResponseMapTable =
-    cfdcore::JsonTableMap<ElementsCreateRawPeginResponse>;
+    cfd::core::JsonTableMap<ElementsCreateRawPeginResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreateRawPeginResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1711,7 +1711,7 @@ class ElementsCreateRawPeginResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1720,7 +1720,7 @@ class ElementsCreateRawPeginResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;

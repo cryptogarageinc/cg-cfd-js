@@ -13,17 +13,17 @@
 namespace cfd {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // WitnessStackData
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<WitnessStackData>
+cfd::core::JsonTableMap<WitnessStackData>
   WitnessStackData::json_mapper;
 std::vector<std::string> WitnessStackData::item_list;
 
@@ -31,7 +31,7 @@ void WitnessStackData::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<WitnessStackData> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<WitnessStackData> func_table;  // NOLINT
 
   func_table = {
     WitnessStackData::GetIndexString,
@@ -103,7 +103,7 @@ WitnessStackDataStruct WitnessStackData::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // UpdateWitnessStackTxInRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<UpdateWitnessStackTxInRequest>
+cfd::core::JsonTableMap<UpdateWitnessStackTxInRequest>
   UpdateWitnessStackTxInRequest::json_mapper;
 std::vector<std::string> UpdateWitnessStackTxInRequest::item_list;
 
@@ -111,7 +111,7 @@ void UpdateWitnessStackTxInRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<UpdateWitnessStackTxInRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<UpdateWitnessStackTxInRequest> func_table;  // NOLINT
 
   func_table = {
     UpdateWitnessStackTxInRequest::GetTxidString,
@@ -156,7 +156,7 @@ UpdateWitnessStackTxInRequestStruct UpdateWitnessStackTxInRequest::ConvertToStru
 // ------------------------------------------------------------------------
 // UpdateWitnessStackRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<UpdateWitnessStackRequest>
+cfd::core::JsonTableMap<UpdateWitnessStackRequest>
   UpdateWitnessStackRequest::json_mapper;
 std::vector<std::string> UpdateWitnessStackRequest::item_list;
 
@@ -164,7 +164,7 @@ void UpdateWitnessStackRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<UpdateWitnessStackRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<UpdateWitnessStackRequest> func_table;  // NOLINT
 
   func_table = {
     UpdateWitnessStackRequest::GetTxString,
@@ -209,7 +209,7 @@ UpdateWitnessStackRequestStruct UpdateWitnessStackRequest::ConvertToStruct() con
 // ------------------------------------------------------------------------
 // UpdateWitnessStackResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<UpdateWitnessStackResponse>
+cfd::core::JsonTableMap<UpdateWitnessStackResponse>
   UpdateWitnessStackResponse::json_mapper;
 std::vector<std::string> UpdateWitnessStackResponse::item_list;
 
@@ -217,7 +217,7 @@ void UpdateWitnessStackResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<UpdateWitnessStackResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<UpdateWitnessStackResponse> func_table;  // NOLINT
 
   func_table = {
     UpdateWitnessStackResponse::GetHexString,

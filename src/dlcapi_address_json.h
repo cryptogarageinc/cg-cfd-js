@@ -18,10 +18,10 @@
 namespace dlc {
 namespace api {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +32,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（CombineKeysRequest）クラス
  */
 class CombineKeysRequest
-  : public cfdcore::JsonClassBase<CombineKeysRequest> {
+  : public cfd::core::JsonClassBase<CombineKeysRequest> {
  public:
   CombineKeysRequest() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class CombineKeysRequest
    */
   static std::string GetPubkeyString(  // line separate
       const CombineKeysRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.pubkey_);
+    return cfd::core::ConvertToString(obj.pubkey_);
   }
   /**
    * @brief pubkey フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class CombineKeysRequest
   static void SetPubkeyString(  // line separate
       CombineKeysRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.pubkey_, json_value);
   }
 
@@ -117,7 +117,7 @@ class CombineKeysRequest
    */
   static std::string GetCommitmentKeyString(  // line separate
       const CombineKeysRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.commitment_key_);
+    return cfd::core::ConvertToString(obj.commitment_key_);
   }
   /**
    * @brief commitmentKey フィールドへのJSON情報設定処理
@@ -127,7 +127,7 @@ class CombineKeysRequest
   static void SetCommitmentKeyString(  // line separate
       CombineKeysRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.commitment_key_, json_value);
   }
 
@@ -157,12 +157,12 @@ class CombineKeysRequest
    * @brief Mapテーブルの型名定義
    */
   using CombineKeysRequestMapTable =
-    cfdcore::JsonTableMap<CombineKeysRequest>;
+    cfd::core::JsonTableMap<CombineKeysRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CombineKeysRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -171,7 +171,7 @@ class CombineKeysRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -180,7 +180,7 @@ class CombineKeysRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -217,7 +217,7 @@ class CombineKeysRequest
  * @brief JSON-API（CreateCETxAddressRequest）クラス
  */
 class CreateCETxAddressRequest
-  : public cfdcore::JsonClassBase<CreateCETxAddressRequest> {
+  : public cfd::core::JsonClassBase<CreateCETxAddressRequest> {
  public:
   CreateCETxAddressRequest() {
     CollectFieldName();
@@ -259,7 +259,7 @@ class CreateCETxAddressRequest
    */
   static std::string GetNetworkString(  // line separate
       const CreateCETxAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.network_);
+    return cfd::core::ConvertToString(obj.network_);
   }
   /**
    * @brief network フィールドへのJSON情報設定処理
@@ -269,7 +269,7 @@ class CreateCETxAddressRequest
   static void SetNetworkString(  // line separate
       CreateCETxAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.network_, json_value);
   }
 
@@ -345,7 +345,7 @@ class CreateCETxAddressRequest
    */
   static std::string GetCounterPartyPubkeyString(  // line separate
       const CreateCETxAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.counter_party_pubkey_);
+    return cfd::core::ConvertToString(obj.counter_party_pubkey_);
   }
   /**
    * @brief counterPartyPubkey フィールドへのJSON情報設定処理
@@ -355,7 +355,7 @@ class CreateCETxAddressRequest
   static void SetCounterPartyPubkeyString(  // line separate
       CreateCETxAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.counter_party_pubkey_, json_value);
   }
 
@@ -388,7 +388,7 @@ class CreateCETxAddressRequest
    */
   static std::string GetDelayString(  // line separate
       const CreateCETxAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.delay_);
+    return cfd::core::ConvertToString(obj.delay_);
   }
   /**
    * @brief delay フィールドへのJSON情報設定処理
@@ -398,7 +398,7 @@ class CreateCETxAddressRequest
   static void SetDelayString(  // line separate
       CreateCETxAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.delay_, json_value);
   }
 
@@ -428,12 +428,12 @@ class CreateCETxAddressRequest
    * @brief Mapテーブルの型名定義
    */
   using CreateCETxAddressRequestMapTable =
-    cfdcore::JsonTableMap<CreateCETxAddressRequest>;
+    cfd::core::JsonTableMap<CreateCETxAddressRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateCETxAddressRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -442,7 +442,7 @@ class CreateCETxAddressRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -451,7 +451,7 @@ class CreateCETxAddressRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -496,7 +496,7 @@ class CreateCETxAddressRequest
  * @brief JSON-API（CreateCETxAddressResponse）クラス
  */
 class CreateCETxAddressResponse
-  : public cfdcore::JsonClassBase<CreateCETxAddressResponse> {
+  : public cfd::core::JsonClassBase<CreateCETxAddressResponse> {
  public:
   CreateCETxAddressResponse() {
     CollectFieldName();
@@ -538,7 +538,7 @@ class CreateCETxAddressResponse
    */
   static std::string GetAddressString(  // line separate
       const CreateCETxAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.address_);
+    return cfd::core::ConvertToString(obj.address_);
   }
   /**
    * @brief address フィールドへのJSON情報設定処理
@@ -548,7 +548,7 @@ class CreateCETxAddressResponse
   static void SetAddressString(  // line separate
       CreateCETxAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.address_, json_value);
   }
 
@@ -581,7 +581,7 @@ class CreateCETxAddressResponse
    */
   static std::string GetRedeemScriptString(  // line separate
       const CreateCETxAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.redeem_script_);
+    return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
    * @brief redeemScript フィールドへのJSON情報設定処理
@@ -591,7 +591,7 @@ class CreateCETxAddressResponse
   static void SetRedeemScriptString(  // line separate
       CreateCETxAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.redeem_script_, json_value);
   }
 
@@ -624,7 +624,7 @@ class CreateCETxAddressResponse
    */
   static std::string GetCombinedPubkeyString(  // line separate
       const CreateCETxAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.combined_pubkey_);
+    return cfd::core::ConvertToString(obj.combined_pubkey_);
   }
   /**
    * @brief combinedPubkey フィールドへのJSON情報設定処理
@@ -634,7 +634,7 @@ class CreateCETxAddressResponse
   static void SetCombinedPubkeyString(  // line separate
       CreateCETxAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.combined_pubkey_, json_value);
   }
 
@@ -664,12 +664,12 @@ class CreateCETxAddressResponse
    * @brief Mapテーブルの型名定義
    */
   using CreateCETxAddressResponseMapTable =
-    cfdcore::JsonTableMap<CreateCETxAddressResponse>;
+    cfd::core::JsonTableMap<CreateCETxAddressResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateCETxAddressResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -678,7 +678,7 @@ class CreateCETxAddressResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -687,7 +687,7 @@ class CreateCETxAddressResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
