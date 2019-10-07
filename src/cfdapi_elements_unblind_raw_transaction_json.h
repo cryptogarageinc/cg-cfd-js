@@ -32,7 +32,7 @@ using cfd::core::JsonVector;
  * @brief JSON-API（UnblindTxOut）クラス
  */
 class UnblindTxOut
-  : public cfdcore::JsonClassBase<UnblindTxOut> {
+  : public cfd::core::JsonClassBase<UnblindTxOut> {
  public:
   UnblindTxOut() {
     CollectFieldName();
@@ -74,7 +74,7 @@ class UnblindTxOut
    */
   static std::string GetIndexString(  // line separate
       const UnblindTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.index_);
+    return cfd::core::ConvertToString(obj.index_);
   }
   /**
    * @brief index フィールドへのJSON情報設定処理
@@ -84,7 +84,7 @@ class UnblindTxOut
   static void SetIndexString(  // line separate
       UnblindTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.index_, json_value);
   }
 
@@ -117,7 +117,7 @@ class UnblindTxOut
    */
   static std::string GetBlindingKeyString(  // line separate
       const UnblindTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.blinding_key_);
+    return cfd::core::ConvertToString(obj.blinding_key_);
   }
   /**
    * @brief blindingKey フィールドへのJSON情報設定処理
@@ -127,7 +127,7 @@ class UnblindTxOut
   static void SetBlindingKeyString(  // line separate
       UnblindTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.blinding_key_, json_value);
   }
 
@@ -157,12 +157,12 @@ class UnblindTxOut
    * @brief Mapテーブルの型名定義
    */
   using UnblindTxOutMapTable =
-    cfdcore::JsonTableMap<UnblindTxOut>;
+    cfd::core::JsonTableMap<UnblindTxOut>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const UnblindTxOutMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -171,7 +171,7 @@ class UnblindTxOut
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -180,7 +180,7 @@ class UnblindTxOut
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -770,7 +770,7 @@ class UnblindOutput
    */
   static std::string GetIndexString(  // line separate
       const UnblindOutput& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.index_);
+    return cfd::core::ConvertToString(obj.index_);
   }
   /**
    * @brief index フィールドへのJSON情報設定処理
@@ -780,7 +780,7 @@ class UnblindOutput
   static void SetIndexString(  // line separate
       UnblindOutput& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.index_, json_value);
   }
 

@@ -23,7 +23,7 @@ using cfd::core::JsonVector;
 // ------------------------------------------------------------------------
 // UnblindTxOut
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<UnblindTxOut>
+cfd::core::JsonTableMap<UnblindTxOut>
   UnblindTxOut::json_mapper;
 std::vector<std::string> UnblindTxOut::item_list;
 
@@ -31,7 +31,7 @@ void UnblindTxOut::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<UnblindTxOut> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<UnblindTxOut> func_table;  // NOLINT
 
   func_table = {
     UnblindTxOut::GetIndexString,

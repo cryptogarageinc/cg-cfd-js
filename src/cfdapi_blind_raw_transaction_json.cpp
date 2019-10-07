@@ -103,7 +103,7 @@ BlindTxInRequestStruct BlindTxInRequest::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // BlindTxOutRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<BlindTxOutRequest>
+cfd::core::JsonTableMap<BlindTxOutRequest>
   BlindTxOutRequest::json_mapper;
 std::vector<std::string> BlindTxOutRequest::item_list;
 
@@ -111,7 +111,7 @@ void BlindTxOutRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<BlindTxOutRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<BlindTxOutRequest> func_table;  // NOLINT
 
   func_table = {
     BlindTxOutRequest::GetIndexString,

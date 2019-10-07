@@ -1499,7 +1499,7 @@ class ElementsCreateRawPeginRequest
    */
   static std::string GetIsRandomSortTxOutString(  // line separate
       const ElementsCreateRawPeginRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_random_sort_tx_out_);
+    return cfd::core::ConvertToString(obj.is_random_sort_tx_out_);
   }
   /**
    * @brief isRandomSortTxOut フィールドへのJSON情報設定処理
@@ -1509,7 +1509,7 @@ class ElementsCreateRawPeginRequest
   static void SetIsRandomSortTxOutString(  // line separate
       ElementsCreateRawPeginRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_random_sort_tx_out_, json_value);
   }
 
