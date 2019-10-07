@@ -11,8 +11,8 @@
 #include "cfd/cfdapi_address.h"
 #include "cfd/cfdapi_elements_address.h"
 #include "cfd/cfdapi_elements_transaction.h"
+#include "cfd/cfdapi_hdwallet.h"
 #include "cfd/cfdapi_key.h"
-#include "cfd/cfdapi_sighash.h"
 #include "cfd/cfdapi_transaction.h"
 #include "cfd/cfdapi_utility.h"
 #include "cfd/dlcapi_address.h"
@@ -21,9 +21,12 @@
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
 #include "cfdapi_blind_raw_transaction_json.h"              // NOLINT
+#include "cfdapi_convert_entropy_to_mnemonic_json.h"        // NOLINT
+#include "cfdapi_convert_mnemonic_to_seed_json.h"           // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
 #include "cfdapi_decode_transaction_json.h"                 // NOLINT
+#include "cfdapi_elements_create_destroy_amount_json.h"     // NOLINT
 #include "cfdapi_elements_create_pegin_address_json.h"      // NOLINT
 #include "cfdapi_elements_create_raw_pegin_json.h"          // NOLINT
 #include "cfdapi_elements_create_raw_pegout_json.h"         // NOLINT
@@ -37,6 +40,7 @@
 #include "cfdapi_error_base_json.h"                         // NOLINT
 #include "cfdapi_error_json.h"                              // NOLINT
 #include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
+#include "cfdapi_get_mnemonic_wordlist_json.h"              // NOLINT
 #include "cfdapi_get_witness_num_json.h"                    // NOLINT
 #include "cfdapi_multisig_address_json.h"                   // NOLINT
 #include "cfdapi_sighash_elements_json.h"                   // NOLINT
@@ -49,8 +53,8 @@
 
 // using
 using cfd::api::AddressApi;
+using cfd::api::HDWalletStructApi;
 using cfd::api::KeyApi;
-using cfd::api::SigHashApi;
 using cfd::api::TransactionApi;
 using cfd::api::UtilApi;
 using dlc::api::DlcAddressApi;
@@ -291,6 +295,21 @@ Value DecodeRawTransaction(const CallbackInfo &information) {
       information, TransactionApi::DecodeRawTransaction);
 }
 
+Value ConvertEntropyToMnemonic(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      ConvertEntropyToMnemonicRequest, ConvertEntropyToMnemonicResponse,
+      ConvertEntropyToMnemonicRequestStruct,
+      ConvertEntropyToMnemonicResponseStruct>(
+      information, HDWalletStructApi::ConvertEntropyToMnemonic);
+}
+
+Value ConvertMnemonicToSeed(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      ConvertMnemonicToSeedRequest, ConvertMnemonicToSeedResponse,
+      ConvertMnemonicToSeedRequestStruct, ConvertMnemonicToSeedResponseStruct>(
+      information, HDWalletStructApi::ConvertMnemonicToSeed);
+}
+
 Value CreateAddress(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       CreateAddressRequest, CreateAddressResponse, CreateAddressRequestStruct,
@@ -311,7 +330,14 @@ Value CreateSignatureHash(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       CreateSignatureHashRequest, CreateSignatureHashResponse,
       CreateSignatureHashRequestStruct, CreateSignatureHashResponseStruct>(
-      information, SigHashApi::CreateSignatureHash);
+      information, TransactionApi::CreateSignatureHash);
+}
+
+Value GetMnemonicWordlist(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      GetMnemonicWordlistRequest, GetMnemonicWordlistResponse,
+      GetMnemonicWordlistRequestStruct, GetMnemonicWordlistResponseStruct>(
+      information, HDWalletStructApi::GetMnemonicWordlist);
 }
 
 Value CreateKeyPair(const CallbackInfo &information) {
@@ -455,6 +481,13 @@ Value GetIssuanceBlindingKey(const CallbackInfo &information) {
       information, ElementsTransactionApi::GetIssuanceBlindingKey);
 }
 
+Value CreateDestroyAmount(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      ElementsCreateDestroyAmountRequest, ElementsCreateDestroyAmountResponse,
+      ElementsCreateDestroyAmountRequestStruct,
+      ElementsCreateDestroyAmountResponseStruct>(
+      information, ElementsTransactionApi::CreateDestroyAmountTransaction);
+}
 #endif  // CFD_DISABLE_ELEMENTS
 
 }  // namespace api
@@ -491,6 +524,12 @@ Object Init(Env env, Object exports) {
       String::New(env, "DecodeRawTransaction"),
       Function::New(env, cfd::api::DecodeRawTransaction));
   exports.Set(
+      String::New(env, "ConvertEntropyToMnemonic"),
+      Function::New(env, cfd::api::ConvertEntropyToMnemonic));
+  exports.Set(
+      String::New(env, "ConvertMnemonicToSeed"),
+      Function::New(env, cfd::api::ConvertMnemonicToSeed));
+  exports.Set(
       String::New(env, "CreateAddress"),
       Function::New(env, cfd::api::CreateAddress));
   exports.Set(
@@ -510,6 +549,9 @@ Object Init(Env env, Object exports) {
   exports.Set(
       String::New(env, "AddMultisigSign"),
       Function::New(env, cfd::api::AddMultisigSign));
+  exports.Set(
+      String::New(env, "GetMnemonicWordlist"),
+      Function::New(env, cfd::api::GetMnemonicWordlist));
   exports.Set(
       String::New(env, "CreateKeyPair"),
       Function::New(env, cfd::api::CreateKeyPair));
@@ -553,6 +595,9 @@ Object Init(Env env, Object exports) {
   exports.Set(
       String::New(env, "GetIssuanceBlindingKey"),
       Function::New(env, cfd::api::GetIssuanceBlindingKey));
+  exports.Set(
+      String::New(env, "CreateDestroyAmount"),
+      Function::New(env, cfd::api::CreateDestroyAmount));
 #endif  // CFD_DISABLE_ELEMENTS
   exports.Set(
       String::New(env, "CreateCETxAddress"),

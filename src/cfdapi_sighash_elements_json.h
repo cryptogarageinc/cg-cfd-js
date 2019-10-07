@@ -26,18 +26,18 @@ using cfdcore::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------
-// CreateElementsSignatureHashRequest
+// ElementsSignatureHashKeyData
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CreateElementsSignatureHashRequest）クラス
+ * @brief JSON-API（ElementsSignatureHashKeyData）クラス
  */
-class CreateElementsSignatureHashRequest
-  : public cfdcore::JsonClassBase<CreateElementsSignatureHashRequest> {
+class ElementsSignatureHashKeyData
+  : public cfdcore::JsonClassBase<ElementsSignatureHashKeyData> {
  public:
-  CreateElementsSignatureHashRequest() {
+  ElementsSignatureHashKeyData() {
     CollectFieldName();
   }
-  virtual ~CreateElementsSignatureHashRequest() {
+  virtual ~ElementsSignatureHashKeyData() {
     // do nothing
   }
   /**
@@ -46,218 +46,317 @@ class CreateElementsSignatureHashRequest
   static void CollectFieldName();
 
   /**
-   * @brief txHex 取得処理
-   * @return txHex
+   * @brief hex 取得処理
+   * @return hex
    */
-  std::string GetTxHex() {
-    return tx_hex_;
+  std::string GetHex() {
+    return hex_;
   }
   /**
-   * @brief txHex 設定処理
-   * @param[in] tx_hex    設定値
+   * @brief hex 設定処理
+   * @param[in] hex    設定値
    */
-  void SetTxHex(  // line separate
-    const std::string& tx_hex) {  // NOLINT
-    this->tx_hex_ = tx_hex;
+  void SetHex(  // line separate
+    const std::string& hex) {  // NOLINT
+    this->hex_ = hex;
   }
   /**
-   * @brief txHex データ型の取得処理
-   * @return txHexのデータ型
+   * @brief hex データ型の取得処理
+   * @return hexのデータ型
    */
-  static std::string GetTxHexFieldType() {
+  static std::string GetHexFieldType() {
     return "std::string";
   }
   /**
-   * @brief txHex フィールドのJSON文字列取得処理
+   * @brief hex フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxHexString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_hex_);
+  static std::string GetHexString(  // line separate
+      const ElementsSignatureHashKeyData& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.hex_);
   }
   /**
-   * @brief txHex フィールドへのJSON情報設定処理
+   * @brief hex フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxHexString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
+  static void SetHexString(  // line separate
+      ElementsSignatureHashKeyData& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.tx_hex_, json_value);
+      obj.hex_, json_value);
   }
 
   /**
-   * @brief txinTxid 取得処理
-   * @return txinTxid
+   * @brief type 取得処理
+   * @return type
    */
-  std::string GetTxinTxid() {
-    return txin_txid_;
+  std::string GetType() {
+    return type_;
   }
   /**
-   * @brief txinTxid 設定処理
-   * @param[in] txin_txid    設定値
+   * @brief type 設定処理
+   * @param[in] type    設定値
    */
-  void SetTxinTxid(  // line separate
-    const std::string& txin_txid) {  // NOLINT
-    this->txin_txid_ = txin_txid;
+  void SetType(  // line separate
+    const std::string& type) {  // NOLINT
+    this->type_ = type;
   }
   /**
-   * @brief txinTxid データ型の取得処理
-   * @return txinTxidのデータ型
+   * @brief type データ型の取得処理
+   * @return typeのデータ型
    */
-  static std::string GetTxinTxidFieldType() {
+  static std::string GetTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief txinTxid フィールドのJSON文字列取得処理
+   * @brief type フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxinTxidString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_txid_);
+  static std::string GetTypeString(  // line separate
+      const ElementsSignatureHashKeyData& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.type_);
   }
   /**
-   * @brief txinTxid フィールドへのJSON情報設定処理
+   * @brief type フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxinTxidString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
+  static void SetTypeString(  // line separate
+      ElementsSignatureHashKeyData& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_txid_, json_value);
+      obj.type_, json_value);
   }
 
   /**
-   * @brief txinVout 取得処理
-   * @return txinVout
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
    */
-  uint32_t GetTxinVout() {
-    return txin_vout_;
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void ConvertFromStruct(
+      const ElementsSignatureHashKeyDataStruct& data);
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  ElementsSignatureHashKeyDataStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief Mapテーブルの型名定義
+   */
+  using ElementsSignatureHashKeyDataMapTable =
+    cfdcore::JsonTableMap<ElementsSignatureHashKeyData>;
+
+  /**
+   * @brief JSONマッピングオブジェクトを取得する。
+   * @return JSONマッピングオブジェクト
+   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   */
+  virtual const ElementsSignatureHashKeyDataMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
   }
   /**
-   * @brief txinVout 設定処理
-   * @param[in] txin_vout    設定値
+   * @brief JSONマッピングのアイテム一覧を取得する。
+   * 対象の変数名を、定義順序に従い一覧取得する。
+   * @return JSONマッピングのアイテム一覧
+   * @see cfdcore::JsonClassBase::GetJsonItemList()
    */
-  void SetTxinVout(  // line separate
-    const uint32_t& txin_vout) {  // NOLINT
-    this->txin_vout_ = txin_vout;
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
   }
   /**
-   * @brief txinVout データ型の取得処理
-   * @return txinVoutのデータ型
+   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
+   * Serialize時に対象の変数を無視する。
+   * @return JSONマッピング時に無視するアイテム一覧
+   * @see cfdcore::JsonClassBase::GetIgnoreItem()
    */
-  static std::string GetTxinVoutFieldType() {
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMapテーブル
+  */
+  static ElementsSignatureHashKeyDataMapTable json_mapper;
+  /**
+   * @brief フィールド名リスト
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief 無視リスト
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(hex) のvalue
+   */
+  std::string hex_ = "";
+  /**
+   * @brief JsonAPI(type) のvalue
+   */
+  std::string type_ = "pubkey";
+};
+
+// ------------------------------------------------------------------------
+// CreateElementsSignatureHashTxInRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API（CreateElementsSignatureHashTxInRequest）クラス
+ */
+class CreateElementsSignatureHashTxInRequest
+  : public cfdcore::JsonClassBase<CreateElementsSignatureHashTxInRequest> {
+ public:
+  CreateElementsSignatureHashTxInRequest() {
+    CollectFieldName();
+  }
+  virtual ~CreateElementsSignatureHashTxInRequest() {
+    // do nothing
+  }
+  /**
+   * @brief フィールド名を収集する.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief txid 取得処理
+   * @return txid
+   */
+  std::string GetTxid() {
+    return txid_;
+  }
+  /**
+   * @brief txid 設定処理
+   * @param[in] txid    設定値
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief txid データ型の取得処理
+   * @return txidのデータ型
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief txid フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTxidString(  // line separate
+      const CreateElementsSignatureHashTxInRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief txid フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTxidString(  // line separate
+      CreateElementsSignatureHashTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief vout 取得処理
+   * @return vout
+   */
+  uint32_t GetVout() {
+    return vout_;
+  }
+  /**
+   * @brief vout 設定処理
+   * @param[in] vout    設定値
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief vout データ型の取得処理
+   * @return voutのデータ型
+   */
+  static std::string GetVoutFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief txinVout フィールドのJSON文字列取得処理
+   * @brief vout フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxinVoutString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_vout_);
+  static std::string GetVoutString(  // line separate
+      const CreateElementsSignatureHashTxInRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.vout_);
   }
   /**
-   * @brief txinVout フィールドへのJSON情報設定処理
+   * @brief vout フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxinVoutString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
+  static void SetVoutString(  // line separate
+      CreateElementsSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_vout_, json_value);
+      obj.vout_, json_value);
   }
 
   /**
-   * @brief scriptHex 取得処理
-   * @return scriptHex
+   * @brief keyData 取得処理
+   * @return keyData
    */
-  std::string GetScriptHex() {
-    return script_hex_;
+  ElementsSignatureHashKeyData& GetKeyData() {  // NOLINT
+    return key_data_;
   }
   /**
-   * @brief scriptHex 設定処理
-   * @param[in] script_hex    設定値
+   * @brief keyData 設定処理
+   * @param[in] key_data    設定値
    */
-  void SetScriptHex(  // line separate
-    const std::string& script_hex) {  // NOLINT
-    this->script_hex_ = script_hex;
+  void SetKeyData(  // line separate
+      const ElementsSignatureHashKeyData& key_data) {  // NOLINT
+    this->key_data_ = key_data;
   }
   /**
-   * @brief scriptHex データ型の取得処理
-   * @return scriptHexのデータ型
+   * @brief keyData データ型の取得処理
+   * @return keyDataのデータ型
    */
-  static std::string GetScriptHexFieldType() {
-    return "std::string";
+  static std::string GetKeyDataFieldType() {
+    return "ElementsSignatureHashKeyData";  // NOLINT
   }
   /**
-   * @brief scriptHex フィールドのJSON文字列取得処理
+   * @brief keyData フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetScriptHexString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.script_hex_);
+  static std::string GetKeyDataString(  // line separate
+      const CreateElementsSignatureHashTxInRequest& obj) {  // NOLINT
+    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    return obj.key_data_.Serialize();
   }
   /**
-   * @brief scriptHex フィールドへのJSON情報設定処理
+   * @brief keyData フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetScriptHexString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
+  static void SetKeyDataString(  // line separate
+      CreateElementsSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
-      obj.script_hex_, json_value);
-  }
-
-  /**
-   * @brief pubkeyHex 取得処理
-   * @return pubkeyHex
-   */
-  std::string GetPubkeyHex() {
-    return pubkey_hex_;
-  }
-  /**
-   * @brief pubkeyHex 設定処理
-   * @param[in] pubkey_hex    設定値
-   */
-  void SetPubkeyHex(  // line separate
-    const std::string& pubkey_hex) {  // NOLINT
-    this->pubkey_hex_ = pubkey_hex;
-  }
-  /**
-   * @brief pubkeyHex データ型の取得処理
-   * @return pubkeyHexのデータ型
-   */
-  static std::string GetPubkeyHexFieldType() {
-    return "std::string";
-  }
-  /**
-   * @brief pubkeyHex フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
-   */
-  static std::string GetPubkeyHexString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.pubkey_hex_);
-  }
-  /**
-   * @brief pubkeyHex フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
-   */
-  static void SetPubkeyHexString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
-      obj.pubkey_hex_, json_value);
+    obj.key_data_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -288,7 +387,7 @@ class CreateElementsSignatureHashRequest
    * @return JSON文字列
    */
   static std::string GetAmountString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
+      const CreateElementsSignatureHashTxInRequest& obj) {  // NOLINT
     return cfdcore::ConvertToString(obj.amount_);
   }
   /**
@@ -297,53 +396,53 @@ class CreateElementsSignatureHashRequest
    * @param[in] json_value  JSON情報
    */
   static void SetAmountString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
+      CreateElementsSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
   /**
-   * @brief confidentialValueHex 取得処理
-   * @return confidentialValueHex
+   * @brief confidentialValueCommitment 取得処理
+   * @return confidentialValueCommitment
    */
-  std::string GetConfidentialValueHex() {
-    return confidential_value_hex_;
+  std::string GetConfidentialValueCommitment() {
+    return confidential_value_commitment_;
   }
   /**
-   * @brief confidentialValueHex 設定処理
-   * @param[in] confidential_value_hex    設定値
+   * @brief confidentialValueCommitment 設定処理
+   * @param[in] confidential_value_commitment    設定値
    */
-  void SetConfidentialValueHex(  // line separate
-    const std::string& confidential_value_hex) {  // NOLINT
-    this->confidential_value_hex_ = confidential_value_hex;
+  void SetConfidentialValueCommitment(  // line separate
+    const std::string& confidential_value_commitment) {  // NOLINT
+    this->confidential_value_commitment_ = confidential_value_commitment;
   }
   /**
-   * @brief confidentialValueHex データ型の取得処理
-   * @return confidentialValueHexのデータ型
+   * @brief confidentialValueCommitment データ型の取得処理
+   * @return confidentialValueCommitmentのデータ型
    */
-  static std::string GetConfidentialValueHexFieldType() {
+  static std::string GetConfidentialValueCommitmentFieldType() {
     return "std::string";
   }
   /**
-   * @brief confidentialValueHex フィールドのJSON文字列取得処理
+   * @brief confidentialValueCommitment フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetConfidentialValueHexString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.confidential_value_hex_);
+  static std::string GetConfidentialValueCommitmentString(  // line separate
+      const CreateElementsSignatureHashTxInRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.confidential_value_commitment_);
   }
   /**
-   * @brief confidentialValueHex フィールドへのJSON情報設定処理
+   * @brief confidentialValueCommitment フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetConfidentialValueHexString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
+  static void SetConfidentialValueCommitmentString(  // line separate
+      CreateElementsSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.confidential_value_hex_, json_value);
+      obj.confidential_value_commitment_, json_value);
   }
 
   /**
@@ -374,7 +473,7 @@ class CreateElementsSignatureHashRequest
    * @return JSON文字列
    */
   static std::string GetHashTypeString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
+      const CreateElementsSignatureHashTxInRequest& obj) {  // NOLINT
     return cfdcore::ConvertToString(obj.hash_type_);
   }
   /**
@@ -383,7 +482,7 @@ class CreateElementsSignatureHashRequest
    * @param[in] json_value  JSON情報
    */
   static void SetHashTypeString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
+      CreateElementsSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
       obj.hash_type_, json_value);
@@ -417,7 +516,7 @@ class CreateElementsSignatureHashRequest
    * @return JSON文字列
    */
   static std::string GetSighashTypeString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
+      const CreateElementsSignatureHashTxInRequest& obj) {  // NOLINT
     return cfdcore::ConvertToString(obj.sighash_type_);
   }
   /**
@@ -426,7 +525,7 @@ class CreateElementsSignatureHashRequest
    * @param[in] json_value  JSON情報
    */
   static void SetSighashTypeString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
+      CreateElementsSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
       obj.sighash_type_, json_value);
@@ -460,7 +559,7 @@ class CreateElementsSignatureHashRequest
    * @return JSON文字列
    */
   static std::string GetSighashAnyoneCanPayString(  // line separate
-      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
+      const CreateElementsSignatureHashTxInRequest& obj) {  // NOLINT
     return cfdcore::ConvertToString(obj.sighash_anyone_can_pay_);
   }
   /**
@@ -469,10 +568,219 @@ class CreateElementsSignatureHashRequest
    * @param[in] json_value  JSON情報
    */
   static void SetSighashAnyoneCanPayString(  // line separate
-      CreateElementsSignatureHashRequest& obj,  // NOLINT
+      CreateElementsSignatureHashTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
       obj.sighash_anyone_can_pay_, json_value);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void ConvertFromStruct(
+      const CreateElementsSignatureHashTxInRequestStruct& data);
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  CreateElementsSignatureHashTxInRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief Mapテーブルの型名定義
+   */
+  using CreateElementsSignatureHashTxInRequestMapTable =
+    cfdcore::JsonTableMap<CreateElementsSignatureHashTxInRequest>;
+
+  /**
+   * @brief JSONマッピングオブジェクトを取得する。
+   * @return JSONマッピングオブジェクト
+   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   */
+  virtual const CreateElementsSignatureHashTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief JSONマッピングのアイテム一覧を取得する。
+   * 対象の変数名を、定義順序に従い一覧取得する。
+   * @return JSONマッピングのアイテム一覧
+   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
+   * Serialize時に対象の変数を無視する。
+   * @return JSONマッピング時に無視するアイテム一覧
+   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMapテーブル
+  */
+  static CreateElementsSignatureHashTxInRequestMapTable json_mapper;
+  /**
+   * @brief フィールド名リスト
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief 無視リスト
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) のvalue
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) のvalue
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(keyData) のvalue
+   */
+  ElementsSignatureHashKeyData key_data_;  // NOLINT
+  /**
+   * @brief JsonAPI(amount) のvalue
+   */
+  int64_t amount_ = 0;
+  /**
+   * @brief JsonAPI(confidentialValueCommitment) のvalue
+   */
+  std::string confidential_value_commitment_ = "";
+  /**
+   * @brief JsonAPI(hashType) のvalue
+   */
+  std::string hash_type_ = "p2wsh";
+  /**
+   * @brief JsonAPI(sighashType) のvalue
+   */
+  std::string sighash_type_ = "all";
+  /**
+   * @brief JsonAPI(sighashAnyoneCanPay) のvalue
+   */
+  bool sighash_anyone_can_pay_ = false;
+};
+
+// ------------------------------------------------------------------------
+// CreateElementsSignatureHashRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API（CreateElementsSignatureHashRequest）クラス
+ */
+class CreateElementsSignatureHashRequest
+  : public cfdcore::JsonClassBase<CreateElementsSignatureHashRequest> {
+ public:
+  CreateElementsSignatureHashRequest() {
+    CollectFieldName();
+  }
+  virtual ~CreateElementsSignatureHashRequest() {
+    // do nothing
+  }
+  /**
+   * @brief フィールド名を収集する.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief tx 取得処理
+   * @return tx
+   */
+  std::string GetTx() {
+    return tx_;
+  }
+  /**
+   * @brief tx 設定処理
+   * @param[in] tx    設定値
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief tx データ型の取得処理
+   * @return txのデータ型
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief tx フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTxString(  // line separate
+      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief tx フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTxString(  // line separate
+      CreateElementsSignatureHashRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief txin 取得処理
+   * @return txin
+   */
+  CreateElementsSignatureHashTxInRequest& GetTxin() {  // NOLINT
+    return txin_;
+  }
+  /**
+   * @brief txin 設定処理
+   * @param[in] txin    設定値
+   */
+  void SetTxin(  // line separate
+      const CreateElementsSignatureHashTxInRequest& txin) {  // NOLINT
+    this->txin_ = txin;
+  }
+  /**
+   * @brief txin データ型の取得処理
+   * @return txinのデータ型
+   */
+  static std::string GetTxinFieldType() {
+    return "CreateElementsSignatureHashTxInRequest";  // NOLINT
+  }
+  /**
+   * @brief txin フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTxinString(  // line separate
+      const CreateElementsSignatureHashRequest& obj) {  // NOLINT
+    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    return obj.txin_.Serialize();
+  }
+  /**
+   * @brief txin フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTxinString(  // line separate
+      CreateElementsSignatureHashRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txin_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -545,45 +853,13 @@ class CreateElementsSignatureHashRequest
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txHex) のvalue
+   * @brief JsonAPI(tx) のvalue
    */
-  std::string tx_hex_ = "";
+  std::string tx_ = "";
   /**
-   * @brief JsonAPI(txinTxid) のvalue
+   * @brief JsonAPI(txin) のvalue
    */
-  std::string txin_txid_ = "";
-  /**
-   * @brief JsonAPI(txinVout) のvalue
-   */
-  uint32_t txin_vout_ = 0;
-  /**
-   * @brief JsonAPI(scriptHex) のvalue
-   */
-  std::string script_hex_ = "";
-  /**
-   * @brief JsonAPI(pubkeyHex) のvalue
-   */
-  std::string pubkey_hex_ = "";
-  /**
-   * @brief JsonAPI(amount) のvalue
-   */
-  int64_t amount_ = 0;
-  /**
-   * @brief JsonAPI(confidentialValueHex) のvalue
-   */
-  std::string confidential_value_hex_ = "";
-  /**
-   * @brief JsonAPI(hashType) のvalue
-   */
-  std::string hash_type_ = "p2wsh";
-  /**
-   * @brief JsonAPI(sighashType) のvalue
-   */
-  std::string sighash_type_ = "all";
-  /**
-   * @brief JsonAPI(sighashAnyoneCanPay) のvalue
-   */
-  bool sighash_anyone_can_pay_ = false;
+  CreateElementsSignatureHashTxInRequest txin_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------

@@ -21,6 +21,50 @@ using cfdcore::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------
+// CreateAddressKeyData
+// ------------------------------------------------------------------------
+cfdcore::JsonTableMap<CreateAddressKeyData>
+  CreateAddressKeyData::json_mapper;
+std::vector<std::string> CreateAddressKeyData::item_list;
+
+void CreateAddressKeyData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfdcore::CLASS_FUNCTION_TABLE<CreateAddressKeyData> func_table;  // NOLINT
+
+  func_table = {
+    CreateAddressKeyData::GetHexString,
+    CreateAddressKeyData::SetHexString,
+    CreateAddressKeyData::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+  func_table = {
+    CreateAddressKeyData::GetTypeString,
+    CreateAddressKeyData::SetTypeString,
+    CreateAddressKeyData::GetTypeFieldType,
+  };
+  json_mapper.emplace("type", func_table);
+  item_list.push_back("type");
+}
+
+void CreateAddressKeyData::ConvertFromStruct(
+    const CreateAddressKeyDataStruct& data) {
+  hex_ = data.hex;
+  type_ = data.type;
+  ignore_items = data.ignore_items;
+}
+
+CreateAddressKeyDataStruct CreateAddressKeyData::ConvertToStruct() const {  // NOLINT
+  CreateAddressKeyDataStruct result;
+  result.hex = hex_;
+  result.type = type_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // CreateAddressRequest
 // ------------------------------------------------------------------------
 cfdcore::JsonTableMap<CreateAddressRequest>
@@ -41,19 +85,12 @@ void CreateAddressRequest::CollectFieldName() {
   json_mapper.emplace("isElements", func_table);
   item_list.push_back("isElements");
   func_table = {
-    CreateAddressRequest::GetScriptHexString,
-    CreateAddressRequest::SetScriptHexString,
-    CreateAddressRequest::GetScriptHexFieldType,
+    CreateAddressRequest::GetKeyDataString,
+    CreateAddressRequest::SetKeyDataString,
+    CreateAddressRequest::GetKeyDataFieldType,
   };
-  json_mapper.emplace("scriptHex", func_table);
-  item_list.push_back("scriptHex");
-  func_table = {
-    CreateAddressRequest::GetPubkeyHexString,
-    CreateAddressRequest::SetPubkeyHexString,
-    CreateAddressRequest::GetPubkeyHexFieldType,
-  };
-  json_mapper.emplace("pubkeyHex", func_table);
-  item_list.push_back("pubkeyHex");
+  json_mapper.emplace("keyData", func_table);
+  item_list.push_back("keyData");
   func_table = {
     CreateAddressRequest::GetNetworkString,
     CreateAddressRequest::SetNetworkString,
@@ -73,8 +110,7 @@ void CreateAddressRequest::CollectFieldName() {
 void CreateAddressRequest::ConvertFromStruct(
     const CreateAddressRequestStruct& data) {
   is_elements_ = data.is_elements;
-  script_hex_ = data.script_hex;
-  pubkey_hex_ = data.pubkey_hex;
+  key_data_.ConvertFromStruct(data.key_data);
   network_ = data.network;
   hash_type_ = data.hash_type;
   ignore_items = data.ignore_items;
@@ -83,8 +119,7 @@ void CreateAddressRequest::ConvertFromStruct(
 CreateAddressRequestStruct CreateAddressRequest::ConvertToStruct() const {  // NOLINT
   CreateAddressRequestStruct result;
   result.is_elements = is_elements_;
-  result.script_hex = script_hex_;
-  result.pubkey_hex = pubkey_hex_;
+  result.key_data = key_data_.ConvertToStruct();
   result.network = network_;
   result.hash_type = hash_type_;
   result.ignore_items = ignore_items;

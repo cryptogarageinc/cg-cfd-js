@@ -34,19 +34,19 @@ void ReissuanceDataRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<ReissuanceDataRequest> func_table;  // NOLINT
 
   func_table = {
-    ReissuanceDataRequest::GetTxinTxidString,
-    ReissuanceDataRequest::SetTxinTxidString,
-    ReissuanceDataRequest::GetTxinTxidFieldType,
+    ReissuanceDataRequest::GetTxidString,
+    ReissuanceDataRequest::SetTxidString,
+    ReissuanceDataRequest::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    ReissuanceDataRequest::GetTxinVoutString,
-    ReissuanceDataRequest::SetTxinVoutString,
-    ReissuanceDataRequest::GetTxinVoutFieldType,
+    ReissuanceDataRequest::GetVoutString,
+    ReissuanceDataRequest::SetVoutString,
+    ReissuanceDataRequest::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     ReissuanceDataRequest::GetAmountString,
     ReissuanceDataRequest::SetAmountString,
@@ -86,8 +86,8 @@ void ReissuanceDataRequest::CollectFieldName() {
 
 void ReissuanceDataRequest::ConvertFromStruct(
     const ReissuanceDataRequestStruct& data) {
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   amount_ = data.amount;
   address_ = data.address;
   asset_blinding_nonce_ = data.asset_blinding_nonce;
@@ -98,8 +98,8 @@ void ReissuanceDataRequest::ConvertFromStruct(
 
 ReissuanceDataRequestStruct ReissuanceDataRequest::ConvertToStruct() const {  // NOLINT
   ReissuanceDataRequestStruct result;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.amount = amount_;
   result.address = address_;
   result.asset_blinding_nonce = asset_blinding_nonce_;
@@ -123,12 +123,12 @@ void SetRawReissueAssetRequest::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<SetRawReissueAssetRequest> func_table;  // NOLINT
 
   func_table = {
-    SetRawReissueAssetRequest::GetTxHexString,
-    SetRawReissueAssetRequest::SetTxHexString,
-    SetRawReissueAssetRequest::GetTxHexFieldType,
+    SetRawReissueAssetRequest::GetTxString,
+    SetRawReissueAssetRequest::SetTxString,
+    SetRawReissueAssetRequest::GetTxFieldType,
   };
-  json_mapper.emplace("txHex", func_table);
-  item_list.push_back("txHex");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     SetRawReissueAssetRequest::GetIsRandomizeString,
     SetRawReissueAssetRequest::SetIsRandomizeString,
@@ -147,7 +147,7 @@ void SetRawReissueAssetRequest::CollectFieldName() {
 
 void SetRawReissueAssetRequest::ConvertFromStruct(
     const SetRawReissueAssetRequestStruct& data) {
-  tx_hex_ = data.tx_hex;
+  tx_ = data.tx;
   is_randomize_ = data.is_randomize;
   issuances_.ConvertFromStruct(data.issuances);
   ignore_items = data.ignore_items;
@@ -155,7 +155,7 @@ void SetRawReissueAssetRequest::ConvertFromStruct(
 
 SetRawReissueAssetRequestStruct SetRawReissueAssetRequest::ConvertToStruct() const {  // NOLINT
   SetRawReissueAssetRequestStruct result;
-  result.tx_hex = tx_hex_;
+  result.tx = tx_;
   result.is_randomize = is_randomize_;
   result.issuances = issuances_.ConvertToStruct();
   result.ignore_items = ignore_items;
@@ -176,19 +176,19 @@ void ReissuanceDataResponse::CollectFieldName() {
   cfdcore::CLASS_FUNCTION_TABLE<ReissuanceDataResponse> func_table;  // NOLINT
 
   func_table = {
-    ReissuanceDataResponse::GetTxinTxidString,
-    ReissuanceDataResponse::SetTxinTxidString,
-    ReissuanceDataResponse::GetTxinTxidFieldType,
+    ReissuanceDataResponse::GetTxidString,
+    ReissuanceDataResponse::SetTxidString,
+    ReissuanceDataResponse::GetTxidFieldType,
   };
-  json_mapper.emplace("txinTxid", func_table);
-  item_list.push_back("txinTxid");
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
   func_table = {
-    ReissuanceDataResponse::GetTxinVoutString,
-    ReissuanceDataResponse::SetTxinVoutString,
-    ReissuanceDataResponse::GetTxinVoutFieldType,
+    ReissuanceDataResponse::GetVoutString,
+    ReissuanceDataResponse::SetVoutString,
+    ReissuanceDataResponse::GetVoutFieldType,
   };
-  json_mapper.emplace("txinVout", func_table);
-  item_list.push_back("txinVout");
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
   func_table = {
     ReissuanceDataResponse::GetAssetString,
     ReissuanceDataResponse::SetAssetString,
@@ -207,8 +207,8 @@ void ReissuanceDataResponse::CollectFieldName() {
 
 void ReissuanceDataResponse::ConvertFromStruct(
     const ReissuanceDataResponseStruct& data) {
-  txin_txid_ = data.txin_txid;
-  txin_vout_ = data.txin_vout;
+  txid_ = data.txid;
+  vout_ = data.vout;
   asset_ = data.asset;
   entropy_ = data.entropy;
   ignore_items = data.ignore_items;
@@ -216,8 +216,8 @@ void ReissuanceDataResponse::ConvertFromStruct(
 
 ReissuanceDataResponseStruct ReissuanceDataResponse::ConvertToStruct() const {  // NOLINT
   ReissuanceDataResponseStruct result;
-  result.txin_txid = txin_txid_;
-  result.txin_vout = txin_vout_;
+  result.txid = txid_;
+  result.vout = vout_;
   result.asset = asset_;
   result.entropy = entropy_;
   result.ignore_items = ignore_items;

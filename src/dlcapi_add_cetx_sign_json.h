@@ -89,6 +89,49 @@ class CETxSignData
   }
 
   /**
+   * @brief type 取得処理
+   * @return type
+   */
+  std::string GetType() {
+    return type_;
+  }
+  /**
+   * @brief type 設定処理
+   * @param[in] type    設定値
+   */
+  void SetType(  // line separate
+    const std::string& type) {  // NOLINT
+    this->type_ = type;
+  }
+  /**
+   * @brief type データ型の取得処理
+   * @return typeのデータ型
+   */
+  static std::string GetTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief type フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTypeString(  // line separate
+      const CETxSignData& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.type_);
+  }
+  /**
+   * @brief type フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTypeString(  // line separate
+      CETxSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.type_, json_value);
+  }
+
+  /**
    * @brief derEncode 取得処理
    * @return derEncode
    */
@@ -291,6 +334,10 @@ class CETxSignData
    */
   std::string hex_ = "";
   /**
+   * @brief JsonAPI(type) のvalue
+   */
+  std::string type_ = "sign";
+  /**
    * @brief JsonAPI(derEncode) のvalue
    */
   bool der_encode_ = true;
@@ -305,18 +352,18 @@ class CETxSignData
 };
 
 // ------------------------------------------------------------------------
-// AddCETxSignRequest
+// AddCETxSignTxInRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（AddCETxSignRequest）クラス
+ * @brief JSON-API（AddCETxSignTxInRequest）クラス
  */
-class AddCETxSignRequest
-  : public cfdcore::JsonClassBase<AddCETxSignRequest> {
+class AddCETxSignTxInRequest
+  : public cfdcore::JsonClassBase<AddCETxSignTxInRequest> {
  public:
-  AddCETxSignRequest() {
+  AddCETxSignTxInRequest() {
     CollectFieldName();
   }
-  virtual ~AddCETxSignRequest() {
+  virtual ~AddCETxSignTxInRequest() {
     // do nothing
   }
   /**
@@ -325,132 +372,89 @@ class AddCETxSignRequest
   static void CollectFieldName();
 
   /**
-   * @brief txHex 取得処理
-   * @return txHex
+   * @brief txid 取得処理
+   * @return txid
    */
-  std::string GetTxHex() {
-    return tx_hex_;
+  std::string GetTxid() {
+    return txid_;
   }
   /**
-   * @brief txHex 設定処理
-   * @param[in] tx_hex    設定値
+   * @brief txid 設定処理
+   * @param[in] txid    設定値
    */
-  void SetTxHex(  // line separate
-    const std::string& tx_hex) {  // NOLINT
-    this->tx_hex_ = tx_hex;
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
   }
   /**
-   * @brief txHex データ型の取得処理
-   * @return txHexのデータ型
+   * @brief txid データ型の取得処理
+   * @return txidのデータ型
    */
-  static std::string GetTxHexFieldType() {
+  static std::string GetTxidFieldType() {
     return "std::string";
   }
   /**
-   * @brief txHex フィールドのJSON文字列取得処理
+   * @brief txid フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxHexString(  // line separate
-      const AddCETxSignRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_hex_);
+  static std::string GetTxidString(  // line separate
+      const AddCETxSignTxInRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.txid_);
   }
   /**
-   * @brief txHex フィールドへのJSON情報設定処理
+   * @brief txid フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxHexString(  // line separate
-      AddCETxSignRequest& obj,  // NOLINT
+  static void SetTxidString(  // line separate
+      AddCETxSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.tx_hex_, json_value);
+      obj.txid_, json_value);
   }
 
   /**
-   * @brief txinTxid 取得処理
-   * @return txinTxid
+   * @brief vout 取得処理
+   * @return vout
    */
-  std::string GetTxinTxid() {
-    return txin_txid_;
+  uint32_t GetVout() {
+    return vout_;
   }
   /**
-   * @brief txinTxid 設定処理
-   * @param[in] txin_txid    設定値
+   * @brief vout 設定処理
+   * @param[in] vout    設定値
    */
-  void SetTxinTxid(  // line separate
-    const std::string& txin_txid) {  // NOLINT
-    this->txin_txid_ = txin_txid;
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
   }
   /**
-   * @brief txinTxid データ型の取得処理
-   * @return txinTxidのデータ型
+   * @brief vout データ型の取得処理
+   * @return voutのデータ型
    */
-  static std::string GetTxinTxidFieldType() {
-    return "std::string";
-  }
-  /**
-   * @brief txinTxid フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
-   */
-  static std::string GetTxinTxidString(  // line separate
-      const AddCETxSignRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_txid_);
-  }
-  /**
-   * @brief txinTxid フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
-   */
-  static void SetTxinTxidString(  // line separate
-      AddCETxSignRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_txid_, json_value);
-  }
-
-  /**
-   * @brief txinVout 取得処理
-   * @return txinVout
-   */
-  uint32_t GetTxinVout() {
-    return txin_vout_;
-  }
-  /**
-   * @brief txinVout 設定処理
-   * @param[in] txin_vout    設定値
-   */
-  void SetTxinVout(  // line separate
-    const uint32_t& txin_vout) {  // NOLINT
-    this->txin_vout_ = txin_vout;
-  }
-  /**
-   * @brief txinVout データ型の取得処理
-   * @return txinVoutのデータ型
-   */
-  static std::string GetTxinVoutFieldType() {
+  static std::string GetVoutFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief txinVout フィールドのJSON文字列取得処理
+   * @brief vout フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTxinVoutString(  // line separate
-      const AddCETxSignRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txin_vout_);
+  static std::string GetVoutString(  // line separate
+      const AddCETxSignTxInRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.vout_);
   }
   /**
-   * @brief txinVout フィールドへのJSON情報設定処理
+   * @brief vout フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTxinVoutString(  // line separate
-      AddCETxSignRequest& obj,  // NOLINT
+  static void SetVoutString(  // line separate
+      AddCETxSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
-      obj.txin_vout_, json_value);
+      obj.vout_, json_value);
   }
 
   /**
@@ -481,7 +485,7 @@ class AddCETxSignRequest
    * @return JSON文字列
    */
   static std::string GetSignString(  // line separate
-      const AddCETxSignRequest& obj) {  // NOLINT
+      const AddCETxSignTxInRequest& obj) {  // NOLINT
     // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
     return obj.sign_.Serialize();
   }
@@ -491,7 +495,7 @@ class AddCETxSignRequest
    * @param[in] json_value  JSON情報
    */
   static void SetSignString(  // line separate
-      AddCETxSignRequest& obj,  // NOLINT
+      AddCETxSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.sign_.DeserializeUniValue(json_value);
   }
@@ -524,7 +528,7 @@ class AddCETxSignRequest
    * @return JSON文字列
    */
   static std::string GetDelayedUnlockingString(  // line separate
-      const AddCETxSignRequest& obj) {  // NOLINT
+      const AddCETxSignTxInRequest& obj) {  // NOLINT
     return cfdcore::ConvertToString(obj.delayed_unlocking_);
   }
   /**
@@ -533,7 +537,7 @@ class AddCETxSignRequest
    * @param[in] json_value  JSON情報
    */
   static void SetDelayedUnlockingString(  // line separate
-      AddCETxSignRequest& obj,  // NOLINT
+      AddCETxSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
       obj.delayed_unlocking_, json_value);
@@ -567,7 +571,7 @@ class AddCETxSignRequest
    * @return JSON文字列
    */
   static std::string GetRedeemScriptString(  // line separate
-      const AddCETxSignRequest& obj) {  // NOLINT
+      const AddCETxSignTxInRequest& obj) {  // NOLINT
     return cfdcore::ConvertToString(obj.redeem_script_);
   }
   /**
@@ -576,10 +580,207 @@ class AddCETxSignRequest
    * @param[in] json_value  JSON情報
    */
   static void SetRedeemScriptString(  // line separate
-      AddCETxSignRequest& obj,  // NOLINT
+      AddCETxSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfdcore::ConvertFromUniValue(  // line separate
       obj.redeem_script_, json_value);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void ConvertFromStruct(
+      const AddCETxSignTxInRequestStruct& data);
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  AddCETxSignTxInRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief Mapテーブルの型名定義
+   */
+  using AddCETxSignTxInRequestMapTable =
+    cfdcore::JsonTableMap<AddCETxSignTxInRequest>;
+
+  /**
+   * @brief JSONマッピングオブジェクトを取得する。
+   * @return JSONマッピングオブジェクト
+   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AddCETxSignTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief JSONマッピングのアイテム一覧を取得する。
+   * 対象の変数名を、定義順序に従い一覧取得する。
+   * @return JSONマッピングのアイテム一覧
+   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
+   * Serialize時に対象の変数を無視する。
+   * @return JSONマッピング時に無視するアイテム一覧
+   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMapテーブル
+  */
+  static AddCETxSignTxInRequestMapTable json_mapper;
+  /**
+   * @brief フィールド名リスト
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief 無視リスト
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) のvalue
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) のvalue
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(sign) のvalue
+   */
+  CETxSignData sign_;  // NOLINT
+  /**
+   * @brief JsonAPI(delayedUnlocking) のvalue
+   */
+  bool delayed_unlocking_ = false;
+  /**
+   * @brief JsonAPI(redeemScript) のvalue
+   */
+  std::string redeem_script_ = "";
+};
+
+// ------------------------------------------------------------------------
+// AddCETxSignRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API（AddCETxSignRequest）クラス
+ */
+class AddCETxSignRequest
+  : public cfdcore::JsonClassBase<AddCETxSignRequest> {
+ public:
+  AddCETxSignRequest() {
+    CollectFieldName();
+  }
+  virtual ~AddCETxSignRequest() {
+    // do nothing
+  }
+  /**
+   * @brief フィールド名を収集する.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief tx 取得処理
+   * @return tx
+   */
+  std::string GetTx() {
+    return tx_;
+  }
+  /**
+   * @brief tx 設定処理
+   * @param[in] tx    設定値
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief tx データ型の取得処理
+   * @return txのデータ型
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief tx フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTxString(  // line separate
+      const AddCETxSignRequest& obj) {  // NOLINT
+    return cfdcore::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief tx フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTxString(  // line separate
+      AddCETxSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfdcore::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief txin 取得処理
+   * @return txin
+   */
+  AddCETxSignTxInRequest& GetTxin() {  // NOLINT
+    return txin_;
+  }
+  /**
+   * @brief txin 設定処理
+   * @param[in] txin    設定値
+   */
+  void SetTxin(  // line separate
+      const AddCETxSignTxInRequest& txin) {  // NOLINT
+    this->txin_ = txin;
+  }
+  /**
+   * @brief txin データ型の取得処理
+   * @return txinのデータ型
+   */
+  static std::string GetTxinFieldType() {
+    return "AddCETxSignTxInRequest";  // NOLINT
+  }
+  /**
+   * @brief txin フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTxinString(  // line separate
+      const AddCETxSignRequest& obj) {  // NOLINT
+    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    return obj.txin_.Serialize();
+  }
+  /**
+   * @brief txin フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTxinString(  // line separate
+      AddCETxSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txin_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -652,29 +853,13 @@ class AddCETxSignRequest
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txHex) のvalue
+   * @brief JsonAPI(tx) のvalue
    */
-  std::string tx_hex_ = "";
+  std::string tx_ = "";
   /**
-   * @brief JsonAPI(txinTxid) のvalue
+   * @brief JsonAPI(txin) のvalue
    */
-  std::string txin_txid_ = "";
-  /**
-   * @brief JsonAPI(txinVout) のvalue
-   */
-  uint32_t txin_vout_ = 0;
-  /**
-   * @brief JsonAPI(sign) のvalue
-   */
-  CETxSignData sign_;  // NOLINT
-  /**
-   * @brief JsonAPI(delayedUnlocking) のvalue
-   */
-  bool delayed_unlocking_ = false;
-  /**
-   * @brief JsonAPI(redeemScript) のvalue
-   */
-  std::string redeem_script_ = "";
+  AddCETxSignTxInRequest txin_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
