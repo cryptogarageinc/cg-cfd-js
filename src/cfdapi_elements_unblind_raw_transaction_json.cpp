@@ -11,7 +11,9 @@
 #include "cfdapi_elements_unblind_raw_transaction_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -386,5 +388,7 @@ UnblindRawTransactionResponseStruct UnblindRawTransactionResponse::ConvertToStru
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

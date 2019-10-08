@@ -11,7 +11,9 @@
 #include "cfdapi_elements_create_raw_pegout_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -422,5 +424,7 @@ ElementsCreateRawPegoutResponseStruct ElementsCreateRawPegoutResponse::ConvertTo
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
