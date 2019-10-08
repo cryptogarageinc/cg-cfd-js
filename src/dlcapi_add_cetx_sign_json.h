@@ -16,7 +16,9 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace dlc {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -1003,7 +1005,9 @@ class AddCETxSignResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace dlc
 
 #endif  // CFD_JS_SRC_DLCAPI_ADD_CETX_SIGN_JSON_H_

@@ -11,7 +11,9 @@
 #include "cfdapi_elements_set_rawreissueasset_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -130,12 +132,12 @@ void SetRawReissueAssetRequest::CollectFieldName() {
   json_mapper.emplace("tx", func_table);
   item_list.push_back("tx");
   func_table = {
-    SetRawReissueAssetRequest::GetIsRandomizeString,
-    SetRawReissueAssetRequest::SetIsRandomizeString,
-    SetRawReissueAssetRequest::GetIsRandomizeFieldType,
+    SetRawReissueAssetRequest::GetIsRandomSortTxOutString,
+    SetRawReissueAssetRequest::SetIsRandomSortTxOutString,
+    SetRawReissueAssetRequest::GetIsRandomSortTxOutFieldType,
   };
-  json_mapper.emplace("isRandomize", func_table);
-  item_list.push_back("isRandomize");
+  json_mapper.emplace("isRandomSortTxOut", func_table);
+  item_list.push_back("isRandomSortTxOut");
   func_table = {
     SetRawReissueAssetRequest::GetIssuancesString,
     SetRawReissueAssetRequest::SetIssuancesString,
@@ -148,7 +150,7 @@ void SetRawReissueAssetRequest::CollectFieldName() {
 void SetRawReissueAssetRequest::ConvertFromStruct(
     const SetRawReissueAssetRequestStruct& data) {
   tx_ = data.tx;
-  is_randomize_ = data.is_randomize;
+  is_random_sort_tx_out_ = data.is_random_sort_tx_out;
   issuances_.ConvertFromStruct(data.issuances);
   ignore_items = data.ignore_items;
 }
@@ -156,7 +158,7 @@ void SetRawReissueAssetRequest::ConvertFromStruct(
 SetRawReissueAssetRequestStruct SetRawReissueAssetRequest::ConvertToStruct() const {  // NOLINT
   SetRawReissueAssetRequestStruct result;
   result.tx = tx_;
-  result.is_randomize = is_randomize_;
+  result.is_random_sort_tx_out = is_random_sort_tx_out_;
   result.issuances = issuances_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
@@ -271,5 +273,7 @@ SetRawReissueAssetResponseStruct SetRawReissueAssetResponse::ConvertToStruct() c
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

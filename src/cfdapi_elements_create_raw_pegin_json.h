@@ -16,7 +16,9 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -1471,6 +1473,49 @@ class ElementsCreateRawPeginRequest
   }
 
   /**
+   * @brief isRandomSortTxOut 取得処理
+   * @return isRandomSortTxOut
+   */
+  bool GetIsRandomSortTxOut() {
+    return is_random_sort_tx_out_;
+  }
+  /**
+   * @brief isRandomSortTxOut 設定処理
+   * @param[in] is_random_sort_tx_out    設定値
+   */
+  void SetIsRandomSortTxOut(  // line separate
+    const bool& is_random_sort_tx_out) {  // NOLINT
+    this->is_random_sort_tx_out_ = is_random_sort_tx_out;
+  }
+  /**
+   * @brief isRandomSortTxOut データ型の取得処理
+   * @return isRandomSortTxOutのデータ型
+   */
+  static std::string GetIsRandomSortTxOutFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief isRandomSortTxOut フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetIsRandomSortTxOutString(  // line separate
+      const ElementsCreateRawPeginRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_random_sort_tx_out_);
+  }
+  /**
+   * @brief isRandomSortTxOut フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetIsRandomSortTxOutString(  // line separate
+      ElementsCreateRawPeginRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_random_sort_tx_out_, json_value);
+  }
+
+  /**
    * @brief 無視対象アイテムを設定する。
    * @param[in] key   無視対象アイテムのキー名称
    */
@@ -1559,6 +1604,10 @@ class ElementsCreateRawPeginRequest
    * @brief JsonAPI(fee) のvalue
    */
   ElementsPeginTxOutFee fee_;  // NOLINT
+  /**
+   * @brief JsonAPI(isRandomSortTxOut) のvalue
+   */
+  bool is_random_sort_tx_out_ = false;
 };
 
 // ------------------------------------------------------------------------
@@ -1702,7 +1751,9 @@ class ElementsCreateRawPeginResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_ELEMENTS_CREATE_RAW_PEGIN_JSON_H_

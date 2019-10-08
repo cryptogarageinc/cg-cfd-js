@@ -11,7 +11,9 @@
 #include "cfdapi_get_issuance_blinding_key_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -111,5 +113,7 @@ GetIssuanceBlindingKeyResponseStruct GetIssuanceBlindingKeyResponse::ConvertToSt
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

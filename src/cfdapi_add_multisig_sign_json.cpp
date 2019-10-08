@@ -11,7 +11,9 @@
 #include "cfdapi_add_multisig_sign_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -280,5 +282,7 @@ AddMultisigSignResponseStruct AddMultisigSignResponse::ConvertToStruct() const {
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

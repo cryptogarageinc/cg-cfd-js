@@ -11,7 +11,9 @@
 #include "cfdapi_create_key_pair_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -120,5 +122,7 @@ CreateKeyPairResponseStruct CreateKeyPairResponse::ConvertToStruct() const {  //
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
