@@ -185,16 +185,18 @@ else {
           const reqJson = {
             "tx": rawPeginTx.hex,
             "isElements": true,
-            "txid": peginParams.txid,
-            "vout": peginParams.vout,
-            "keyData": {
-              "hex": peginKeyPair.pubkey,
-              "type": "pubkey"
-            },
-            "amount": peginParams.amount,
-            "hashType": "p2wpkh",
-            "sighashType": "all",
-            "sighashAnyoneCanPay": false
+            "txin": {
+              "txid": peginParams.txid,
+              "vout": peginParams.vout,
+              "keyData": {
+                "hex": peginKeyPair.pubkey,
+                "type": "pubkey"
+              },
+              "amount": peginParams.amount,
+              "hashType": "p2wpkh",
+              "sighashType": "all",
+              "sighashAnyoneCanPay": false
+            }
           }
           const resStr = CreateElementsSignatureHash(JSON.stringify(reqJson))
           signatureHash = JSON.parse(resStr)
@@ -213,23 +215,25 @@ else {
           const reqJson = {
             "tx": rawPeginTx.hex,
             "isElements": true,
-            "txid": peginParams.txid,
-            "vout": peginParams.vout,
-            "isWitness": true,
-            "signParam": [
-              {
-                "hex": signature,
-                "type": "sign",
-                "derEncode": true,
-                "sighashType": "all",
-                "sighashAnyoneCanPay": false
-              },
-              {
-                "hex": peginKeyPair.pubkey,
-                "type": "pubkey",
-                "derEncode": false,
-              }
-            ]
+            "txin": {
+              "txid": peginParams.txid,
+              "vout": peginParams.vout,
+              "isWitness": true,
+              "signParam": [
+                {
+                  "hex": signature,
+                  "type": "sign",
+                  "derEncode": true,
+                  "sighashType": "all",
+                  "sighashAnyoneCanPay": false
+                },
+                {
+                  "hex": peginKeyPair.pubkey,
+                  "type": "pubkey",
+                  "derEncode": false,
+                }
+              ]
+            }
           }
           const resStr = AddSign(JSON.stringify(reqJson))
           signedRawPeginTx = JSON.parse(resStr)

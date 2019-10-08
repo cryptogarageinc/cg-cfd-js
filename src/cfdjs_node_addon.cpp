@@ -52,16 +52,16 @@
 #include "dlcapi_address_json.h"                            // NOLINT
 
 // using
-using cfd::js::api::AddressApi;
+using cfd::js::api::AddressStructApi;
 using cfd::js::api::HDWalletStructApi;
-using cfd::js::api::KeyApi;
-using cfd::js::api::TransactionApi;
-using cfd::js::api::UtilApi;
-using dlc::js::api::DlcAddressApi;
-using dlc::js::api::DlcTransactionApi;
+using cfd::js::api::KeyStructApi;
+using cfd::js::api::TransactionStructApi;
+using cfd::js::api::UtilStructApi;
+using dlc::js::api::DlcAddressStructApi;
+using dlc::js::api::DlcTransactionStructApi;
 #ifndef CFD_DISABLE_ELEMENTS
-using cfd::js::api::ElementsAddressApi;
-using cfd::js::api::ElementsTransactionApi;
+using cfd::js::api::ElementsAddressStructApi;
+using cfd::js::api::ElementsTransactionStructApi;
 #endif  // CFD_DISABLE_ELEMENTS
 using cfd::core::CfdError;
 using cfd::core::CfdException;
@@ -279,7 +279,7 @@ Value GetSupportedFunction(const CallbackInfo &information) {
   return NodeAddonJsonResponseApi<
       api::json::GetSupportedFunctionResponse,
       api::GetSupportedFunctionResponseStruct>(
-      information, UtilApi::GetSupportedFunction);
+      information, UtilStructApi::GetSupportedFunction);
 }
 
 Value CreateRawTransaction(const CallbackInfo &information) {
@@ -288,7 +288,7 @@ Value CreateRawTransaction(const CallbackInfo &information) {
       api::json::CreateRawTransactionResponse,
       api::CreateRawTransactionRequestStruct,
       api::CreateRawTransactionResponseStruct>(
-      information, TransactionApi::CreateRawTransaction);
+      information, TransactionStructApi::CreateRawTransaction);
 }
 
 Value DecodeRawTransaction(const CallbackInfo &information) {
@@ -297,7 +297,7 @@ Value DecodeRawTransaction(const CallbackInfo &information) {
       api::json::DecodeRawTransactionResponse,
       api::DecodeRawTransactionRequestStruct,
       api::DecodeRawTransactionResponseStruct>(
-      information, TransactionApi::DecodeRawTransaction);
+      information, TransactionStructApi::DecodeRawTransaction);
 }
 
 Value ConvertEntropyToMnemonic(const CallbackInfo &information) {
@@ -322,16 +322,16 @@ Value CreateAddress(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::CreateAddressRequest, api::json::CreateAddressResponse,
       api::CreateAddressRequestStruct, api::CreateAddressResponseStruct>(
-      information, AddressApi::CreateAddress,
-      ElementsAddressApi::CreateAddress);
+      information, AddressStructApi::CreateAddress,
+      ElementsAddressStructApi::CreateAddress);
 }
 
 Value CreateMultisig(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::CreateMultisigRequest, api::json::CreateMultisigResponse,
       api::CreateMultisigRequestStruct, api::CreateMultisigResponseStruct>(
-      information, AddressApi::CreateMultisig,
-      ElementsAddressApi::CreateMultisig);
+      information, AddressStructApi::CreateMultisig,
+      ElementsAddressStructApi::CreateMultisig);
 }
 
 Value CreateSignatureHash(const CallbackInfo &information) {
@@ -340,7 +340,7 @@ Value CreateSignatureHash(const CallbackInfo &information) {
       api::json::CreateSignatureHashResponse,
       api::CreateSignatureHashRequestStruct,
       api::CreateSignatureHashResponseStruct>(
-      information, TransactionApi::CreateSignatureHash);
+      information, TransactionStructApi::CreateSignatureHash);
 }
 
 Value GetMnemonicWordlist(const CallbackInfo &information) {
@@ -356,14 +356,15 @@ Value CreateKeyPair(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CreateKeyPairRequest, api::json::CreateKeyPairResponse,
       api::CreateKeyPairRequestStruct, api::CreateKeyPairResponseStruct>(
-      information, KeyApi::CreateKeyPair);
+      information, KeyStructApi::CreateKeyPair);
 }
 
 Value AddSign(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::AddSignRequest, api::json::AddSignResponse,
       api::AddSignRequestStruct, api::AddSignResponseStruct>(
-      information, TransactionApi::AddSign, ElementsTransactionApi::AddSign);
+      information, TransactionStructApi::AddSign,
+      ElementsTransactionStructApi::AddSign);
 }
 
 Value UpdateWitnessStack(const CallbackInfo &information) {
@@ -372,8 +373,8 @@ Value UpdateWitnessStack(const CallbackInfo &information) {
       api::json::UpdateWitnessStackResponse,
       api::UpdateWitnessStackRequestStruct,
       api::UpdateWitnessStackResponseStruct>(
-      information, TransactionApi::UpdateWitnessStack,
-      ElementsTransactionApi::UpdateWitnessStack);
+      information, TransactionStructApi::UpdateWitnessStack,
+      ElementsTransactionStructApi::UpdateWitnessStack);
 }
 
 Value GetWitnessStackNum(const CallbackInfo &information) {
@@ -382,16 +383,16 @@ Value GetWitnessStackNum(const CallbackInfo &information) {
       api::json::GetWitnessStackNumResponse,
       api::GetWitnessStackNumRequestStruct,
       api::GetWitnessStackNumResponseStruct>(
-      information, TransactionApi::GetWitnessStackNum,
-      ElementsTransactionApi::GetWitnessStackNum);
+      information, TransactionStructApi::GetWitnessStackNum,
+      ElementsTransactionStructApi::GetWitnessStackNum);
 }
 
 Value AddMultisigSign(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::AddMultisigSignRequest, api::json::AddMultisigSignResponse,
       api::AddMultisigSignRequestStruct, api::AddMultisigSignResponseStruct>(
-      information, TransactionApi::AddMultisigSign,
-      ElementsTransactionApi::AddMultisigSign);
+      information, TransactionStructApi::AddMultisigSign,
+      ElementsTransactionStructApi::AddMultisigSign);
 }
 
 #ifndef CFD_DISABLE_ELEMENTS
@@ -402,7 +403,7 @@ Value GetConfidentialAddress(const CallbackInfo &information) {
       api::json::GetConfidentialAddressResponse,
       api::GetConfidentialAddressRequestStruct,
       api::GetConfidentialAddressResponseStruct>(
-      information, ElementsAddressApi::GetConfidentialAddress);
+      information, ElementsAddressStructApi::GetConfidentialAddress);
 }
 
 Value GetUnblindedAddress(const CallbackInfo &information) {
@@ -411,7 +412,7 @@ Value GetUnblindedAddress(const CallbackInfo &information) {
       api::json::GetUnblindedAddressResponse,
       api::GetUnblindedAddressRequestStruct,
       api::GetUnblindedAddressResponseStruct>(
-      information, ElementsAddressApi::GetUnblindedAddress);
+      information, ElementsAddressStructApi::GetUnblindedAddress);
 }
 
 Value CreatePegInAddress(const CallbackInfo &information) {
@@ -420,7 +421,7 @@ Value CreatePegInAddress(const CallbackInfo &information) {
       api::json::ElementsCreatePegInAddressResponse,
       api::ElementsCreatePegInAddressRequestStruct,
       api::ElementsCreatePegInAddressResponseStruct>(
-      information, ElementsAddressApi::CreatePegInAddress);
+      information, ElementsAddressStructApi::CreatePegInAddress);
 }
 
 Value ElementsCreateRawTransaction(const CallbackInfo &information) {
@@ -429,7 +430,7 @@ Value ElementsCreateRawTransaction(const CallbackInfo &information) {
       api::json::ElementsCreateRawTransactionResponse,
       api::ElementsCreateRawTransactionRequestStruct,
       api::ElementsCreateRawTransactionResponseStruct>(
-      information, ElementsTransactionApi::CreateRawTransaction);
+      information, ElementsTransactionStructApi::CreateRawTransaction);
 }
 
 Value ElementsDecodeRawTransaction(const CallbackInfo &information) {
@@ -438,7 +439,7 @@ Value ElementsDecodeRawTransaction(const CallbackInfo &information) {
       api::json::ElementsDecodeRawTransactionResponse,
       api::ElementsDecodeRawTransactionRequestStruct,
       api::ElementsDecodeRawTransactionResponseStruct>(
-      information, ElementsTransactionApi::DecodeRawTransaction);
+      information, ElementsTransactionStructApi::DecodeRawTransaction);
 }
 
 Value BlindRawTransaction(const CallbackInfo &information) {
@@ -448,7 +449,7 @@ Value BlindRawTransaction(const CallbackInfo &information) {
       api::BlindRawTransactionRequestStruct,
       api::BlindRawTransactionResponseStruct>(
       information,
-      ElementsTransactionApi::BlindTransaction);  // NOLINT
+      ElementsTransactionStructApi::BlindTransaction);  // NOLINT
 }
 
 Value UnblindRawTransaction(const CallbackInfo &information) {
@@ -457,14 +458,14 @@ Value UnblindRawTransaction(const CallbackInfo &information) {
       api::json::UnblindRawTransactionResponse,
       api::UnblindRawTransactionRequestStruct,
       api::UnblindRawTransactionResponseStruct>(
-      information, ElementsTransactionApi::UnblindTransaction);
+      information, ElementsTransactionStructApi::UnblindTransaction);
 }
 
 Value SetRawIssueAsset(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::SetRawIssueAssetRequest, api::json::SetRawIssueAssetResponse,
       api::SetRawIssueAssetRequestStruct, api::SetRawIssueAssetResponseStruct>(
-      information, ElementsTransactionApi::SetRawIssueAsset);
+      information, ElementsTransactionStructApi::SetRawIssueAsset);
 }
 
 Value SetRawReissueAsset(const CallbackInfo &information) {
@@ -473,7 +474,7 @@ Value SetRawReissueAsset(const CallbackInfo &information) {
       api::json::SetRawReissueAssetResponse,
       api::SetRawReissueAssetRequestStruct,
       api::SetRawReissueAssetResponseStruct>(
-      information, ElementsTransactionApi::SetRawReissueAsset);
+      information, ElementsTransactionStructApi::SetRawReissueAsset);
 }
 
 Value CreateElementsSignatureHash(const CallbackInfo &information) {
@@ -482,7 +483,7 @@ Value CreateElementsSignatureHash(const CallbackInfo &information) {
       api::json::CreateElementsSignatureHashResponse,
       api::CreateElementsSignatureHashRequestStruct,
       api::CreateElementsSignatureHashResponseStruct>(
-      information, ElementsTransactionApi::CreateSignatureHash);
+      information, ElementsTransactionStructApi::CreateSignatureHash);
 }
 
 Value CreateRawPegin(const CallbackInfo &information) {
@@ -491,7 +492,7 @@ Value CreateRawPegin(const CallbackInfo &information) {
       api::json::ElementsCreateRawPeginResponse,
       api::ElementsCreateRawPeginRequestStruct,
       api::ElementsCreateRawPeginResponseStruct>(
-      information, ElementsTransactionApi::CreateRawPeginTransaction);
+      information, ElementsTransactionStructApi::CreateRawPeginTransaction);
 }
 
 Value CreateRawPegout(const CallbackInfo &information) {
@@ -500,7 +501,7 @@ Value CreateRawPegout(const CallbackInfo &information) {
       api::json::ElementsCreateRawPegoutResponse,
       api::ElementsCreateRawPegoutRequestStruct,
       api::ElementsCreateRawPegoutResponseStruct>(
-      information, ElementsTransactionApi::CreateRawPegoutTransaction);
+      information, ElementsTransactionStructApi::CreateRawPegoutTransaction);
 }
 
 Value GetIssuanceBlindingKey(const CallbackInfo &information) {
@@ -509,7 +510,7 @@ Value GetIssuanceBlindingKey(const CallbackInfo &information) {
       api::json::GetIssuanceBlindingKeyResponse,
       api::GetIssuanceBlindingKeyRequestStruct,
       api::GetIssuanceBlindingKeyResponseStruct>(
-      information, ElementsTransactionApi::GetIssuanceBlindingKey);
+      information, ElementsTransactionStructApi::GetIssuanceBlindingKey);
 }
 
 Value CreateDestroyAmount(const CallbackInfo &information) {
@@ -518,7 +519,8 @@ Value CreateDestroyAmount(const CallbackInfo &information) {
       api::json::ElementsCreateDestroyAmountResponse,
       api::ElementsCreateDestroyAmountRequestStruct,
       api::ElementsCreateDestroyAmountResponseStruct>(
-      information, ElementsTransactionApi::CreateDestroyAmountTransaction);
+      information,
+      ElementsTransactionStructApi::CreateDestroyAmountTransaction);
 }
 #endif  // CFD_DISABLE_ELEMENTS
 
@@ -534,14 +536,14 @@ Value CreateCETxAddress(const CallbackInfo &information) {
       api::json::CreateCETxAddressResponse,
       api::CreateCETxAddressRequestStruct,
       api::CreateCETxAddressResponseStruct>(
-      information, DlcAddressApi::CreateCETxAddress);
+      information, DlcAddressStructApi::CreateCETxAddress);
 }
 
 Value AddCETxSign(const CallbackInfo &information) {
   return cfd::js::NodeAddonJsonApi<
       api::json::AddCETxSignRequest, api::json::AddCETxSignResponse,
       api::AddCETxSignRequestStruct, api::AddCETxSignResponseStruct>(
-      information, DlcTransactionApi::AddCETxSign);
+      information, DlcTransactionStructApi::AddCETxSign);
 }
 
 }  // namespace js
