@@ -11,7 +11,9 @@
 #include "cfdapi_convert_entropy_to_mnemonic_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -102,5 +104,7 @@ ConvertEntropyToMnemonicResponseStruct ConvertEntropyToMnemonicResponse::Convert
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

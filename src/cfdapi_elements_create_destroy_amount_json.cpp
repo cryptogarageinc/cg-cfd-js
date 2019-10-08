@@ -11,7 +11,9 @@
 #include "cfdapi_elements_create_destroy_amount_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -341,5 +343,7 @@ ElementsCreateDestroyAmountResponseStruct ElementsCreateDestroyAmountResponse::C
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

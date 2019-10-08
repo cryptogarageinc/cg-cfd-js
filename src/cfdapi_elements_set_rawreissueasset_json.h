@@ -16,7 +16,9 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -1144,7 +1146,9 @@ class SetRawReissueAssetResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_ELEMENTS_SET_RAWREISSUEASSET_JSON_H_

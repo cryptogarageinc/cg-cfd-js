@@ -11,7 +11,9 @@
 #include "cfdcore/cfdcore_exception.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::CfdException;
 // @formatter:off
@@ -45,5 +47,7 @@ const ErrorResponse ErrorResponse::ConvertFromStruct(
 
 // @formatter:on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

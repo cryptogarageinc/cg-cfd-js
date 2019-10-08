@@ -11,7 +11,9 @@
 #include "dlcapi_add_cetx_sign_json.h"  // NOLINT
 
 namespace dlc {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -244,5 +246,7 @@ AddCETxSignResponseStruct AddCETxSignResponse::ConvertToStruct() const {  // NOL
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace dlc

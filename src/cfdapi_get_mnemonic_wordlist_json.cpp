@@ -11,7 +11,9 @@
 #include "cfdapi_get_mnemonic_wordlist_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -93,5 +95,7 @@ GetMnemonicWordlistResponseStruct GetMnemonicWordlistResponse::ConvertToStruct()
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

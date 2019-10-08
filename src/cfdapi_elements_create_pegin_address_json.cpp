@@ -11,7 +11,9 @@
 #include "cfdapi_elements_create_pegin_address_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
@@ -129,5 +131,7 @@ ElementsCreatePegInAddressResponseStruct ElementsCreatePegInAddressResponse::Con
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
