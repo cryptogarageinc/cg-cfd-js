@@ -101,6 +101,50 @@ BlindTxInRequestStruct BlindTxInRequest::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// BlindTxOutRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<BlindTxOutRequest>
+  BlindTxOutRequest::json_mapper;
+std::vector<std::string> BlindTxOutRequest::item_list;
+
+void BlindTxOutRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<BlindTxOutRequest> func_table;  // NOLINT
+
+  func_table = {
+    BlindTxOutRequest::GetIndexString,
+    BlindTxOutRequest::SetIndexString,
+    BlindTxOutRequest::GetIndexFieldType,
+  };
+  json_mapper.emplace("index", func_table);
+  item_list.push_back("index");
+  func_table = {
+    BlindTxOutRequest::GetBlindPubkeyString,
+    BlindTxOutRequest::SetBlindPubkeyString,
+    BlindTxOutRequest::GetBlindPubkeyFieldType,
+  };
+  json_mapper.emplace("blindPubkey", func_table);
+  item_list.push_back("blindPubkey");
+}
+
+void BlindTxOutRequest::ConvertFromStruct(
+    const BlindTxOutRequestStruct& data) {
+  index_ = data.index;
+  blind_pubkey_ = data.blind_pubkey;
+  ignore_items = data.ignore_items;
+}
+
+BlindTxOutRequestStruct BlindTxOutRequest::ConvertToStruct() const {  // NOLINT
+  BlindTxOutRequestStruct result;
+  result.index = index_;
+  result.blind_pubkey = blind_pubkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // BlindIssuanceRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<BlindIssuanceRequest>
@@ -190,12 +234,12 @@ void BlindRawTransactionRequest::CollectFieldName() {
   json_mapper.emplace("txins", func_table);
   item_list.push_back("txins");
   func_table = {
-    BlindRawTransactionRequest::GetBlindPubkeysString,
-    BlindRawTransactionRequest::SetBlindPubkeysString,
-    BlindRawTransactionRequest::GetBlindPubkeysFieldType,
+    BlindRawTransactionRequest::GetTxoutsString,
+    BlindRawTransactionRequest::SetTxoutsString,
+    BlindRawTransactionRequest::GetTxoutsFieldType,
   };
-  json_mapper.emplace("blindPubkeys", func_table);
-  item_list.push_back("blindPubkeys");
+  json_mapper.emplace("txouts", func_table);
+  item_list.push_back("txouts");
   func_table = {
     BlindRawTransactionRequest::GetIssuancesString,
     BlindRawTransactionRequest::SetIssuancesString,
@@ -209,7 +253,7 @@ void BlindRawTransactionRequest::ConvertFromStruct(
     const BlindRawTransactionRequestStruct& data) {
   tx_ = data.tx;
   txins_.ConvertFromStruct(data.txins);
-  blind_pubkeys_.ConvertFromStruct(data.blind_pubkeys);
+  txouts_.ConvertFromStruct(data.txouts);
   issuances_.ConvertFromStruct(data.issuances);
   ignore_items = data.ignore_items;
 }
@@ -218,7 +262,7 @@ BlindRawTransactionRequestStruct BlindRawTransactionRequest::ConvertToStruct() c
   BlindRawTransactionRequestStruct result;
   result.tx = tx_;
   result.txins = txins_.ConvertToStruct();
-  result.blind_pubkeys = blind_pubkeys_.ConvertToStruct();
+  result.txouts = txouts_.ConvertToStruct();
   result.issuances = issuances_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;

@@ -26,6 +26,191 @@ using cfd::core::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------
+// UnblindTxOut
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API（UnblindTxOut）クラス
+ */
+class UnblindTxOut
+  : public cfd::core::JsonClassBase<UnblindTxOut> {
+ public:
+  UnblindTxOut() {
+    CollectFieldName();
+  }
+  virtual ~UnblindTxOut() {
+    // do nothing
+  }
+  /**
+   * @brief フィールド名を収集する.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief index 取得処理
+   * @return index
+   */
+  uint32_t GetIndex() {
+    return index_;
+  }
+  /**
+   * @brief index 設定処理
+   * @param[in] index    設定値
+   */
+  void SetIndex(  // line separate
+    const uint32_t& index) {  // NOLINT
+    this->index_ = index;
+  }
+  /**
+   * @brief index データ型の取得処理
+   * @return indexのデータ型
+   */
+  static std::string GetIndexFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief index フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetIndexString(  // line separate
+      const UnblindTxOut& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.index_);
+  }
+  /**
+   * @brief index フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetIndexString(  // line separate
+      UnblindTxOut& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.index_, json_value);
+  }
+
+  /**
+   * @brief blindingKey 取得処理
+   * @return blindingKey
+   */
+  std::string GetBlindingKey() {
+    return blinding_key_;
+  }
+  /**
+   * @brief blindingKey 設定処理
+   * @param[in] blinding_key    設定値
+   */
+  void SetBlindingKey(  // line separate
+    const std::string& blinding_key) {  // NOLINT
+    this->blinding_key_ = blinding_key;
+  }
+  /**
+   * @brief blindingKey データ型の取得処理
+   * @return blindingKeyのデータ型
+   */
+  static std::string GetBlindingKeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief blindingKey フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetBlindingKeyString(  // line separate
+      const UnblindTxOut& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.blinding_key_);
+  }
+  /**
+   * @brief blindingKey フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetBlindingKeyString(  // line separate
+      UnblindTxOut& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.blinding_key_, json_value);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void ConvertFromStruct(
+      const UnblindTxOutStruct& data);
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  UnblindTxOutStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief Mapテーブルの型名定義
+   */
+  using UnblindTxOutMapTable =
+    cfd::core::JsonTableMap<UnblindTxOut>;
+
+  /**
+   * @brief JSONマッピングオブジェクトを取得する。
+   * @return JSONマッピングオブジェクト
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const UnblindTxOutMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief JSONマッピングのアイテム一覧を取得する。
+   * 対象の変数名を、定義順序に従い一覧取得する。
+   * @return JSONマッピングのアイテム一覧
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
+   * Serialize時に対象の変数を無視する。
+   * @return JSONマッピング時に無視するアイテム一覧
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMapテーブル
+  */
+  static UnblindTxOutMapTable json_mapper;
+  /**
+   * @brief フィールド名リスト
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief 無視リスト
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(index) のvalue
+   */
+  uint32_t index_ = 0;
+  /**
+   * @brief JsonAPI(blindingKey) のvalue
+   */
+  std::string blinding_key_ = "";
+};
+
+// ------------------------------------------------------------------------
 // UnblindIssuance
 // ------------------------------------------------------------------------
 /**
@@ -368,89 +553,46 @@ class UnblindRawTransactionRequest
   }
 
   /**
-   * @brief targetOutputIndex 取得処理
-   * @return targetOutputIndex
+   * @brief txouts 取得処理
+   * @return txouts
    */
-  int64_t GetTargetOutputIndex() {
-    return target_output_index_;
+  JsonObjectVector<UnblindTxOut, UnblindTxOutStruct>& GetTxouts() {  // NOLINT
+    return txouts_;
   }
   /**
-   * @brief targetOutputIndex 設定処理
-   * @param[in] target_output_index    設定値
+   * @brief txouts 設定処理
+   * @param[in] txouts    設定値
    */
-  void SetTargetOutputIndex(  // line separate
-    const int64_t& target_output_index) {  // NOLINT
-    this->target_output_index_ = target_output_index;
+  void SetTxouts(  // line separate
+      const JsonObjectVector<UnblindTxOut, UnblindTxOutStruct>& txouts) {  // NOLINT
+    this->txouts_ = txouts;
   }
   /**
-   * @brief targetOutputIndex データ型の取得処理
-   * @return targetOutputIndexのデータ型
+   * @brief txouts データ型の取得処理
+   * @return txoutsのデータ型
    */
-  static std::string GetTargetOutputIndexFieldType() {
-    return "int64_t";
+  static std::string GetTxoutsFieldType() {
+    return "JsonObjectVector<UnblindTxOut, UnblindTxOutStruct>";  // NOLINT
   }
   /**
-   * @brief targetOutputIndex フィールドのJSON文字列取得処理
+   * @brief txouts フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTargetOutputIndexString(  // line separate
-      const UnblindRawTransactionRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.target_output_index_);
-  }
-  /**
-   * @brief targetOutputIndex フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
-   */
-  static void SetTargetOutputIndexString(  // line separate
-      UnblindRawTransactionRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.target_output_index_, json_value);
-  }
-
-  /**
-   * @brief blindingKeys 取得処理
-   * @return blindingKeys
-   */
-  JsonValueVector<std::string>& GetBlindingKeys() {  // NOLINT
-    return blinding_keys_;
-  }
-  /**
-   * @brief blindingKeys 設定処理
-   * @param[in] blinding_keys    設定値
-   */
-  void SetBlindingKeys(  // line separate
-      const JsonValueVector<std::string>& blinding_keys) {  // NOLINT
-    this->blinding_keys_ = blinding_keys;
-  }
-  /**
-   * @brief blindingKeys データ型の取得処理
-   * @return blindingKeysのデータ型
-   */
-  static std::string GetBlindingKeysFieldType() {
-    return "JsonValueVector<std::string>";  // NOLINT
-  }
-  /**
-   * @brief blindingKeys フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
-   */
-  static std::string GetBlindingKeysString(  // line separate
+  static std::string GetTxoutsString(  // line separate
       const UnblindRawTransactionRequest& obj) {  // NOLINT
     // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
-    return obj.blinding_keys_.Serialize();
+    return obj.txouts_.Serialize();
   }
   /**
-   * @brief blindingKeys フィールドへのJSON情報設定処理
+   * @brief txouts フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetBlindingKeysString(  // line separate
+  static void SetTxoutsString(  // line separate
       UnblindRawTransactionRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    obj.blinding_keys_.DeserializeUniValue(json_value);
+    obj.txouts_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -570,13 +712,9 @@ class UnblindRawTransactionRequest
    */
   std::string tx_ = "";
   /**
-   * @brief JsonAPI(targetOutputIndex) のvalue
+   * @brief JsonAPI(txouts) のvalue
    */
-  int64_t target_output_index_ = -1;
-  /**
-   * @brief JsonAPI(blindingKeys) のvalue
-   */
-  JsonValueVector<std::string> blinding_keys_;  // NOLINT
+  JsonObjectVector<UnblindTxOut, UnblindTxOutStruct> txouts_;  // NOLINT
   /**
    * @brief JsonAPI(issuances) のvalue
    */
@@ -602,6 +740,49 @@ class UnblindOutput
    * @brief フィールド名を収集する.
    */
   static void CollectFieldName();
+
+  /**
+   * @brief index 取得処理
+   * @return index
+   */
+  uint32_t GetIndex() {
+    return index_;
+  }
+  /**
+   * @brief index 設定処理
+   * @param[in] index    設定値
+   */
+  void SetIndex(  // line separate
+    const uint32_t& index) {  // NOLINT
+    this->index_ = index;
+  }
+  /**
+   * @brief index データ型の取得処理
+   * @return indexのデータ型
+   */
+  static std::string GetIndexFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief index フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetIndexString(  // line separate
+      const UnblindOutput& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.index_);
+  }
+  /**
+   * @brief index フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetIndexString(  // line separate
+      UnblindOutput& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.index_, json_value);
+  }
 
   /**
    * @brief asset 取得処理
@@ -844,6 +1025,10 @@ class UnblindOutput
    */
   std::set<std::string> ignore_items;
 
+  /**
+   * @brief JsonAPI(index) のvalue
+   */
+  uint32_t index_ = 0;
   /**
    * @brief JsonAPI(asset) のvalue
    */

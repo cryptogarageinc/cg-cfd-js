@@ -334,6 +334,13 @@ void ElementsCreateRawPeginRequest::CollectFieldName() {
   };
   json_mapper.emplace("fee", func_table);
   item_list.push_back("fee");
+  func_table = {
+    ElementsCreateRawPeginRequest::GetIsRandomSortTxOutString,
+    ElementsCreateRawPeginRequest::SetIsRandomSortTxOutString,
+    ElementsCreateRawPeginRequest::GetIsRandomSortTxOutFieldType,
+  };
+  json_mapper.emplace("isRandomSortTxOut", func_table);
+  item_list.push_back("isRandomSortTxOut");
 }
 
 void ElementsCreateRawPeginRequest::ConvertFromStruct(
@@ -343,6 +350,7 @@ void ElementsCreateRawPeginRequest::ConvertFromStruct(
   txins_.ConvertFromStruct(data.txins);
   txouts_.ConvertFromStruct(data.txouts);
   fee_.ConvertFromStruct(data.fee);
+  is_random_sort_tx_out_ = data.is_random_sort_tx_out;
   ignore_items = data.ignore_items;
 }
 
@@ -353,6 +361,7 @@ ElementsCreateRawPeginRequestStruct ElementsCreateRawPeginRequest::ConvertToStru
   result.txins = txins_.ConvertToStruct();
   result.txouts = txouts_.ConvertToStruct();
   result.fee = fee_.ConvertToStruct();
+  result.is_random_sort_tx_out = is_random_sort_tx_out_;
   result.ignore_items = ignore_items;
   return result;
 }
