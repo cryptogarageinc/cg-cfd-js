@@ -350,7 +350,8 @@ Value AddSign(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       AddSignRequest, AddSignResponse, AddSignRequestStruct,
       AddSignResponseStruct>(
-      information, TransactionStructApi::AddSign, ElementsTransactionStructApi::AddSign);
+      information, TransactionStructApi::AddSign,
+      ElementsTransactionStructApi::AddSign);
 }
 
 Value UpdateWitnessStack(const CallbackInfo &information) {
@@ -486,7 +487,8 @@ Value CreateDestroyAmount(const CallbackInfo &information) {
       ElementsCreateDestroyAmountRequest, ElementsCreateDestroyAmountResponse,
       ElementsCreateDestroyAmountRequestStruct,
       ElementsCreateDestroyAmountResponseStruct>(
-      information, ElementsTransactionStructApi::CreateDestroyAmountTransaction);
+      information,
+      ElementsTransactionStructApi::CreateDestroyAmountTransaction);
 }
 #endif  // CFD_DISABLE_ELEMENTS
 
@@ -506,7 +508,8 @@ Value CreateCETxAddress(const CallbackInfo &information) {
 Value AddCETxSign(const CallbackInfo &information) {
   return cfd::api::NodeAddonJsonApi<
       AddCETxSignRequest, AddCETxSignResponse, AddCETxSignRequestStruct,
-      AddCETxSignResponseStruct>(information, DlcTransactionStructApi::AddCETxSign);
+      AddCETxSignResponseStruct>(
+      information, DlcTransactionStructApi::AddCETxSign);
 }
 
 }  // namespace api
