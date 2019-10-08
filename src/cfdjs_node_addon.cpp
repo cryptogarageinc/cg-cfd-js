@@ -315,7 +315,12 @@ Value CreateAddress(const CallbackInfo &information) {
       CreateAddressRequest, CreateAddressResponse, CreateAddressRequestStruct,
       CreateAddressResponseStruct>(
       information, AddressApi::CreateAddress,
-      ElementsAddressApi::CreateAddress);
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressApi::CreateAddress
+#else
+      AddressApi::CreateAddress
+#endif
+    );
 }
 
 Value CreateMultisig(const CallbackInfo &information) {
@@ -323,7 +328,64 @@ Value CreateMultisig(const CallbackInfo &information) {
       CreateMultisigRequest, CreateMultisigResponse,
       CreateMultisigRequestStruct, CreateMultisigResponseStruct>(
       information, AddressApi::CreateMultisig,
-      ElementsAddressApi::CreateMultisig);
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressApi::CreateMultisig
+#else
+      AddressApi::CreateMultisig
+#endif
+    );
+}
+
+Value AddSign(const CallbackInfo &information) {
+  return NodeAddonElementsCheckApi<
+      AddSignRequest, AddSignResponse, AddSignRequestStruct,
+      AddSignResponseStruct>(
+      information, TransactionApi::AddSign,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionApi::AddSign
+#else
+      TransactionApi::AddSign
+#endif
+    );
+}
+
+Value UpdateWitnessStack(const CallbackInfo &information) {
+  return NodeAddonElementsCheckApi<
+      UpdateWitnessStackRequest, UpdateWitnessStackResponse,
+      UpdateWitnessStackRequestStruct, UpdateWitnessStackResponseStruct>(
+      information, TransactionApi::UpdateWitnessStack,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionApi::UpdateWitnessStack
+#else
+      TransactionApi::UpdateWitnessStack
+#endif
+    );
+}
+
+Value GetWitnessStackNum(const CallbackInfo &information) {
+  return NodeAddonElementsCheckApi<
+      GetWitnessStackNumRequest, GetWitnessStackNumResponse,
+      GetWitnessStackNumRequestStruct, GetWitnessStackNumResponseStruct>(
+      information, TransactionApi::GetWitnessStackNum,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionApi::GetWitnessStackNum
+#else
+      TransactionApi::GetWitnessStackNum
+#endif
+    );
+}
+
+Value AddMultisigSign(const CallbackInfo &information) {
+  return NodeAddonElementsCheckApi<
+      AddMultisigSignRequest, AddMultisigSignResponse,
+      AddMultisigSignRequestStruct, AddMultisigSignResponseStruct>(
+      information, TransactionApi::AddMultisigSign,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionApi::AddMultisigSign
+#else
+      TransactionApi::AddMultisigSign
+#endif
+    );
 }
 
 Value CreateSignatureHash(const CallbackInfo &information) {
@@ -344,37 +406,6 @@ Value CreateKeyPair(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       CreateKeyPairRequest, CreateKeyPairResponse, CreateKeyPairRequestStruct,
       CreateKeyPairResponseStruct>(information, KeyApi::CreateKeyPair);
-}
-
-Value AddSign(const CallbackInfo &information) {
-  return NodeAddonElementsCheckApi<
-      AddSignRequest, AddSignResponse, AddSignRequestStruct,
-      AddSignResponseStruct>(
-      information, TransactionApi::AddSign, ElementsTransactionApi::AddSign);
-}
-
-Value UpdateWitnessStack(const CallbackInfo &information) {
-  return NodeAddonElementsCheckApi<
-      UpdateWitnessStackRequest, UpdateWitnessStackResponse,
-      UpdateWitnessStackRequestStruct, UpdateWitnessStackResponseStruct>(
-      information, TransactionApi::UpdateWitnessStack,
-      ElementsTransactionApi::UpdateWitnessStack);
-}
-
-Value GetWitnessStackNum(const CallbackInfo &information) {
-  return NodeAddonElementsCheckApi<
-      GetWitnessStackNumRequest, GetWitnessStackNumResponse,
-      GetWitnessStackNumRequestStruct, GetWitnessStackNumResponseStruct>(
-      information, TransactionApi::GetWitnessStackNum,
-      ElementsTransactionApi::GetWitnessStackNum);
-}
-
-Value AddMultisigSign(const CallbackInfo &information) {
-  return NodeAddonElementsCheckApi<
-      AddMultisigSignRequest, AddMultisigSignResponse,
-      AddMultisigSignRequestStruct, AddMultisigSignResponseStruct>(
-      information, TransactionApi::AddMultisigSign,
-      ElementsTransactionApi::AddMultisigSign);
 }
 
 #ifndef CFD_DISABLE_ELEMENTS
