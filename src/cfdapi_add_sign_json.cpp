@@ -11,19 +11,21 @@
 #include "cfdapi_add_sign_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // SignData
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<SignData>
+cfd::core::JsonTableMap<SignData>
   SignData::json_mapper;
 std::vector<std::string> SignData::item_list;
 
@@ -31,7 +33,7 @@ void SignData::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<SignData> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<SignData> func_table;  // NOLINT
 
   func_table = {
     SignData::GetHexString,
@@ -94,7 +96,7 @@ SignDataStruct SignData::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // AddSignTxInRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<AddSignTxInRequest>
+cfd::core::JsonTableMap<AddSignTxInRequest>
   AddSignTxInRequest::json_mapper;
 std::vector<std::string> AddSignTxInRequest::item_list;
 
@@ -102,7 +104,7 @@ void AddSignTxInRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<AddSignTxInRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<AddSignTxInRequest> func_table;  // NOLINT
 
   func_table = {
     AddSignTxInRequest::GetTxidString,
@@ -165,7 +167,7 @@ AddSignTxInRequestStruct AddSignTxInRequest::ConvertToStruct() const {  // NOLIN
 // ------------------------------------------------------------------------
 // AddSignRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<AddSignRequest>
+cfd::core::JsonTableMap<AddSignRequest>
   AddSignRequest::json_mapper;
 std::vector<std::string> AddSignRequest::item_list;
 
@@ -173,7 +175,7 @@ void AddSignRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<AddSignRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<AddSignRequest> func_table;  // NOLINT
 
   func_table = {
     AddSignRequest::GetTxString,
@@ -218,7 +220,7 @@ AddSignRequestStruct AddSignRequest::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // AddSignResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<AddSignResponse>
+cfd::core::JsonTableMap<AddSignResponse>
   AddSignResponse::json_mapper;
 std::vector<std::string> AddSignResponse::item_list;
 
@@ -226,7 +228,7 @@ void AddSignResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<AddSignResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<AddSignResponse> func_table;  // NOLINT
 
   func_table = {
     AddSignResponse::GetHexString,
@@ -253,5 +255,7 @@ AddSignResponseStruct AddSignResponse::ConvertToStruct() const {  // NOLINT
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

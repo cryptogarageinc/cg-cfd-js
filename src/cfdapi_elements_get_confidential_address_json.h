@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（GetConfidentialAddressRequest）クラス
  */
 class GetConfidentialAddressRequest
-  : public cfdcore::JsonClassBase<GetConfidentialAddressRequest> {
+  : public cfd::core::JsonClassBase<GetConfidentialAddressRequest> {
  public:
   GetConfidentialAddressRequest() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class GetConfidentialAddressRequest
    */
   static std::string GetUnblindedAddressString(  // line separate
       const GetConfidentialAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.unblinded_address_);
+    return cfd::core::ConvertToString(obj.unblinded_address_);
   }
   /**
    * @brief unblindedAddress フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class GetConfidentialAddressRequest
   static void SetUnblindedAddressString(  // line separate
       GetConfidentialAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.unblinded_address_, json_value);
   }
 
@@ -117,7 +119,7 @@ class GetConfidentialAddressRequest
    */
   static std::string GetKeyString(  // line separate
       const GetConfidentialAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.key_);
+    return cfd::core::ConvertToString(obj.key_);
   }
   /**
    * @brief key フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class GetConfidentialAddressRequest
   static void SetKeyString(  // line separate
       GetConfidentialAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.key_, json_value);
   }
 
@@ -157,12 +159,12 @@ class GetConfidentialAddressRequest
    * @brief Mapテーブルの型名定義
    */
   using GetConfidentialAddressRequestMapTable =
-    cfdcore::JsonTableMap<GetConfidentialAddressRequest>;
+    cfd::core::JsonTableMap<GetConfidentialAddressRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetConfidentialAddressRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -171,7 +173,7 @@ class GetConfidentialAddressRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -180,7 +182,7 @@ class GetConfidentialAddressRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -217,7 +219,7 @@ class GetConfidentialAddressRequest
  * @brief JSON-API（GetConfidentialAddressResponse）クラス
  */
 class GetConfidentialAddressResponse
-  : public cfdcore::JsonClassBase<GetConfidentialAddressResponse> {
+  : public cfd::core::JsonClassBase<GetConfidentialAddressResponse> {
  public:
   GetConfidentialAddressResponse() {
     CollectFieldName();
@@ -259,7 +261,7 @@ class GetConfidentialAddressResponse
    */
   static std::string GetConfidentialAddressString(  // line separate
       const GetConfidentialAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.confidential_address_);
+    return cfd::core::ConvertToString(obj.confidential_address_);
   }
   /**
    * @brief confidentialAddress フィールドへのJSON情報設定処理
@@ -269,7 +271,7 @@ class GetConfidentialAddressResponse
   static void SetConfidentialAddressString(  // line separate
       GetConfidentialAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.confidential_address_, json_value);
   }
 
@@ -299,12 +301,12 @@ class GetConfidentialAddressResponse
    * @brief Mapテーブルの型名定義
    */
   using GetConfidentialAddressResponseMapTable =
-    cfdcore::JsonTableMap<GetConfidentialAddressResponse>;
+    cfd::core::JsonTableMap<GetConfidentialAddressResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetConfidentialAddressResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -313,7 +315,7 @@ class GetConfidentialAddressResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -322,7 +324,7 @@ class GetConfidentialAddressResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -351,7 +353,9 @@ class GetConfidentialAddressResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_ELEMENTS_GET_CONFIDENTIAL_ADDRESS_JSON_H_

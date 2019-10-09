@@ -11,19 +11,21 @@
 #include "cfdapi_transaction_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // TxInRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<TxInRequest>
+cfd::core::JsonTableMap<TxInRequest>
   TxInRequest::json_mapper;
 std::vector<std::string> TxInRequest::item_list;
 
@@ -31,7 +33,7 @@ void TxInRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<TxInRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<TxInRequest> func_table;  // NOLINT
 
   func_table = {
     TxInRequest::GetTxidString,
@@ -76,7 +78,7 @@ TxInRequestStruct TxInRequest::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // TxOutRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<TxOutRequest>
+cfd::core::JsonTableMap<TxOutRequest>
   TxOutRequest::json_mapper;
 std::vector<std::string> TxOutRequest::item_list;
 
@@ -84,7 +86,7 @@ void TxOutRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<TxOutRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<TxOutRequest> func_table;  // NOLINT
 
   func_table = {
     TxOutRequest::GetAddressString,
@@ -120,7 +122,7 @@ TxOutRequestStruct TxOutRequest::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // CreateRawTransactionRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateRawTransactionRequest>
+cfd::core::JsonTableMap<CreateRawTransactionRequest>
   CreateRawTransactionRequest::json_mapper;
 std::vector<std::string> CreateRawTransactionRequest::item_list;
 
@@ -128,7 +130,7 @@ void CreateRawTransactionRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateRawTransactionRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateRawTransactionRequest> func_table;  // NOLINT
 
   func_table = {
     CreateRawTransactionRequest::GetVersionString,
@@ -182,7 +184,7 @@ CreateRawTransactionRequestStruct CreateRawTransactionRequest::ConvertToStruct()
 // ------------------------------------------------------------------------
 // CreateRawTransactionResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateRawTransactionResponse>
+cfd::core::JsonTableMap<CreateRawTransactionResponse>
   CreateRawTransactionResponse::json_mapper;
 std::vector<std::string> CreateRawTransactionResponse::item_list;
 
@@ -190,7 +192,7 @@ void CreateRawTransactionResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateRawTransactionResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateRawTransactionResponse> func_table;  // NOLINT
 
   func_table = {
     CreateRawTransactionResponse::GetHexString,
@@ -217,5 +219,7 @@ CreateRawTransactionResponseStruct CreateRawTransactionResponse::ConvertToStruct
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

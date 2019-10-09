@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（ConvertMnemonicToSeedRequest）クラス
  */
 class ConvertMnemonicToSeedRequest
-  : public cfdcore::JsonClassBase<ConvertMnemonicToSeedRequest> {
+  : public cfd::core::JsonClassBase<ConvertMnemonicToSeedRequest> {
  public:
   ConvertMnemonicToSeedRequest() {
     CollectFieldName();
@@ -117,7 +119,7 @@ class ConvertMnemonicToSeedRequest
    */
   static std::string GetPassphraseString(  // line separate
       const ConvertMnemonicToSeedRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.passphrase_);
+    return cfd::core::ConvertToString(obj.passphrase_);
   }
   /**
    * @brief passphrase フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class ConvertMnemonicToSeedRequest
   static void SetPassphraseString(  // line separate
       ConvertMnemonicToSeedRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.passphrase_, json_value);
   }
 
@@ -160,7 +162,7 @@ class ConvertMnemonicToSeedRequest
    */
   static std::string GetStrictCheckString(  // line separate
       const ConvertMnemonicToSeedRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.strict_check_);
+    return cfd::core::ConvertToString(obj.strict_check_);
   }
   /**
    * @brief strictCheck フィールドへのJSON情報設定処理
@@ -170,7 +172,7 @@ class ConvertMnemonicToSeedRequest
   static void SetStrictCheckString(  // line separate
       ConvertMnemonicToSeedRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.strict_check_, json_value);
   }
 
@@ -203,7 +205,7 @@ class ConvertMnemonicToSeedRequest
    */
   static std::string GetLanguageString(  // line separate
       const ConvertMnemonicToSeedRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.language_);
+    return cfd::core::ConvertToString(obj.language_);
   }
   /**
    * @brief language フィールドへのJSON情報設定処理
@@ -213,7 +215,7 @@ class ConvertMnemonicToSeedRequest
   static void SetLanguageString(  // line separate
       ConvertMnemonicToSeedRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.language_, json_value);
   }
 
@@ -246,7 +248,7 @@ class ConvertMnemonicToSeedRequest
    */
   static std::string GetUseIdeographicSpaceString(  // line separate
       const ConvertMnemonicToSeedRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.use_ideographic_space_);
+    return cfd::core::ConvertToString(obj.use_ideographic_space_);
   }
   /**
    * @brief useIdeographicSpace フィールドへのJSON情報設定処理
@@ -256,7 +258,7 @@ class ConvertMnemonicToSeedRequest
   static void SetUseIdeographicSpaceString(  // line separate
       ConvertMnemonicToSeedRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.use_ideographic_space_, json_value);
   }
 
@@ -286,12 +288,12 @@ class ConvertMnemonicToSeedRequest
    * @brief Mapテーブルの型名定義
    */
   using ConvertMnemonicToSeedRequestMapTable =
-    cfdcore::JsonTableMap<ConvertMnemonicToSeedRequest>;
+    cfd::core::JsonTableMap<ConvertMnemonicToSeedRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ConvertMnemonicToSeedRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -300,7 +302,7 @@ class ConvertMnemonicToSeedRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -309,7 +311,7 @@ class ConvertMnemonicToSeedRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -358,7 +360,7 @@ class ConvertMnemonicToSeedRequest
  * @brief JSON-API（ConvertMnemonicToSeedResponse）クラス
  */
 class ConvertMnemonicToSeedResponse
-  : public cfdcore::JsonClassBase<ConvertMnemonicToSeedResponse> {
+  : public cfd::core::JsonClassBase<ConvertMnemonicToSeedResponse> {
  public:
   ConvertMnemonicToSeedResponse() {
     CollectFieldName();
@@ -400,7 +402,7 @@ class ConvertMnemonicToSeedResponse
    */
   static std::string GetSeedString(  // line separate
       const ConvertMnemonicToSeedResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.seed_);
+    return cfd::core::ConvertToString(obj.seed_);
   }
   /**
    * @brief seed フィールドへのJSON情報設定処理
@@ -410,7 +412,7 @@ class ConvertMnemonicToSeedResponse
   static void SetSeedString(  // line separate
       ConvertMnemonicToSeedResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.seed_, json_value);
   }
 
@@ -443,7 +445,7 @@ class ConvertMnemonicToSeedResponse
    */
   static std::string GetEntropyString(  // line separate
       const ConvertMnemonicToSeedResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.entropy_);
+    return cfd::core::ConvertToString(obj.entropy_);
   }
   /**
    * @brief entropy フィールドへのJSON情報設定処理
@@ -453,7 +455,7 @@ class ConvertMnemonicToSeedResponse
   static void SetEntropyString(  // line separate
       ConvertMnemonicToSeedResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.entropy_, json_value);
   }
 
@@ -483,12 +485,12 @@ class ConvertMnemonicToSeedResponse
    * @brief Mapテーブルの型名定義
    */
   using ConvertMnemonicToSeedResponseMapTable =
-    cfdcore::JsonTableMap<ConvertMnemonicToSeedResponse>;
+    cfd::core::JsonTableMap<ConvertMnemonicToSeedResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ConvertMnemonicToSeedResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -497,7 +499,7 @@ class ConvertMnemonicToSeedResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -506,7 +508,7 @@ class ConvertMnemonicToSeedResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -539,7 +541,9 @@ class ConvertMnemonicToSeedResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_CONVERT_MNEMONIC_TO_SEED_JSON_H_

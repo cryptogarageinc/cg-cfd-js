@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（GetWitnessStackNumTxInRequest）クラス
  */
 class GetWitnessStackNumTxInRequest
-  : public cfdcore::JsonClassBase<GetWitnessStackNumTxInRequest> {
+  : public cfd::core::JsonClassBase<GetWitnessStackNumTxInRequest> {
  public:
   GetWitnessStackNumTxInRequest() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class GetWitnessStackNumTxInRequest
    */
   static std::string GetTxidString(  // line separate
       const GetWitnessStackNumTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class GetWitnessStackNumTxInRequest
   static void SetTxidString(  // line separate
       GetWitnessStackNumTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -117,7 +119,7 @@ class GetWitnessStackNumTxInRequest
    */
   static std::string GetVoutString(  // line separate
       const GetWitnessStackNumTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class GetWitnessStackNumTxInRequest
   static void SetVoutString(  // line separate
       GetWitnessStackNumTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -157,12 +159,12 @@ class GetWitnessStackNumTxInRequest
    * @brief Mapテーブルの型名定義
    */
   using GetWitnessStackNumTxInRequestMapTable =
-    cfdcore::JsonTableMap<GetWitnessStackNumTxInRequest>;
+    cfd::core::JsonTableMap<GetWitnessStackNumTxInRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetWitnessStackNumTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -171,7 +173,7 @@ class GetWitnessStackNumTxInRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -180,7 +182,7 @@ class GetWitnessStackNumTxInRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -217,7 +219,7 @@ class GetWitnessStackNumTxInRequest
  * @brief JSON-API（GetWitnessStackNumRequest）クラス
  */
 class GetWitnessStackNumRequest
-  : public cfdcore::JsonClassBase<GetWitnessStackNumRequest> {
+  : public cfd::core::JsonClassBase<GetWitnessStackNumRequest> {
  public:
   GetWitnessStackNumRequest() {
     CollectFieldName();
@@ -259,7 +261,7 @@ class GetWitnessStackNumRequest
    */
   static std::string GetTxString(  // line separate
       const GetWitnessStackNumRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_);
+    return cfd::core::ConvertToString(obj.tx_);
   }
   /**
    * @brief tx フィールドへのJSON情報設定処理
@@ -269,7 +271,7 @@ class GetWitnessStackNumRequest
   static void SetTxString(  // line separate
       GetWitnessStackNumRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.tx_, json_value);
   }
 
@@ -302,7 +304,7 @@ class GetWitnessStackNumRequest
    */
   static std::string GetIsElementsString(  // line separate
       const GetWitnessStackNumRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_elements_);
+    return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
    * @brief isElements フィールドへのJSON情報設定処理
@@ -312,7 +314,7 @@ class GetWitnessStackNumRequest
   static void SetIsElementsString(  // line separate
       GetWitnessStackNumRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_elements_, json_value);
   }
 
@@ -385,12 +387,12 @@ class GetWitnessStackNumRequest
    * @brief Mapテーブルの型名定義
    */
   using GetWitnessStackNumRequestMapTable =
-    cfdcore::JsonTableMap<GetWitnessStackNumRequest>;
+    cfd::core::JsonTableMap<GetWitnessStackNumRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetWitnessStackNumRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -399,7 +401,7 @@ class GetWitnessStackNumRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -408,7 +410,7 @@ class GetWitnessStackNumRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -449,7 +451,7 @@ class GetWitnessStackNumRequest
  * @brief JSON-API（GetWitnessStackNumResponse）クラス
  */
 class GetWitnessStackNumResponse
-  : public cfdcore::JsonClassBase<GetWitnessStackNumResponse> {
+  : public cfd::core::JsonClassBase<GetWitnessStackNumResponse> {
  public:
   GetWitnessStackNumResponse() {
     CollectFieldName();
@@ -491,7 +493,7 @@ class GetWitnessStackNumResponse
    */
   static std::string GetCountString(  // line separate
       const GetWitnessStackNumResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.count_);
+    return cfd::core::ConvertToString(obj.count_);
   }
   /**
    * @brief count フィールドへのJSON情報設定処理
@@ -501,7 +503,7 @@ class GetWitnessStackNumResponse
   static void SetCountString(  // line separate
       GetWitnessStackNumResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.count_, json_value);
   }
 
@@ -531,12 +533,12 @@ class GetWitnessStackNumResponse
    * @brief Mapテーブルの型名定義
    */
   using GetWitnessStackNumResponseMapTable =
-    cfdcore::JsonTableMap<GetWitnessStackNumResponse>;
+    cfd::core::JsonTableMap<GetWitnessStackNumResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetWitnessStackNumResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -545,7 +547,7 @@ class GetWitnessStackNumResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -554,7 +556,7 @@ class GetWitnessStackNumResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -583,7 +585,9 @@ class GetWitnessStackNumResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_GET_WITNESS_NUM_JSON_H_

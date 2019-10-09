@@ -11,19 +11,21 @@
 #include "cfdapi_elements_create_destroy_amount_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ElementsDestroyAmountTxIn
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsDestroyAmountTxIn>
+cfd::core::JsonTableMap<ElementsDestroyAmountTxIn>
   ElementsDestroyAmountTxIn::json_mapper;
 std::vector<std::string> ElementsDestroyAmountTxIn::item_list;
 
@@ -31,7 +33,7 @@ void ElementsDestroyAmountTxIn::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsDestroyAmountTxIn> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsDestroyAmountTxIn> func_table;  // NOLINT
 
   func_table = {
     ElementsDestroyAmountTxIn::GetTxidString,
@@ -76,7 +78,7 @@ ElementsDestroyAmountTxInStruct ElementsDestroyAmountTxIn::ConvertToStruct() con
 // ------------------------------------------------------------------------
 // ElementsDestroyAmountTxOut
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsDestroyAmountTxOut>
+cfd::core::JsonTableMap<ElementsDestroyAmountTxOut>
   ElementsDestroyAmountTxOut::json_mapper;
 std::vector<std::string> ElementsDestroyAmountTxOut::item_list;
 
@@ -84,7 +86,7 @@ void ElementsDestroyAmountTxOut::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsDestroyAmountTxOut> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsDestroyAmountTxOut> func_table;  // NOLINT
 
   func_table = {
     ElementsDestroyAmountTxOut::GetAddressString,
@@ -138,7 +140,7 @@ ElementsDestroyAmountTxOutStruct ElementsDestroyAmountTxOut::ConvertToStruct() c
 // ------------------------------------------------------------------------
 // ElementsDestroyAmount
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsDestroyAmount>
+cfd::core::JsonTableMap<ElementsDestroyAmount>
   ElementsDestroyAmount::json_mapper;
 std::vector<std::string> ElementsDestroyAmount::item_list;
 
@@ -146,7 +148,7 @@ void ElementsDestroyAmount::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsDestroyAmount> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsDestroyAmount> func_table;  // NOLINT
 
   func_table = {
     ElementsDestroyAmount::GetAmountString,
@@ -182,7 +184,7 @@ ElementsDestroyAmountStruct ElementsDestroyAmount::ConvertToStruct() const {  //
 // ------------------------------------------------------------------------
 // ElementsDestroyAmountFee
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsDestroyAmountFee>
+cfd::core::JsonTableMap<ElementsDestroyAmountFee>
   ElementsDestroyAmountFee::json_mapper;
 std::vector<std::string> ElementsDestroyAmountFee::item_list;
 
@@ -190,7 +192,7 @@ void ElementsDestroyAmountFee::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsDestroyAmountFee> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsDestroyAmountFee> func_table;  // NOLINT
 
   func_table = {
     ElementsDestroyAmountFee::GetAmountString,
@@ -226,7 +228,7 @@ ElementsDestroyAmountFeeStruct ElementsDestroyAmountFee::ConvertToStruct() const
 // ------------------------------------------------------------------------
 // ElementsCreateDestroyAmountRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreateDestroyAmountRequest>
+cfd::core::JsonTableMap<ElementsCreateDestroyAmountRequest>
   ElementsCreateDestroyAmountRequest::json_mapper;
 std::vector<std::string> ElementsCreateDestroyAmountRequest::item_list;
 
@@ -234,7 +236,7 @@ void ElementsCreateDestroyAmountRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreateDestroyAmountRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreateDestroyAmountRequest> func_table;  // NOLINT
 
   func_table = {
     ElementsCreateDestroyAmountRequest::GetVersionString,
@@ -306,7 +308,7 @@ ElementsCreateDestroyAmountRequestStruct ElementsCreateDestroyAmountRequest::Con
 // ------------------------------------------------------------------------
 // ElementsCreateDestroyAmountResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreateDestroyAmountResponse>
+cfd::core::JsonTableMap<ElementsCreateDestroyAmountResponse>
   ElementsCreateDestroyAmountResponse::json_mapper;
 std::vector<std::string> ElementsCreateDestroyAmountResponse::item_list;
 
@@ -314,7 +316,7 @@ void ElementsCreateDestroyAmountResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreateDestroyAmountResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreateDestroyAmountResponse> func_table;  // NOLINT
 
   func_table = {
     ElementsCreateDestroyAmountResponse::GetHexString,
@@ -341,5 +343,7 @@ ElementsCreateDestroyAmountResponseStruct ElementsCreateDestroyAmountResponse::C
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

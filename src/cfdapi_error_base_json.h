@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（InnerErrorResponse）クラス
  */
 class InnerErrorResponse
-  : public cfdcore::JsonClassBase<InnerErrorResponse> {
+  : public cfd::core::JsonClassBase<InnerErrorResponse> {
  public:
   InnerErrorResponse() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class InnerErrorResponse
    */
   static std::string GetCodeString(  // line separate
       const InnerErrorResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.code_);
+    return cfd::core::ConvertToString(obj.code_);
   }
   /**
    * @brief code フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class InnerErrorResponse
   static void SetCodeString(  // line separate
       InnerErrorResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.code_, json_value);
   }
 
@@ -117,7 +119,7 @@ class InnerErrorResponse
    */
   static std::string GetTypeString(  // line separate
       const InnerErrorResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.type_);
+    return cfd::core::ConvertToString(obj.type_);
   }
   /**
    * @brief type フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class InnerErrorResponse
   static void SetTypeString(  // line separate
       InnerErrorResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.type_, json_value);
   }
 
@@ -160,7 +162,7 @@ class InnerErrorResponse
    */
   static std::string GetMessageString(  // line separate
       const InnerErrorResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.message_);
+    return cfd::core::ConvertToString(obj.message_);
   }
   /**
    * @brief message フィールドへのJSON情報設定処理
@@ -170,7 +172,7 @@ class InnerErrorResponse
   static void SetMessageString(  // line separate
       InnerErrorResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.message_, json_value);
   }
 
@@ -200,12 +202,12 @@ class InnerErrorResponse
    * @brief Mapテーブルの型名定義
    */
   using InnerErrorResponseMapTable =
-    cfdcore::JsonTableMap<InnerErrorResponse>;
+    cfd::core::JsonTableMap<InnerErrorResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const InnerErrorResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -214,7 +216,7 @@ class InnerErrorResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -223,7 +225,7 @@ class InnerErrorResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -264,7 +266,7 @@ class InnerErrorResponse
  * @brief JSON-API（ErrorResponseBase）クラス
  */
 class ErrorResponseBase
-  : public cfdcore::JsonClassBase<ErrorResponseBase> {
+  : public cfd::core::JsonClassBase<ErrorResponseBase> {
  public:
   ErrorResponseBase() {
     CollectFieldName();
@@ -335,12 +337,12 @@ class ErrorResponseBase
    * @brief Mapテーブルの型名定義
    */
   using ErrorResponseBaseMapTable =
-    cfdcore::JsonTableMap<ErrorResponseBase>;
+    cfd::core::JsonTableMap<ErrorResponseBase>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ErrorResponseBaseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -349,7 +351,7 @@ class ErrorResponseBase
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -358,7 +360,7 @@ class ErrorResponseBase
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -387,7 +389,9 @@ class ErrorResponseBase
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_ERROR_BASE_JSON_H_

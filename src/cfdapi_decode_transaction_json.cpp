@@ -11,19 +11,21 @@
 #include "cfdapi_decode_transaction_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // DecodeRawTransactionRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<DecodeRawTransactionRequest>
+cfd::core::JsonTableMap<DecodeRawTransactionRequest>
   DecodeRawTransactionRequest::json_mapper;
 std::vector<std::string> DecodeRawTransactionRequest::item_list;
 
@@ -31,7 +33,7 @@ void DecodeRawTransactionRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<DecodeRawTransactionRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeRawTransactionRequest> func_table;  // NOLINT
 
   func_table = {
     DecodeRawTransactionRequest::GetHexString,
@@ -76,7 +78,7 @@ DecodeRawTransactionRequestStruct DecodeRawTransactionRequest::ConvertToStruct()
 // ------------------------------------------------------------------------
 // DecodeUnlockingScript
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<DecodeUnlockingScript>
+cfd::core::JsonTableMap<DecodeUnlockingScript>
   DecodeUnlockingScript::json_mapper;
 std::vector<std::string> DecodeUnlockingScript::item_list;
 
@@ -84,7 +86,7 @@ void DecodeUnlockingScript::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<DecodeUnlockingScript> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeUnlockingScript> func_table;  // NOLINT
 
   func_table = {
     DecodeUnlockingScript::GetAsmString,
@@ -120,7 +122,7 @@ DecodeUnlockingScriptStruct DecodeUnlockingScript::ConvertToStruct() const {  //
 // ------------------------------------------------------------------------
 // DecodeRawTransactionTxIn
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<DecodeRawTransactionTxIn>
+cfd::core::JsonTableMap<DecodeRawTransactionTxIn>
   DecodeRawTransactionTxIn::json_mapper;
 std::vector<std::string> DecodeRawTransactionTxIn::item_list;
 
@@ -128,7 +130,7 @@ void DecodeRawTransactionTxIn::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<DecodeRawTransactionTxIn> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeRawTransactionTxIn> func_table;  // NOLINT
 
   func_table = {
     DecodeRawTransactionTxIn::GetCoinbaseString,
@@ -200,7 +202,7 @@ DecodeRawTransactionTxInStruct DecodeRawTransactionTxIn::ConvertToStruct() const
 // ------------------------------------------------------------------------
 // DecodeLockingScript
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<DecodeLockingScript>
+cfd::core::JsonTableMap<DecodeLockingScript>
   DecodeLockingScript::json_mapper;
 std::vector<std::string> DecodeLockingScript::item_list;
 
@@ -208,7 +210,7 @@ void DecodeLockingScript::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<DecodeLockingScript> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeLockingScript> func_table;  // NOLINT
 
   func_table = {
     DecodeLockingScript::GetAsmString,
@@ -271,7 +273,7 @@ DecodeLockingScriptStruct DecodeLockingScript::ConvertToStruct() const {  // NOL
 // ------------------------------------------------------------------------
 // DecodeRawTransactionTxOut
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<DecodeRawTransactionTxOut>
+cfd::core::JsonTableMap<DecodeRawTransactionTxOut>
   DecodeRawTransactionTxOut::json_mapper;
 std::vector<std::string> DecodeRawTransactionTxOut::item_list;
 
@@ -279,7 +281,7 @@ void DecodeRawTransactionTxOut::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<DecodeRawTransactionTxOut> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeRawTransactionTxOut> func_table;  // NOLINT
 
   func_table = {
     DecodeRawTransactionTxOut::GetValueString,
@@ -324,7 +326,7 @@ DecodeRawTransactionTxOutStruct DecodeRawTransactionTxOut::ConvertToStruct() con
 // ------------------------------------------------------------------------
 // DecodeRawTransactionResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<DecodeRawTransactionResponse>
+cfd::core::JsonTableMap<DecodeRawTransactionResponse>
   DecodeRawTransactionResponse::json_mapper;
 std::vector<std::string> DecodeRawTransactionResponse::item_list;
 
@@ -332,7 +334,7 @@ void DecodeRawTransactionResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<DecodeRawTransactionResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeRawTransactionResponse> func_table;  // NOLINT
 
   func_table = {
     DecodeRawTransactionResponse::GetTxidString,
@@ -431,5 +433,7 @@ DecodeRawTransactionResponseStruct DecodeRawTransactionResponse::ConvertToStruct
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

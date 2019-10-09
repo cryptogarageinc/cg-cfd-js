@@ -11,19 +11,21 @@
 #include "cfdapi_elements_get_confidential_address_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // GetConfidentialAddressRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetConfidentialAddressRequest>
+cfd::core::JsonTableMap<GetConfidentialAddressRequest>
   GetConfidentialAddressRequest::json_mapper;
 std::vector<std::string> GetConfidentialAddressRequest::item_list;
 
@@ -31,7 +33,7 @@ void GetConfidentialAddressRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetConfidentialAddressRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetConfidentialAddressRequest> func_table;  // NOLINT
 
   func_table = {
     GetConfidentialAddressRequest::GetUnblindedAddressString,
@@ -67,7 +69,7 @@ GetConfidentialAddressRequestStruct GetConfidentialAddressRequest::ConvertToStru
 // ------------------------------------------------------------------------
 // GetConfidentialAddressResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetConfidentialAddressResponse>
+cfd::core::JsonTableMap<GetConfidentialAddressResponse>
   GetConfidentialAddressResponse::json_mapper;
 std::vector<std::string> GetConfidentialAddressResponse::item_list;
 
@@ -75,7 +77,7 @@ void GetConfidentialAddressResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetConfidentialAddressResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetConfidentialAddressResponse> func_table;  // NOLINT
 
   func_table = {
     GetConfidentialAddressResponse::GetConfidentialAddressString,
@@ -102,5 +104,7 @@ GetConfidentialAddressResponseStruct GetConfidentialAddressResponse::ConvertToSt
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

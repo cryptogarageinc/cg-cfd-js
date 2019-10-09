@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（ConvertEntropyToMnemonicRequest）クラス
  */
 class ConvertEntropyToMnemonicRequest
-  : public cfdcore::JsonClassBase<ConvertEntropyToMnemonicRequest> {
+  : public cfd::core::JsonClassBase<ConvertEntropyToMnemonicRequest> {
  public:
   ConvertEntropyToMnemonicRequest() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class ConvertEntropyToMnemonicRequest
    */
   static std::string GetEntropyString(  // line separate
       const ConvertEntropyToMnemonicRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.entropy_);
+    return cfd::core::ConvertToString(obj.entropy_);
   }
   /**
    * @brief entropy フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class ConvertEntropyToMnemonicRequest
   static void SetEntropyString(  // line separate
       ConvertEntropyToMnemonicRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.entropy_, json_value);
   }
 
@@ -117,7 +119,7 @@ class ConvertEntropyToMnemonicRequest
    */
   static std::string GetLanguageString(  // line separate
       const ConvertEntropyToMnemonicRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.language_);
+    return cfd::core::ConvertToString(obj.language_);
   }
   /**
    * @brief language フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class ConvertEntropyToMnemonicRequest
   static void SetLanguageString(  // line separate
       ConvertEntropyToMnemonicRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.language_, json_value);
   }
 
@@ -157,12 +159,12 @@ class ConvertEntropyToMnemonicRequest
    * @brief Mapテーブルの型名定義
    */
   using ConvertEntropyToMnemonicRequestMapTable =
-    cfdcore::JsonTableMap<ConvertEntropyToMnemonicRequest>;
+    cfd::core::JsonTableMap<ConvertEntropyToMnemonicRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ConvertEntropyToMnemonicRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -171,7 +173,7 @@ class ConvertEntropyToMnemonicRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -180,7 +182,7 @@ class ConvertEntropyToMnemonicRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -217,7 +219,7 @@ class ConvertEntropyToMnemonicRequest
  * @brief JSON-API（ConvertEntropyToMnemonicResponse）クラス
  */
 class ConvertEntropyToMnemonicResponse
-  : public cfdcore::JsonClassBase<ConvertEntropyToMnemonicResponse> {
+  : public cfd::core::JsonClassBase<ConvertEntropyToMnemonicResponse> {
  public:
   ConvertEntropyToMnemonicResponse() {
     CollectFieldName();
@@ -299,12 +301,12 @@ class ConvertEntropyToMnemonicResponse
    * @brief Mapテーブルの型名定義
    */
   using ConvertEntropyToMnemonicResponseMapTable =
-    cfdcore::JsonTableMap<ConvertEntropyToMnemonicResponse>;
+    cfd::core::JsonTableMap<ConvertEntropyToMnemonicResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ConvertEntropyToMnemonicResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -313,7 +315,7 @@ class ConvertEntropyToMnemonicResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -322,7 +324,7 @@ class ConvertEntropyToMnemonicResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -351,7 +353,9 @@ class ConvertEntropyToMnemonicResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_CONVERT_ENTROPY_TO_MNEMONIC_JSON_H_

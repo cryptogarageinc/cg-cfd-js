@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（SignData）クラス
  */
 class SignData
-  : public cfdcore::JsonClassBase<SignData> {
+  : public cfd::core::JsonClassBase<SignData> {
  public:
   SignData() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class SignData
    */
   static std::string GetHexString(  // line separate
       const SignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class SignData
   static void SetHexString(  // line separate
       SignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -117,7 +119,7 @@ class SignData
    */
   static std::string GetTypeString(  // line separate
       const SignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.type_);
+    return cfd::core::ConvertToString(obj.type_);
   }
   /**
    * @brief type フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class SignData
   static void SetTypeString(  // line separate
       SignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.type_, json_value);
   }
 
@@ -160,7 +162,7 @@ class SignData
    */
   static std::string GetDerEncodeString(  // line separate
       const SignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.der_encode_);
+    return cfd::core::ConvertToString(obj.der_encode_);
   }
   /**
    * @brief derEncode フィールドへのJSON情報設定処理
@@ -170,7 +172,7 @@ class SignData
   static void SetDerEncodeString(  // line separate
       SignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.der_encode_, json_value);
   }
 
@@ -203,7 +205,7 @@ class SignData
    */
   static std::string GetSighashTypeString(  // line separate
       const SignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_type_);
+    return cfd::core::ConvertToString(obj.sighash_type_);
   }
   /**
    * @brief sighashType フィールドへのJSON情報設定処理
@@ -213,7 +215,7 @@ class SignData
   static void SetSighashTypeString(  // line separate
       SignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_type_, json_value);
   }
 
@@ -246,7 +248,7 @@ class SignData
    */
   static std::string GetSighashAnyoneCanPayString(  // line separate
       const SignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_anyone_can_pay_);
+    return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
   }
   /**
    * @brief sighashAnyoneCanPay フィールドへのJSON情報設定処理
@@ -256,7 +258,7 @@ class SignData
   static void SetSighashAnyoneCanPayString(  // line separate
       SignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_anyone_can_pay_, json_value);
   }
 
@@ -286,12 +288,12 @@ class SignData
    * @brief Mapテーブルの型名定義
    */
   using SignDataMapTable =
-    cfdcore::JsonTableMap<SignData>;
+    cfd::core::JsonTableMap<SignData>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const SignDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -300,7 +302,7 @@ class SignData
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -309,7 +311,7 @@ class SignData
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -358,7 +360,7 @@ class SignData
  * @brief JSON-API（AddSignTxInRequest）クラス
  */
 class AddSignTxInRequest
-  : public cfdcore::JsonClassBase<AddSignTxInRequest> {
+  : public cfd::core::JsonClassBase<AddSignTxInRequest> {
  public:
   AddSignTxInRequest() {
     CollectFieldName();
@@ -400,7 +402,7 @@ class AddSignTxInRequest
    */
   static std::string GetTxidString(  // line separate
       const AddSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -410,7 +412,7 @@ class AddSignTxInRequest
   static void SetTxidString(  // line separate
       AddSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -443,7 +445,7 @@ class AddSignTxInRequest
    */
   static std::string GetVoutString(  // line separate
       const AddSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -453,7 +455,7 @@ class AddSignTxInRequest
   static void SetVoutString(  // line separate
       AddSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -486,7 +488,7 @@ class AddSignTxInRequest
    */
   static std::string GetIsWitnessString(  // line separate
       const AddSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_witness_);
+    return cfd::core::ConvertToString(obj.is_witness_);
   }
   /**
    * @brief isWitness フィールドへのJSON情報設定処理
@@ -496,7 +498,7 @@ class AddSignTxInRequest
   static void SetIsWitnessString(  // line separate
       AddSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_witness_, json_value);
   }
 
@@ -572,7 +574,7 @@ class AddSignTxInRequest
    */
   static std::string GetClearStackString(  // line separate
       const AddSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.clear_stack_);
+    return cfd::core::ConvertToString(obj.clear_stack_);
   }
   /**
    * @brief clearStack フィールドへのJSON情報設定処理
@@ -582,7 +584,7 @@ class AddSignTxInRequest
   static void SetClearStackString(  // line separate
       AddSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.clear_stack_, json_value);
   }
 
@@ -612,12 +614,12 @@ class AddSignTxInRequest
    * @brief Mapテーブルの型名定義
    */
   using AddSignTxInRequestMapTable =
-    cfdcore::JsonTableMap<AddSignTxInRequest>;
+    cfd::core::JsonTableMap<AddSignTxInRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddSignTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -626,7 +628,7 @@ class AddSignTxInRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -635,7 +637,7 @@ class AddSignTxInRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -684,7 +686,7 @@ class AddSignTxInRequest
  * @brief JSON-API（AddSignRequest）クラス
  */
 class AddSignRequest
-  : public cfdcore::JsonClassBase<AddSignRequest> {
+  : public cfd::core::JsonClassBase<AddSignRequest> {
  public:
   AddSignRequest() {
     CollectFieldName();
@@ -726,7 +728,7 @@ class AddSignRequest
    */
   static std::string GetTxString(  // line separate
       const AddSignRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_);
+    return cfd::core::ConvertToString(obj.tx_);
   }
   /**
    * @brief tx フィールドへのJSON情報設定処理
@@ -736,7 +738,7 @@ class AddSignRequest
   static void SetTxString(  // line separate
       AddSignRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.tx_, json_value);
   }
 
@@ -769,7 +771,7 @@ class AddSignRequest
    */
   static std::string GetIsElementsString(  // line separate
       const AddSignRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_elements_);
+    return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
    * @brief isElements フィールドへのJSON情報設定処理
@@ -779,7 +781,7 @@ class AddSignRequest
   static void SetIsElementsString(  // line separate
       AddSignRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_elements_, json_value);
   }
 
@@ -852,12 +854,12 @@ class AddSignRequest
    * @brief Mapテーブルの型名定義
    */
   using AddSignRequestMapTable =
-    cfdcore::JsonTableMap<AddSignRequest>;
+    cfd::core::JsonTableMap<AddSignRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddSignRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -866,7 +868,7 @@ class AddSignRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -875,7 +877,7 @@ class AddSignRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -916,7 +918,7 @@ class AddSignRequest
  * @brief JSON-API（AddSignResponse）クラス
  */
 class AddSignResponse
-  : public cfdcore::JsonClassBase<AddSignResponse> {
+  : public cfd::core::JsonClassBase<AddSignResponse> {
  public:
   AddSignResponse() {
     CollectFieldName();
@@ -958,7 +960,7 @@ class AddSignResponse
    */
   static std::string GetHexString(  // line separate
       const AddSignResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -968,7 +970,7 @@ class AddSignResponse
   static void SetHexString(  // line separate
       AddSignResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -998,12 +1000,12 @@ class AddSignResponse
    * @brief Mapテーブルの型名定義
    */
   using AddSignResponseMapTable =
-    cfdcore::JsonTableMap<AddSignResponse>;
+    cfd::core::JsonTableMap<AddSignResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddSignResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1012,7 +1014,7 @@ class AddSignResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1021,7 +1023,7 @@ class AddSignResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1050,7 +1052,9 @@ class AddSignResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_ADD_SIGN_JSON_H_

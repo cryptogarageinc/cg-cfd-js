@@ -11,19 +11,21 @@
 #include "cfdapi_add_multisig_sign_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // MultisigSignData
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<MultisigSignData>
+cfd::core::JsonTableMap<MultisigSignData>
   MultisigSignData::json_mapper;
 std::vector<std::string> MultisigSignData::item_list;
 
@@ -31,7 +33,7 @@ void MultisigSignData::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<MultisigSignData> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<MultisigSignData> func_table;  // NOLINT
 
   func_table = {
     MultisigSignData::GetHexString,
@@ -103,7 +105,7 @@ MultisigSignDataStruct MultisigSignData::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // AddMultisigSignTxInRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<AddMultisigSignTxInRequest>
+cfd::core::JsonTableMap<AddMultisigSignTxInRequest>
   AddMultisigSignTxInRequest::json_mapper;
 std::vector<std::string> AddMultisigSignTxInRequest::item_list;
 
@@ -111,7 +113,7 @@ void AddMultisigSignTxInRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<AddMultisigSignTxInRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<AddMultisigSignTxInRequest> func_table;  // NOLINT
 
   func_table = {
     AddMultisigSignTxInRequest::GetTxidString,
@@ -192,7 +194,7 @@ AddMultisigSignTxInRequestStruct AddMultisigSignTxInRequest::ConvertToStruct() c
 // ------------------------------------------------------------------------
 // AddMultisigSignRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<AddMultisigSignRequest>
+cfd::core::JsonTableMap<AddMultisigSignRequest>
   AddMultisigSignRequest::json_mapper;
 std::vector<std::string> AddMultisigSignRequest::item_list;
 
@@ -200,7 +202,7 @@ void AddMultisigSignRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<AddMultisigSignRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<AddMultisigSignRequest> func_table;  // NOLINT
 
   func_table = {
     AddMultisigSignRequest::GetIsElementsString,
@@ -245,7 +247,7 @@ AddMultisigSignRequestStruct AddMultisigSignRequest::ConvertToStruct() const {  
 // ------------------------------------------------------------------------
 // AddMultisigSignResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<AddMultisigSignResponse>
+cfd::core::JsonTableMap<AddMultisigSignResponse>
   AddMultisigSignResponse::json_mapper;
 std::vector<std::string> AddMultisigSignResponse::item_list;
 
@@ -253,7 +255,7 @@ void AddMultisigSignResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<AddMultisigSignResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<AddMultisigSignResponse> func_table;  // NOLINT
 
   func_table = {
     AddMultisigSignResponse::GetHexString,
@@ -280,5 +282,7 @@ AddMultisigSignResponseStruct AddMultisigSignResponse::ConvertToStruct() const {
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

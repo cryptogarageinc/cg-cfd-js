@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（IssuanceDataRequest）クラス
  */
 class IssuanceDataRequest
-  : public cfdcore::JsonClassBase<IssuanceDataRequest> {
+  : public cfd::core::JsonClassBase<IssuanceDataRequest> {
  public:
   IssuanceDataRequest() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class IssuanceDataRequest
    */
   static std::string GetTxidString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class IssuanceDataRequest
   static void SetTxidString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -117,7 +119,7 @@ class IssuanceDataRequest
    */
   static std::string GetVoutString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class IssuanceDataRequest
   static void SetVoutString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -160,7 +162,7 @@ class IssuanceDataRequest
    */
   static std::string GetAssetAmountString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_amount_);
+    return cfd::core::ConvertToString(obj.asset_amount_);
   }
   /**
    * @brief assetAmount フィールドへのJSON情報設定処理
@@ -170,7 +172,7 @@ class IssuanceDataRequest
   static void SetAssetAmountString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_amount_, json_value);
   }
 
@@ -203,7 +205,7 @@ class IssuanceDataRequest
    */
   static std::string GetAssetAddressString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_address_);
+    return cfd::core::ConvertToString(obj.asset_address_);
   }
   /**
    * @brief assetAddress フィールドへのJSON情報設定処理
@@ -213,7 +215,7 @@ class IssuanceDataRequest
   static void SetAssetAddressString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_address_, json_value);
   }
 
@@ -246,7 +248,7 @@ class IssuanceDataRequest
    */
   static std::string GetTokenAmountString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.token_amount_);
+    return cfd::core::ConvertToString(obj.token_amount_);
   }
   /**
    * @brief tokenAmount フィールドへのJSON情報設定処理
@@ -256,7 +258,7 @@ class IssuanceDataRequest
   static void SetTokenAmountString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.token_amount_, json_value);
   }
 
@@ -289,7 +291,7 @@ class IssuanceDataRequest
    */
   static std::string GetTokenAddressString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.token_address_);
+    return cfd::core::ConvertToString(obj.token_address_);
   }
   /**
    * @brief tokenAddress フィールドへのJSON情報設定処理
@@ -299,7 +301,7 @@ class IssuanceDataRequest
   static void SetTokenAddressString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.token_address_, json_value);
   }
 
@@ -332,7 +334,7 @@ class IssuanceDataRequest
    */
   static std::string GetIsBlindString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_blind_);
+    return cfd::core::ConvertToString(obj.is_blind_);
   }
   /**
    * @brief isBlind フィールドへのJSON情報設定処理
@@ -342,7 +344,7 @@ class IssuanceDataRequest
   static void SetIsBlindString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_blind_, json_value);
   }
 
@@ -375,7 +377,7 @@ class IssuanceDataRequest
    */
   static std::string GetContractHashString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.contract_hash_);
+    return cfd::core::ConvertToString(obj.contract_hash_);
   }
   /**
    * @brief contractHash フィールドへのJSON情報設定処理
@@ -385,7 +387,7 @@ class IssuanceDataRequest
   static void SetContractHashString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.contract_hash_, json_value);
   }
 
@@ -418,7 +420,7 @@ class IssuanceDataRequest
    */
   static std::string GetIsRemoveNonceString(  // line separate
       const IssuanceDataRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_remove_nonce_);
+    return cfd::core::ConvertToString(obj.is_remove_nonce_);
   }
   /**
    * @brief isRemoveNonce フィールドへのJSON情報設定処理
@@ -428,7 +430,7 @@ class IssuanceDataRequest
   static void SetIsRemoveNonceString(  // line separate
       IssuanceDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_remove_nonce_, json_value);
   }
 
@@ -458,12 +460,12 @@ class IssuanceDataRequest
    * @brief Mapテーブルの型名定義
    */
   using IssuanceDataRequestMapTable =
-    cfdcore::JsonTableMap<IssuanceDataRequest>;
+    cfd::core::JsonTableMap<IssuanceDataRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const IssuanceDataRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -472,7 +474,7 @@ class IssuanceDataRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -481,7 +483,7 @@ class IssuanceDataRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -546,7 +548,7 @@ class IssuanceDataRequest
  * @brief JSON-API（SetRawIssueAssetRequest）クラス
  */
 class SetRawIssueAssetRequest
-  : public cfdcore::JsonClassBase<SetRawIssueAssetRequest> {
+  : public cfd::core::JsonClassBase<SetRawIssueAssetRequest> {
  public:
   SetRawIssueAssetRequest() {
     CollectFieldName();
@@ -588,7 +590,7 @@ class SetRawIssueAssetRequest
    */
   static std::string GetTxString(  // line separate
       const SetRawIssueAssetRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_);
+    return cfd::core::ConvertToString(obj.tx_);
   }
   /**
    * @brief tx フィールドへのJSON情報設定処理
@@ -598,51 +600,51 @@ class SetRawIssueAssetRequest
   static void SetTxString(  // line separate
       SetRawIssueAssetRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.tx_, json_value);
   }
 
   /**
-   * @brief isRandomize 取得処理
-   * @return isRandomize
+   * @brief isRandomSortTxOut 取得処理
+   * @return isRandomSortTxOut
    */
-  bool GetIsRandomize() {
-    return is_randomize_;
+  bool GetIsRandomSortTxOut() {
+    return is_random_sort_tx_out_;
   }
   /**
-   * @brief isRandomize 設定処理
-   * @param[in] is_randomize    設定値
+   * @brief isRandomSortTxOut 設定処理
+   * @param[in] is_random_sort_tx_out    設定値
    */
-  void SetIsRandomize(  // line separate
-    const bool& is_randomize) {  // NOLINT
-    this->is_randomize_ = is_randomize;
+  void SetIsRandomSortTxOut(  // line separate
+    const bool& is_random_sort_tx_out) {  // NOLINT
+    this->is_random_sort_tx_out_ = is_random_sort_tx_out;
   }
   /**
-   * @brief isRandomize データ型の取得処理
-   * @return isRandomizeのデータ型
+   * @brief isRandomSortTxOut データ型の取得処理
+   * @return isRandomSortTxOutのデータ型
    */
-  static std::string GetIsRandomizeFieldType() {
+  static std::string GetIsRandomSortTxOutFieldType() {
     return "bool";
   }
   /**
-   * @brief isRandomize フィールドのJSON文字列取得処理
+   * @brief isRandomSortTxOut フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetIsRandomizeString(  // line separate
+  static std::string GetIsRandomSortTxOutString(  // line separate
       const SetRawIssueAssetRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_randomize_);
+    return cfd::core::ConvertToString(obj.is_random_sort_tx_out_);
   }
   /**
-   * @brief isRandomize フィールドへのJSON情報設定処理
+   * @brief isRandomSortTxOut フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetIsRandomizeString(  // line separate
+  static void SetIsRandomSortTxOutString(  // line separate
       SetRawIssueAssetRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
-      obj.is_randomize_, json_value);
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_random_sort_tx_out_, json_value);
   }
 
   /**
@@ -714,12 +716,12 @@ class SetRawIssueAssetRequest
    * @brief Mapテーブルの型名定義
    */
   using SetRawIssueAssetRequestMapTable =
-    cfdcore::JsonTableMap<SetRawIssueAssetRequest>;
+    cfd::core::JsonTableMap<SetRawIssueAssetRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const SetRawIssueAssetRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -728,7 +730,7 @@ class SetRawIssueAssetRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -737,7 +739,7 @@ class SetRawIssueAssetRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -762,9 +764,9 @@ class SetRawIssueAssetRequest
    */
   std::string tx_ = "";
   /**
-   * @brief JsonAPI(isRandomize) のvalue
+   * @brief JsonAPI(isRandomSortTxOut) のvalue
    */
-  bool is_randomize_ = false;
+  bool is_random_sort_tx_out_ = false;
   /**
    * @brief JsonAPI(issuances) のvalue
    */
@@ -778,7 +780,7 @@ class SetRawIssueAssetRequest
  * @brief JSON-API（IssuanceDataResponse）クラス
  */
 class IssuanceDataResponse
-  : public cfdcore::JsonClassBase<IssuanceDataResponse> {
+  : public cfd::core::JsonClassBase<IssuanceDataResponse> {
  public:
   IssuanceDataResponse() {
     CollectFieldName();
@@ -820,7 +822,7 @@ class IssuanceDataResponse
    */
   static std::string GetTxidString(  // line separate
       const IssuanceDataResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -830,7 +832,7 @@ class IssuanceDataResponse
   static void SetTxidString(  // line separate
       IssuanceDataResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -863,7 +865,7 @@ class IssuanceDataResponse
    */
   static std::string GetVoutString(  // line separate
       const IssuanceDataResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -873,7 +875,7 @@ class IssuanceDataResponse
   static void SetVoutString(  // line separate
       IssuanceDataResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -906,7 +908,7 @@ class IssuanceDataResponse
    */
   static std::string GetAssetString(  // line separate
       const IssuanceDataResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_);
+    return cfd::core::ConvertToString(obj.asset_);
   }
   /**
    * @brief asset フィールドへのJSON情報設定処理
@@ -916,7 +918,7 @@ class IssuanceDataResponse
   static void SetAssetString(  // line separate
       IssuanceDataResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_, json_value);
   }
 
@@ -949,7 +951,7 @@ class IssuanceDataResponse
    */
   static std::string GetEntropyString(  // line separate
       const IssuanceDataResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.entropy_);
+    return cfd::core::ConvertToString(obj.entropy_);
   }
   /**
    * @brief entropy フィールドへのJSON情報設定処理
@@ -959,7 +961,7 @@ class IssuanceDataResponse
   static void SetEntropyString(  // line separate
       IssuanceDataResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.entropy_, json_value);
   }
 
@@ -992,7 +994,7 @@ class IssuanceDataResponse
    */
   static std::string GetTokenString(  // line separate
       const IssuanceDataResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.token_);
+    return cfd::core::ConvertToString(obj.token_);
   }
   /**
    * @brief token フィールドへのJSON情報設定処理
@@ -1002,7 +1004,7 @@ class IssuanceDataResponse
   static void SetTokenString(  // line separate
       IssuanceDataResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.token_, json_value);
   }
 
@@ -1032,12 +1034,12 @@ class IssuanceDataResponse
    * @brief Mapテーブルの型名定義
    */
   using IssuanceDataResponseMapTable =
-    cfdcore::JsonTableMap<IssuanceDataResponse>;
+    cfd::core::JsonTableMap<IssuanceDataResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const IssuanceDataResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1046,7 +1048,7 @@ class IssuanceDataResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1055,7 +1057,7 @@ class IssuanceDataResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1104,7 +1106,7 @@ class IssuanceDataResponse
  * @brief JSON-API（SetRawIssueAssetResponse）クラス
  */
 class SetRawIssueAssetResponse
-  : public cfdcore::JsonClassBase<SetRawIssueAssetResponse> {
+  : public cfd::core::JsonClassBase<SetRawIssueAssetResponse> {
  public:
   SetRawIssueAssetResponse() {
     CollectFieldName();
@@ -1146,7 +1148,7 @@ class SetRawIssueAssetResponse
    */
   static std::string GetHexString(  // line separate
       const SetRawIssueAssetResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -1156,7 +1158,7 @@ class SetRawIssueAssetResponse
   static void SetHexString(  // line separate
       SetRawIssueAssetResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -1229,12 +1231,12 @@ class SetRawIssueAssetResponse
    * @brief Mapテーブルの型名定義
    */
   using SetRawIssueAssetResponseMapTable =
-    cfdcore::JsonTableMap<SetRawIssueAssetResponse>;
+    cfd::core::JsonTableMap<SetRawIssueAssetResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const SetRawIssueAssetResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1243,7 +1245,7 @@ class SetRawIssueAssetResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1252,7 +1254,7 @@ class SetRawIssueAssetResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1285,7 +1287,9 @@ class SetRawIssueAssetResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_ELEMENTS_SET_RAWISSUEASSET_JSON_H_

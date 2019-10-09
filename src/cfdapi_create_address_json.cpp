@@ -11,19 +11,21 @@
 #include "cfdapi_create_address_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // CreateAddressKeyData
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateAddressKeyData>
+cfd::core::JsonTableMap<CreateAddressKeyData>
   CreateAddressKeyData::json_mapper;
 std::vector<std::string> CreateAddressKeyData::item_list;
 
@@ -31,7 +33,7 @@ void CreateAddressKeyData::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateAddressKeyData> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateAddressKeyData> func_table;  // NOLINT
 
   func_table = {
     CreateAddressKeyData::GetHexString,
@@ -67,7 +69,7 @@ CreateAddressKeyDataStruct CreateAddressKeyData::ConvertToStruct() const {  // N
 // ------------------------------------------------------------------------
 // CreateAddressRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateAddressRequest>
+cfd::core::JsonTableMap<CreateAddressRequest>
   CreateAddressRequest::json_mapper;
 std::vector<std::string> CreateAddressRequest::item_list;
 
@@ -75,7 +77,7 @@ void CreateAddressRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateAddressRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateAddressRequest> func_table;  // NOLINT
 
   func_table = {
     CreateAddressRequest::GetIsElementsString,
@@ -129,7 +131,7 @@ CreateAddressRequestStruct CreateAddressRequest::ConvertToStruct() const {  // N
 // ------------------------------------------------------------------------
 // CreateAddressResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateAddressResponse>
+cfd::core::JsonTableMap<CreateAddressResponse>
   CreateAddressResponse::json_mapper;
 std::vector<std::string> CreateAddressResponse::item_list;
 
@@ -137,7 +139,7 @@ void CreateAddressResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateAddressResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateAddressResponse> func_table;  // NOLINT
 
   func_table = {
     CreateAddressResponse::GetAddressString,
@@ -182,5 +184,7 @@ CreateAddressResponseStruct CreateAddressResponse::ConvertToStruct() const {  //
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

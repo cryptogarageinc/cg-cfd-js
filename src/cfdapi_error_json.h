@@ -12,13 +12,15 @@
 #include "cfdcore/cfdcore_exception.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::CfdException;
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::CfdException;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------
@@ -47,7 +49,9 @@ class ErrorResponse : public ErrorResponseBase {
 
 // @formatter:on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_ERROR_JSON_H_

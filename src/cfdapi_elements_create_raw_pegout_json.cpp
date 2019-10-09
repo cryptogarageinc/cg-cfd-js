@@ -11,19 +11,21 @@
 #include "cfdapi_elements_create_raw_pegout_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ElementsPegoutTxIn
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsPegoutTxIn>
+cfd::core::JsonTableMap<ElementsPegoutTxIn>
   ElementsPegoutTxIn::json_mapper;
 std::vector<std::string> ElementsPegoutTxIn::item_list;
 
@@ -31,7 +33,7 @@ void ElementsPegoutTxIn::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsPegoutTxIn> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsPegoutTxIn> func_table;  // NOLINT
 
   func_table = {
     ElementsPegoutTxIn::GetTxidString,
@@ -76,7 +78,7 @@ ElementsPegoutTxInStruct ElementsPegoutTxIn::ConvertToStruct() const {  // NOLIN
 // ------------------------------------------------------------------------
 // ElementsPegoutTxOut
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsPegoutTxOut>
+cfd::core::JsonTableMap<ElementsPegoutTxOut>
   ElementsPegoutTxOut::json_mapper;
 std::vector<std::string> ElementsPegoutTxOut::item_list;
 
@@ -84,7 +86,7 @@ void ElementsPegoutTxOut::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsPegoutTxOut> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsPegoutTxOut> func_table;  // NOLINT
 
   func_table = {
     ElementsPegoutTxOut::GetAddressString,
@@ -138,7 +140,7 @@ ElementsPegoutTxOutStruct ElementsPegoutTxOut::ConvertToStruct() const {  // NOL
 // ------------------------------------------------------------------------
 // ElementsPegout
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsPegout>
+cfd::core::JsonTableMap<ElementsPegout>
   ElementsPegout::json_mapper;
 std::vector<std::string> ElementsPegout::item_list;
 
@@ -146,7 +148,7 @@ void ElementsPegout::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsPegout> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsPegout> func_table;  // NOLINT
 
   func_table = {
     ElementsPegout::GetAmountString,
@@ -254,7 +256,7 @@ ElementsPegoutStruct ElementsPegout::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // ElementsPegoutTxOutFee
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsPegoutTxOutFee>
+cfd::core::JsonTableMap<ElementsPegoutTxOutFee>
   ElementsPegoutTxOutFee::json_mapper;
 std::vector<std::string> ElementsPegoutTxOutFee::item_list;
 
@@ -262,7 +264,7 @@ void ElementsPegoutTxOutFee::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsPegoutTxOutFee> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsPegoutTxOutFee> func_table;  // NOLINT
 
   func_table = {
     ElementsPegoutTxOutFee::GetAmountString,
@@ -298,7 +300,7 @@ ElementsPegoutTxOutFeeStruct ElementsPegoutTxOutFee::ConvertToStruct() const {  
 // ------------------------------------------------------------------------
 // ElementsCreateRawPegoutRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreateRawPegoutRequest>
+cfd::core::JsonTableMap<ElementsCreateRawPegoutRequest>
   ElementsCreateRawPegoutRequest::json_mapper;
 std::vector<std::string> ElementsCreateRawPegoutRequest::item_list;
 
@@ -306,7 +308,7 @@ void ElementsCreateRawPegoutRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreateRawPegoutRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreateRawPegoutRequest> func_table;  // NOLINT
 
   func_table = {
     ElementsCreateRawPegoutRequest::GetVersionString,
@@ -378,7 +380,7 @@ ElementsCreateRawPegoutRequestStruct ElementsCreateRawPegoutRequest::ConvertToSt
 // ------------------------------------------------------------------------
 // ElementsCreateRawPegoutResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreateRawPegoutResponse>
+cfd::core::JsonTableMap<ElementsCreateRawPegoutResponse>
   ElementsCreateRawPegoutResponse::json_mapper;
 std::vector<std::string> ElementsCreateRawPegoutResponse::item_list;
 
@@ -386,7 +388,7 @@ void ElementsCreateRawPegoutResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreateRawPegoutResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreateRawPegoutResponse> func_table;  // NOLINT
 
   func_table = {
     ElementsCreateRawPegoutResponse::GetHexString,
@@ -422,5 +424,7 @@ ElementsCreateRawPegoutResponseStruct ElementsCreateRawPegoutResponse::ConvertTo
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

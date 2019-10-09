@@ -11,19 +11,21 @@
 #include "cfdapi_blind_raw_transaction_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // BlindTxInRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<BlindTxInRequest>
+cfd::core::JsonTableMap<BlindTxInRequest>
   BlindTxInRequest::json_mapper;
 std::vector<std::string> BlindTxInRequest::item_list;
 
@@ -31,7 +33,7 @@ void BlindTxInRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<BlindTxInRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<BlindTxInRequest> func_table;  // NOLINT
 
   func_table = {
     BlindTxInRequest::GetTxidString,
@@ -101,9 +103,53 @@ BlindTxInRequestStruct BlindTxInRequest::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// BlindTxOutRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<BlindTxOutRequest>
+  BlindTxOutRequest::json_mapper;
+std::vector<std::string> BlindTxOutRequest::item_list;
+
+void BlindTxOutRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<BlindTxOutRequest> func_table;  // NOLINT
+
+  func_table = {
+    BlindTxOutRequest::GetIndexString,
+    BlindTxOutRequest::SetIndexString,
+    BlindTxOutRequest::GetIndexFieldType,
+  };
+  json_mapper.emplace("index", func_table);
+  item_list.push_back("index");
+  func_table = {
+    BlindTxOutRequest::GetBlindPubkeyString,
+    BlindTxOutRequest::SetBlindPubkeyString,
+    BlindTxOutRequest::GetBlindPubkeyFieldType,
+  };
+  json_mapper.emplace("blindPubkey", func_table);
+  item_list.push_back("blindPubkey");
+}
+
+void BlindTxOutRequest::ConvertFromStruct(
+    const BlindTxOutRequestStruct& data) {
+  index_ = data.index;
+  blind_pubkey_ = data.blind_pubkey;
+  ignore_items = data.ignore_items;
+}
+
+BlindTxOutRequestStruct BlindTxOutRequest::ConvertToStruct() const {  // NOLINT
+  BlindTxOutRequestStruct result;
+  result.index = index_;
+  result.blind_pubkey = blind_pubkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // BlindIssuanceRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<BlindIssuanceRequest>
+cfd::core::JsonTableMap<BlindIssuanceRequest>
   BlindIssuanceRequest::json_mapper;
 std::vector<std::string> BlindIssuanceRequest::item_list;
 
@@ -111,7 +157,7 @@ void BlindIssuanceRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<BlindIssuanceRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<BlindIssuanceRequest> func_table;  // NOLINT
 
   func_table = {
     BlindIssuanceRequest::GetTxidString,
@@ -165,7 +211,7 @@ BlindIssuanceRequestStruct BlindIssuanceRequest::ConvertToStruct() const {  // N
 // ------------------------------------------------------------------------
 // BlindRawTransactionRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<BlindRawTransactionRequest>
+cfd::core::JsonTableMap<BlindRawTransactionRequest>
   BlindRawTransactionRequest::json_mapper;
 std::vector<std::string> BlindRawTransactionRequest::item_list;
 
@@ -173,7 +219,7 @@ void BlindRawTransactionRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<BlindRawTransactionRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<BlindRawTransactionRequest> func_table;  // NOLINT
 
   func_table = {
     BlindRawTransactionRequest::GetTxString,
@@ -190,12 +236,12 @@ void BlindRawTransactionRequest::CollectFieldName() {
   json_mapper.emplace("txins", func_table);
   item_list.push_back("txins");
   func_table = {
-    BlindRawTransactionRequest::GetBlindPubkeysString,
-    BlindRawTransactionRequest::SetBlindPubkeysString,
-    BlindRawTransactionRequest::GetBlindPubkeysFieldType,
+    BlindRawTransactionRequest::GetTxoutsString,
+    BlindRawTransactionRequest::SetTxoutsString,
+    BlindRawTransactionRequest::GetTxoutsFieldType,
   };
-  json_mapper.emplace("blindPubkeys", func_table);
-  item_list.push_back("blindPubkeys");
+  json_mapper.emplace("txouts", func_table);
+  item_list.push_back("txouts");
   func_table = {
     BlindRawTransactionRequest::GetIssuancesString,
     BlindRawTransactionRequest::SetIssuancesString,
@@ -209,7 +255,7 @@ void BlindRawTransactionRequest::ConvertFromStruct(
     const BlindRawTransactionRequestStruct& data) {
   tx_ = data.tx;
   txins_.ConvertFromStruct(data.txins);
-  blind_pubkeys_.ConvertFromStruct(data.blind_pubkeys);
+  txouts_.ConvertFromStruct(data.txouts);
   issuances_.ConvertFromStruct(data.issuances);
   ignore_items = data.ignore_items;
 }
@@ -218,7 +264,7 @@ BlindRawTransactionRequestStruct BlindRawTransactionRequest::ConvertToStruct() c
   BlindRawTransactionRequestStruct result;
   result.tx = tx_;
   result.txins = txins_.ConvertToStruct();
-  result.blind_pubkeys = blind_pubkeys_.ConvertToStruct();
+  result.txouts = txouts_.ConvertToStruct();
   result.issuances = issuances_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
@@ -227,7 +273,7 @@ BlindRawTransactionRequestStruct BlindRawTransactionRequest::ConvertToStruct() c
 // ------------------------------------------------------------------------
 // BlindRawTransactionResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<BlindRawTransactionResponse>
+cfd::core::JsonTableMap<BlindRawTransactionResponse>
   BlindRawTransactionResponse::json_mapper;
 std::vector<std::string> BlindRawTransactionResponse::item_list;
 
@@ -235,7 +281,7 @@ void BlindRawTransactionResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<BlindRawTransactionResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<BlindRawTransactionResponse> func_table;  // NOLINT
 
   func_table = {
     BlindRawTransactionResponse::GetHexString,
@@ -262,5 +308,7 @@ BlindRawTransactionResponseStruct BlindRawTransactionResponse::ConvertToStruct()
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

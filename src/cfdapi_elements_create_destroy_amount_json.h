@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（ElementsDestroyAmountTxIn）クラス
  */
 class ElementsDestroyAmountTxIn
-  : public cfdcore::JsonClassBase<ElementsDestroyAmountTxIn> {
+  : public cfd::core::JsonClassBase<ElementsDestroyAmountTxIn> {
  public:
   ElementsDestroyAmountTxIn() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class ElementsDestroyAmountTxIn
    */
   static std::string GetTxidString(  // line separate
       const ElementsDestroyAmountTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class ElementsDestroyAmountTxIn
   static void SetTxidString(  // line separate
       ElementsDestroyAmountTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -117,7 +119,7 @@ class ElementsDestroyAmountTxIn
    */
   static std::string GetVoutString(  // line separate
       const ElementsDestroyAmountTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class ElementsDestroyAmountTxIn
   static void SetVoutString(  // line separate
       ElementsDestroyAmountTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -160,7 +162,7 @@ class ElementsDestroyAmountTxIn
    */
   static std::string GetSequenceString(  // line separate
       const ElementsDestroyAmountTxIn& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sequence_);
+    return cfd::core::ConvertToString(obj.sequence_);
   }
   /**
    * @brief sequence フィールドへのJSON情報設定処理
@@ -170,7 +172,7 @@ class ElementsDestroyAmountTxIn
   static void SetSequenceString(  // line separate
       ElementsDestroyAmountTxIn& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sequence_, json_value);
   }
 
@@ -200,12 +202,12 @@ class ElementsDestroyAmountTxIn
    * @brief Mapテーブルの型名定義
    */
   using ElementsDestroyAmountTxInMapTable =
-    cfdcore::JsonTableMap<ElementsDestroyAmountTxIn>;
+    cfd::core::JsonTableMap<ElementsDestroyAmountTxIn>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsDestroyAmountTxInMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -214,7 +216,7 @@ class ElementsDestroyAmountTxIn
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -223,7 +225,7 @@ class ElementsDestroyAmountTxIn
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -264,7 +266,7 @@ class ElementsDestroyAmountTxIn
  * @brief JSON-API（ElementsDestroyAmountTxOut）クラス
  */
 class ElementsDestroyAmountTxOut
-  : public cfdcore::JsonClassBase<ElementsDestroyAmountTxOut> {
+  : public cfd::core::JsonClassBase<ElementsDestroyAmountTxOut> {
  public:
   ElementsDestroyAmountTxOut() {
     CollectFieldName();
@@ -306,7 +308,7 @@ class ElementsDestroyAmountTxOut
    */
   static std::string GetAddressString(  // line separate
       const ElementsDestroyAmountTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.address_);
+    return cfd::core::ConvertToString(obj.address_);
   }
   /**
    * @brief address フィールドへのJSON情報設定処理
@@ -316,7 +318,7 @@ class ElementsDestroyAmountTxOut
   static void SetAddressString(  // line separate
       ElementsDestroyAmountTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.address_, json_value);
   }
 
@@ -349,7 +351,7 @@ class ElementsDestroyAmountTxOut
    */
   static std::string GetAmountString(  // line separate
       const ElementsDestroyAmountTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.amount_);
+    return cfd::core::ConvertToString(obj.amount_);
   }
   /**
    * @brief amount フィールドへのJSON情報設定処理
@@ -359,7 +361,7 @@ class ElementsDestroyAmountTxOut
   static void SetAmountString(  // line separate
       ElementsDestroyAmountTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
@@ -392,7 +394,7 @@ class ElementsDestroyAmountTxOut
    */
   static std::string GetAssetString(  // line separate
       const ElementsDestroyAmountTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_);
+    return cfd::core::ConvertToString(obj.asset_);
   }
   /**
    * @brief asset フィールドへのJSON情報設定処理
@@ -402,7 +404,7 @@ class ElementsDestroyAmountTxOut
   static void SetAssetString(  // line separate
       ElementsDestroyAmountTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_, json_value);
   }
 
@@ -435,7 +437,7 @@ class ElementsDestroyAmountTxOut
    */
   static std::string GetIsRemoveNonceString(  // line separate
       const ElementsDestroyAmountTxOut& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_remove_nonce_);
+    return cfd::core::ConvertToString(obj.is_remove_nonce_);
   }
   /**
    * @brief isRemoveNonce フィールドへのJSON情報設定処理
@@ -445,7 +447,7 @@ class ElementsDestroyAmountTxOut
   static void SetIsRemoveNonceString(  // line separate
       ElementsDestroyAmountTxOut& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_remove_nonce_, json_value);
   }
 
@@ -475,12 +477,12 @@ class ElementsDestroyAmountTxOut
    * @brief Mapテーブルの型名定義
    */
   using ElementsDestroyAmountTxOutMapTable =
-    cfdcore::JsonTableMap<ElementsDestroyAmountTxOut>;
+    cfd::core::JsonTableMap<ElementsDestroyAmountTxOut>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsDestroyAmountTxOutMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -489,7 +491,7 @@ class ElementsDestroyAmountTxOut
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -498,7 +500,7 @@ class ElementsDestroyAmountTxOut
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -543,7 +545,7 @@ class ElementsDestroyAmountTxOut
  * @brief JSON-API（ElementsDestroyAmount）クラス
  */
 class ElementsDestroyAmount
-  : public cfdcore::JsonClassBase<ElementsDestroyAmount> {
+  : public cfd::core::JsonClassBase<ElementsDestroyAmount> {
  public:
   ElementsDestroyAmount() {
     CollectFieldName();
@@ -585,7 +587,7 @@ class ElementsDestroyAmount
    */
   static std::string GetAmountString(  // line separate
       const ElementsDestroyAmount& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.amount_);
+    return cfd::core::ConvertToString(obj.amount_);
   }
   /**
    * @brief amount フィールドへのJSON情報設定処理
@@ -595,7 +597,7 @@ class ElementsDestroyAmount
   static void SetAmountString(  // line separate
       ElementsDestroyAmount& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
@@ -628,7 +630,7 @@ class ElementsDestroyAmount
    */
   static std::string GetAssetString(  // line separate
       const ElementsDestroyAmount& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_);
+    return cfd::core::ConvertToString(obj.asset_);
   }
   /**
    * @brief asset フィールドへのJSON情報設定処理
@@ -638,7 +640,7 @@ class ElementsDestroyAmount
   static void SetAssetString(  // line separate
       ElementsDestroyAmount& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_, json_value);
   }
 
@@ -668,12 +670,12 @@ class ElementsDestroyAmount
    * @brief Mapテーブルの型名定義
    */
   using ElementsDestroyAmountMapTable =
-    cfdcore::JsonTableMap<ElementsDestroyAmount>;
+    cfd::core::JsonTableMap<ElementsDestroyAmount>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsDestroyAmountMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -682,7 +684,7 @@ class ElementsDestroyAmount
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -691,7 +693,7 @@ class ElementsDestroyAmount
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -728,7 +730,7 @@ class ElementsDestroyAmount
  * @brief JSON-API（ElementsDestroyAmountFee）クラス
  */
 class ElementsDestroyAmountFee
-  : public cfdcore::JsonClassBase<ElementsDestroyAmountFee> {
+  : public cfd::core::JsonClassBase<ElementsDestroyAmountFee> {
  public:
   ElementsDestroyAmountFee() {
     CollectFieldName();
@@ -770,7 +772,7 @@ class ElementsDestroyAmountFee
    */
   static std::string GetAmountString(  // line separate
       const ElementsDestroyAmountFee& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.amount_);
+    return cfd::core::ConvertToString(obj.amount_);
   }
   /**
    * @brief amount フィールドへのJSON情報設定処理
@@ -780,7 +782,7 @@ class ElementsDestroyAmountFee
   static void SetAmountString(  // line separate
       ElementsDestroyAmountFee& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.amount_, json_value);
   }
 
@@ -813,7 +815,7 @@ class ElementsDestroyAmountFee
    */
   static std::string GetAssetString(  // line separate
       const ElementsDestroyAmountFee& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.asset_);
+    return cfd::core::ConvertToString(obj.asset_);
   }
   /**
    * @brief asset フィールドへのJSON情報設定処理
@@ -823,7 +825,7 @@ class ElementsDestroyAmountFee
   static void SetAssetString(  // line separate
       ElementsDestroyAmountFee& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.asset_, json_value);
   }
 
@@ -853,12 +855,12 @@ class ElementsDestroyAmountFee
    * @brief Mapテーブルの型名定義
    */
   using ElementsDestroyAmountFeeMapTable =
-    cfdcore::JsonTableMap<ElementsDestroyAmountFee>;
+    cfd::core::JsonTableMap<ElementsDestroyAmountFee>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsDestroyAmountFeeMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -867,7 +869,7 @@ class ElementsDestroyAmountFee
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -876,7 +878,7 @@ class ElementsDestroyAmountFee
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -913,7 +915,7 @@ class ElementsDestroyAmountFee
  * @brief JSON-API（ElementsCreateDestroyAmountRequest）クラス
  */
 class ElementsCreateDestroyAmountRequest
-  : public cfdcore::JsonClassBase<ElementsCreateDestroyAmountRequest> {
+  : public cfd::core::JsonClassBase<ElementsCreateDestroyAmountRequest> {
  public:
   ElementsCreateDestroyAmountRequest() {
     CollectFieldName();
@@ -955,7 +957,7 @@ class ElementsCreateDestroyAmountRequest
    */
   static std::string GetVersionString(  // line separate
       const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.version_);
+    return cfd::core::ConvertToString(obj.version_);
   }
   /**
    * @brief version フィールドへのJSON情報設定処理
@@ -965,7 +967,7 @@ class ElementsCreateDestroyAmountRequest
   static void SetVersionString(  // line separate
       ElementsCreateDestroyAmountRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.version_, json_value);
   }
 
@@ -998,7 +1000,7 @@ class ElementsCreateDestroyAmountRequest
    */
   static std::string GetLocktimeString(  // line separate
       const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.locktime_);
+    return cfd::core::ConvertToString(obj.locktime_);
   }
   /**
    * @brief locktime フィールドへのJSON情報設定処理
@@ -1008,7 +1010,7 @@ class ElementsCreateDestroyAmountRequest
   static void SetLocktimeString(  // line separate
       ElementsCreateDestroyAmountRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.locktime_, json_value);
   }
 
@@ -1210,12 +1212,12 @@ class ElementsCreateDestroyAmountRequest
    * @brief Mapテーブルの型名定義
    */
   using ElementsCreateDestroyAmountRequestMapTable =
-    cfdcore::JsonTableMap<ElementsCreateDestroyAmountRequest>;
+    cfd::core::JsonTableMap<ElementsCreateDestroyAmountRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreateDestroyAmountRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1224,7 +1226,7 @@ class ElementsCreateDestroyAmountRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1233,7 +1235,7 @@ class ElementsCreateDestroyAmountRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1286,7 +1288,7 @@ class ElementsCreateDestroyAmountRequest
  * @brief JSON-API（ElementsCreateDestroyAmountResponse）クラス
  */
 class ElementsCreateDestroyAmountResponse
-  : public cfdcore::JsonClassBase<ElementsCreateDestroyAmountResponse> {
+  : public cfd::core::JsonClassBase<ElementsCreateDestroyAmountResponse> {
  public:
   ElementsCreateDestroyAmountResponse() {
     CollectFieldName();
@@ -1328,7 +1330,7 @@ class ElementsCreateDestroyAmountResponse
    */
   static std::string GetHexString(  // line separate
       const ElementsCreateDestroyAmountResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -1338,7 +1340,7 @@ class ElementsCreateDestroyAmountResponse
   static void SetHexString(  // line separate
       ElementsCreateDestroyAmountResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -1368,12 +1370,12 @@ class ElementsCreateDestroyAmountResponse
    * @brief Mapテーブルの型名定義
    */
   using ElementsCreateDestroyAmountResponseMapTable =
-    cfdcore::JsonTableMap<ElementsCreateDestroyAmountResponse>;
+    cfd::core::JsonTableMap<ElementsCreateDestroyAmountResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreateDestroyAmountResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -1382,7 +1384,7 @@ class ElementsCreateDestroyAmountResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -1391,7 +1393,7 @@ class ElementsCreateDestroyAmountResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1420,7 +1422,9 @@ class ElementsCreateDestroyAmountResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_ELEMENTS_CREATE_DESTROY_AMOUNT_JSON_H_

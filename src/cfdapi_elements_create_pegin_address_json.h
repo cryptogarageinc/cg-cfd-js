@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（ElementsCreatePegInAddressRequest）クラス
  */
 class ElementsCreatePegInAddressRequest
-  : public cfdcore::JsonClassBase<ElementsCreatePegInAddressRequest> {
+  : public cfd::core::JsonClassBase<ElementsCreatePegInAddressRequest> {
  public:
   ElementsCreatePegInAddressRequest() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class ElementsCreatePegInAddressRequest
    */
   static std::string GetFedpegscriptString(  // line separate
       const ElementsCreatePegInAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.fedpegscript_);
+    return cfd::core::ConvertToString(obj.fedpegscript_);
   }
   /**
    * @brief fedpegscript フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class ElementsCreatePegInAddressRequest
   static void SetFedpegscriptString(  // line separate
       ElementsCreatePegInAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.fedpegscript_, json_value);
   }
 
@@ -117,7 +119,7 @@ class ElementsCreatePegInAddressRequest
    */
   static std::string GetPubkeyString(  // line separate
       const ElementsCreatePegInAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.pubkey_);
+    return cfd::core::ConvertToString(obj.pubkey_);
   }
   /**
    * @brief pubkey フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class ElementsCreatePegInAddressRequest
   static void SetPubkeyString(  // line separate
       ElementsCreatePegInAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.pubkey_, json_value);
   }
 
@@ -160,7 +162,7 @@ class ElementsCreatePegInAddressRequest
    */
   static std::string GetNetworkString(  // line separate
       const ElementsCreatePegInAddressRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.network_);
+    return cfd::core::ConvertToString(obj.network_);
   }
   /**
    * @brief network フィールドへのJSON情報設定処理
@@ -170,7 +172,7 @@ class ElementsCreatePegInAddressRequest
   static void SetNetworkString(  // line separate
       ElementsCreatePegInAddressRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.network_, json_value);
   }
 
@@ -200,12 +202,12 @@ class ElementsCreatePegInAddressRequest
    * @brief Mapテーブルの型名定義
    */
   using ElementsCreatePegInAddressRequestMapTable =
-    cfdcore::JsonTableMap<ElementsCreatePegInAddressRequest>;
+    cfd::core::JsonTableMap<ElementsCreatePegInAddressRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreatePegInAddressRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -214,7 +216,7 @@ class ElementsCreatePegInAddressRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -223,7 +225,7 @@ class ElementsCreatePegInAddressRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -264,7 +266,7 @@ class ElementsCreatePegInAddressRequest
  * @brief JSON-API（ElementsCreatePegInAddressResponse）クラス
  */
 class ElementsCreatePegInAddressResponse
-  : public cfdcore::JsonClassBase<ElementsCreatePegInAddressResponse> {
+  : public cfd::core::JsonClassBase<ElementsCreatePegInAddressResponse> {
  public:
   ElementsCreatePegInAddressResponse() {
     CollectFieldName();
@@ -306,7 +308,7 @@ class ElementsCreatePegInAddressResponse
    */
   static std::string GetMainchainAddressString(  // line separate
       const ElementsCreatePegInAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.mainchain_address_);
+    return cfd::core::ConvertToString(obj.mainchain_address_);
   }
   /**
    * @brief mainchainAddress フィールドへのJSON情報設定処理
@@ -316,7 +318,7 @@ class ElementsCreatePegInAddressResponse
   static void SetMainchainAddressString(  // line separate
       ElementsCreatePegInAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.mainchain_address_, json_value);
   }
 
@@ -349,7 +351,7 @@ class ElementsCreatePegInAddressResponse
    */
   static std::string GetClaimScriptString(  // line separate
       const ElementsCreatePegInAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.claim_script_);
+    return cfd::core::ConvertToString(obj.claim_script_);
   }
   /**
    * @brief claimScript フィールドへのJSON情報設定処理
@@ -359,7 +361,7 @@ class ElementsCreatePegInAddressResponse
   static void SetClaimScriptString(  // line separate
       ElementsCreatePegInAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.claim_script_, json_value);
   }
 
@@ -392,7 +394,7 @@ class ElementsCreatePegInAddressResponse
    */
   static std::string GetTweakFedpegscriptString(  // line separate
       const ElementsCreatePegInAddressResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tweak_fedpegscript_);
+    return cfd::core::ConvertToString(obj.tweak_fedpegscript_);
   }
   /**
    * @brief tweakFedpegscript フィールドへのJSON情報設定処理
@@ -402,7 +404,7 @@ class ElementsCreatePegInAddressResponse
   static void SetTweakFedpegscriptString(  // line separate
       ElementsCreatePegInAddressResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.tweak_fedpegscript_, json_value);
   }
 
@@ -432,12 +434,12 @@ class ElementsCreatePegInAddressResponse
    * @brief Mapテーブルの型名定義
    */
   using ElementsCreatePegInAddressResponseMapTable =
-    cfdcore::JsonTableMap<ElementsCreatePegInAddressResponse>;
+    cfd::core::JsonTableMap<ElementsCreatePegInAddressResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreatePegInAddressResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -446,7 +448,7 @@ class ElementsCreatePegInAddressResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -455,7 +457,7 @@ class ElementsCreatePegInAddressResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -492,7 +494,9 @@ class ElementsCreatePegInAddressResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_ELEMENTS_CREATE_PEGIN_ADDRESS_JSON_H_

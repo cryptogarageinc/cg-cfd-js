@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（CreateKeyPairRequest）クラス
  */
 class CreateKeyPairRequest
-  : public cfdcore::JsonClassBase<CreateKeyPairRequest> {
+  : public cfd::core::JsonClassBase<CreateKeyPairRequest> {
  public:
   CreateKeyPairRequest() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class CreateKeyPairRequest
    */
   static std::string GetWifString(  // line separate
       const CreateKeyPairRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.wif_);
+    return cfd::core::ConvertToString(obj.wif_);
   }
   /**
    * @brief wif フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class CreateKeyPairRequest
   static void SetWifString(  // line separate
       CreateKeyPairRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.wif_, json_value);
   }
 
@@ -117,7 +119,7 @@ class CreateKeyPairRequest
    */
   static std::string GetNetworkString(  // line separate
       const CreateKeyPairRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.network_);
+    return cfd::core::ConvertToString(obj.network_);
   }
   /**
    * @brief network フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class CreateKeyPairRequest
   static void SetNetworkString(  // line separate
       CreateKeyPairRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.network_, json_value);
   }
 
@@ -160,7 +162,7 @@ class CreateKeyPairRequest
    */
   static std::string GetIsCompressedString(  // line separate
       const CreateKeyPairRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_compressed_);
+    return cfd::core::ConvertToString(obj.is_compressed_);
   }
   /**
    * @brief isCompressed フィールドへのJSON情報設定処理
@@ -170,7 +172,7 @@ class CreateKeyPairRequest
   static void SetIsCompressedString(  // line separate
       CreateKeyPairRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_compressed_, json_value);
   }
 
@@ -200,12 +202,12 @@ class CreateKeyPairRequest
    * @brief Mapテーブルの型名定義
    */
   using CreateKeyPairRequestMapTable =
-    cfdcore::JsonTableMap<CreateKeyPairRequest>;
+    cfd::core::JsonTableMap<CreateKeyPairRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateKeyPairRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -214,7 +216,7 @@ class CreateKeyPairRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -223,7 +225,7 @@ class CreateKeyPairRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -264,7 +266,7 @@ class CreateKeyPairRequest
  * @brief JSON-API（CreateKeyPairResponse）クラス
  */
 class CreateKeyPairResponse
-  : public cfdcore::JsonClassBase<CreateKeyPairResponse> {
+  : public cfd::core::JsonClassBase<CreateKeyPairResponse> {
  public:
   CreateKeyPairResponse() {
     CollectFieldName();
@@ -306,7 +308,7 @@ class CreateKeyPairResponse
    */
   static std::string GetPrivkeyString(  // line separate
       const CreateKeyPairResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.privkey_);
+    return cfd::core::ConvertToString(obj.privkey_);
   }
   /**
    * @brief privkey フィールドへのJSON情報設定処理
@@ -316,7 +318,7 @@ class CreateKeyPairResponse
   static void SetPrivkeyString(  // line separate
       CreateKeyPairResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.privkey_, json_value);
   }
 
@@ -349,7 +351,7 @@ class CreateKeyPairResponse
    */
   static std::string GetPubkeyString(  // line separate
       const CreateKeyPairResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.pubkey_);
+    return cfd::core::ConvertToString(obj.pubkey_);
   }
   /**
    * @brief pubkey フィールドへのJSON情報設定処理
@@ -359,7 +361,7 @@ class CreateKeyPairResponse
   static void SetPubkeyString(  // line separate
       CreateKeyPairResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.pubkey_, json_value);
   }
 
@@ -389,12 +391,12 @@ class CreateKeyPairResponse
    * @brief Mapテーブルの型名定義
    */
   using CreateKeyPairResponseMapTable =
-    cfdcore::JsonTableMap<CreateKeyPairResponse>;
+    cfd::core::JsonTableMap<CreateKeyPairResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateKeyPairResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -403,7 +405,7 @@ class CreateKeyPairResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -412,7 +414,7 @@ class CreateKeyPairResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -445,7 +447,9 @@ class CreateKeyPairResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_CREATE_KEY_PAIR_JSON_H_

@@ -11,19 +11,21 @@
 #include "cfdapi_elements_create_raw_pegin_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ElementsPeginWitness
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsPeginWitness>
+cfd::core::JsonTableMap<ElementsPeginWitness>
   ElementsPeginWitness::json_mapper;
 std::vector<std::string> ElementsPeginWitness::item_list;
 
@@ -31,7 +33,7 @@ void ElementsPeginWitness::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsPeginWitness> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsPeginWitness> func_table;  // NOLINT
 
   func_table = {
     ElementsPeginWitness::GetAmountString,
@@ -103,7 +105,7 @@ ElementsPeginWitnessStruct ElementsPeginWitness::ConvertToStruct() const {  // N
 // ------------------------------------------------------------------------
 // ElementsPeginTxIn
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsPeginTxIn>
+cfd::core::JsonTableMap<ElementsPeginTxIn>
   ElementsPeginTxIn::json_mapper;
 std::vector<std::string> ElementsPeginTxIn::item_list;
 
@@ -111,7 +113,7 @@ void ElementsPeginTxIn::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsPeginTxIn> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsPeginTxIn> func_table;  // NOLINT
 
   func_table = {
     ElementsPeginTxIn::GetIsPeginString,
@@ -183,7 +185,7 @@ ElementsPeginTxInStruct ElementsPeginTxIn::ConvertToStruct() const {  // NOLINT
 // ------------------------------------------------------------------------
 // ElementsPeginTxOut
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsPeginTxOut>
+cfd::core::JsonTableMap<ElementsPeginTxOut>
   ElementsPeginTxOut::json_mapper;
 std::vector<std::string> ElementsPeginTxOut::item_list;
 
@@ -191,7 +193,7 @@ void ElementsPeginTxOut::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsPeginTxOut> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsPeginTxOut> func_table;  // NOLINT
 
   func_table = {
     ElementsPeginTxOut::GetAddressString,
@@ -245,7 +247,7 @@ ElementsPeginTxOutStruct ElementsPeginTxOut::ConvertToStruct() const {  // NOLIN
 // ------------------------------------------------------------------------
 // ElementsPeginTxOutFee
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsPeginTxOutFee>
+cfd::core::JsonTableMap<ElementsPeginTxOutFee>
   ElementsPeginTxOutFee::json_mapper;
 std::vector<std::string> ElementsPeginTxOutFee::item_list;
 
@@ -253,7 +255,7 @@ void ElementsPeginTxOutFee::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsPeginTxOutFee> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsPeginTxOutFee> func_table;  // NOLINT
 
   func_table = {
     ElementsPeginTxOutFee::GetAmountString,
@@ -289,7 +291,7 @@ ElementsPeginTxOutFeeStruct ElementsPeginTxOutFee::ConvertToStruct() const {  //
 // ------------------------------------------------------------------------
 // ElementsCreateRawPeginRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreateRawPeginRequest>
+cfd::core::JsonTableMap<ElementsCreateRawPeginRequest>
   ElementsCreateRawPeginRequest::json_mapper;
 std::vector<std::string> ElementsCreateRawPeginRequest::item_list;
 
@@ -297,7 +299,7 @@ void ElementsCreateRawPeginRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreateRawPeginRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreateRawPeginRequest> func_table;  // NOLINT
 
   func_table = {
     ElementsCreateRawPeginRequest::GetVersionString,
@@ -334,6 +336,13 @@ void ElementsCreateRawPeginRequest::CollectFieldName() {
   };
   json_mapper.emplace("fee", func_table);
   item_list.push_back("fee");
+  func_table = {
+    ElementsCreateRawPeginRequest::GetIsRandomSortTxOutString,
+    ElementsCreateRawPeginRequest::SetIsRandomSortTxOutString,
+    ElementsCreateRawPeginRequest::GetIsRandomSortTxOutFieldType,
+  };
+  json_mapper.emplace("isRandomSortTxOut", func_table);
+  item_list.push_back("isRandomSortTxOut");
 }
 
 void ElementsCreateRawPeginRequest::ConvertFromStruct(
@@ -343,6 +352,7 @@ void ElementsCreateRawPeginRequest::ConvertFromStruct(
   txins_.ConvertFromStruct(data.txins);
   txouts_.ConvertFromStruct(data.txouts);
   fee_.ConvertFromStruct(data.fee);
+  is_random_sort_tx_out_ = data.is_random_sort_tx_out;
   ignore_items = data.ignore_items;
 }
 
@@ -353,6 +363,7 @@ ElementsCreateRawPeginRequestStruct ElementsCreateRawPeginRequest::ConvertToStru
   result.txins = txins_.ConvertToStruct();
   result.txouts = txouts_.ConvertToStruct();
   result.fee = fee_.ConvertToStruct();
+  result.is_random_sort_tx_out = is_random_sort_tx_out_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -360,7 +371,7 @@ ElementsCreateRawPeginRequestStruct ElementsCreateRawPeginRequest::ConvertToStru
 // ------------------------------------------------------------------------
 // ElementsCreateRawPeginResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsCreateRawPeginResponse>
+cfd::core::JsonTableMap<ElementsCreateRawPeginResponse>
   ElementsCreateRawPeginResponse::json_mapper;
 std::vector<std::string> ElementsCreateRawPeginResponse::item_list;
 
@@ -368,7 +379,7 @@ void ElementsCreateRawPeginResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsCreateRawPeginResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreateRawPeginResponse> func_table;  // NOLINT
 
   func_table = {
     ElementsCreateRawPeginResponse::GetHexString,
@@ -395,5 +406,7 @@ ElementsCreateRawPeginResponseStruct ElementsCreateRawPeginResponse::ConvertToSt
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

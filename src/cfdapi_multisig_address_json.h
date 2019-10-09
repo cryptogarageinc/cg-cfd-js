@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（CreateMultisigRequest）クラス
  */
 class CreateMultisigRequest
-  : public cfdcore::JsonClassBase<CreateMultisigRequest> {
+  : public cfd::core::JsonClassBase<CreateMultisigRequest> {
  public:
   CreateMultisigRequest() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class CreateMultisigRequest
    */
   static std::string GetNrequiredString(  // line separate
       const CreateMultisigRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.nrequired_);
+    return cfd::core::ConvertToString(obj.nrequired_);
   }
   /**
    * @brief nrequired フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class CreateMultisigRequest
   static void SetNrequiredString(  // line separate
       CreateMultisigRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.nrequired_, json_value);
   }
 
@@ -160,7 +162,7 @@ class CreateMultisigRequest
    */
   static std::string GetIsElementsString(  // line separate
       const CreateMultisigRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.is_elements_);
+    return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
    * @brief isElements フィールドへのJSON情報設定処理
@@ -170,7 +172,7 @@ class CreateMultisigRequest
   static void SetIsElementsString(  // line separate
       CreateMultisigRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.is_elements_, json_value);
   }
 
@@ -203,7 +205,7 @@ class CreateMultisigRequest
    */
   static std::string GetNetworkString(  // line separate
       const CreateMultisigRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.network_);
+    return cfd::core::ConvertToString(obj.network_);
   }
   /**
    * @brief network フィールドへのJSON情報設定処理
@@ -213,7 +215,7 @@ class CreateMultisigRequest
   static void SetNetworkString(  // line separate
       CreateMultisigRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.network_, json_value);
   }
 
@@ -246,7 +248,7 @@ class CreateMultisigRequest
    */
   static std::string GetHashTypeString(  // line separate
       const CreateMultisigRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hash_type_);
+    return cfd::core::ConvertToString(obj.hash_type_);
   }
   /**
    * @brief hashType フィールドへのJSON情報設定処理
@@ -256,7 +258,7 @@ class CreateMultisigRequest
   static void SetHashTypeString(  // line separate
       CreateMultisigRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hash_type_, json_value);
   }
 
@@ -286,12 +288,12 @@ class CreateMultisigRequest
    * @brief Mapテーブルの型名定義
    */
   using CreateMultisigRequestMapTable =
-    cfdcore::JsonTableMap<CreateMultisigRequest>;
+    cfd::core::JsonTableMap<CreateMultisigRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateMultisigRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -300,7 +302,7 @@ class CreateMultisigRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -309,7 +311,7 @@ class CreateMultisigRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -358,7 +360,7 @@ class CreateMultisigRequest
  * @brief JSON-API（CreateMultisigResponse）クラス
  */
 class CreateMultisigResponse
-  : public cfdcore::JsonClassBase<CreateMultisigResponse> {
+  : public cfd::core::JsonClassBase<CreateMultisigResponse> {
  public:
   CreateMultisigResponse() {
     CollectFieldName();
@@ -400,7 +402,7 @@ class CreateMultisigResponse
    */
   static std::string GetAddressString(  // line separate
       const CreateMultisigResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.address_);
+    return cfd::core::ConvertToString(obj.address_);
   }
   /**
    * @brief address フィールドへのJSON情報設定処理
@@ -410,7 +412,7 @@ class CreateMultisigResponse
   static void SetAddressString(  // line separate
       CreateMultisigResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.address_, json_value);
   }
 
@@ -443,7 +445,7 @@ class CreateMultisigResponse
    */
   static std::string GetRedeemScriptString(  // line separate
       const CreateMultisigResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.redeem_script_);
+    return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
    * @brief redeemScript フィールドへのJSON情報設定処理
@@ -453,7 +455,7 @@ class CreateMultisigResponse
   static void SetRedeemScriptString(  // line separate
       CreateMultisigResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.redeem_script_, json_value);
   }
 
@@ -486,7 +488,7 @@ class CreateMultisigResponse
    */
   static std::string GetWitnessScriptString(  // line separate
       const CreateMultisigResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.witness_script_);
+    return cfd::core::ConvertToString(obj.witness_script_);
   }
   /**
    * @brief witnessScript フィールドへのJSON情報設定処理
@@ -496,7 +498,7 @@ class CreateMultisigResponse
   static void SetWitnessScriptString(  // line separate
       CreateMultisigResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.witness_script_, json_value);
   }
 
@@ -526,12 +528,12 @@ class CreateMultisigResponse
    * @brief Mapテーブルの型名定義
    */
   using CreateMultisigResponseMapTable =
-    cfdcore::JsonTableMap<CreateMultisigResponse>;
+    cfd::core::JsonTableMap<CreateMultisigResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateMultisigResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -540,7 +542,7 @@ class CreateMultisigResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -549,7 +551,7 @@ class CreateMultisigResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -586,7 +588,9 @@ class CreateMultisigResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
 
 #endif  // CFD_JS_SRC_CFDAPI_MULTISIG_ADDRESS_JSON_H_

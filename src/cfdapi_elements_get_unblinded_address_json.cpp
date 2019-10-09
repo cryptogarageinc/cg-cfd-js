@@ -11,19 +11,21 @@
 #include "cfdapi_elements_get_unblinded_address_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // GetUnblindedAddressRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetUnblindedAddressRequest>
+cfd::core::JsonTableMap<GetUnblindedAddressRequest>
   GetUnblindedAddressRequest::json_mapper;
 std::vector<std::string> GetUnblindedAddressRequest::item_list;
 
@@ -31,7 +33,7 @@ void GetUnblindedAddressRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetUnblindedAddressRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetUnblindedAddressRequest> func_table;  // NOLINT
 
   func_table = {
     GetUnblindedAddressRequest::GetConfidentialAddressString,
@@ -58,7 +60,7 @@ GetUnblindedAddressRequestStruct GetUnblindedAddressRequest::ConvertToStruct() c
 // ------------------------------------------------------------------------
 // GetUnblindedAddressResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetUnblindedAddressResponse>
+cfd::core::JsonTableMap<GetUnblindedAddressResponse>
   GetUnblindedAddressResponse::json_mapper;
 std::vector<std::string> GetUnblindedAddressResponse::item_list;
 
@@ -66,7 +68,7 @@ void GetUnblindedAddressResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetUnblindedAddressResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetUnblindedAddressResponse> func_table;  // NOLINT
 
   func_table = {
     GetUnblindedAddressResponse::GetUnblindedAddressString,
@@ -93,5 +95,7 @@ GetUnblindedAddressResponseStruct GetUnblindedAddressResponse::ConvertToStruct()
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

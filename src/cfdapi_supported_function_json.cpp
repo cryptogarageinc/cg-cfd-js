@@ -11,19 +11,21 @@
 #include "cfdapi_supported_function_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // GetSupportedFunctionResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<GetSupportedFunctionResponse>
+cfd::core::JsonTableMap<GetSupportedFunctionResponse>
   GetSupportedFunctionResponse::json_mapper;
 std::vector<std::string> GetSupportedFunctionResponse::item_list;
 
@@ -31,7 +33,7 @@ void GetSupportedFunctionResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<GetSupportedFunctionResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<GetSupportedFunctionResponse> func_table;  // NOLINT
 
   func_table = {
     GetSupportedFunctionResponse::GetBitcoinString,
@@ -67,5 +69,7 @@ GetSupportedFunctionResponseStruct GetSupportedFunctionResponse::ConvertToStruct
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd

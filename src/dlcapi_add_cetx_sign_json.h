@@ -16,12 +16,14 @@
 #include "cfd/cfdapi_struct.h"
 
 namespace dlc {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
@@ -32,7 +34,7 @@ using cfdcore::JsonVector;
  * @brief JSON-API（CETxSignData）クラス
  */
 class CETxSignData
-  : public cfdcore::JsonClassBase<CETxSignData> {
+  : public cfd::core::JsonClassBase<CETxSignData> {
  public:
   CETxSignData() {
     CollectFieldName();
@@ -74,7 +76,7 @@ class CETxSignData
    */
   static std::string GetHexString(  // line separate
       const CETxSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -84,7 +86,7 @@ class CETxSignData
   static void SetHexString(  // line separate
       CETxSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -117,7 +119,7 @@ class CETxSignData
    */
   static std::string GetTypeString(  // line separate
       const CETxSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.type_);
+    return cfd::core::ConvertToString(obj.type_);
   }
   /**
    * @brief type フィールドへのJSON情報設定処理
@@ -127,7 +129,7 @@ class CETxSignData
   static void SetTypeString(  // line separate
       CETxSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.type_, json_value);
   }
 
@@ -160,7 +162,7 @@ class CETxSignData
    */
   static std::string GetDerEncodeString(  // line separate
       const CETxSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.der_encode_);
+    return cfd::core::ConvertToString(obj.der_encode_);
   }
   /**
    * @brief derEncode フィールドへのJSON情報設定処理
@@ -170,7 +172,7 @@ class CETxSignData
   static void SetDerEncodeString(  // line separate
       CETxSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.der_encode_, json_value);
   }
 
@@ -203,7 +205,7 @@ class CETxSignData
    */
   static std::string GetSighashTypeString(  // line separate
       const CETxSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_type_);
+    return cfd::core::ConvertToString(obj.sighash_type_);
   }
   /**
    * @brief sighashType フィールドへのJSON情報設定処理
@@ -213,7 +215,7 @@ class CETxSignData
   static void SetSighashTypeString(  // line separate
       CETxSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_type_, json_value);
   }
 
@@ -246,7 +248,7 @@ class CETxSignData
    */
   static std::string GetSighashAnyoneCanPayString(  // line separate
       const CETxSignData& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.sighash_anyone_can_pay_);
+    return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
   }
   /**
    * @brief sighashAnyoneCanPay フィールドへのJSON情報設定処理
@@ -256,7 +258,7 @@ class CETxSignData
   static void SetSighashAnyoneCanPayString(  // line separate
       CETxSignData& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.sighash_anyone_can_pay_, json_value);
   }
 
@@ -286,12 +288,12 @@ class CETxSignData
    * @brief Mapテーブルの型名定義
    */
   using CETxSignDataMapTable =
-    cfdcore::JsonTableMap<CETxSignData>;
+    cfd::core::JsonTableMap<CETxSignData>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CETxSignDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -300,7 +302,7 @@ class CETxSignData
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -309,7 +311,7 @@ class CETxSignData
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -358,7 +360,7 @@ class CETxSignData
  * @brief JSON-API（AddCETxSignTxInRequest）クラス
  */
 class AddCETxSignTxInRequest
-  : public cfdcore::JsonClassBase<AddCETxSignTxInRequest> {
+  : public cfd::core::JsonClassBase<AddCETxSignTxInRequest> {
  public:
   AddCETxSignTxInRequest() {
     CollectFieldName();
@@ -400,7 +402,7 @@ class AddCETxSignTxInRequest
    */
   static std::string GetTxidString(  // line separate
       const AddCETxSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.txid_);
+    return cfd::core::ConvertToString(obj.txid_);
   }
   /**
    * @brief txid フィールドへのJSON情報設定処理
@@ -410,7 +412,7 @@ class AddCETxSignTxInRequest
   static void SetTxidString(  // line separate
       AddCETxSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.txid_, json_value);
   }
 
@@ -443,7 +445,7 @@ class AddCETxSignTxInRequest
    */
   static std::string GetVoutString(  // line separate
       const AddCETxSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.vout_);
+    return cfd::core::ConvertToString(obj.vout_);
   }
   /**
    * @brief vout フィールドへのJSON情報設定処理
@@ -453,7 +455,7 @@ class AddCETxSignTxInRequest
   static void SetVoutString(  // line separate
       AddCETxSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
   }
 
@@ -529,7 +531,7 @@ class AddCETxSignTxInRequest
    */
   static std::string GetDelayedUnlockingString(  // line separate
       const AddCETxSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.delayed_unlocking_);
+    return cfd::core::ConvertToString(obj.delayed_unlocking_);
   }
   /**
    * @brief delayedUnlocking フィールドへのJSON情報設定処理
@@ -539,7 +541,7 @@ class AddCETxSignTxInRequest
   static void SetDelayedUnlockingString(  // line separate
       AddCETxSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.delayed_unlocking_, json_value);
   }
 
@@ -572,7 +574,7 @@ class AddCETxSignTxInRequest
    */
   static std::string GetRedeemScriptString(  // line separate
       const AddCETxSignTxInRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.redeem_script_);
+    return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
    * @brief redeemScript フィールドへのJSON情報設定処理
@@ -582,7 +584,7 @@ class AddCETxSignTxInRequest
   static void SetRedeemScriptString(  // line separate
       AddCETxSignTxInRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.redeem_script_, json_value);
   }
 
@@ -612,12 +614,12 @@ class AddCETxSignTxInRequest
    * @brief Mapテーブルの型名定義
    */
   using AddCETxSignTxInRequestMapTable =
-    cfdcore::JsonTableMap<AddCETxSignTxInRequest>;
+    cfd::core::JsonTableMap<AddCETxSignTxInRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddCETxSignTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -626,7 +628,7 @@ class AddCETxSignTxInRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -635,7 +637,7 @@ class AddCETxSignTxInRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -684,7 +686,7 @@ class AddCETxSignTxInRequest
  * @brief JSON-API（AddCETxSignRequest）クラス
  */
 class AddCETxSignRequest
-  : public cfdcore::JsonClassBase<AddCETxSignRequest> {
+  : public cfd::core::JsonClassBase<AddCETxSignRequest> {
  public:
   AddCETxSignRequest() {
     CollectFieldName();
@@ -726,7 +728,7 @@ class AddCETxSignRequest
    */
   static std::string GetTxString(  // line separate
       const AddCETxSignRequest& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.tx_);
+    return cfd::core::ConvertToString(obj.tx_);
   }
   /**
    * @brief tx フィールドへのJSON情報設定処理
@@ -736,7 +738,7 @@ class AddCETxSignRequest
   static void SetTxString(  // line separate
       AddCETxSignRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.tx_, json_value);
   }
 
@@ -809,12 +811,12 @@ class AddCETxSignRequest
    * @brief Mapテーブルの型名定義
    */
   using AddCETxSignRequestMapTable =
-    cfdcore::JsonTableMap<AddCETxSignRequest>;
+    cfd::core::JsonTableMap<AddCETxSignRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddCETxSignRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -823,7 +825,7 @@ class AddCETxSignRequest
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -832,7 +834,7 @@ class AddCETxSignRequest
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -869,7 +871,7 @@ class AddCETxSignRequest
  * @brief JSON-API（AddCETxSignResponse）クラス
  */
 class AddCETxSignResponse
-  : public cfdcore::JsonClassBase<AddCETxSignResponse> {
+  : public cfd::core::JsonClassBase<AddCETxSignResponse> {
  public:
   AddCETxSignResponse() {
     CollectFieldName();
@@ -911,7 +913,7 @@ class AddCETxSignResponse
    */
   static std::string GetHexString(  // line separate
       const AddCETxSignResponse& obj) {  // NOLINT
-    return cfdcore::ConvertToString(obj.hex_);
+    return cfd::core::ConvertToString(obj.hex_);
   }
   /**
    * @brief hex フィールドへのJSON情報設定処理
@@ -921,7 +923,7 @@ class AddCETxSignResponse
   static void SetHexString(  // line separate
       AddCETxSignResponse& obj,  // NOLINT
       const UniValue& json_value) {
-    cfdcore::ConvertFromUniValue(  // line separate
+    cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
   }
 
@@ -951,12 +953,12 @@ class AddCETxSignResponse
    * @brief Mapテーブルの型名定義
    */
   using AddCETxSignResponseMapTable =
-    cfdcore::JsonTableMap<AddCETxSignResponse>;
+    cfd::core::JsonTableMap<AddCETxSignResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
-   * @see cfdcore::JsonClassBase::GetJsonMapper()
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddCETxSignResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
@@ -965,7 +967,7 @@ class AddCETxSignResponse
    * @brief JSONマッピングのアイテム一覧を取得する。
    * 対象の変数名を、定義順序に従い一覧取得する。
    * @return JSONマッピングのアイテム一覧
-   * @see cfdcore::JsonClassBase::GetJsonItemList()
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
@@ -974,7 +976,7 @@ class AddCETxSignResponse
    * @brief JSONマッピング時に無視するアイテム一覧を取得する。
    * Serialize時に対象の変数を無視する。
    * @return JSONマッピング時に無視するアイテム一覧
-   * @see cfdcore::JsonClassBase::GetIgnoreItem()
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
     return ignore_items;
@@ -1003,7 +1005,9 @@ class AddCETxSignResponse
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace dlc
 
 #endif  // CFD_JS_SRC_DLCAPI_ADD_CETX_SIGN_JSON_H_

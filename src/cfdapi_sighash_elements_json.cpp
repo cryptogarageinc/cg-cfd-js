@@ -11,19 +11,21 @@
 #include "cfdapi_sighash_elements_json.h"  // NOLINT
 
 namespace cfd {
+namespace js {
 namespace api {
+namespace json {
 
-using cfdcore::JsonClassBase;
-using cfdcore::JsonObjectVector;
-using cfdcore::JsonValueVector;
-using cfdcore::JsonVector;
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
 // clang-format off
 // @formatter:off
 
 // ------------------------------------------------------------------------
 // ElementsSignatureHashKeyData
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<ElementsSignatureHashKeyData>
+cfd::core::JsonTableMap<ElementsSignatureHashKeyData>
   ElementsSignatureHashKeyData::json_mapper;
 std::vector<std::string> ElementsSignatureHashKeyData::item_list;
 
@@ -31,7 +33,7 @@ void ElementsSignatureHashKeyData::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<ElementsSignatureHashKeyData> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<ElementsSignatureHashKeyData> func_table;  // NOLINT
 
   func_table = {
     ElementsSignatureHashKeyData::GetHexString,
@@ -65,78 +67,78 @@ ElementsSignatureHashKeyDataStruct ElementsSignatureHashKeyData::ConvertToStruct
 }
 
 // ------------------------------------------------------------------------
-// CreateElementsSignatureHashTxInRequest
+// CreateElementsSignatureHashTxIn
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateElementsSignatureHashTxInRequest>
-  CreateElementsSignatureHashTxInRequest::json_mapper;
-std::vector<std::string> CreateElementsSignatureHashTxInRequest::item_list;
+cfd::core::JsonTableMap<CreateElementsSignatureHashTxIn>
+  CreateElementsSignatureHashTxIn::json_mapper;
+std::vector<std::string> CreateElementsSignatureHashTxIn::item_list;
 
-void CreateElementsSignatureHashTxInRequest::CollectFieldName() {
+void CreateElementsSignatureHashTxIn::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashTxInRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashTxIn> func_table;  // NOLINT
 
   func_table = {
-    CreateElementsSignatureHashTxInRequest::GetTxidString,
-    CreateElementsSignatureHashTxInRequest::SetTxidString,
-    CreateElementsSignatureHashTxInRequest::GetTxidFieldType,
+    CreateElementsSignatureHashTxIn::GetTxidString,
+    CreateElementsSignatureHashTxIn::SetTxidString,
+    CreateElementsSignatureHashTxIn::GetTxidFieldType,
   };
   json_mapper.emplace("txid", func_table);
   item_list.push_back("txid");
   func_table = {
-    CreateElementsSignatureHashTxInRequest::GetVoutString,
-    CreateElementsSignatureHashTxInRequest::SetVoutString,
-    CreateElementsSignatureHashTxInRequest::GetVoutFieldType,
+    CreateElementsSignatureHashTxIn::GetVoutString,
+    CreateElementsSignatureHashTxIn::SetVoutString,
+    CreateElementsSignatureHashTxIn::GetVoutFieldType,
   };
   json_mapper.emplace("vout", func_table);
   item_list.push_back("vout");
   func_table = {
-    CreateElementsSignatureHashTxInRequest::GetKeyDataString,
-    CreateElementsSignatureHashTxInRequest::SetKeyDataString,
-    CreateElementsSignatureHashTxInRequest::GetKeyDataFieldType,
+    CreateElementsSignatureHashTxIn::GetKeyDataString,
+    CreateElementsSignatureHashTxIn::SetKeyDataString,
+    CreateElementsSignatureHashTxIn::GetKeyDataFieldType,
   };
   json_mapper.emplace("keyData", func_table);
   item_list.push_back("keyData");
   func_table = {
-    CreateElementsSignatureHashTxInRequest::GetAmountString,
-    CreateElementsSignatureHashTxInRequest::SetAmountString,
-    CreateElementsSignatureHashTxInRequest::GetAmountFieldType,
+    CreateElementsSignatureHashTxIn::GetAmountString,
+    CreateElementsSignatureHashTxIn::SetAmountString,
+    CreateElementsSignatureHashTxIn::GetAmountFieldType,
   };
   json_mapper.emplace("amount", func_table);
   item_list.push_back("amount");
   func_table = {
-    CreateElementsSignatureHashTxInRequest::GetConfidentialValueCommitmentString,
-    CreateElementsSignatureHashTxInRequest::SetConfidentialValueCommitmentString,
-    CreateElementsSignatureHashTxInRequest::GetConfidentialValueCommitmentFieldType,
+    CreateElementsSignatureHashTxIn::GetConfidentialValueCommitmentString,
+    CreateElementsSignatureHashTxIn::SetConfidentialValueCommitmentString,
+    CreateElementsSignatureHashTxIn::GetConfidentialValueCommitmentFieldType,
   };
   json_mapper.emplace("confidentialValueCommitment", func_table);
   item_list.push_back("confidentialValueCommitment");
   func_table = {
-    CreateElementsSignatureHashTxInRequest::GetHashTypeString,
-    CreateElementsSignatureHashTxInRequest::SetHashTypeString,
-    CreateElementsSignatureHashTxInRequest::GetHashTypeFieldType,
+    CreateElementsSignatureHashTxIn::GetHashTypeString,
+    CreateElementsSignatureHashTxIn::SetHashTypeString,
+    CreateElementsSignatureHashTxIn::GetHashTypeFieldType,
   };
   json_mapper.emplace("hashType", func_table);
   item_list.push_back("hashType");
   func_table = {
-    CreateElementsSignatureHashTxInRequest::GetSighashTypeString,
-    CreateElementsSignatureHashTxInRequest::SetSighashTypeString,
-    CreateElementsSignatureHashTxInRequest::GetSighashTypeFieldType,
+    CreateElementsSignatureHashTxIn::GetSighashTypeString,
+    CreateElementsSignatureHashTxIn::SetSighashTypeString,
+    CreateElementsSignatureHashTxIn::GetSighashTypeFieldType,
   };
   json_mapper.emplace("sighashType", func_table);
   item_list.push_back("sighashType");
   func_table = {
-    CreateElementsSignatureHashTxInRequest::GetSighashAnyoneCanPayString,
-    CreateElementsSignatureHashTxInRequest::SetSighashAnyoneCanPayString,
-    CreateElementsSignatureHashTxInRequest::GetSighashAnyoneCanPayFieldType,
+    CreateElementsSignatureHashTxIn::GetSighashAnyoneCanPayString,
+    CreateElementsSignatureHashTxIn::SetSighashAnyoneCanPayString,
+    CreateElementsSignatureHashTxIn::GetSighashAnyoneCanPayFieldType,
   };
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
 }
 
-void CreateElementsSignatureHashTxInRequest::ConvertFromStruct(
-    const CreateElementsSignatureHashTxInRequestStruct& data) {
+void CreateElementsSignatureHashTxIn::ConvertFromStruct(
+    const CreateElementsSignatureHashTxInStruct& data) {
   txid_ = data.txid;
   vout_ = data.vout;
   key_data_.ConvertFromStruct(data.key_data);
@@ -148,8 +150,8 @@ void CreateElementsSignatureHashTxInRequest::ConvertFromStruct(
   ignore_items = data.ignore_items;
 }
 
-CreateElementsSignatureHashTxInRequestStruct CreateElementsSignatureHashTxInRequest::ConvertToStruct() const {  // NOLINT
-  CreateElementsSignatureHashTxInRequestStruct result;
+CreateElementsSignatureHashTxInStruct CreateElementsSignatureHashTxIn::ConvertToStruct() const {  // NOLINT
+  CreateElementsSignatureHashTxInStruct result;
   result.txid = txid_;
   result.vout = vout_;
   result.key_data = key_data_.ConvertToStruct();
@@ -165,7 +167,7 @@ CreateElementsSignatureHashTxInRequestStruct CreateElementsSignatureHashTxInRequ
 // ------------------------------------------------------------------------
 // CreateElementsSignatureHashRequest
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateElementsSignatureHashRequest>
+cfd::core::JsonTableMap<CreateElementsSignatureHashRequest>
   CreateElementsSignatureHashRequest::json_mapper;
 std::vector<std::string> CreateElementsSignatureHashRequest::item_list;
 
@@ -173,7 +175,7 @@ void CreateElementsSignatureHashRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashRequest> func_table;  // NOLINT
 
   func_table = {
     CreateElementsSignatureHashRequest::GetTxString,
@@ -209,7 +211,7 @@ CreateElementsSignatureHashRequestStruct CreateElementsSignatureHashRequest::Con
 // ------------------------------------------------------------------------
 // CreateElementsSignatureHashResponse
 // ------------------------------------------------------------------------
-cfdcore::JsonTableMap<CreateElementsSignatureHashResponse>
+cfd::core::JsonTableMap<CreateElementsSignatureHashResponse>
   CreateElementsSignatureHashResponse::json_mapper;
 std::vector<std::string> CreateElementsSignatureHashResponse::item_list;
 
@@ -217,7 +219,7 @@ void CreateElementsSignatureHashResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfdcore::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreateElementsSignatureHashResponse> func_table;  // NOLINT
 
   func_table = {
     CreateElementsSignatureHashResponse::GetSighashString,
@@ -244,5 +246,7 @@ CreateElementsSignatureHashResponseStruct CreateElementsSignatureHashResponse::C
 // @formatter:on
 // clang-format on
 
+}  // namespace json
 }  // namespace api
+}  // namespace js
 }  // namespace cfd
