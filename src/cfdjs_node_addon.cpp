@@ -15,8 +15,6 @@
 #include "cfd/cfdapi_key.h"
 #include "cfd/cfdapi_transaction.h"
 #include "cfd/cfdapi_utility.h"
-#include "cfd/dlcapi_address.h"
-#include "cfd/dlcapi_transaction.h"
 
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
@@ -48,8 +46,6 @@
 #include "cfdapi_supported_function_json.h"                 // NOLINT
 #include "cfdapi_transaction_json.h"                        // NOLINT
 #include "cfdapi_update_witness_json.h"                     // NOLINT
-#include "dlcapi_add_cetx_sign_json.h"                      // NOLINT
-#include "dlcapi_address_json.h"                            // NOLINT
 
 // using
 using cfd::js::api::AddressStructApi;
@@ -57,8 +53,6 @@ using cfd::js::api::HDWalletStructApi;
 using cfd::js::api::KeyStructApi;
 using cfd::js::api::TransactionStructApi;
 using cfd::js::api::UtilStructApi;
-using dlc::js::api::DlcAddressStructApi;
-using dlc::js::api::DlcTransactionStructApi;
 #ifndef CFD_DISABLE_ELEMENTS
 using cfd::js::api::ElementsAddressStructApi;
 using cfd::js::api::ElementsTransactionStructApi;
@@ -557,28 +551,6 @@ Value CreateDestroyAmount(const CallbackInfo &information) {
 }  // namespace js
 }  // namespace cfd
 
-namespace dlc {
-namespace js {
-
-Value CreateCETxAddress(const CallbackInfo &information) {
-  return cfd::js::NodeAddonJsonApi<
-      api::json::CreateCETxAddressRequest,
-      api::json::CreateCETxAddressResponse,
-      api::CreateCETxAddressRequestStruct,
-      api::CreateCETxAddressResponseStruct>(
-      information, DlcAddressStructApi::CreateCETxAddress);
-}
-
-Value AddCETxSign(const CallbackInfo &information) {
-  return cfd::js::NodeAddonJsonApi<
-      api::json::AddCETxSignRequest, api::json::AddCETxSignResponse,
-      api::AddCETxSignRequestStruct, api::AddCETxSignResponseStruct>(
-      information, DlcTransactionStructApi::AddCETxSign);
-}
-
-}  // namespace js
-}  // namespace dlc
-
 Object Init(Env env, Object exports) {
   cfd::Initialize();
   exports.Set(
@@ -666,12 +638,6 @@ Object Init(Env env, Object exports) {
       String::New(env, "CreateDestroyAmount"),
       Function::New(env, cfd::js::CreateDestroyAmount));
 #endif  // CFD_DISABLE_ELEMENTS
-  exports.Set(
-      String::New(env, "CreateCETxAddress"),
-      Function::New(env, dlc::js::CreateCETxAddress));
-  exports.Set(
-      String::New(env, "AddCETxSign"),
-      Function::New(env, dlc::js::AddCETxSign));
   return exports;
 }
 
