@@ -318,11 +318,10 @@ Value CreateAddress(const CallbackInfo &information) {
       api::CreateAddressRequestStruct, api::CreateAddressResponseStruct>(
       information, AddressStructApi::CreateAddress,
 #ifndef CFD_DISABLE_ELEMENTS
-      ElementsAddressStructApi::CreateAddress
+      ElementsAddressStructApi::CreateAddress);
 #else
-      AddressStructApi::CreateAddress
+      AddressStructApi::CreateAddress);
 #endif
-    );
 }
 
 Value CreateMultisig(const CallbackInfo &information) {
@@ -331,11 +330,10 @@ Value CreateMultisig(const CallbackInfo &information) {
       api::CreateMultisigRequestStruct, api::CreateMultisigResponseStruct>(
       information, AddressStructApi::CreateMultisig,
 #ifndef CFD_DISABLE_ELEMENTS
-      ElementsAddressStructApi::CreateMultisig
+      ElementsAddressStructApi::CreateMultisig);
 #else
-      AddressStructApi::CreateMultisig
+      AddressStructApi::CreateMultisig);
 #endif
-    );
 }
 
 Value CreateSignatureHash(const CallbackInfo &information) {
@@ -369,11 +367,10 @@ Value AddSign(const CallbackInfo &information) {
       api::AddSignRequestStruct, api::AddSignResponseStruct>(
       information, TransactionStructApi::AddSign,
 #ifndef CFD_DISABLE_ELEMENTS
-      ElementsTransactionStructApi::AddSign
+      ElementsTransactionStructApi::AddSign);
 #else
-      TransactionStructApi::AddSign
+      TransactionStructApi::AddSign);
 #endif
-    );
 }
 
 Value UpdateWitnessStack(const CallbackInfo &information) {
@@ -384,11 +381,10 @@ Value UpdateWitnessStack(const CallbackInfo &information) {
       api::UpdateWitnessStackResponseStruct>(
       information, TransactionStructApi::UpdateWitnessStack,
 #ifndef CFD_DISABLE_ELEMENTS
-      ElementsTransactionStructApi::UpdateWitnessStack
+      ElementsTransactionStructApi::UpdateWitnessStack);
 #else
-      TransactionStructApi::UpdateWitnessStack
+      TransactionStructApi::UpdateWitnessStack);
 #endif
-    );
 }
 
 Value GetWitnessStackNum(const CallbackInfo &information) {
@@ -399,11 +395,10 @@ Value GetWitnessStackNum(const CallbackInfo &information) {
       api::GetWitnessStackNumResponseStruct>(
       information, TransactionStructApi::GetWitnessStackNum,
 #ifndef CFD_DISABLE_ELEMENTS
-      ElementsTransactionStructApi::GetWitnessStackNum
+      ElementsTransactionStructApi::GetWitnessStackNum);
 #else
-      TransactionStructApi::GetWitnessStackNum
+      TransactionStructApi::GetWitnessStackNum);
 #endif
-    );
 }
 
 Value AddMultisigSign(const CallbackInfo &information) {
@@ -412,11 +407,10 @@ Value AddMultisigSign(const CallbackInfo &information) {
       api::AddMultisigSignRequestStruct, api::AddMultisigSignResponseStruct>(
       information, TransactionStructApi::AddMultisigSign,
 #ifndef CFD_DISABLE_ELEMENTS
-      ElementsTransactionStructApi::AddMultisigSign
+      ElementsTransactionStructApi::AddMultisigSign);
 #else
-      TransactionStructApi::AddMultisigSign
+      TransactionStructApi::AddMultisigSign);
 #endif
-    );
 }
 
 #ifndef CFD_DISABLE_ELEMENTS
