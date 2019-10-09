@@ -328,7 +328,7 @@ Value CreateAddress(const CallbackInfo &information) {
 #else
       AddressStructApi::CreateAddress
 #endif
-    );
+  );
 }
 
 Value CreateMultisig(const CallbackInfo &information) {
@@ -341,7 +341,7 @@ Value CreateMultisig(const CallbackInfo &information) {
 #else
       AddressStructApi::CreateMultisig
 #endif
-    );
+  );
 }
 
 Value CreateSignatureHash(const CallbackInfo &information) {
@@ -379,7 +379,7 @@ Value AddSign(const CallbackInfo &information) {
 #else
       TransactionStructApi::AddSign
 #endif
-    );
+  );
 }
 
 Value UpdateWitnessStack(const CallbackInfo &information) {
@@ -394,7 +394,7 @@ Value UpdateWitnessStack(const CallbackInfo &information) {
 #else
       TransactionStructApi::UpdateWitnessStack
 #endif
-    );
+  );
 }
 
 Value GetWitnessStackNum(const CallbackInfo &information) {
@@ -409,7 +409,7 @@ Value GetWitnessStackNum(const CallbackInfo &information) {
 #else
       TransactionStructApi::GetWitnessStackNum
 #endif
-    );
+  );
 }
 
 Value AddMultisigSign(const CallbackInfo &information) {
@@ -422,7 +422,7 @@ Value AddMultisigSign(const CallbackInfo &information) {
 #else
       TransactionStructApi::AddMultisigSign
 #endif
-    );
+  );
 }
 
 #ifndef CFD_DISABLE_ELEMENTS
