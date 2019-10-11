@@ -186,7 +186,7 @@ let addWitnessStack
         },
         {
           hex: createMultisigResult.witnessScript,
-          type: "redeemScript"
+          type: "redeem_script"
         }
       ]
     }
@@ -342,7 +342,7 @@ let addP2shP2wpkhTxStack
       signParam: [
         {
           hex: createP2shP2wpkhAddressResult.redeemScript,
-          type: "redeemScript"
+          type: "redeem_script"
         }
       ]
     }
@@ -533,7 +533,7 @@ let addP2shP2wshTxStack
       signParam: [
         {
           hex: createP2wshAddressResult.lockingScript,
-          type: "redeemScript"
+          type: "redeem_script"
         }
       ]
     }
@@ -583,8 +583,8 @@ let addP2WPKHTxSign1
       isWitness: false,
       signParam: [
         {
-          hex: '30450221008b9d1dc26ba6a9cb62127b02742fa9d754cd3bebf337f7a55d114c8e5cdd30be022040529b194ba3f9281a99f2b1c0a19c0489bc22ede944ccf4ecbab4cc618ef3ed01',
-          type: "redeemScript"
+          hex: '0020f39f6272ba6b57918eb047c5dc44fb475356b0f24c12fca39b19284e80008a42',
+          type: "redeem_script"
         }
       ]
     }
