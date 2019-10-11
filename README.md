@@ -1,6 +1,6 @@
-# Crypto Finance Development Kit (CFD)
+# Crypto Finance Development Kit for JavaScript (CFD-JS)
 
-JavaScript wrapper for cfd libraries
+JavaScript wrapper of cfd libraries
 
 <!-- TODO: Write Summary and Overview
 
