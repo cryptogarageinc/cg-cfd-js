@@ -13,8 +13,6 @@ import {
   CreateKeyPair,
   CreateMultisig,
   CreateSignatureHash,
-  CreateCETxAddress,
-  AddCETxSign,
   GetSupportedFunction,
   GetMnemonicWordlist,
 } from "./build/Release/cfd_js"
@@ -52,7 +50,6 @@ const CONTRACT_CONDS = {
   payAddrBob: "tb1qj52arfpmwxyjwddvjhjy45nkl725h583es0mef",         // payment address for bob (couter party)
   chgAddrAlice: "tb1q6vugzhd50r3yxgejxym0yzylkpkh2qqcvjuqp4",       // change address for alice (your party)
   chgAddrBob: "tb1qy7c7fqkgags3g6j0r8naj6c8fydcaz766d0skr",         // change address for bob (couter party)
-  cetxDelay: 144,         // delay(144) num of blocks for a day
 }
 console.log("\n===== CONTRACT_CONDS =====\n", CONTRACT_CONDS, "\n")
 
@@ -75,10 +72,10 @@ let createMultisigResult
   console.log("\n*** Response ***\n", createMultisigResult, "\n")
 }
 
-// CreateFundTx
-let createFundTxResult
+// CreateRawTransaction
+let createRawTxResult
 {
-  console.log("\n===== createFundTxResult =====")
+  console.log("\n===== CreateRawTransaction =====")
   const fundTxAmt = CONTRACT_CONDS.fundAmt + (CONTRACT_CONDS.feeAmt * 2)
   const txInAmtAlice = 3000000000   // dummy txin amount
   const txInAmtBob = 2800000000     // dummy txin amount
@@ -112,117 +109,55 @@ let createFundTxResult
   }
   console.log("*** Request ***\n", createRawTxParamJson)
   const resStr = CreateRawTransaction(JSON.stringify(createRawTxParamJson))
-  createFundTxResult = JSON.parse(resStr)
-  console.log("\n*** Response ***\n", createFundTxResult, "\n")
+  createRawTxResult = JSON.parse(resStr)
+  console.log("\n*** Response ***\n", createRawTxResult, "\n")
 }
-
-let decodeFundTxResult
+let decodeRawTxResult
 {
   console.log("-- decoderawtransaction start --")
   const decodeTxJson = {
-    hex: createFundTxResult.hex,
+    hex: createRawTxResult.hex,
     network: NET_TYPE
   }
   const resStr = DecodeRawTransaction(JSON.stringify(decodeTxJson))
-  decodeFundTxResult = JSON.parse(resStr)
-  console.log("*** Response ***\n", JSON.stringify(decodeFundTxResult, null, '  '))
+  decodeRawTxResult = JSON.parse(resStr)
+  console.log("*** Response ***\n", JSON.stringify(decodeRawTxResult, null, '  '))
   console.log("-- decoderawtransaction end   --\n")
 }
-
-// CreateCETx
-let createCETxResult
-{
-  console.log("\n===== CreateCETx =====")
-  const pubkeyAlice = "03abb2a69097acf0108c98e0ad6542d215d48f44080400860b430913f1df5ff9a7"
-  const pubkeyBob = "033d231f7ddbfdeebce1c1a05ab4a5a1392f87c5976e38c4688fb5c29f27650fdc"
-  const commitmentSetOracle = [
-    { key: "03251e2c993dfc7810d1522f4cb6c5afeeb6e8a0f2cbf42e12427031b9bb1efb2c", amount: 1250000000 },  // lose win
-    { key: "03953e46342bb385436a3295c00be28b7fdf2ed8c87fe89f31caa216311f5d8618", amount: 2500000000 },  // draw
-    { key: "02d9cabd8f2c800ff20eea774da72e3e96bcfaf134fac492635ef74fea7fae74e6", amount: 3750000000 },  // alice win
-  ]
-
-  commitmentSetOracle.forEach((commitment) => {
-    // create p2wsh address for txout
-    console.log("\n----- CreateCETxAddress -----")
-    // build json parameter
-    const addrParamJson = {
-      network: NET_TYPE,
-      combineKeys: {
-        pubkey: pubkeyAlice,
-        commitmentKey: commitment.key
-      },
-      counterPartyPubkey: pubkeyBob,
-      delay: CONTRACT_CONDS.cetxDelay
-    }
-    console.log("\n*** Request ***\n", addrParamJson)
-    const addrResStr = CreateCETxAddress(JSON.stringify(addrParamJson));
-    const addrResJson = JSON.parse(addrResStr)
-    console.log("\n*** Response ***\n", addrResJson, "\n")
-
-    // create cetx
-    console.log("\n----- CreateCETx -----")
-    const createCetxJson = {
-      version: 2,
-      locktime: 0,
-      txins: [{
-        txid: decodeFundTxResult.txid,
-        vout: 0
-      }],
-      txouts: [
-        {
-          "address": addrResJson.address,
-          "amount": commitment.amount + CONTRACT_CONDS.feeAmt
-        },
-        {
-          "address": CONTRACT_CONDS.payAddrBob,
-          "amount": CONTRACT_CONDS.fundAmt - commitment.amount
-        }
-      ]
-    }
-    console.log("\n*** Request ***\n", createCetxJson)
-    const resStr = CreateRawTransaction(JSON.stringify(createCetxJson));
-    createCETxResult = JSON.parse(resStr)
-    console.log("\n*** Response ***\n", createCETxResult, "\n")
-    console.log("\n----- ----- -----")
-  })
-}
-
 // CreateSignatureHash
 let createSignatureHash
 {
   console.log("\n===== CreateSignatureHash =====")
-
   // build json parameter
-  const addrParamJson = {
-    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
+  const reqJson = {
+    tx: createRawTxResult.hex,       // TxHex
     txin: {
-      txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-      vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
-      "keyData": {
-        "hex": createMultisigResult.witnessScript, // FundTxのRedeemScript
-        "type": "redeem_script"
+      txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac", // dummy txid
+      vout: 0,                       // TxInのvout
+      keyData: {
+        hex: createMultisigResult.witnessScript, // FundTxのRedeemScript
+        type: "redeem_script"
       },
       amount: 5000016000,                 // FundTx txout[vout].amount
       hashType: "p2wsh",
       sighashType: "all"
     }
   }
-  console.log("\n*** Request ***\n", addrParamJson)
-  const addrResStr = CreateSignatureHash(JSON.stringify(addrParamJson));
-  const addrResJson = JSON.parse(addrResStr)
-  console.log("\n*** Response ***\n", addrResJson, "\n")
+  console.log("\n*** Request ***\n", reqJson)
+  const resStr = CreateSignatureHash(JSON.stringify(reqJson));
+  const createSignatureHash = JSON.parse(resStr)
+  console.log("\n*** Response ***\n", createSignatureHash, "\n")
 }
-
 let getWitnessStackNum1
 {
   console.log("\n===== GetWitnessStackNum =====")
 
   // build json parameter
   const getWitnessJson = {
-    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
+    tx: createRawTxResult.hex,     // hex
     txin: {
-      txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-      vout: 0                        // TxInのvout（FundTxのTxoutのvout）
+      txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac", // dummy txid
+      vout: 0                        // TxInのvout
     }
   }
   console.log("\n*** Request ***\n", getWitnessJson)
@@ -230,17 +165,16 @@ let getWitnessStackNum1
   getWitnessStackNum1 = JSON.parse(resStr)
   console.log("\n*** Response ***\n", getWitnessStackNum1, "\n")
 }
-
 let addWitnessStack
 {
   console.log("\n===== AddSign =====")
 
   // build json parameter
   const getWitnessJson = {
-    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
+    tx: createRawTxResult.hex,       // tx hex
     txin: {
-      txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-      vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
+      txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac", // dummy txid
+      vout: 0,                       // TxInのvout
       signParam: [
         {
           hex: "11111111",
@@ -252,7 +186,7 @@ let addWitnessStack
         },
         {
           hex: createMultisigResult.witnessScript,
-          type: "redeemScript"
+          type: "redeem_script"
         }
       ]
     }
@@ -262,7 +196,6 @@ let addWitnessStack
   addWitnessStack = JSON.parse(resStr)
   console.log("\n*** Response ***\n", addWitnessStack, "\n")
 }
-
 let updateWitnessStack
 {
   console.log("\n===== UpdateWitnessStack =====")
@@ -271,7 +204,7 @@ let updateWitnessStack
   const getWitnessJson = {
     tx: addWitnessStack.hex,
     txin: {
-      txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
+      txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac", // dummy txid
       vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
       witnessStack: {
         index: 1,
@@ -285,7 +218,6 @@ let updateWitnessStack
   updateWitnessStack = JSON.parse(resStr)
   console.log("\n*** Response ***\n", updateWitnessStack, "\n")
 }
-
 let getWitnessStackNum2
 {
   console.log("\n===== GetWitnessStackNum2 =====")
@@ -294,7 +226,7 @@ let getWitnessStackNum2
   const getWitnessJson = {
     tx: updateWitnessStack.hex,
     txin: {
-      txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
+      txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac", // dummy txid
       vout: 0                        // TxInのvout（FundTxのTxoutのvout）
     }
   }
@@ -302,56 +234,6 @@ let getWitnessStackNum2
   const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
   getWitnessStackNum2 = JSON.parse(resStr)
   console.log("\n*** Response ***\n", getWitnessStackNum2, "\n")
-}
-
-let resultAddMultisigSign
-{
-  console.log("\n===== AddMultisigSign =====")
-
-  // build json parameter
-  const addWitnessJson = {
-    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
-    txin: {
-      txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-      vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
-      signParams: [
-        {
-          hex: "47ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb"
-        }
-      ],
-      witnessScript: createMultisigResult.witnessScript,
-      hashType: 'p2wsh'
-    }
-  }
-  // signed value: 3044022047ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f0220217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb01
-  console.log("\n*** Request ***\n", addWitnessJson)
-  const resStr = AddMultisigSign(JSON.stringify(addWitnessJson));
-  resultAddMultisigSign = JSON.parse(resStr)
-  console.log("\n*** Response ***\n", resultAddMultisigSign, "\n")
-}
-
-let addCETxSign
-{
-  console.log("\n===== AddCETxSign =====")
-
-  // build json parameter
-  const addWitnessJson = {
-    tx: createCETxResult.hex,       // CETxのTxHex（commitmentSetOracle[2]）
-    txin: {
-      txid: decodeFundTxResult.txid, // TxInのTxId（FundTxのTxId）
-      vout: 0,                       // TxInのvout（FundTxのTxoutのvout）
-      sign: {
-        hex: "47ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb"
-      },
-      delayedUnlocking: true,
-      redeemScript: createMultisigResult.witnessScript,
-    }
-  }
-  // signed value: 3044022047ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f0220217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb01
-  console.log("\n*** Request ***\n", addWitnessJson)
-  const resStr = AddCETxSign(JSON.stringify(addWitnessJson));
-  addCETxSign = JSON.parse(resStr)
-  console.log("\n*** Response ***\n", addCETxSign, "\n")
 }
 
 // Create P2SH-P2WPKH transaction
@@ -427,7 +309,7 @@ let addP2shP2wpkhTxWitness
   // const signature = CalculateEcSignature(CreateP2shP2wpkhSignatureHashResult.sighash, privkey, NET_TYPE);
   const getWitnessJson = {
     tx: createP2shP2wpkhTxResult.hex,
-    txin : {
+    txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
       vout: 0,
       signParam: [
@@ -460,7 +342,7 @@ let addP2shP2wpkhTxStack
       signParam: [
         {
           hex: createP2shP2wpkhAddressResult.redeemScript,
-          type: "redeemScript"
+          type: "redeem_script"
         }
       ]
     }
@@ -484,8 +366,17 @@ let decodeP2shP2wpkhTxResult
 }
 
 // Create P2SH-P2WSH(multisig) transaction
+const multisigKeyPair = []
 let createP2shMultisigAddressResult
 {
+  for (let i = 0; i < 2; ++i) {
+    multisigKeyPair.push(JSON.parse(CreateKeyPair(JSON.stringify({
+      "wif": true,
+      "network": NET_TYPE,
+      "isCompressed": true
+    }))))
+  }
+
   console.log("\n===== CreateMultisigAddress(for P2SH-P2WSH) =====")
   const createMultisigParamJson = {
     "nrequired": 2,
@@ -530,23 +421,32 @@ let createP2shSegWitMultisigTxResult
 }
 let addP2shSegWitMultisigTxStack
 {
-  console.log("\n===== AddSign =====")
-  const getWitnessJson = {
+  console.log("\n===== AddMultisigSign =====")
+  const addMultisigSign = {
     tx: createP2shSegWitMultisigTxResult.hex,
     txin: {
-      txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
+      txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",
       vout: 0,
       isWitness: false,   // P2SH用のscriptSig追加のため
-      signParam: [
+      signParams: [
         {
-          hex: createP2shMultisigAddressResult.redeemScript,
-          type: "redeemScript"
+          hex: "00000000000000000000000000000000", // dummy signature
+          type: "sign",
+          derEncode: false,
+        },
+        {
+          hex: "11111111111111111111111111111111",  // dummy signature
+          type: "sign",
+          derEncode: false,
         }
-      ]
+      ],
+      redeemScript: createP2shMultisigAddressResult.redeemScript,
+      witnessScript: createP2shMultisigAddressResult.witnessScript,
+      hashType: "p2sh-p2wsh"
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = AddSign(JSON.stringify(getWitnessJson));
+  console.log("\n*** Request ***\n", addMultisigSign)
+  const resStr = AddMultisigSign(JSON.stringify(addMultisigSign));
   addP2shSegWitMultisigTxStack = JSON.parse(resStr)
   console.log("\n*** Response ***\n", addP2shSegWitMultisigTxStack, "\n")
 }
@@ -633,7 +533,7 @@ let addP2shP2wshTxStack
       signParam: [
         {
           hex: createP2wshAddressResult.lockingScript,
-          type: "redeemScript"
+          type: "redeem_script"
         }
       ]
     }
@@ -683,8 +583,8 @@ let addP2WPKHTxSign1
       isWitness: false,
       signParam: [
         {
-          hex: '30450221008b9d1dc26ba6a9cb62127b02742fa9d754cd3bebf337f7a55d114c8e5cdd30be022040529b194ba3f9281a99f2b1c0a19c0489bc22ede944ccf4ecbab4cc618ef3ed01',
-          type: "redeemScript"
+          hex: '0020f39f6272ba6b57918eb047c5dc44fb475356b0f24c12fca39b19284e80008a42',
+          type: "redeem_script"
         }
       ]
     }

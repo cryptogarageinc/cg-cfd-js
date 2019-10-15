@@ -197,7 +197,7 @@ if (!supportFunctions.elements) {
           },
           {
             hex: createMultisigResult.witnessScript,
-            type: "redeemScript"
+            type: "redeem_script"
           }
         ]
       }
@@ -520,7 +520,7 @@ if (!supportFunctions.elements) {
         signParam: [
           {
             hex: '0014eb3c0d55b7098a4aef4a18ee1eebcb1ed924a82b',
-            type: "redeemScript"
+            type: "redeem_script"
           }
         ]
       }
@@ -663,24 +663,24 @@ if (!supportFunctions.elements) {
   // elements-cli listissuances
   let reissueData = {
     amount: 600000000,
-    assetEntropy:"6f9ccf5949eba5d6a08bff7a015e825c97824e82d57c8a0c77f9a41908fe8306"
+    assetEntropy: "6f9ccf5949eba5d6a08bff7a015e825c97824e82d57c8a0c77f9a41908fe8306"
   }
   // elements-cli listunspent
   let utxo_change = {
-    txid:"57a15002d066ce52573d674df925c9bc0f1164849420705f2cfad8a68111230f",
-    vout:0,
+    txid: "57a15002d066ce52573d674df925c9bc0f1164849420705f2cfad8a68111230f",
+    vout: 0,
     asset: "186c7f955149a5274b39e24b6a50d1d6479f552f6522d91f3a97d771f1c18179",
     blindFactor: "ae0f46d1940f297c2dc3bbd82bf8ef6931a2431fbb05b3d3bc5df41af86ae808",
     assetBlindFactor: "a10ecbe1be7a5f883d5d45d966e30dbc1beff5f21c55cec76cc21a2229116a9f",
     amount: 999637680,
   }
   let utxo_issuance = {
-    txid:"57a15002d066ce52573d674df925c9bc0f1164849420705f2cfad8a68111230f",
-    vout:1,
+    txid: "57a15002d066ce52573d674df925c9bc0f1164849420705f2cfad8a68111230f",
+    vout: 1,
     asset: "ed6927df918c89b5e3d8b5062acab2c749a3291bb7451d4267c7daaf1b52ad0b",
     blindFactor: "62e36e1f0fa4916b031648a6b6903083069fa587572a88b729250cde528cfd3b",
     assetBlindFactor: "0b8954757234fd3ec9cf0dd6ef0a89d825ec56a9532e7da4b6cb90c51be3bbd8",
-    amount:700000000,
+    amount: 700000000,
   }
   // elements-cli dumpmasterblindingkey
   let masterBlindingKey = "ac2c1e4cce122139bb25abc50599e09738143cc4bc96e55f399a5e1e45d916a9"
@@ -712,7 +712,7 @@ if (!supportFunctions.elements) {
       "txins": [{
         "txid": utxo_change.txid,
         "vout": utxo_change.vout,
-      },{
+      }, {
         "txid": utxo_issuance.txid,
         "vout": utxo_issuance.vout,
       }],
@@ -720,7 +720,7 @@ if (!supportFunctions.elements) {
         "address": address[0],
         "amount": (utxo_change.amount - reissue_fee),
         "asset": utxo_change.asset
-      },{
+      }, {
         "address": address[1],
         "amount": utxo_issuance.amount,
         "asset": utxo_issuance.asset
@@ -740,7 +740,7 @@ if (!supportFunctions.elements) {
   {
     console.log("\n===== SetRawReissueAsset =====")
     const paramJson = {
-      "tx":Reissuance_CreateRawTransactionResult.hex,
+      "tx": Reissuance_CreateRawTransactionResult.hex,
       "isRandomSortTxOut": false,
       "issuances": [{
         "txid": utxo_issuance.txid,
@@ -748,7 +748,7 @@ if (!supportFunctions.elements) {
         "amount": reissueData.amount,
         "address": address[2],
         "assetBlindingNonce": utxo_issuance.assetBlindFactor,
-        "assetEntropy":reissueData.assetEntropy
+        "assetEntropy": reissueData.assetEntropy
       }]
     }
     console.log("*** Request ***\n", paramJson)
@@ -783,7 +783,7 @@ if (!supportFunctions.elements) {
         "blindFactor": utxo_change.blindFactor,
         "assetBlindFactor": utxo_change.assetBlindFactor,
         "amount": utxo_change.amount
-      },{
+      }, {
         "txid": utxo_issuance.txid,
         "vout": utxo_issuance.vout,
         "asset": utxo_issuance.asset,
@@ -822,7 +822,7 @@ if (!supportFunctions.elements) {
   {
     console.log("\n===== reissuanceUnblindRawTransaction =====")
     const paramJson = {
-      "tx":Reissuance_BlindRawTransactionResult.hex,
+      "tx": Reissuance_BlindRawTransactionResult.hex,
       "txouts": [
         {
           "index": 0,
@@ -856,32 +856,32 @@ if (!supportFunctions.elements) {
   {
     console.log("\n===== Pegin CreateRawPegin =====")
     const paramJson = {
-    	"version":2,
-    	"locktime":0,
-    	"txins":[{
-      		"isPegin":true,
-      		"txid":"f393f3eb0c3c4642ae586301dcf9299d78d3bb0f4f1ddad0f4c2fd5093292679",
-      		"vout":0,
-      		"sequence":4294967295,
-      		"peginwitness":
-            {
-        			"amount":10000000000,
-        			"asset":"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225",
-        			"mainchainGenesisBlockHash":"0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206",
-        			"claimScript":"001412dcdeef890f60967896391c95b0e02c9258dfe5",
-        			"mainchainRawTransaction":"0200000000010a945efd42ce42de413aa7398a95c35facc14ec5d35bb23e5f980014e94ab96a620000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffffe50b46ecadb5cc52a7ef149a23323464353415f02d7b4a943963b26a9beb2a030000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff67173609ca4c13662356a2507c71e5d497baeff56a3c42af989f3b270bc870560000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff784a9fd151fe2808949fae18afcf52244a77702b9a83950bc7ec52a8239104850000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff259618278cecbae1bed8b7806133d14987c3c6118d2744707f509c58ea2c0e870000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff5c30c2fdcb6ce0b666120777ec18ce5211dd4741f40f033648432694b0919da50000000017160014a8a7c0032d1d283e39889861b3f05156e379cfb6feffffffbb0f857d4b143c74c7fdb678bf41b65e7e3f2e7644b3613ae6370d21c0882ad60000000017160014a8a7c0032d1d283e39889861b3f05156e379cfb6feffffffbce488c283e07bf364edb5057e020aa3d137d8d6130711dc12f03f35564945680000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff258cb927989780ac92a3952ffd1f54e9b65e59fb07219eb106840b5d76b547fb0000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffffe98ec686efbca9bdd18ae85a3a8235a607e1cfb6138bac1461d400cbbabbe00f0000000017160014a8a7c0032d1d283e39889861b3f05156e379cfb6feffffff0100e40b540200000017a91472c44f957fc011d97e3406667dca5b1c930c4026870247304402206b4de54956e864dfe3ff3a4957e329cf171e919498bb8f98c242bef7b0d5e3350220505355401a500aabf193b93492d6bceb93c3b183034f252d65a139245c7486a601210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f40247304402200fc48c7b5bd6de74c951250c60e8e6c9d3a605dc557bdc93ce86e85d2f27834a02205d2a8768adad669683416d1126c8537ab1eb36b0e83d5d9e6a583297b7f9d2cb01210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f40247304402207ad97500fbe6049d559a1e10586cd0b1f02baeb98dc641a971a506a57288aa0002202a6646bc4262904f6d1a9288c12ff586b5a674f5a351dfaba2698c8b8265366f01210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f4024730440220271e41a1e8f953b6817333e43d6a5e2924b291d52120011a5f7f1fb8049ae41b02200f1a25ed9da813122caadf8edf8d01da190f9407c2b61c27d4b671e07136bce701210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f402473044022050291184dcd4733de6e6a43d9efb1e21e7d2c563e9138481f04010f3acbb139f02206c01c3bfe4e5b71c4aac524a18f35e25ae7306ca110b3c3b079ae6da2b0a0a5701210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f402473044022045a188c10aec4f1a3a6c8a3a3c9f7d4dc63b9eacc011839c907d1c5da206a1390220399ca60516204efd9d220eaa0c804867137133c4d70780223fdde699288af3790121031c01fd031bc09b385d138b3b2f44ec04c03934b66f6485f37a17b4899f1b8d7802473044022053621a5c74b313c648d179041c154152372060941d9c9080340eb913358b705602201ac178f639360356ca7d75656d92bd7801d976e74bd5d2e30d6310a94940d0bc0121031c01fd031bc09b385d138b3b2f44ec04c03934b66f6485f37a17b4899f1b8d780247304402207b4a7a271a8fc03e8045ca367cb64046fa06e5b13a105e67efe7dd6571503fcb022072852e1c3f87eeac039601a0df855fb5d65bbdcd3ad95ff96bfc7b534fd89f7601210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f402473044022037e9f0943a79e155a57526e251cfd39e004552b76c0de892448eb939d2d12fdf02203a02f0045e8f90739eddc06c026c95b4a653aeb89528d851ab75952fd7db07b801210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f402473044022057a9953ba83d5e710fc64e1c533d81b0913f434b3e1c865cebd6cb106e09fa77022012930afe63ae7f1115a2f3b13039e71387fc2d4ed0e36eaa7be55a754c8c84830121031c01fd031bc09b385d138b3b2f44ec04c03934b66f6485f37a17b4899f1b8d78130e0000",
-        			"mainchainTxoutproof":"00000020fe3b574c1ce6d5cb68fc518e86f7976e599fafc0a2e5754aace7ca16d97a7c78ef9325b8d4f0a4921e060fc5e71435f46a18fa339688142cd4b028c8488c9f8dd1495b5dffff7f200200000002000000024a180a6822abffc3b1080c49016899c6dac25083936df14af12f58db11958ef27926299350fdc2f4d0da1d4f0fbbd3789d29f9dc016358ae42463c0cebf393f30105"
-        		}
+      "version": 2,
+      "locktime": 0,
+      "txins": [{
+        "isPegin": true,
+        "txid": "f393f3eb0c3c4642ae586301dcf9299d78d3bb0f4f1ddad0f4c2fd5093292679",
+        "vout": 0,
+        "sequence": 4294967295,
+        "peginwitness":
+        {
+          "amount": 10000000000,
+          "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225",
+          "mainchainGenesisBlockHash": "0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206",
+          "claimScript": "001412dcdeef890f60967896391c95b0e02c9258dfe5",
+          "mainchainRawTransaction": "0200000000010a945efd42ce42de413aa7398a95c35facc14ec5d35bb23e5f980014e94ab96a620000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffffe50b46ecadb5cc52a7ef149a23323464353415f02d7b4a943963b26a9beb2a030000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff67173609ca4c13662356a2507c71e5d497baeff56a3c42af989f3b270bc870560000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff784a9fd151fe2808949fae18afcf52244a77702b9a83950bc7ec52a8239104850000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff259618278cecbae1bed8b7806133d14987c3c6118d2744707f509c58ea2c0e870000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff5c30c2fdcb6ce0b666120777ec18ce5211dd4741f40f033648432694b0919da50000000017160014a8a7c0032d1d283e39889861b3f05156e379cfb6feffffffbb0f857d4b143c74c7fdb678bf41b65e7e3f2e7644b3613ae6370d21c0882ad60000000017160014a8a7c0032d1d283e39889861b3f05156e379cfb6feffffffbce488c283e07bf364edb5057e020aa3d137d8d6130711dc12f03f35564945680000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffff258cb927989780ac92a3952ffd1f54e9b65e59fb07219eb106840b5d76b547fb0000000017160014ca2041536307bbe086e8c7fe8563e1c9b9b6eb84feffffffe98ec686efbca9bdd18ae85a3a8235a607e1cfb6138bac1461d400cbbabbe00f0000000017160014a8a7c0032d1d283e39889861b3f05156e379cfb6feffffff0100e40b540200000017a91472c44f957fc011d97e3406667dca5b1c930c4026870247304402206b4de54956e864dfe3ff3a4957e329cf171e919498bb8f98c242bef7b0d5e3350220505355401a500aabf193b93492d6bceb93c3b183034f252d65a139245c7486a601210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f40247304402200fc48c7b5bd6de74c951250c60e8e6c9d3a605dc557bdc93ce86e85d2f27834a02205d2a8768adad669683416d1126c8537ab1eb36b0e83d5d9e6a583297b7f9d2cb01210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f40247304402207ad97500fbe6049d559a1e10586cd0b1f02baeb98dc641a971a506a57288aa0002202a6646bc4262904f6d1a9288c12ff586b5a674f5a351dfaba2698c8b8265366f01210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f4024730440220271e41a1e8f953b6817333e43d6a5e2924b291d52120011a5f7f1fb8049ae41b02200f1a25ed9da813122caadf8edf8d01da190f9407c2b61c27d4b671e07136bce701210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f402473044022050291184dcd4733de6e6a43d9efb1e21e7d2c563e9138481f04010f3acbb139f02206c01c3bfe4e5b71c4aac524a18f35e25ae7306ca110b3c3b079ae6da2b0a0a5701210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f402473044022045a188c10aec4f1a3a6c8a3a3c9f7d4dc63b9eacc011839c907d1c5da206a1390220399ca60516204efd9d220eaa0c804867137133c4d70780223fdde699288af3790121031c01fd031bc09b385d138b3b2f44ec04c03934b66f6485f37a17b4899f1b8d7802473044022053621a5c74b313c648d179041c154152372060941d9c9080340eb913358b705602201ac178f639360356ca7d75656d92bd7801d976e74bd5d2e30d6310a94940d0bc0121031c01fd031bc09b385d138b3b2f44ec04c03934b66f6485f37a17b4899f1b8d780247304402207b4a7a271a8fc03e8045ca367cb64046fa06e5b13a105e67efe7dd6571503fcb022072852e1c3f87eeac039601a0df855fb5d65bbdcd3ad95ff96bfc7b534fd89f7601210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f402473044022037e9f0943a79e155a57526e251cfd39e004552b76c0de892448eb939d2d12fdf02203a02f0045e8f90739eddc06c026c95b4a653aeb89528d851ab75952fd7db07b801210281465587e09d80f5a7b8ce94bab4a4571dc8cff4483cc9eb89e76ecfa650b6f402473044022057a9953ba83d5e710fc64e1c533d81b0913f434b3e1c865cebd6cb106e09fa77022012930afe63ae7f1115a2f3b13039e71387fc2d4ed0e36eaa7be55a754c8c84830121031c01fd031bc09b385d138b3b2f44ec04c03934b66f6485f37a17b4899f1b8d78130e0000",
+          "mainchainTxoutproof": "00000020fe3b574c1ce6d5cb68fc518e86f7976e599fafc0a2e5754aace7ca16d97a7c78ef9325b8d4f0a4921e060fc5e71435f46a18fa339688142cd4b028c8488c9f8dd1495b5dffff7f200200000002000000024a180a6822abffc3b1080c49016899c6dac25083936df14af12f58db11958ef27926299350fdc2f4d0da1d4f0fbbd3789d29f9dc016358ae42463c0cebf393f30105"
+        }
       }],
-    	"txouts":[{
-    		"address":"XDEmgYUeUH7BunVkTnXGccU3PG7oFv8j6N",
-    		"amount":9999985020,
-    		"asset":"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
-    	}],
-    	"fee":{
-    		"amount":14980,
-    		"asset":"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
-    	}
+      "txouts": [{
+        "address": "XDEmgYUeUH7BunVkTnXGccU3PG7oFv8j6N",
+        "amount": 9999985020,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+      }],
+      "fee": {
+        "amount": 14980,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+      }
     }
 
     console.log("*** Request ***\n", paramJson)
@@ -895,34 +895,34 @@ if (!supportFunctions.elements) {
   {
     console.log("\n===== Pegout CreateRawPegout =====")
     const paramJson = {
-    	"version":2,
-    	"locktime":0,
-    	"txins":[{
-      		"txid":"4aa201f333e80b8f62ba5b593edb47b4730212e2917b21279f389ba1c14588a3",
-      		"vout":0,
-      		"sequence":4294967293,
+      "version": 2,
+      "locktime": 0,
+      "txins": [{
+        "txid": "4aa201f333e80b8f62ba5b593edb47b4730212e2917b21279f389ba1c14588a3",
+        "vout": 0,
+        "sequence": 4294967293,
       }],
-    	"txouts":[{
-    		"address":"XBMr6srTXmWuHifFd8gs54xYfiCBsvrksA",
-    		"amount":209998999992700,
-    		"asset":"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
-    	}],
-      "pegout":{
+      "txouts": [{
+        "address": "XBMr6srTXmWuHifFd8gs54xYfiCBsvrksA",
+        "amount": 209998999992700,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+      }],
+      "pegout": {
         "amount": 1000000000,
-  			"asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225",
-  			"network": "regtest",
-  			"mainchainGenesisBlockHash":"0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206",
-  			"btcAddress": "",
-  			"onlinePubkey":"0214156e4ae9168289b4d0c034da94025121d33ad8643663454885032d77640e3d",
-  			"masterOnlineKey":"cVPA9nh4bHhKXinBCLkJJTD3UgfiizWRykXfFegwZzKMNYAKG9RL",
-  			"bitcoinDescriptor":"sh(wpkh(tpubDASgDECJvTMzUgS7GkSCxQAAWPveW7BeTPSvbi1wpUe1Mq1v743FRw1i7vTavjAb3D3Y8geCTYw2ezgiVS7SFXDXS6NpZmvr6XPjPvg632y/0/*))",
-  			"bip32Counter":0,
-  			"whitelist":"030e07d4f657c0c169e04fac5d5a8096adb099874834be59ad1e681e22d952ccda0214156e4ae9168289b4d0c034da94025121d33ad8643663454885032d77640e3d"
-    	},
-    	"fee":{
-    		"amount":7300,
-    		"asset":"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
-    	}
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225",
+        "network": "regtest",
+        "mainchainGenesisBlockHash": "0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206",
+        "btcAddress": "",
+        "onlinePubkey": "0214156e4ae9168289b4d0c034da94025121d33ad8643663454885032d77640e3d",
+        "masterOnlineKey": "cVPA9nh4bHhKXinBCLkJJTD3UgfiizWRykXfFegwZzKMNYAKG9RL",
+        "bitcoinDescriptor": "sh(wpkh(tpubDASgDECJvTMzUgS7GkSCxQAAWPveW7BeTPSvbi1wpUe1Mq1v743FRw1i7vTavjAb3D3Y8geCTYw2ezgiVS7SFXDXS6NpZmvr6XPjPvg632y/0/*))",
+        "bip32Counter": 0,
+        "whitelist": "030e07d4f657c0c169e04fac5d5a8096adb099874834be59ad1e681e22d952ccda0214156e4ae9168289b4d0c034da94025121d33ad8643663454885032d77640e3d"
+      },
+      "fee": {
+        "amount": 7300,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+      }
     }
 
     console.log("*** Request ***\n", paramJson)
@@ -950,36 +950,36 @@ if (!supportFunctions.elements) {
   {
     console.log("\n===== CreateDestroyAmount =====")
     const paramJson = {
-    	"version":2,
-    	"locktime":0,
-    	"txins":[{
-      		"txid":"39a38fee7569a9b98f6c2fee3a3d946844c2f525be024fb73a698daa307d145e",
-      		"vout":1,
-      		"sequence":4294967293,
+      "version": 2,
+      "locktime": 0,
+      "txins": [{
+        "txid": "39a38fee7569a9b98f6c2fee3a3d946844c2f525be024fb73a698daa307d145e",
+        "vout": 1,
+        "sequence": 4294967293,
       },
       {
-          "txid":"e2dba9a1984cd3e612e6dc842556827b1e29a2b856a2187c5e0070ad9c873c11",
-          "vout":2,
-          "sequence":4294967293,
+        "txid": "e2dba9a1984cd3e612e6dc842556827b1e29a2b856a2187c5e0070ad9c873c11",
+        "vout": 2,
+        "sequence": 4294967293,
       }],
-    	"txouts":[{
-    		"address":"AzpkYfJkupsG2p8Px1BafsjzaxKEoMUFKypr2x7jd6kZQHcRyx6zYtZHCUEEzzSayr8Kj9JPNnWceL7W",
-    		"amount":209997098759200,
-        "asset":"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
-    	},
+      "txouts": [{
+        "address": "AzpkYfJkupsG2p8Px1BafsjzaxKEoMUFKypr2x7jd6kZQHcRyx6zYtZHCUEEzzSayr8Kj9JPNnWceL7W",
+        "amount": 209997098759200,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+      },
       {
-        "address":"AzpkZqyz2pgdStnd4viVQftemZbgdksq5hJnG2GxwBF6uCd2d8X45fM2287TBcpka9mYYHmr5hwREzrC",
-    		"amount":700000000,
-        "asset":"1b7d916b84c15ef482f665d8fce11a624e3650fbf6add4193949555b934df355"
+        "address": "AzpkZqyz2pgdStnd4viVQftemZbgdksq5hJnG2GxwBF6uCd2d8X45fM2287TBcpka9mYYHmr5hwREzrC",
+        "amount": 700000000,
+        "asset": "1b7d916b84c15ef482f665d8fce11a624e3650fbf6add4193949555b934df355"
       }],
-      "destroy":{
+      "destroy": {
         "amount": 200000000,
-  			"asset": "1b7d916b84c15ef482f665d8fce11a624e3650fbf6add4193949555b934df355"
-    	},
-    	"fee":{
-    		"amount":10000,
-    		"asset":"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
-    	}
+        "asset": "1b7d916b84c15ef482f665d8fce11a624e3650fbf6add4193949555b934df355"
+      },
+      "fee": {
+        "amount": 10000,
+        "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
+      }
     }
 
     console.log("*** Request ***\n", paramJson)
