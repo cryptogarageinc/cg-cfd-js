@@ -149,8 +149,6 @@ target_sources(${CFDJS_LIBRARY}
     cfdapi_supported_function_json.cpp
     cfdapi_transaction_json.cpp
     cfdapi_update_witness_json.cpp
-    dlcapi_add_cetx_sign_json.cpp
-    dlcapi_address_json.cpp
 )
 
 target_compile_options(${CFDJS_LIBRARY}

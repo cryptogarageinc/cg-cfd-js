@@ -75,7 +75,7 @@ const errorCase = [
   TestHelper.createBitcoinTestCase(
     "CreateSignatureHash Error(TxHex is empty)",
     CreateSignatureHash,
-    ["{\"tx\":\"\",\"txin\":{\"txid\":\"ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a\", \"vout\":1, \"keyData\":{\"hex\":\"025476c2e83188368da1ff3e292e7acafcdb3566bb0ad253f62fc70f07aeee6357\", \"type\":\"redeem_script\"}, \"amount\":122500000, \"hashType\":\"p2wpkh\", \"sighashType\":\"all\"}}"],
+    ["{\"tx\":\"\",\"txin\":{\"txid\":\"ef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a\", \"vout\":1, \"keyData\":{\"hex\":\"025476c2e83188368da1ff3e292e7acafcdb3566bb0ad253f62fc70f07aeee6357\", \"type\":\"pubkey\"}, \"amount\":122500000, \"hashType\":\"p2wpkh\", \"sighashType\":\"all\"}}"],
     "{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"transaction data invalid.\"}}"
   ),
   TestHelper.createBitcoinTestCase(
