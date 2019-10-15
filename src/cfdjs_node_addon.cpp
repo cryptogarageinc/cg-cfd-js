@@ -21,6 +21,7 @@
 #include "cfdapi_blind_raw_transaction_json.h"              // NOLINT
 #include "cfdapi_convert_entropy_to_mnemonic_json.h"        // NOLINT
 #include "cfdapi_convert_mnemonic_to_seed_json.h"           // NOLINT
+#include "cfdapi_calculate_ec_signature_json.h"             // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
 #include "cfdapi_decode_transaction_json.h"                 // NOLINT
@@ -359,6 +360,13 @@ Value CreateKeyPair(const CallbackInfo &information) {
       api::json::CreateKeyPairRequest, api::json::CreateKeyPairResponse,
       api::CreateKeyPairRequestStruct, api::CreateKeyPairResponseStruct>(
       information, KeyStructApi::CreateKeyPair);
+}
+
+Value CalculateEcSignature(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::CalculateEcSignatureRequest, api::json::CalculateEcSignatureResponse,
+      api::CalculateEcSignatureRequestStruct, api::CalculateEcSignatureResponseStruct>(
+      information, KeyStructApi::CalculateEcSignature);
 }
 
 Value AddSign(const CallbackInfo &information) {
