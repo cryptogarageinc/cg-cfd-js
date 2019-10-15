@@ -20,7 +20,6 @@ using Napi::Value;
 
 Object Init(Env env, Object exports) {
   cfd::js::api::json::InitializeJsonApi(env, &exports);
-  dlc::js::InitializeJsonApi(env, &exports);
   return exports;
 }
 

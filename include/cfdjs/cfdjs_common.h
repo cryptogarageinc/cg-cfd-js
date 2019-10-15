@@ -78,24 +78,4 @@ CFD_JS_API void InitializeJsonApi(Napi::Env env, Napi::Object* exports);
 }  // namespace js
 }  // namespace cfd
 
-/**
- * @brief dlc名前空間
- */
-namespace dlc {
-/**
- * @brief dlc::js名前空間
- */
-namespace js {
-
-// API
-/**
- * @brief Initialize処理を実施する。
- * @details N-APIの利用を前提とする。
- * @return LibraryFunctionのビットフラグ
- */
-CFD_JS_API void InitializeJsonApi(Napi::Env env, Napi::Object* exports);
-
-}  // namespace js
-}  // namespace dlc
-
 #endif  // CFD_JS_INCLUDE_CFDJS_CFDJS_COMMON_H_
