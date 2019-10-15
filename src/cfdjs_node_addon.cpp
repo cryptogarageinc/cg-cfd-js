@@ -19,9 +19,9 @@
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
 #include "cfdapi_blind_raw_transaction_json.h"              // NOLINT
+#include "cfdapi_calculate_ec_signature_json.h"             // NOLINT
 #include "cfdapi_convert_entropy_to_mnemonic_json.h"        // NOLINT
 #include "cfdapi_convert_mnemonic_to_seed_json.h"           // NOLINT
-#include "cfdapi_calculate_ec_signature_json.h"             // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
 #include "cfdapi_decode_transaction_json.h"                 // NOLINT
@@ -372,8 +372,10 @@ Value CreateKeyPair(const CallbackInfo &information) {
 
 Value CalculateEcSignature(const CallbackInfo &information) {
   return NodeAddonJsonApi<
-      api::json::CalculateEcSignatureRequest, api::json::CalculateEcSignatureResponse,
-      api::CalculateEcSignatureRequestStruct, api::CalculateEcSignatureResponseStruct>(
+      api::json::CalculateEcSignatureRequest,
+      api::json::CalculateEcSignatureResponse,
+      api::CalculateEcSignatureRequestStruct,
+      api::CalculateEcSignatureResponseStruct>(
       information, KeyStructApi::CalculateEcSignature);
 }
 
@@ -558,7 +560,7 @@ Value CreateDestroyAmount(const CallbackInfo &information) {
 }
 #endif  // CFD_DISABLE_ELEMENTS
 
-void InitializeJsonApi(Env env, Object* exports) {
+void InitializeJsonApi(Env env, Object *exports) {
   cfd::Initialize();
   exports->Set(
       String::New(env, "GetSupportedFunction"),
@@ -576,19 +578,16 @@ void InitializeJsonApi(Env env, Object* exports) {
       String::New(env, "ConvertMnemonicToSeed"),
       Function::New(env, ConvertMnemonicToSeed));
   exports->Set(
-      String::New(env, "CreateAddress"),
-      Function::New(env, CreateAddress));
+      String::New(env, "CreateAddress"), Function::New(env, CreateAddress));
   exports->Set(
-      String::New(env, "CreateMultisig"),
-      Function::New(env, CreateMultisig));
+      String::New(env, "CreateMultisig"), Function::New(env, CreateMultisig));
   exports->Set(
       String::New(env, "CreateSignatureHash"),
       Function::New(env, CreateSignatureHash));
   exports->Set(
       String::New(env, "GetWitnessStackNum"),
       Function::New(env, GetWitnessStackNum));
-  exports->Set(
-      String::New(env, "AddSign"), Function::New(env, AddSign));
+  exports->Set(String::New(env, "AddSign"), Function::New(env, AddSign));
   exports->Set(
       String::New(env, "UpdateWitnessStack"),
       Function::New(env, UpdateWitnessStack));
@@ -599,8 +598,10 @@ void InitializeJsonApi(Env env, Object* exports) {
       String::New(env, "GetMnemonicWordlist"),
       Function::New(env, GetMnemonicWordlist));
   exports->Set(
-      String::New(env, "CreateKeyPair"),
-      Function::New(env, CreateKeyPair));
+      String::New(env, "CreateKeyPair"), Function::New(env, CreateKeyPair));
+  exports->Set(
+      String::New(env, "CalculateEcSignature"),
+      Function::New(env, CalculateEcSignature));
 #ifndef CFD_DISABLE_ELEMENTS
   exports->Set(
       String::New(env, "GetConfidentialAddress"),
@@ -633,8 +634,7 @@ void InitializeJsonApi(Env env, Object* exports) {
       String::New(env, "CreateElementsSignatureHash"),
       Function::New(env, CreateElementsSignatureHash));
   exports->Set(
-      String::New(env, "CreateRawPegin"),
-      Function::New(env, CreateRawPegin));
+      String::New(env, "CreateRawPegin"), Function::New(env, CreateRawPegin));
   exports->Set(
       String::New(env, "CreateRawPegout"),
       Function::New(env, CreateRawPegout));
