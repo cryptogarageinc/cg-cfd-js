@@ -48,6 +48,8 @@
 #include "cfdapi_transaction_json.h"                        // NOLINT
 #include "cfdapi_update_witness_json.h"                     // NOLINT
 
+#include "cfdjs/cfdjs_common.h"
+
 // using
 using cfd::js::api::AddressStructApi;
 using cfd::js::api::HDWalletStructApi;
@@ -77,6 +79,8 @@ using Napi::Value;
 
 namespace cfd {
 namespace js {
+namespace api {
+namespace json {
 
 /**
  * @brief NodeAddonのJSON APIテンプレート関数(request, response).
@@ -264,11 +268,15 @@ Value NodeAddonJsonResponseApi(
   }
 }
 
+}  // namespace json
+}  // namespace api
 }  // namespace js
 }  // namespace cfd
 
 namespace cfd {
 namespace js {
+namespace api {
+namespace json {
 
 Value GetSupportedFunction(const CallbackInfo &information) {
   return NodeAddonJsonResponseApi<
@@ -550,97 +558,96 @@ Value CreateDestroyAmount(const CallbackInfo &information) {
 }
 #endif  // CFD_DISABLE_ELEMENTS
 
-}  // namespace js
-}  // namespace cfd
-
-Object Init(Env env, Object exports) {
+void InitializeJsonApi(Env env, Object* exports) {
   cfd::Initialize();
-  exports.Set(
+  exports->Set(
       String::New(env, "GetSupportedFunction"),
-      Function::New(env, cfd::js::GetSupportedFunction));
-  exports.Set(
+      Function::New(env, GetSupportedFunction));
+  exports->Set(
       String::New(env, "CreateRawTransaction"),
-      Function::New(env, cfd::js::CreateRawTransaction));
-  exports.Set(
+      Function::New(env, CreateRawTransaction));
+  exports->Set(
       String::New(env, "DecodeRawTransaction"),
-      Function::New(env, cfd::js::DecodeRawTransaction));
-  exports.Set(
+      Function::New(env, DecodeRawTransaction));
+  exports->Set(
       String::New(env, "ConvertEntropyToMnemonic"),
-      Function::New(env, cfd::js::ConvertEntropyToMnemonic));
-  exports.Set(
+      Function::New(env, ConvertEntropyToMnemonic));
+  exports->Set(
       String::New(env, "ConvertMnemonicToSeed"),
-      Function::New(env, cfd::js::ConvertMnemonicToSeed));
-  exports.Set(
+      Function::New(env, ConvertMnemonicToSeed));
+  exports->Set(
       String::New(env, "CreateAddress"),
-      Function::New(env, cfd::js::CreateAddress));
-  exports.Set(
+      Function::New(env, CreateAddress));
+  exports->Set(
       String::New(env, "CreateMultisig"),
-      Function::New(env, cfd::js::CreateMultisig));
-  exports.Set(
+      Function::New(env, CreateMultisig));
+  exports->Set(
       String::New(env, "CreateSignatureHash"),
-      Function::New(env, cfd::js::CreateSignatureHash));
-  exports.Set(
+      Function::New(env, CreateSignatureHash));
+  exports->Set(
       String::New(env, "GetWitnessStackNum"),
-      Function::New(env, cfd::js::GetWitnessStackNum));
-  exports.Set(
-      String::New(env, "AddSign"), Function::New(env, cfd::js::AddSign));
-  exports.Set(
+      Function::New(env, GetWitnessStackNum));
+  exports->Set(
+      String::New(env, "AddSign"), Function::New(env, AddSign));
+  exports->Set(
       String::New(env, "UpdateWitnessStack"),
-      Function::New(env, cfd::js::UpdateWitnessStack));
-  exports.Set(
+      Function::New(env, UpdateWitnessStack));
+  exports->Set(
       String::New(env, "AddMultisigSign"),
-      Function::New(env, cfd::js::AddMultisigSign));
-  exports.Set(
+      Function::New(env, AddMultisigSign));
+  exports->Set(
       String::New(env, "GetMnemonicWordlist"),
-      Function::New(env, cfd::js::GetMnemonicWordlist));
-  exports.Set(
+      Function::New(env, GetMnemonicWordlist));
+  exports->Set(
       String::New(env, "CreateKeyPair"),
-      Function::New(env, cfd::js::CreateKeyPair));
+      Function::New(env, CreateKeyPair));
 #ifndef CFD_DISABLE_ELEMENTS
-  exports.Set(
+  exports->Set(
       String::New(env, "GetConfidentialAddress"),
-      Function::New(env, cfd::js::GetConfidentialAddress));
-  exports.Set(
+      Function::New(env, GetConfidentialAddress));
+  exports->Set(
       String::New(env, "GetUnblindedAddress"),
-      Function::New(env, cfd::js::GetUnblindedAddress));
-  exports.Set(
+      Function::New(env, GetUnblindedAddress));
+  exports->Set(
       String::New(env, "CreatePegInAddress"),
-      Function::New(env, cfd::js::CreatePegInAddress));
-  exports.Set(
+      Function::New(env, CreatePegInAddress));
+  exports->Set(
       String::New(env, "ElementsCreateRawTransaction"),
-      Function::New(env, cfd::js::ElementsCreateRawTransaction));
-  exports.Set(
+      Function::New(env, ElementsCreateRawTransaction));
+  exports->Set(
       String::New(env, "ElementsDecodeRawTransaction"),
-      Function::New(env, cfd::js::ElementsDecodeRawTransaction));
-  exports.Set(
+      Function::New(env, ElementsDecodeRawTransaction));
+  exports->Set(
       String::New(env, "BlindRawTransaction"),
-      Function::New(env, cfd::js::BlindRawTransaction));
-  exports.Set(
+      Function::New(env, BlindRawTransaction));
+  exports->Set(
       String::New(env, "UnblindRawTransaction"),
-      Function::New(env, cfd::js::UnblindRawTransaction));
-  exports.Set(
+      Function::New(env, UnblindRawTransaction));
+  exports->Set(
       String::New(env, "SetRawIssueAsset"),
-      Function::New(env, cfd::js::SetRawIssueAsset));
-  exports.Set(
+      Function::New(env, SetRawIssueAsset));
+  exports->Set(
       String::New(env, "SetRawReissueAsset"),
-      Function::New(env, cfd::js::SetRawReissueAsset));
-  exports.Set(
+      Function::New(env, SetRawReissueAsset));
+  exports->Set(
       String::New(env, "CreateElementsSignatureHash"),
-      Function::New(env, cfd::js::CreateElementsSignatureHash));
-  exports.Set(
+      Function::New(env, CreateElementsSignatureHash));
+  exports->Set(
       String::New(env, "CreateRawPegin"),
-      Function::New(env, cfd::js::CreateRawPegin));
-  exports.Set(
+      Function::New(env, CreateRawPegin));
+  exports->Set(
       String::New(env, "CreateRawPegout"),
-      Function::New(env, cfd::js::CreateRawPegout));
-  exports.Set(
+      Function::New(env, CreateRawPegout));
+  exports->Set(
       String::New(env, "GetIssuanceBlindingKey"),
-      Function::New(env, cfd::js::GetIssuanceBlindingKey));
-  exports.Set(
+      Function::New(env, GetIssuanceBlindingKey));
+  exports->Set(
       String::New(env, "CreateDestroyAmount"),
-      Function::New(env, cfd::js::CreateDestroyAmount));
+      Function::New(env, CreateDestroyAmount));
 #endif  // CFD_DISABLE_ELEMENTS
-  return exports;
 }
 
-NODE_API_MODULE(cfd_js, Init)
+}  // namespace json
+}  // namespace api
+}  // namespace js
+}  // namespace cfd
