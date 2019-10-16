@@ -8,6 +8,7 @@ import {
   UpdateWitnessStack,
   CreateMultisig,
   GetSupportedFunction,
+  CalculateEcSignature,
   CreateAddress,
   GetConfidentialAddress,
   GetUnblindedAddress,
@@ -23,9 +24,6 @@ import {
   CreateRawPegout,
   CreateDestroyAmount,
 } from "./build/Release/cfd_js"
-import {
-  CalculateEcSignature,
-} from "./build/Release/cfdtest"
 
 let supportFunctions
 {
@@ -473,7 +471,16 @@ if (!supportFunctions.elements) {
   {
     console.log("\n===== AddSign1 signature (blinded utxo) =====")
     const privkey = 'cU4KjNUT7GjHm7CkjRjG46SzLrXHXoH3ekXmqa2jTCFPMkQ64sw1';
-    signature1 = CalculateEcSignature(CreateElementsSignatureHashResult1.sighash, privkey, NET_TYPE);
+    // signature1 = CalculateEcSignature(CreateElementsSignatureHashResult1.sighash, privkey, NET_TYPE);
+    signature1 = JSON.parse(CalculateEcSignature(
+      JSON.stringify({
+        "sighash": CreateElementsSignatureHashResult1.sighash,
+        "privkeyData": {
+          "privkey": privkey,
+          "network": NET_TYPE
+        }
+      })
+    )).signature
     console.log("\n*** CalculateEcSignature ***\n", signature1)
   }
 
