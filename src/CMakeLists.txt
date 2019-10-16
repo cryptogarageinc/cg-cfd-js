@@ -123,6 +123,7 @@ target_sources(${CFDJS_LIBRARY}
     cfdapi_add_sign_json.cpp
     cfdapi_get_mnemonic_wordlist_json.cpp
     cfdapi_blind_raw_transaction_json.cpp
+    cfdapi_calculate_ec_signature_json.cpp
     cfdapi_convert_entropy_to_mnemonic_json.cpp
     cfdapi_convert_mnemonic_to_seed_json.cpp
     cfdapi_create_address_json.cpp

@@ -5,6 +5,7 @@
 import {
   GetSupportedFunction,
   AddSign,
+  CalculateEcSignature,
   CreateAddress,
   CreateElementsSignatureHash,
   CreateKeyPair,
@@ -12,9 +13,6 @@ import {
   CreateRawPegin
 } from "./build/Release/cfd_js"
 import {
-  CalculateEcSignature,
-} from "./build/Release/cfdtest"
-import readline from "readline"
 
 let supportFunctions
 {
@@ -206,11 +204,15 @@ else {
         let signedRawPeginTx
         {
           // calculate signature
-          const signature = CalculateEcSignature(
-            signatureHash.sighash,
-            peginKeyPair.privkey,
-            MAINCHAIN_NET_TYPE,
-            true, true)
+          const signature = JSON.parse(CalculateEcSignature(
+            JSON.stringify({
+              "sighash": signatureHash.sighash,
+              "privkeyData": {
+                "privkey": peginKeyPair.privkey,
+                "network": MAINCHAIN_NET_TYPE
+              }
+            })
+          )).signature
 
           const reqJson = {
             "tx": rawPeginTx.hex,

@@ -9,6 +9,7 @@ import {
   AddSign,
   UpdateWitnessStack,
   AddMultisigSign,
+  CalculateEcSignature,
   CreateAddress,
   CreateKeyPair,
   CreateMultisig,
@@ -16,10 +17,6 @@ import {
   GetSupportedFunction,
   GetMnemonicWordlist,
 } from "./build/Release/cfd_js"
-
-import {
-  CalculateEcSignature,
-} from "./build/Release/cfdtest"
 
 let supportFunctions
 {
@@ -304,9 +301,20 @@ let CreateP2shP2wpkhSignatureHashResult
 let addP2shP2wpkhTxWitness
 {
   console.log("\n===== AddSign =====")
-  const signature = '47ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb'  // dummy
-  // const privkey = 'cU4KjNUT7GjHm7CkjRjG46SzLrXHXoH3ekXmqa2jTCFPMkQ64sw1';
+  // const signature = '47ac8e878352d3ebbde1c94ce3a10d057c24175747116f8288e5d794d12d482f217f36a485cae903c713331d877c1f64677e3622ad4010726870540656fe9dcb'  // dummy
+  const privkey = 'cU4KjNUT7GjHm7CkjRjG46SzLrXHXoH3ekXmqa2jTCFPMkQ64sw1';
   // const signature = CalculateEcSignature(CreateP2shP2wpkhSignatureHashResult.sighash, privkey, NET_TYPE);
+  const signatureRet = JSON.parse(CalculateEcSignature(
+    JSON.stringify({
+      "sighash": CreateP2shP2wpkhSignatureHashResult.sighash,
+      "privkeyData": {
+        "privkey": privkey,
+        "network": NET_TYPE
+      }
+    })
+  ))
+  console.log("\n*** CalculateEcSignature Response ***\n", signatureRet, "\n")
+  const signature = signatureRet.signature
   const getWitnessJson = {
     tx: createP2shP2wpkhTxResult.hex,
     txin: {
@@ -623,9 +631,18 @@ let getP2WPKHTxSign2
 {
   console.log("\n===== AddSign2(P2WPKH) =====")
   const privkey = '619c335025c7f4012e556c2a58b2506e30b8511b53ade95ea316fd8c3286feb9';
-  const resStr = CalculateEcSignature(getP2WPKHTxSigHash2.sighash, privkey, 'hex_data');
+  // const resStr = CalculateEcSignature(getP2WPKHTxSigHash2.sighash, privkey, 'hex_data');
+  const signatureRet = JSON.parse(CalculateEcSignature(
+    JSON.stringify({
+      "sighash": getP2WPKHTxSigHash2.sighash,
+      "privkeyData": {
+        "privkey": privkey,
+        "wif": false
+      }
+    })
+  ))
   getP2WPKHTxSign2 = {
-    sign: resStr
+    sign: signatureRet.signature
   }
   console.log("\n*** Response ***\n", getP2WPKHTxSign2, "\n")
 }

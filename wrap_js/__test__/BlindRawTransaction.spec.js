@@ -7,7 +7,7 @@ const checkFunction = (jsonString, blindingKeyList, issuanceList) => {
   try {
     if (parseResult.hex) {
       let jsonData = {}
-      if (blindingKeyList.length == 2) {
+      if (blindingKeyList.length === 2) {
         const blindKey1 = blindingKeyList[0]
         const blindKey2 = blindingKeyList[1]
         jsonData = {
@@ -24,11 +24,11 @@ const checkFunction = (jsonString, blindingKeyList, issuanceList) => {
           ]
         }
       }
-      if (blindingKeyList.length == 3) {
+      if (blindingKeyList.length === 3) {
         const blindKey1 = blindingKeyList[0]
         const blindKey2 = blindingKeyList[1]
         const blindKey3 = blindingKeyList[2]
-        if (issuanceList != null) {
+        if (issuanceList !== null) {
           jsonData = {
             tx: parseResult.hex,
             txouts: [
@@ -67,7 +67,7 @@ const checkFunction = (jsonString, blindingKeyList, issuanceList) => {
           }
         }
       }
-      if (issuanceList != null) {
+      if (issuanceList !== null) {
         jsonData.issuances = issuanceList;
       }
       const resultStr = UnblindRawTransaction(JSON.stringify(jsonData))
