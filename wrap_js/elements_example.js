@@ -449,21 +449,20 @@ if (!supportFunctions.elements) {
     console.log("\n*** Response ***\n", CreateElementsSignatureHashResult1, "\n")
   }
 
-  let signature1
+  let signatureRet
   {
     console.log("\n===== AddSign1 signature (blinded utxo) =====")
     const privkey = 'cU4KjNUT7GjHm7CkjRjG46SzLrXHXoH3ekXmqa2jTCFPMkQ64sw1';
-    // signature1 = CalculateEcSignature(CreateElementsSignatureHashResult1.sighash, privkey, NET_TYPE);
-    signature1 = JSON.parse(CalculateEcSignature(
-      JSON.stringify({
-        "sighash": CreateElementsSignatureHashResult1.sighash,
-        "privkeyData": {
-          "privkey": privkey,
-          "network": NET_TYPE
-        }
-      })
-    )).signature
-    console.log("\n*** CalculateEcSignature ***\n", signature1)
+    // signatureRet.signature = CalculateEcSignature(CreateElementsSignatureHashResult1.sighash, privkey, NET_TYPE);
+    const reqJson = {
+      "sighash": CreateElementsSignatureHashResult1.sighash,
+      "privkeyData": {
+        "privkey": privkey,
+        "network": NET_TYPE
+      }
+    }
+    signatureRet = CalculateEcSignature(reqJson)
+    console.log("\n*** CalculateEcSignature ***\n", signatureRet)
   }
 
   let addSign1
@@ -478,7 +477,7 @@ if (!supportFunctions.elements) {
         vout: 0,
         signParam: [
           {
-            hex: signature1,
+            hex: signatureRet.signature,
             type: "sign",
             derEncode: true
           },

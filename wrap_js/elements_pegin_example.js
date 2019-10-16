@@ -2,7 +2,9 @@
 // elements_pegin_example.js
 // Peginの動的サンプルコード
 //
-import {
+const readline = require("readline")
+const cfdjsModule = require("./cfdjs_module");
+const {
   GetSupportedFunction,
   AddSign,
   CalculateEcSignature,
@@ -11,15 +13,9 @@ import {
   CreateKeyPair,
   CreatePegInAddress,
   CreateRawPegin
-} from "./build/Release/cfd_js"
-import {
+} = cfdjsModule;
 
-let supportFunctions
-{
-  const resStr = GetSupportedFunction()
-  supportFunctions = JSON.parse(resStr)
-}
-
+const supportFunctions = GetSupportedFunction()
 if (!supportFunctions.elements) {
   console.error("*** Elements not supported. exit. ***\n")
 }
@@ -90,8 +86,7 @@ else {
               "network": MAINCHAIN_NET_TYPE,
               "isCompressed": true
             }
-            const resStr = CreateKeyPair(JSON.stringify(reqJson))
-            peginKeyPair = JSON.parse(resStr)
+            peginKeyPair = CreateKeyPair(reqJson)
             console.log("\n*** peg-in address keypair ***\n", peginKeyPair, "\n")
           }
 
@@ -102,8 +97,7 @@ else {
               "pubkey": peginKeyPair.pubkey,
               "network": MAINCHAIN_NET_TYPE
             }
-            const resStr = CreatePegInAddress(JSON.stringify(reqJson))
-            peginAddress = JSON.parse(resStr)
+            peginAddress = CreatePegInAddress(reqJson)
             console.log("\n*** peg-in address ***\nsend bitcoin to address below.\n", peginAddress, "\n")
           }
         }
@@ -120,8 +114,7 @@ else {
               "network": MAINCHAIN_NET_TYPE,
               "isCompressed": true
             }
-            const resStr = CreateKeyPair(JSON.stringify(reqJson))
-            keypair = JSON.parse(resStr)
+            keypair = CreateKeyPair(reqJson)
             console.log("\n*** destination address keypair ***\n", keypair, "\n")
           }
 
@@ -136,8 +129,7 @@ else {
               "hashType": "p2pkh",
               "isElements": true
             }
-            const resStr = CreateAddress(JSON.stringify(reqJson))
-            outputAddress = JSON.parse(resStr)
+            outputAddress = CreateAddress(reqJson)
             console.log("\n*** destination elements unblinded address ***\n", outputAddress, "\n")
           }
         }
@@ -173,7 +165,7 @@ else {
             }
           }
           // console.log("*** Request ***\n", reqJson)
-          const resStr = CreateRawPegin(JSON.stringify(reqJson))
+          const resStr = CreateRawPegin(reqJson)
           rawPeginTx = JSON.parse(resStr)
           console.log("\n*** raw pegin transaction ***\n", rawPeginTx, "\n")
         }
@@ -196,7 +188,7 @@ else {
               "sighashAnyoneCanPay": false
             }
           }
-          const resStr = CreateElementsSignatureHash(JSON.stringify(reqJson))
+          const resStr = CreateElementsSignatureHash(reqJson)
           signatureHash = JSON.parse(resStr)
           // console.log("\n*** signature hash ***\n", signatureHash, "\n")
         }
@@ -237,7 +229,7 @@ else {
               ]
             }
           }
-          const resStr = AddSign(JSON.stringify(reqJson))
+          const resStr = AddSign(reqJson)
           signedRawPeginTx = JSON.parse(resStr)
           console.log("\n*** signed pegin transaction ***\nplease broadcast this transaction.\n", signedRawPeginTx, "\n")
         }
