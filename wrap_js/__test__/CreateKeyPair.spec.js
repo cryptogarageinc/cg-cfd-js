@@ -19,22 +19,22 @@ const checkFunction = (jsonString, isWif, isCompress, nettype) => {
     if (!parse_result.pubkey) {
       return false;
     }
-    if (wally_ec_public_key_verify(Buffer.from(parse_result.pubkey, 'hex')) == false) {
+    if (wally_ec_public_key_verify(Buffer.from(parse_result.pubkey, 'hex')) === false) {
       return false;
     }
     if (isWif) {
       const isUncomp = wally_wif_is_uncompressed(parse_result.privkey);
-      if (isUncomp == isCompress) {
+      if (isUncomp === isCompress) {
         return false;
       }
-      const nettype_value = (nettype == 'mainnet') ? 0x80 : 0xef;
+      const nettype_value = (nettype === 'mainnet') ? 0x80 : 0xef;
       const flag = (isCompress) ? WALLY_WIF_FLAG_COMPRESSED : WALLY_WIF_FLAG_UNCOMPRESSED;
       const privkey_data = wally_wif_to_bytes(parse_result.privkey, nettype_value, flag)
-      if (wally_ec_private_key_verify(privkey_data) == false) {
+      if (wally_ec_private_key_verify(privkey_data) === false) {
         return false;
       }
     } else {
-      if (wally_ec_private_key_verify(Buffer.from(parse_result.privkey, 'hex')) == false) {
+      if (wally_ec_private_key_verify(Buffer.from(parse_result.privkey, 'hex')) === false) {
         return false;
       }
     }

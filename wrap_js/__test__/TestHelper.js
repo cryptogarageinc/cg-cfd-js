@@ -74,17 +74,17 @@ class TestCase {
    * @throws {TypeError} if any field type is invalid
    */
   validate() {
-    const isUndefined = param => (typeof param == "undefined")
-    const isStr = param => (typeof param == "string")
+    const isUndefined = param => (typeof param === "undefined")
+    const isStr = param => (typeof param === "string")
     const isFunc = (param, allowUndefined = false) =>
-      (typeof param == "function" || (allowUndefined ? isUndefined(param) : false))
-    const isArr = param => (typeof param == "object" && Array.isArray(param))
+      (typeof param === "function" || (allowUndefined ? isUndefined(param) : false))
+    const isArr = param => (typeof param === "object" && Array.isArray(param))
 
     if (!isStr(this.testCaseName) || !isFunc(this.testFunction, true)
       || !isArr(this.testArguments) || !isFunc(this.setupFuncion)
       || !isFunc(this.teardownFunction)
       || !(this.support instanceof SupportTarget)
-      || ((this.convertFunction != null) && !isFunc(this.convertFunction))) {
+      || ((this.convertFunction !== null) && !isFunc(this.convertFunction))) {
       throw new TypeError("TestCase validate error. Invalid argument type.");
     }
   }
@@ -117,7 +117,7 @@ export default class TestHelper {
         beforeEach(testCase.setupFuncion)
         it(testCase.testCaseName, () => {
           const received = testCase.testFunction(...testCase.testArguments)
-          if (testCase.convertFunction != null) {
+          if (testCase.convertFunction !== null) {
             const received2 = testCase.convertFunction(received)
             expect(received2).toEqual(testCase.expected)
           } else {
