@@ -2,7 +2,8 @@
 // example.js
 // サンプルコード
 //
-import {
+const cfdjsModule = require("./cfdjs_module");
+const {
   CreateRawTransaction,
   DecodeRawTransaction,
   GetWitnessStackNum,
@@ -16,27 +17,25 @@ import {
   CreateSignatureHash,
   GetSupportedFunction,
   GetMnemonicWordlist,
-} from "./build/Release/cfd_js"
+} = cfdjsModule;
 
 let supportFunctions
 {
   console.log("===== Supported Function =====")
-  const resStr = GetSupportedFunction()
-  supportFunctions = JSON.parse(resStr)
+  supportFunctions = GetSupportedFunction()
   console.log("*** Response ***\n", supportFunctions, "\n")
 }
 
 const NET_TYPE = "testnet"
-
 {
-  const createKeyPairRequestJson = {
+  console.log("===== CreateKeyPair =====")
+  const reqJson = {
     "wif": true,
     "network": NET_TYPE,
     "isCompressed": true
   }
-  console.log("*** Request ***\n", createKeyPairRequestJson);
-  const resStr = CreateKeyPair(JSON.stringify(createKeyPairRequestJson))
-  const result = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson);
+  const result = CreateKeyPair(reqJson)
   console.log("\n*** Response ***\n", result, "\n")
 }
 
@@ -54,7 +53,7 @@ console.log("\n===== CONTRACT_CONDS =====\n", CONTRACT_CONDS, "\n")
 let createMultisigResult
 {
   console.log("\n===== CreateMultisig =====")
-  const createMultisigParamJson = {
+  const reqJson = {
     "nrequired": 2,
     "keys": [
       "0205ffcdde75f262d66ada3dd877c7471f8f8ee9ee24d917c3e18d01cee458bafe",
@@ -63,9 +62,8 @@ let createMultisigResult
     "network": NET_TYPE,
     "hashType": "p2wsh"
   }
-  console.log("*** Request ***\n", createMultisigParamJson)
-  const resStr = CreateMultisig(JSON.stringify(createMultisigParamJson))
-  createMultisigResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createMultisigResult = CreateMultisig(reqJson)
   console.log("\n*** Response ***\n", createMultisigResult, "\n")
 }
 
@@ -76,7 +74,7 @@ let createRawTxResult
   const fundTxAmt = CONTRACT_CONDS.fundAmt + (CONTRACT_CONDS.feeAmt * 2)
   const txInAmtAlice = 3000000000   // dummy txin amount
   const txInAmtBob = 2800000000     // dummy txin amount
-  const createRawTxParamJson = {
+  const reqJson = {
     "version": 2,
     "locktime": 0,
     "txins": [
@@ -104,20 +102,18 @@ let createRawTxResult
       }
     ]
   }
-  console.log("*** Request ***\n", createRawTxParamJson)
-  const resStr = CreateRawTransaction(JSON.stringify(createRawTxParamJson))
-  createRawTxResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createRawTxResult = CreateRawTransaction(reqJson)
   console.log("\n*** Response ***\n", createRawTxResult, "\n")
 }
 let decodeRawTxResult
 {
   console.log("-- decoderawtransaction start --")
-  const decodeTxJson = {
+  const reqJson = {
     hex: createRawTxResult.hex,
     network: NET_TYPE
   }
-  const resStr = DecodeRawTransaction(JSON.stringify(decodeTxJson))
-  decodeRawTxResult = JSON.parse(resStr)
+  decodeRawTxResult = DecodeRawTransaction(reqJson)
   console.log("*** Response ***\n", JSON.stringify(decodeRawTxResult, null, '  '))
   console.log("-- decoderawtransaction end   --\n")
 }
@@ -140,9 +136,8 @@ let createSignatureHash
       sighashType: "all"
     }
   }
-  console.log("\n*** Request ***\n", reqJson)
-  const resStr = CreateSignatureHash(JSON.stringify(reqJson));
-  const createSignatureHash = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createSignatureHash = CreateSignatureHash(reqJson);
   console.log("\n*** Response ***\n", createSignatureHash, "\n")
 }
 let getWitnessStackNum1
@@ -150,16 +145,15 @@ let getWitnessStackNum1
   console.log("\n===== GetWitnessStackNum =====")
 
   // build json parameter
-  const getWitnessJson = {
+  const reqJson = {
     tx: createRawTxResult.hex,     // hex
     txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac", // dummy txid
       vout: 0                        // TxInのvout
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
-  getWitnessStackNum1 = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  getWitnessStackNum1 = GetWitnessStackNum(reqJson);
   console.log("\n*** Response ***\n", getWitnessStackNum1, "\n")
 }
 let addWitnessStack
@@ -167,7 +161,7 @@ let addWitnessStack
   console.log("\n===== AddSign =====")
 
   // build json parameter
-  const getWitnessJson = {
+  const reqJson = {
     tx: createRawTxResult.hex,       // tx hex
     txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac", // dummy txid
@@ -188,9 +182,8 @@ let addWitnessStack
       ]
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = AddSign(JSON.stringify(getWitnessJson));
-  addWitnessStack = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  addWitnessStack = AddSign(reqJson);
   console.log("\n*** Response ***\n", addWitnessStack, "\n")
 }
 let updateWitnessStack
@@ -198,7 +191,7 @@ let updateWitnessStack
   console.log("\n===== UpdateWitnessStack =====")
 
   // build json parameter
-  const getWitnessJson = {
+  const reqJson = {
     tx: addWitnessStack.hex,
     txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac", // dummy txid
@@ -210,9 +203,8 @@ let updateWitnessStack
       }
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = UpdateWitnessStack(JSON.stringify(getWitnessJson));
-  updateWitnessStack = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  updateWitnessStack = UpdateWitnessStack(reqJson);
   console.log("\n*** Response ***\n", updateWitnessStack, "\n")
 }
 let getWitnessStackNum2
@@ -220,16 +212,15 @@ let getWitnessStackNum2
   console.log("\n===== GetWitnessStackNum2 =====")
 
   // build json parameter
-  const getWitnessJson = {
+  const reqJson = {
     tx: updateWitnessStack.hex,
     txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac", // dummy txid
       vout: 0                        // TxInのvout（FundTxのTxoutのvout）
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
-  getWitnessStackNum2 = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  getWitnessStackNum2 = GetWitnessStackNum(reqJson);
   console.log("\n*** Response ***\n", getWitnessStackNum2, "\n")
 }
 
@@ -237,7 +228,7 @@ let getWitnessStackNum2
 let createP2shP2wpkhAddressResult
 {
   console.log("\n===== CreateP2shP2wpkhAddress =====")
-  const createAddressParamJson = {
+  const reqJson = {
     "keyData": {
       "hex": "0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
       "type": "pubkey"
@@ -245,16 +236,15 @@ let createP2shP2wpkhAddressResult
     "network": NET_TYPE,
     "hashType": "p2sh-p2wpkh"
   }
-  console.log("*** Request ***\n", createAddressParamJson)
-  const resStr = CreateAddress(JSON.stringify(createAddressParamJson))
-  createP2shP2wpkhAddressResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createP2shP2wpkhAddressResult = CreateAddress(reqJson)
   console.log("\n*** Response ***\n", createP2shP2wpkhAddressResult, "\n")
 }
 let createP2shP2wpkhTxResult
 {
   console.log("\n===== CreateP2shP2wpkhTx =====")
   const txInAmtAlice = 3000000000   // dummy txin amount
-  const createRawTxParamJson = {
+  const reqJson = {
     "version": 1,
     "locktime": 0,
     "txins": [
@@ -270,16 +260,15 @@ let createP2shP2wpkhTxResult
       }
     ]
   }
-  console.log("*** Request ***\n", createRawTxParamJson)
-  const resStr = CreateRawTransaction(JSON.stringify(createRawTxParamJson))
-  createP2shP2wpkhTxResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createP2shP2wpkhTxResult = CreateRawTransaction(reqJson)
   console.log("\n*** Response ***\n", createP2shP2wpkhTxResult, "\n")
 }
 let CreateP2shP2wpkhSignatureHashResult
 {
   console.log("\n===== CreateP2shP2wpkhSignatureHash =====")
   const txInAmtAlice = 3000000000   // dummy txin amount
-  const signatureHashParamJson = {
+  const reqJson = {
     tx: createP2shP2wpkhTxResult.hex,
     txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",
@@ -292,9 +281,8 @@ let CreateP2shP2wpkhSignatureHashResult
       hashType: 'p2wpkh'
     }
   }
-  console.log("*** Request ***\n", signatureHashParamJson)
-  const resStr = CreateSignatureHash(JSON.stringify(signatureHashParamJson))
-  CreateP2shP2wpkhSignatureHashResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  CreateP2shP2wpkhSignatureHashResult = CreateSignatureHash(reqJson)
   console.log("\n*** Response ***\n", CreateP2shP2wpkhSignatureHashResult, "\n")
 }
 
@@ -315,7 +303,7 @@ let addP2shP2wpkhTxWitness
   ))
   console.log("\n*** CalculateEcSignature Response ***\n", signatureRet, "\n")
   const signature = signatureRet.signature
-  const getWitnessJson = {
+  const reqJson = {
     tx: createP2shP2wpkhTxResult.hex,
     txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
@@ -333,15 +321,14 @@ let addP2shP2wpkhTxWitness
       ]
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = AddSign(JSON.stringify(getWitnessJson));
-  addP2shP2wpkhTxWitness = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  addP2shP2wpkhTxWitness = AddSign(reqJson);
   console.log("\n*** Response ***\n", addP2shP2wpkhTxWitness, "\n")
 }
 let addP2shP2wpkhTxStack
 {
   console.log("\n===== AddSign =====")
-  const getWitnessJson = {
+  const reqJson = {
     tx: addP2shP2wpkhTxWitness.hex,
     txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
@@ -355,38 +342,27 @@ let addP2shP2wpkhTxStack
       ]
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = AddSign(JSON.stringify(getWitnessJson));
-  addP2shP2wpkhTxStack = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  addP2shP2wpkhTxStack = AddSign(reqJson);
   console.log("\n*** Response ***\n", addP2shP2wpkhTxStack, "\n")
 }
 let decodeP2shP2wpkhTxResult
 {
   console.log("-- decoderawtransaction start --")
-  const decodeTxJson = {
+  const reqJson = {
     hex: addP2shP2wpkhTxStack.hex,
     network: NET_TYPE
   }
-  const resStr = DecodeRawTransaction(JSON.stringify(decodeTxJson))
-  decodeP2shP2wpkhTxResult = JSON.parse(resStr)
+  decodeP2shP2wpkhTxResult = DecodeRawTransaction(reqJson)
   console.log("*** Response ***\n", JSON.stringify(decodeP2shP2wpkhTxResult, null, '  '))
   console.log("-- decoderawtransaction end   --\n")
 }
 
 // Create P2SH-P2WSH(multisig) transaction
-const multisigKeyPair = []
 let createP2shMultisigAddressResult
 {
-  for (let i = 0; i < 2; ++i) {
-    multisigKeyPair.push(JSON.parse(CreateKeyPair(JSON.stringify({
-      "wif": true,
-      "network": NET_TYPE,
-      "isCompressed": true
-    }))))
-  }
-
   console.log("\n===== CreateMultisigAddress(for P2SH-P2WSH) =====")
-  const createMultisigParamJson = {
+  const reqJson = {
     "nrequired": 2,
     "keys": [
       "0205ffcdde75f262d66ada3dd877c7471f8f8ee9ee24d917c3e18d01cee458bafe",
@@ -395,18 +371,15 @@ let createP2shMultisigAddressResult
     "network": NET_TYPE,
     "hashType": "p2sh-p2wsh"
   }
-  console.log("*** Request ***\n", createMultisigParamJson)
-  const resStr = CreateMultisig(JSON.stringify(createMultisigParamJson))
-  createP2shMultisigAddressResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createP2shMultisigAddressResult = CreateMultisig(reqJson)
   console.log("\n*** Response ***\n", createP2shMultisigAddressResult, "\n")
 }
-// ここで保存しないと後続で上手く動かず
-let multisigWitnessScript = createP2shMultisigAddressResult.witnessScript
 let createP2shSegWitMultisigTxResult
 {
   console.log("\n===== CreateP2shP2wsh(multisig)Tx =====")
   const txInAmtAlice = 3000000000   // dummy txin amount
-  const createRawTxParamJson = {
+  const reqJson = {
     "version": 1,
     "locktime": 0,
     "txins": [
@@ -422,15 +395,14 @@ let createP2shSegWitMultisigTxResult
       }
     ]
   }
-  console.log("*** Request ***\n", createRawTxParamJson)
-  const resStr = CreateRawTransaction(JSON.stringify(createRawTxParamJson))
-  createP2shSegWitMultisigTxResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createP2shSegWitMultisigTxResult = CreateRawTransaction(reqJson)
   console.log("\n*** Response ***\n", createP2shSegWitMultisigTxResult, "\n")
 }
 let addP2shSegWitMultisigTxStack
 {
   console.log("\n===== AddMultisigSign =====")
-  const addMultisigSign = {
+  const reqJson = {
     tx: createP2shSegWitMultisigTxResult.hex,
     txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",
@@ -453,20 +425,18 @@ let addP2shSegWitMultisigTxStack
       hashType: "p2sh-p2wsh"
     }
   }
-  console.log("\n*** Request ***\n", addMultisigSign)
-  const resStr = AddMultisigSign(JSON.stringify(addMultisigSign));
-  addP2shSegWitMultisigTxStack = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  addP2shSegWitMultisigTxStack = AddMultisigSign(reqJson);
   console.log("\n*** Response ***\n", addP2shSegWitMultisigTxStack, "\n")
 }
 let decodeP2shSegWitMultisigTxResult
 {
   console.log("-- decoderawtransaction start --")
-  const decodeTxJson = {
+  const reqJson = {
     hex: addP2shSegWitMultisigTxStack.hex,
     network: NET_TYPE
   }
-  const resStr = DecodeRawTransaction(JSON.stringify(decodeTxJson))
-  decodeP2shSegWitMultisigTxResult = JSON.parse(resStr)
+  decodeP2shSegWitMultisigTxResult = DecodeRawTransaction(reqJson)
   console.log("*** Response ***\n", JSON.stringify(decodeP2shSegWitMultisigTxResult, null, '  '))
   console.log("-- decoderawtransaction end   --\n")
 }
@@ -475,23 +445,22 @@ let decodeP2shSegWitMultisigTxResult
 let createP2wshAddressResult
 {
   console.log("\n===== CreateP2wshAddress =====")
-  const createAddressParamJson = {
+  const reqJson = {
     "keyData": {
-      "hex": multisigWitnessScript,
+      "hex": createP2shMultisigAddressResult.witnessScript,
       "type": "redeem_script"
     },
     "network": NET_TYPE,
     "hashType": "p2wsh"
   }
-  console.log("*** Request ***\n", createAddressParamJson)
-  const resStr = CreateAddress(JSON.stringify(createAddressParamJson))
-  createP2wshAddressResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createP2wshAddressResult = CreateAddress(reqJson)
   console.log("\n*** Response ***\n", createP2wshAddressResult, "\n")
 }
 let createP2shP2wshAddressResult
 {
   console.log("\n===== CreateP2shP2wshAddress =====")
-  const createAddressParamJson = {
+  const reqJson = {
     "keyData": {
       "hex": createP2wshAddressResult.lockingScript,
       "type": "redeem_script"
@@ -499,16 +468,15 @@ let createP2shP2wshAddressResult
     "network": NET_TYPE,
     "hashType": "p2sh"
   }
-  console.log("*** Request ***\n", createAddressParamJson)
-  const resStr = CreateAddress(JSON.stringify(createAddressParamJson))
-  createP2shP2wshAddressResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createP2shP2wshAddressResult = CreateAddress(reqJson)
   console.log("\n*** Response ***\n", createP2shP2wshAddressResult, "\n")
 }
 let createP2shP2wshTxResult
 {
   console.log("\n===== CreateP2shP2wshTx =====")
   const txInAmtAlice = 3000000000   // dummy txin amount
-  const createRawTxParamJson = {
+  const reqJson = {
     "version": 1,
     "locktime": 0,
     "txins": [
@@ -524,15 +492,14 @@ let createP2shP2wshTxResult
       }
     ]
   }
-  console.log("*** Request ***\n", createRawTxParamJson)
-  const resStr = CreateRawTransaction(JSON.stringify(createRawTxParamJson))
-  createP2shP2wshTxResult = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  createP2shP2wshTxResult = CreateRawTransaction(reqJson)
   console.log("\n*** Response ***\n", createP2shP2wshTxResult, "\n")
 }
 let addP2shP2wshTxStack
 {
   console.log("\n===== AddSign =====")
-  const getWitnessJson = {
+  const reqJson = {
     tx: createP2shP2wshTxResult.hex,
     txin: {
       txid: "86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac",   // dummy txid
@@ -546,20 +513,18 @@ let addP2shP2wshTxStack
       ]
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = AddSign(JSON.stringify(getWitnessJson));
-  addP2shP2wshTxStack = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  addP2shP2wshTxStack = AddSign(reqJson);
   console.log("\n*** Response ***\n", addP2shP2wshTxStack, "\n")
 }
 let decodeP2shP2wshTxResult
 {
   console.log("-- decoderawtransaction start --")
-  const decodeTxJson = {
+  const reqJson = {
     hex: addP2shP2wshTxStack.hex,
     network: NET_TYPE
   }
-  const resStr = DecodeRawTransaction(JSON.stringify(decodeTxJson))
-  decodeP2shP2wshTxResult = JSON.parse(resStr)
+  decodeP2shP2wshTxResult = DecodeRawTransaction(reqJson)
   console.log("*** Response ***\n", JSON.stringify(decodeP2shP2wshTxResult, null, '  '))
   console.log("-- decoderawtransaction end   --\n")
 }
@@ -569,12 +534,11 @@ let decodeP2shP2wshTxResult
 let decodeP2WPKHTxResult
 {
   console.log("-- decoderawtransaction start --")
-  const decodeTxJson = {
+  const reqJson = {
     hex: '0100000002fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000000eeffffffef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a0100000000ffffffff02202cb206000000001976a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac9093510d000000001976a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac11000000',
     network: 'mainnet'
   }
-  const resStr = DecodeRawTransaction(JSON.stringify(decodeTxJson))
-  decodeP2WPKHTxResult = JSON.parse(resStr)
+  decodeP2WPKHTxResult = DecodeRawTransaction(reqJson)
   console.log("*** Response ***\n", JSON.stringify(decodeP2WPKHTxResult, null, '  '))
   console.log("-- decoderawtransaction end   --\n")
 }
@@ -583,7 +547,7 @@ let decodeP2WPKHTxResult
 let addP2WPKHTxSign1
 {
   console.log("\n===== AddSign1(P2WPKH) =====")
-  const getWitnessJson = {
+  const reqJson = {
     tx: '0100000002fff7f7881a8099afa6940d42d1e7f6362bec38171ea3edf433541db4e4ad969f0000000000eeffffffef51e1b804cc89d182d279655c3aa89e815b1b309fe287d9b2b55d57b90ec68a0100000000ffffffff02202cb206000000001976a9148280b37df378db99f66f85c95a783a76ac7a6d5988ac9093510d000000001976a9143bde42dbee7e4dbe6a21b2d50ce2f0167faa815988ac11000000',
     txin: {
       txid: "9f96ade4b41d5433f4eda31e1738ec2b36f6e7d1420d94a6af99801a88f7f7ff",   // dummy txid
@@ -597,18 +561,16 @@ let addP2WPKHTxSign1
       ]
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = AddSign(JSON.stringify(getWitnessJson));
-  addP2WPKHTxSign1 = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  addP2WPKHTxSign1 = AddSign(reqJson);
   console.log("\n*** Response ***\n", addP2WPKHTxSign1, "\n")
 }
-
 
 // 8ac60eb9575db5b2d987e29f301b5b819ea83a5c6579d282d189cc04b8e151ef
 let getP2WPKHTxSigHash2
 {
   console.log("\n===== AddSign2(P2WPKH) =====")
-  const getWitnessJson = {
+  const reqJson = {
     tx: addP2WPKHTxSign1.hex,
     txin: {
       txid: "8ac60eb9575db5b2d987e29f301b5b819ea83a5c6579d282d189cc04b8e151ef",   // dummy txid
@@ -621,9 +583,8 @@ let getP2WPKHTxSigHash2
       hashType: 'p2wpkh'
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = CreateSignatureHash(JSON.stringify(getWitnessJson));
-  getP2WPKHTxSigHash2 = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  getP2WPKHTxSigHash2 = CreateSignatureHash(reqJson);
   console.log("\n*** Response ***\n", getP2WPKHTxSigHash2, "\n")
 }
 
@@ -649,7 +610,7 @@ let getP2WPKHTxSign2
 let addP2WPKHTxSign2
 {
   console.log("\n===== AddSign2(P2WPKH) =====")
-  const getWitnessJson = {
+  const reqJson = {
     tx: addP2WPKHTxSign1.hex,
     txin: {
       txid: "8ac60eb9575db5b2d987e29f301b5b819ea83a5c6579d282d189cc04b8e151ef",   // dummy txid
@@ -667,21 +628,19 @@ let addP2WPKHTxSign2
       ]
     }
   }
-  console.log("\n*** Request ***\n", getWitnessJson)
-  const resStr = AddSign(JSON.stringify(getWitnessJson));
-  addP2WPKHTxSign2 = JSON.parse(resStr)
+  console.log("*** Request ***\n", reqJson)
+  addP2WPKHTxSign2 = AddSign(reqJson);
   console.log("\n*** Response ***\n", addP2WPKHTxSign2, "\n")
 }
 
 let decodeP2WPKHSignedTxResult
 {
   console.log("-- decoderawtransaction start --")
-  const decodeTxJson = {
+  const reqJson = {
     hex: addP2WPKHTxSign2.hex,
     network: 'mainnet'
   }
-  const resStr = DecodeRawTransaction(JSON.stringify(decodeTxJson))
-  decodeP2WPKHSignedTxResult = JSON.parse(resStr)
+  decodeP2WPKHSignedTxResult = DecodeRawTransaction(reqJson)
   console.log("*** Response ***\n", JSON.stringify(decodeP2WPKHSignedTxResult, null, '  '))
   console.log("-- decoderawtransaction end   --\n")
 }
@@ -692,7 +651,6 @@ let wordlistResult
   const reqJson = {
     language: "en"
   }
-  const resStr = GetMnemonicWordlist(JSON.stringify(reqJson))
-  wordlistResult = JSON.parse(resStr)
+  wordlistResult = GetMnemonicWordlist(reqJson)
   console.log("*** Response ***\n", wordlistResult)
 }

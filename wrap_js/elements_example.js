@@ -2,7 +2,8 @@
 // elements_example.js
 // サンプルコード
 //
-import {
+const cfdjsModule = require("./cfdjs_module");
+const {
   GetWitnessStackNum,
   AddSign,
   UpdateWitnessStack,
@@ -23,13 +24,12 @@ import {
   CreateRawPegin,
   CreateRawPegout,
   CreateDestroyAmount,
-} from "./build/Release/cfd_js"
+} = cfdjsModule;
 
 let supportFunctions
 {
   console.log("===== Supported Function =====")
-  const resStr = GetSupportedFunction()
-  supportFunctions = JSON.parse(resStr)
+  supportFunctions = GetSupportedFunction()
   console.log("*** Response ***\n", supportFunctions, "\n")
 }
 if (!supportFunctions.elements) {
@@ -51,7 +51,7 @@ if (!supportFunctions.elements) {
   let createMultisigResult
   {
     console.log("\n===== CreateMultisig =====")
-    const createMultisigParamJson = {
+    const reqJson = {
       "nrequired": 2,
       "keys": [
         "0205ffcdde75f262d66ada3dd877c7471f8f8ee9ee24d917c3e18d01cee458bafe",
@@ -61,9 +61,8 @@ if (!supportFunctions.elements) {
       "hashType": "p2sh-p2wsh",
       "isElements": true
     }
-    console.log("*** Request ***\n", createMultisigParamJson)
-    const resStr = CreateMultisig(JSON.stringify(createMultisigParamJson))
-    createMultisigResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    createMultisigResult = CreateMultisig(reqJson)
     console.log("\n*** Response ***\n", createMultisigResult, "\n")
   }
 
@@ -71,7 +70,7 @@ if (!supportFunctions.elements) {
   let createElementsP2pkhAddressResult
   {
     console.log("\n===== createElementsP2pkhAddress =====")
-    const createAddressParamJson = {
+    const reqJson = {
       "keyData": {
         "hex": "0279BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798",
         "type": "pubkey"
@@ -80,16 +79,15 @@ if (!supportFunctions.elements) {
       "isElements": true,
       "hashType": "p2pkh"
     }
-    console.log("*** Request ***\n", createAddressParamJson)
-    const resStr = CreateAddress(JSON.stringify(createAddressParamJson))
-    createElementsP2pkhAddressResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    createElementsP2pkhAddressResult = CreateAddress(reqJson)
     console.log("\n*** Response ***\n", createElementsP2pkhAddressResult, "\n")
   }
 
   let createElementsP2shAddressResult
   {
     console.log("\n===== createElementsP2shAddress =====")
-    const createAddressParamJson = {
+    const reqJson = {
       "keyData": {
         "hex": "210279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798ac",
         "type": "redeem_script"
@@ -98,34 +96,31 @@ if (!supportFunctions.elements) {
       "isElements": true,
       "hashType": "p2sh"
     }
-    console.log("*** Request ***\n", createAddressParamJson)
-    const resStr = CreateAddress(JSON.stringify(createAddressParamJson))
-    createElementsP2shAddressResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    createElementsP2shAddressResult = CreateAddress(reqJson)
     console.log("\n*** Response ***\n", createElementsP2shAddressResult, "\n")
   }
 
   let getElementsConfidentialAddressResult
   {
     console.log("\n===== getConfidentialAddress =====")
-    const getAddressParamJson = {
+    const reqJson = {
       "unblindedAddress": createElementsP2pkhAddressResult.address,
       "key": "025476c2e83188368da1ff3e292e7acafcdb3566bb0ad253f62fc70f07aeee6357"
     }
-    console.log("*** Request ***\n", getAddressParamJson)
-    const resStr = GetConfidentialAddress(JSON.stringify(getAddressParamJson))
-    getElementsConfidentialAddressResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    getElementsConfidentialAddressResult = GetConfidentialAddress(reqJson)
     console.log("\n*** Response ***\n", getElementsConfidentialAddressResult, "\n")
   }
 
   let getUnblindedAddressResult
   {
     console.log("\n===== getUnblindedAddress =====")
-    const getAddressParamJson = {
+    const reqJson = {
       "confidentialAddress": getElementsConfidentialAddressResult.confidentialAddress
     }
-    console.log("*** Request ***\n", getAddressParamJson)
-    const resStr = GetUnblindedAddress(JSON.stringify(getAddressParamJson))
-    getUnblindedAddressResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    getUnblindedAddressResult = GetUnblindedAddress(reqJson)
     console.log("\n*** Response ***\n", getUnblindedAddressResult, "\n")
   }
 
@@ -134,7 +129,7 @@ if (!supportFunctions.elements) {
   let CreateElementsSignatureHashResult
   {
     console.log("\n===== CreateElementsSignatureHashResult =====")
-    const signatureHashParamJson = {
+    const reqJson = {
       tx: ConfidentialTxHex,
       // TODO: modify after CreateRawElementsTransaction
       txin: {
@@ -148,9 +143,8 @@ if (!supportFunctions.elements) {
         hashType: 'p2pkh'
       }
     }
-    console.log("*** Request ***\n", signatureHashParamJson)
-    const resStr = CreateElementsSignatureHash(JSON.stringify(signatureHashParamJson))
-    CreateElementsSignatureHashResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    CreateElementsSignatureHashResult = CreateElementsSignatureHash(reqJson)
     console.log("\n*** Response ***\n", CreateElementsSignatureHashResult, "\n")
   }
 
@@ -159,7 +153,7 @@ if (!supportFunctions.elements) {
     console.log("\n===== getWitnessStackNum1 =====")
 
     // build json parameter
-    const getWitnessJson = {
+    const reqJson = {
       tx: ConfidentialTxHex,
       isElements: true,
       txin: {
@@ -167,9 +161,8 @@ if (!supportFunctions.elements) {
         vout: 1
       }
     }
-    console.log("\n*** Request ***\n", getWitnessJson)
-    const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
-    getWitnessStackNum1 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    getWitnessStackNum1 = GetWitnessStackNum(reqJson);
     console.log("\n*** Response ***\n", getWitnessStackNum1, "\n")
   }
 
@@ -178,7 +171,7 @@ if (!supportFunctions.elements) {
     console.log("\n===== AddSign1 =====")
 
     // build json parameter
-    const getWitnessJson = {
+    const reqJson = {
       tx: ConfidentialTxHex,
       isElements: true,
       txin: {
@@ -200,9 +193,8 @@ if (!supportFunctions.elements) {
         ]
       }
     }
-    console.log("\n*** Request ***\n", getWitnessJson)
-    const resStr = AddSign(JSON.stringify(getWitnessJson));
-    addWitnessStack1 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    addWitnessStack1 = AddSign(reqJson);
     console.log("\n*** Response ***\n", addWitnessStack1, "\n")
   }
 
@@ -211,7 +203,7 @@ if (!supportFunctions.elements) {
     console.log("\n===== UpdateWitnessStack1 =====")
 
     // build json parameter
-    const getWitnessJson = {
+    const reqJson = {
       tx: addWitnessStack1.hex,
       isElements: true,
       txin: {
@@ -224,9 +216,8 @@ if (!supportFunctions.elements) {
         }
       }
     }
-    console.log("\n*** Request ***\n", getWitnessJson)
-    const resStr = UpdateWitnessStack(JSON.stringify(getWitnessJson));
-    updateWitnessStack1 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    updateWitnessStack1 = UpdateWitnessStack(reqJson);
     console.log("\n*** Response ***\n", updateWitnessStack1, "\n")
   }
 
@@ -235,7 +226,7 @@ if (!supportFunctions.elements) {
     console.log("\n===== GetWitnessStackNum2 =====")
 
     // build json parameter
-    const getWitnessJson = {
+    const reqJson = {
       tx: updateWitnessStack1.hex,
       isElements: true,
       txin: {
@@ -243,9 +234,8 @@ if (!supportFunctions.elements) {
         vout: 1
       }
     }
-    console.log("\n*** Request ***\n", getWitnessJson)
-    const resStr = GetWitnessStackNum(JSON.stringify(getWitnessJson));
-    getWitnessStackNum2 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    getWitnessStackNum2 = GetWitnessStackNum(reqJson);
     console.log("\n*** Response ***\n", getWitnessStackNum2, "\n")
   }
 
@@ -253,7 +243,7 @@ if (!supportFunctions.elements) {
   {
 
     console.log("\n===== ElementsCreateRawTransaction =====")
-    const paramJson = {
+    const reqJson = {
       "version": 2,
       "locktime": 0,
       "txins": [{
@@ -281,16 +271,15 @@ if (!supportFunctions.elements) {
         "asset": "6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3"
       }
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = ElementsCreateRawTransaction(JSON.stringify(paramJson))
-    elementsCreateRawTransactionResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    elementsCreateRawTransactionResult = ElementsCreateRawTransaction(reqJson)
     console.log("\n*** Response ***\n", elementsCreateRawTransactionResult, "\n")
   }
 
   let blindRawTransactionResult
   {
     console.log("\n===== BlindRawTransaction =====")
-    const paramJson = {
+    const reqJson = {
       "tx": "020000000001319bff5f4311e6255ecf4dd472650a6ef85fde7d11cd10d3e6ba5974174aeb560100000000ffffffff0201f38611eb688e6fcd06f25e2faf52b9f98364dc14c379ab085f1b57d56b4b1a6f0100000bd2cc1584c002deb65cc52301e1622f482a2f588b9800d2b8386ffabf74d6b2d73d17503a2f921976a9146a98a3f2935718df72518c00768ec67c589e0b2888ac01f38611eb688e6fcd06f25e2faf52b9f98364dc14c379ab085f1b57d56b4b1a6f0100000000004c4b40000000000000",
       "txins": [{
         "txid": "56eb4a177459bae6d310cd117dde5ff86e0a6572d44dcf5e25e611435fff9b31",
@@ -307,16 +296,15 @@ if (!supportFunctions.elements) {
         }
       ]
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = BlindRawTransaction(JSON.stringify(paramJson))
-    blindRawTransactionResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    blindRawTransactionResult = BlindRawTransaction(reqJson)
     console.log("\n*** Response ***\n", blindRawTransactionResult, "\n")
   }
 
   let SetRawIssueAssetResult
   {
     console.log("\n===== SetRawIssueAsset =====")
-    const paramJson = {
+    const reqJson = {
       "tx": "0200000000011cbdfb4c92e7c758d3dc1b53db0f1dd3426d7f9730eb545524fef1583cda06020000000000fdffffff03017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c1801000000000000000000036a0100017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c18010000000005f2eacc03d8f0342ad623743d5f15c76bbdb38b4388986e68681a20b15ec2f1997169b52f17a914feeb109e7e9fee99ce9ae550751e0c25d400dd8787017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c180100000000000052bc000000000000",
       "isRandomSortTxOut": false,
       "issuances": [{
@@ -330,16 +318,15 @@ if (!supportFunctions.elements) {
         "contractHash": "0000000000000000000000000000000000000000000000000000000000000000"
       }]
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = SetRawIssueAsset(JSON.stringify(paramJson))
-    SetRawIssueAssetResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    SetRawIssueAssetResult = SetRawIssueAsset(reqJson)
     console.log("\n*** Response ***\n", SetRawIssueAssetResult, "\n")
   }
 
   let UnblindRawTransactionResult
   {
     console.log("\n===== UnblindRawTransaction =====")
-    const paramJson = {
+    const reqJson = {
       "tx": "020000000102b5e7e11dd2ae7ed6dfa754d406d240fe8cd0ab1e329cee6edbeffad5e54a4ac7000000006a47304402203d0d7240234aa446a08c1d6107789405c0f3499f4f5dd61fd7318ba58bb21bae02203d2e5a37c704c95af5801618edfb2184d80871b79a160f9dbc8a8e0a90467b380121030ab052e1482e9715c05301b07cf531d6a7e343bb508f0f2ba9126118c15be5bffdffffffd007d56e9e984c52b4e077487a711ff0c7126da52f254ea4d532dafd78748d2c0000000000fdffffff030b48263bdde648e0ba73cb63b44410ad1941fc1304bcba6665be398db23a702a300979f67b8612d871d2dbe646debe1c07717b0429f5afcc7889d84572e9657176d803430e3f6e47f856ef7a1b2928783e2ddcb8acff8e402e1d8c4c22b078e8ea36ea1976a91410eb66140b970b99b072d25fd4f07b4e88db32c088ac0bc322eb24c971bfd454fd61577b70eafab7a7c42f3b973cf57b3e56a002c4adb00802025d289a81f637f62c55500d6e439a9e13743ef7753d728866acc58b459b6d028a3e9de7bddcb400f3c1534270d9063dc465bd06a3da50278013a0ff4a5823b617a914862432e4a10eb1ca46c2e97525ab27a13abaffc987017981c1f171d7973a1fd922652f559f47d6d1506a4be2394b27a54951957f6c18010000000000009da8000002000000000000000000024730440220761eb444887bd22ed0a3fc05caf4b9e74fa879db2b6cba70747f9aeae40848c00220070205b4817123234536efe00ec778240a87e5d8b5b9f9e155e892767ee922f20121026e3ab12d8a898ac99e71bbca0843cf749009025381a2a109cf0d1c2bfd5f86b300630200036507e368fd17b9db49f8f108b7dc78af4cbbdf67227d77658e2da045ea665cb0a34bcbf77b32c0b3dec83385b8d14a641e926951cf08099dc5e22205db641a8e5ca94ef7ea313435be5541e2b6a5b9b199750921f65dd1030fa4abde717a29bffd4d0b60230000000000000001ecb2010aa97ea3544b1ac0c9a3321a3f05c6accd4436f7944d670b15c32d3f0541ae8779ae3f6105b01085df24aa249b7d12238fa8a775f06815e2818eb4af3ef8f075d1f0d3fe89fd5567cc8c6b4cf4f48d11fea10809ca06f7bf47290c5182516a0d797fb43a80af28f221dd09628f21cb0b98e7b82567d8e28dc2b494c1dd248cc56a9307c39974da90050d2312cb2858e86de0d393ccfda7ba3b368729d4e9b3972393e05e6ccd623e8dd035205ba554c099948bd8992d20030e145b95e64c3d91f6e3217d099ba5a0a64fabe2f2172102097160ec40baee5f5db764abc2f666cc22c20258797d623f413e399a0377561633b68f2057ee74b1d2f1b040e49b5e3df38b612439d25ab332ef9aeec15e6292d84acf5a3faa4d4a7df5d9bea923340363ad0d6ced0e274adbc82c7cfb4801e37a16700925f6f2ff626f43c99817ffcf320070927037508c0372747ef66ba2021e0ac876c431e16a6919a77b5754ed3e321d30cd5e9df6b035d5842cde9c5e02d595ae299d2570b4236a53a0e5a55e5cd95d1f2bc1258ad2db2aeef8d36d16b8f7371cb38b13d6c28f2c8f0152b7e5a49282b8d95ac94d9a592ff0dd5a3fc1ec93fcb742c7cd4b67fa12ab3f69c7c4dcac75eb30a27a12bb82cdb714b6413386fad53609fc1cd455c33e127ce8451b690e62efcb09cc0735f4544dd288835db5d1dd731f0904a33817fa464fd3de8c09e235d36892b502703ab18e4037faab71cbf4ce02728194c4b296d9d1a1a6ba5702a0cb3741a19bb507cd2373f7ef865aa9a68159cf7963bed7ac92403ad7c8dbab0dd3ae8be3cdfc9be71f598195feb8bc332164c2207ef8b7cb6e42fc6501cf41768f39b849aa1b0c9e0f404a913867597cc7df9f88afe55c5e37d53aafde632449165feaf04a147ea3d18b3733e9d4b69e5478f42177486c881553c0c46df164b50814a5151df7b467cd366f9f5bf8171d5fb20e02e94b6f78f91b1bf6bb560cc761f4113759e1de2bc4e5a28085d9ead77ef95eaa481995162143125be8a497dd0d7e45b230c18cb0fe1c13de6849a37efba8a71b7cfab7a3b366de29f038654996c46b97f26cc04cd79b80e845a9f0fd9680c699c61eee46cca800507824d4b5aa053f02fb01ffc7bfa536510ff6964098a3de2bb57e07d7ee1ce1d03966821c06e7f85a0f517ec19eb64059d298ccea429d5bb88fb87aa26b9d97efe810be69e149a426f38fd151e37dabac83c7d42a64068c6d3772193d3cd5b139bc5002b20a046808c01bf506f82255f630aac431ae21b508d839018a6379ca53f27662b525699e9bc316984648961103006eda1de37e71e18078fd79acc7b161297712acb9a552f5f299161248fc328b965251501f44de37acd8ea968a5d38583a9a26b2fa7ee48553bbe24a4ba7ef730eaa741c06ea91367e9eef3840d4dfee1538031249975e83652a1533479b591106e5c2607161149c1b1f1ba7839a105753aeb4b899efa2064c9c9c971025d8e5572529da6b42ea615246b9910fa6560323bf56a6cbf652991145451c77a819e141594fdaa9125cf01e0623a22bc8015bb866e3c311e170bc5f8ee86b15e6a9b20c9bdd240ff75a95981fd03947f11f2c2baf01cf5697b3329c88c896eb508f6826ae1df45bb426156fcb20129f33af4880a28b0d7e894dd293a21527743ee21ff6981df4c875f827aae158c105e6f30c66958e10a5d8f8255ef5a958474fa67b711735deec717472667c1cfa068f77c7f7b2a7adfa38f4e465bae2658486fcfa608e1d03737c9213f68ee04305b64312ac43a1a9cbd16cd20daaf13b1d58587f075f72cf9bfb121693a8e27993e334f5a1627435eae39c5a23c7b0d880c85e672374b1eb480e6bcd8c0b505c94751a36a26fdd6f9f032681ecd5bc75b618cd11489863efcad774a0dab5dcc7c4c47583f373222e02bf6e21921d7cc641685ae021f049e5bf61ee9f5c98d30d3fc0f9fa112e378950e2f33195f2ec245ff614676b09dc932625a989089a6ce0ca6f36d49093d7a544b3255658ef88d49a6eb200c39caf55548a0680ee551239cf693fc2fc1be571bc6080ddba18f75ef318e329ef3e721001772af8f0b869d3b83339917c73d383f2f0fcade5e8f936bf09112c5664e57dcf622fe69f467a342cbfe692882fffc31d22ccae655fa2bc161718fd06c89395ff69c2933ba72ccac3505396a69ff899da2250f6cdf0031f6e7c6e394a0f3a57d078244f11c70bcc5a93aa4756749b12e188183c82aafc6da92236105334013afd315a6603713a43075b9d9fff3280a5a9de58a40adea4958edcc404ee4714c45a82ba16dcb199739003986c0c06176ab0569797f3be6eb7ccead4be4905cee9eede3f4ad83723f207e5e467718bd940b80424d79e3781958f22f778f90504dd5d374c898520170470e9fb4789d3af82f8e61ea5b13829138ece20451a35d8b876694674c8d891bcc1fb44f188eda12bbaf1861480afa931dde5c1017d8e75d8c732df05d4859d4d0d72cdd8361bcaa8e5e13a2dcac0cc6a93bd94523ad054de6fe90de0b69f5410b3c8e44fcc32a9c7f475e42ece13bbd94c1d86986fb5db804ffbc72a51ad6fe058a1fa50690cd4ba4f93fbde3bedb3e98ff3803e3947ef3f442fb59932e5bf3e8ad1db8066a947213e9f956c4b615633668453dd5ad6a3db9b5d9a60ba86881c2c414da9e566a2198c2b1041432e21f1098fd904eb6cd06e24adfe31c8151d238598a7f399f6cb08090fa786d76dbc16c5f06ea6bc10e44ab042aa1507fc290b9185dc17cf78f2eb836e89eb12ca42d30fb96c097e0d362e91c3414606c5f29ac1683ae90b2ef28cf0124186135b46780caee8589d1b733f7e5ac74488b273451012d46c72e85163b428a056b4812595e046b650df7a08cc343503cc1f5bf828c8859854b5c61629d212a06acda00ce4d88b4fbf2fc0e3948d16974a9aadc38c61fb04352896e2926963c60551fc4e5c91db4887551039718321fb4f2df41cfe5f868ee0884eccd2c8854f5eea49e5fac2be54fdd2908fb1c24c4362482a44c82086d72907ff6a80cb8f7be17ce86735681002dd0031d6d011157696dad161a129f7984da3f97ee43718e9c67499d2cdc8bec6f255bd1841ccea5870d3d20d3b69b507e3b364d1d33b4d86dbce407c1e2b4bde37724ed022dc9fffc4d85a80aaf7d0ffcc0d82783f9238b46e17d66f4532a9c29f25df0fcc404963065d776f5d8f6773806c79331cf2031fcd6ab49c28a1b6a10be13a8bbaa2b4d8fb2d14d74ff87b06e989a7a141b9775cb22707cdc5bed26f269f0054245533055c365340e162fb7c2fe38e91afba7b0c2cb222816ab0a5d68437b882e997e85ceb1c7049722643f55857a23452a3cf228f00393bffb2bf100b63bd987f550df8df9a2a5d66d7f642d1e31e81058719469959aefd7f00726da2e911b17f2a892d27a2e2ea3b4c18aee0317565406c4456cc11cc70b4303b04fec0193a3324a8f310f2004fc7b0676ba75e31bbd728bfc248acb1fb242a8b2ac6b349efc38d4e17480da1f45b3eca80cbf80d6f543dbaf59d69a0c5a0bccce0e15532252b00a5e11be765d15bd6308aedfade1c82e9066ed0a4a985d332b81bbdfeca78faf31c96ddf4651218b40bd81e6e13fe1b088ca76ee9a2bd7676f8792c94fbeba1d6dc7b98d880044d3c424cc5e724db685d0804695675129b08a708051c98dae98fb3248bd382ec48ce499a69e45b4eabf2abddea3099c006179207152fc7e63c11edb5d8c9c50c232484636f3240042420b6380d397645c6a2e1d58954947f11863f59eb30a57cbb9917eb6d92c0a93e4ea3f4a0884aff0ee08b93a6603b39de99beccbea94c273786f253904b74abf4103ae099a95154e25d23159420dd3e836c5cebe2772ea740fc0ebbd7a1ca45314e06fd85d9cd98235116c7a091120a2020c9f5d9f3952c44921f934a589985242aa9658b9cea5cbd4550cff46b952480cd822eb0a94029570c59262ca0a6b2f819c9734355d40919f3a96b443f40170f09954598c36cb9fff3356c97829963020003964663a99750c551dd2229ea4fc24702909f4ca1d258e58165b97a086261f553e2d5dc9a23f4231ee4b1c7f3575c8142e394b6d4f4cb0810ba207f400f3aa3d8156632f18da696843ad6ed74dfce3f56feaa97a35ec49b3a460cee5083bf8025fd4d0b6023000000000000000171df008e5ce1b189dbd7161c603db628726b84dddf1083d23c43a376511634ea404fc5a6d1eb5a95b767426e72066d99cdf533b4b075ea6dbea840796c632fb01d2eb2d2fee92b909e269552c521dbf4fa4e8f123ed119513edd066ad7ab0dfcd87bd3b2cc64a665eda4278f922011f799ba6353f85daf9020e4b95b7ad4717a233f474c7e27433ac20ba1066c66296819a069d909d1ce015851286193993d499e0ed4404136dc18b54ac9bee46c34f4a2c26cc9fc3bc159d172a65ec4589546f70d51f0025c91321b54bd80bace8a363370caca7dce096d811f8e496526a370acf590797384d0da382249e6024fe2c0494007689254e9a4c299758c9b1fc6e6865f98b4e04630fba0aa25598f0a0fb339559296043243aedd672b60325820f2b4d88e5ff134f735e0e4fd2abd0fb258b4004025eca31502cfce7c6d879b7faaea94552e31d49d32df37aa0881f423242d472d29e8971d6db88cba7f92fc08e27d3bf742ae270a12eedbf73fc43a9361c94807874495308de00e3c1720fafaeb553ec8eaec65c41a61cd9110894269258f216ae8d23af94141eba5b92211f7daaaae0a8c2ef5a6d59c003ceee7c28414fb5c142070da9930e404bb0a33dbeec1e06168aadf715c5426197966a2d56e172e4fc6f7fdecaa1ed3b1e397d3e83c3d0013b15a78ec697e635b80b5cbd88e2c78867fc4cfa274f09725865edb109058e114502a6d9952c2e8429287e509bdb57e728d4d7beb5c8e73cf9eb45c2930ced482dbed0a8adf3e47bbfb0ee5ec9c1242f254c02b5ff4f54a4b0bbec240814b38b1e20f24e1505d22eef07d6fd25fecb2ba3067ffca727d00d70b070cb0411690479b65f61eb6b357b5f08075a53340caaed328a5af007f7acc2ead770fba7a06bbaab5584eb1c8606e1e6366c640c202c22c34d0e74cc4b14993f11ab04e82291f8f6ce7a2c1adb00e4bbdc7e20a19a39184f0f53726c61d931223ab8b0ca81ca5592a4d44e28b41b00bdcd37cb02adf31c0536f6fd48aee848f1adb27c3141d21a5bba74af0241ffeff0548fbf29e278aa3a0827179393b3a0860557aac767fda675022efffdfd075c07b96ca27f05eb4b4a1f2173b8a0595b1917e30fe37d82725dfb403cbbf9cf84352209cfe70d4792967cfda5e1a7fbc05112048a760a215f2a965b8cb9850bd8544320c3adc30f8dbb53cefe0280d9b3781c1bfbfe7285d6fb91d0d8c8518a7cea21da117e3fbd8570f2371658cd0db77519ed550e700e5c362ffe688d2185b878f6a378005c174eed420b69be5aace92b738579f1d218496f789f4a935e522b3879d8ff23b755c1f40702b11107e76a8a7b57ecb1b36a90c84183fd6c69c35e52493a077305359c9572cb54dd9c3ebc0db510987f4591ac28bab490d34c4e40aeed78c5c8ce2f77119f833a5c882cf7c5d197dd8900ec1520443f2154a1ca4ea2f8056182d7c6839971910fcdfe4053fec4674514be84256d69d3f41c94d343a1fc3778e47f29fda71688ac6db278eddd1b887e0c1e2754bc5e0061452de03ac38f0fce3297246ada974a2abdee4becc12a7d0245439201d5ead049e6a5796da02d3ef79741e372c697f42c6b26d8fe06a8bbae8dd7071d3fffc79b947bde32f0a70de6688820c1f9c240b9d775299cdaabb14f0c3bf9cad1d0a7f76b7a839ef3a54cdeb9de47f07a51e84beb0ad052f66fed105b3acf6cc7f51b19a519de8ea759bb786d50f6df5a99cfe838c7564ce137929e925b9d4a2a515aad8d31ee48cfe1b73bdb9e08020dff9f229387acaffdde47f9dbf1463007d169f81aed7cbf87649fa8cd8224fbc815032d968157693380f9edc784758a14df25d14e6f80f7e273d5c9843ad9cf9c81796c0c9361a82ccf1a06ce1f880aa9586412a947eb58e6f4e3545cf180c84b0aaff2e4e3f947a831d85f1873a9b1f2e40079df0e98579a6b293690f8dd2c66569f6e55a1b8fb85482696839b53772bf2eebc05a5346198b191fcc820f20bf6da8602a65287ba0c6c0206170588707238d148a829692b60b8ba3142c8a24da7771bcbf02ea9b765ec0259f9d2504a25cf9ff1f35d02ea6fc43b4c7330271200a52591e4367c86b44710167dab01558861ec2b7d5da8c990d9be1590fef5afc606db732633ac8890d00787181b5f38441bebdddee361997c9a06499b72818bda1c20a7c4fc666600a86ff06be0e8e87ba143fe6a3871be9433869ff33b3c67b99c5abab03a21036636a3e14df121c476753d6dbf6b45bc9609e440cab81452a1bea7c8e1441b3bcf3e443afedb7679aa09d9870dff0bb72d41ad5372c94ff6ab9f28a58576936b61fc9cd23aa1b3191bf5f590e86d2595012fb82dd4dcf6366d60c3c9380a5ceb60c525e9235b08f00c09ec06c0f760e64d703cfc4afe222d44372109021da9ed278837adc6eb82183e686081d21ce496a83c015543c032bc2bdaaeb796ba89c92f2bc66742cdae9fca7828eb9b27a95457d1f8f225b3bf0a8c52de25859ca45c8e97a04540f4164e07e7117d8d877c7b162c146aaaf32bb7426257c26faa35187d7073d1d06272215700ac6e419d985fbf26d58161f5424f1f57b28607ab1cb87d5340195de5b957124fae287f361f0b1cf4fed091620ab3ae70fe7fa0f83ab09add12bfe4e89d7955e66e2785024ccb1e179da83fd9c2b020afe73dfb60e5454d3ed87dd85c663f6f92a3e84bc4f8bc20c9ca755477260b51247e453541f69faffa864403a9acd5ec3f7e9eb7c700a09d1c25d58e03b25f8dcf9dc15a1153a2b0218d4b64d2bb56cf57fa62c4d1ea1a3e5cb9564a23f27d1b56301003dd62cada5312b15914a5086a8e9168dc0d493cfa6777cf7bfafcaadf47f575966c38ab7ae2149d08ec6c703161938ed75fde6432052f224545e5729229fb13f70e57d6965c1a5f2a191ba8b60ab934a7c6928d76173fa1d9804ffa2b7384c229f51c1405f34f1a089625eed55ee36a2ac83a6d58e4c7795fbaac004e60eacd5c8a5fc7e775cfe5528bfcafbf3c2a69091e58a74a0e1ed19031332caceee7e60a1955734155764d13bc457bd659485f6e21f06db6bbba3ec13e1cf7f3dde73b07896101740905e2c745019417915279f130115bba798bfb08acbbde629796849418e16a62b2cb51eced7e87ee9b3a083faf4011730f964aca5632a08e2aa8fb662f986ddff057d677ba1f2f1dc2e2085b561c8b24a2e65e47270babe6e7350a9e58e2a03b43f544c13c00d8b956ba65e3c4c3071df806d69c3ae198ef4f229c8499fd77a020aa9d36715835249daa8f539acb704f6a1d489137b3af0fa8991606d4b530cdfd85788ab8e5c899ff0abdd02d2a7fc9e74d7e9d2ef2fcda34b810a8b819c00c599aebb6f14efa489b7c965f439c12acd805c7d734a30210a3dc25ed132aede74c0c043cd76dfc6c632385fdbd817c4329dca712740bcd6dd68b164af78c7b048fef6fa7ae0d1da489591abbbbe7b81e02c054f7a0a7a9ebeb769fd494167d0b3b8698842f84e406204bc2ccc373f71ea7a83912e6826db5a0371d80b38c6d536ea88a3aaef71b01721c9817a93ba6d95c4c239ee37c75f746680febfce1cdb5a523cbf5c6b0e2734cb7cfa1133c918aab211daf63bd7f706e69cbffce4603262be927aee1d8c662f3dd4735f7551f1c1b7382b0602b6f49724371d6ea54bf8651ce2b0b76d0621c420cae8306facd7b213e36ad89ccd6c9f3eb5a233cb9391cfa6443f38b489c70460dc513d0a6422668ed9437905b9c7eeb9b1c5d84e9f5bab02252087ed3d05dccc7eb0d429cd3a0c173c5418cdf621b276b3770453b32800dab24b33efe07991802ab0746f9170295b608eaf6c76450207648b1cdeb38864cae39da3b55079d6b8ebe8cdb774e419a19728495a0da0ca039416d0b16e52cfafbc1e07412ad232b749f42404dfd8784f5f692a5b48eacc40da56e551809a2a7f1b5e3dd7de298d16a986ae4d476e104433f840468f16efe2a3b78fb5418c9e738ec13911b2ed98c7f751bd7710f363d89eb69ef911212d3477104c4a05336fc29cc0371fd7b30000",
       "txouts": [
         {
@@ -352,16 +339,15 @@ if (!supportFunctions.elements) {
         }
       ]
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = UnblindRawTransaction(JSON.stringify(paramJson))
-    UnblindRawTransactionResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    UnblindRawTransactionResult = UnblindRawTransaction(reqJson)
     console.log("\n*** Response ***\n", UnblindRawTransactionResult, "\n")
   }
 
   let elementsCreateRawTransactionResult1
   {
     console.log("\n===== ElementsCreateRawTransaction (blinded utxo) =====")
-    const paramJson = {
+    const reqJson = {
       "version": 2,
       "locktime": 0,
       "txins": [{
@@ -384,16 +370,15 @@ if (!supportFunctions.elements) {
         "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
       }
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = ElementsCreateRawTransaction(JSON.stringify(paramJson))
-    elementsCreateRawTransactionResult1 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    elementsCreateRawTransactionResult1 = ElementsCreateRawTransaction(reqJson)
     console.log("\n*** Response ***\n", elementsCreateRawTransactionResult1, "\n")
   }
 
   let blindRawTransactionResult2
   {
     console.log("\n===== BlindRawTransaction (blinded utxo) =====")
-    const paramJson = {
+    const reqJson = {
       "tx": elementsCreateRawTransactionResult1.hex,
       "txins": [{
         "txid": "03f8801068f3d2c1bbb2c6eaf295e845f9a265615a229adf9f64215ad63afcb7",
@@ -414,16 +399,15 @@ if (!supportFunctions.elements) {
         }
       ]
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = BlindRawTransaction(JSON.stringify(paramJson))
-    blindRawTransactionResult2 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    blindRawTransactionResult2 = BlindRawTransaction(reqJson)
     console.log("\n*** Response ***\n", blindRawTransactionResult2, "\n")
   }
 
   let UnblindRawTransactionResult1
   {
     console.log("\n===== UnblindRawTransaction (blinded utxo) =====")
-    const paramJson = {
+    const reqJson = {
       "tx": blindRawTransactionResult2.hex,
       "txouts": [
         {
@@ -436,16 +420,15 @@ if (!supportFunctions.elements) {
         }
       ]
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = UnblindRawTransaction(JSON.stringify(paramJson))
-    UnblindRawTransactionResult1 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    UnblindRawTransactionResult1 = UnblindRawTransaction(reqJson)
     console.log("\n*** Response ***\n", UnblindRawTransactionResult1, "\n")
   }
 
   let CreateElementsSignatureHashResult1
   {
     console.log("\n===== CreateElementsSignatureHashResult (blinded utxo) =====")
-    const signatureHashParamJson = {
+    const reqJson = {
       tx: blindRawTransactionResult2.hex,
       // TODO: modify after CreateRawElementsTransaction
       txin: {
@@ -461,9 +444,8 @@ if (!supportFunctions.elements) {
         hashType: 'p2wpkh'
       }
     }
-    console.log("*** Request ***\n", signatureHashParamJson)
-    const resStr = CreateElementsSignatureHash(JSON.stringify(signatureHashParamJson))
-    CreateElementsSignatureHashResult1 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    CreateElementsSignatureHashResult1 = CreateElementsSignatureHash(reqJson)
     console.log("\n*** Response ***\n", CreateElementsSignatureHashResult1, "\n")
   }
 
@@ -488,7 +470,7 @@ if (!supportFunctions.elements) {
   {
     console.log("\n===== AddSign1 (blinded utxo) =====")
     // build json parameter
-    const getWitnessJson = {
+    const reqJson = {
       tx: blindRawTransactionResult2.hex,
       isElements: true,
       txin: {
@@ -507,9 +489,8 @@ if (!supportFunctions.elements) {
         ]
       }
     }
-    console.log("\n*** Request ***\n", getWitnessJson)
-    const resStr = AddSign(JSON.stringify(getWitnessJson));
-    addSign1 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    addSign1 = AddSign(reqJson);
     console.log("\n*** Response ***\n", addSign1, "\n")
   }
 
@@ -517,7 +498,7 @@ if (!supportFunctions.elements) {
   {
     console.log("\n===== addSign1_2 (blinded utxo) =====")
     // build json parameter
-    const getWitnessJson = {
+    const reqJson = {
       tx: addSign1.hex,
       isElements: true,
       txin: {
@@ -532,9 +513,8 @@ if (!supportFunctions.elements) {
         ]
       }
     }
-    console.log("\n*** Request ***\n", getWitnessJson)
-    const resStr = AddSign(JSON.stringify(getWitnessJson));
-    addSign1_2 = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    addSign1_2 = AddSign(reqJson);
     console.log("\n*** Response ***\n", addSign1_2, "\n")
   }
 
@@ -543,7 +523,7 @@ if (!supportFunctions.elements) {
   let Issuance_CreateRawTransactionResult
   {
     console.log("\n===== elementsissuanceCreateRawTransactionResult =====")
-    const paramJson = {
+    const reqJson = {
       "version": 2,
       "locktime": 0,
       "txins": [{
@@ -561,16 +541,15 @@ if (!supportFunctions.elements) {
         "asset": "186c7f955149a5274b39e24b6a50d1d6479f552f6522d91f3a97d771f1c18179"
       }
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = ElementsCreateRawTransaction(JSON.stringify(paramJson))
-    Issuance_CreateRawTransactionResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    Issuance_CreateRawTransactionResult = ElementsCreateRawTransaction(reqJson)
     console.log("\n*** Response ***\n", Issuance_CreateRawTransactionResult, "\n")
   }
 
   let Issuance_SetRawIssueAssetResult
   {
     console.log("\n===== SetRawIssueAsset =====")
-    const paramJson = {
+    const reqJson = {
       "tx": Issuance_CreateRawTransactionResult.hex,
       "isRandomSortTxOut": false,
       "issuances": [{
@@ -584,9 +563,8 @@ if (!supportFunctions.elements) {
         "contractHash": "0000000000000000000000000000000000000000000000000000000000000000"
       }]
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = SetRawIssueAsset(JSON.stringify(paramJson))
-    Issuance_SetRawIssueAssetResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    Issuance_SetRawIssueAssetResult = SetRawIssueAsset(reqJson)
     console.log("\n*** Response ***\n", Issuance_SetRawIssueAssetResult, "\n")
   }
 
@@ -594,7 +572,7 @@ if (!supportFunctions.elements) {
   let Issuance_BlindRawTransactionResult
   {
     console.log("\n===== Issuance_BlindRawTransaction =====")
-    const paramJson = {
+    const reqJson = {
       "tx": Issuance_SetRawIssueAssetResult.hex,
       "txins": [{
         "txid": "7a8ee90c484cff3e1f7f8eed5acd6f4e6ad3e6ce4114d02a71f443e671d79925",
@@ -625,9 +603,8 @@ if (!supportFunctions.elements) {
         "tokenBlindingKey": "bb4b6e20697fcd578f6e3a01223e2f4850235eb8947e8c3610e5e6d54780ae3b"
       }]
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = BlindRawTransaction(JSON.stringify(paramJson))
-    Issuance_BlindRawTransactionResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    Issuance_BlindRawTransactionResult = BlindRawTransaction(reqJson)
     console.log("\n*** Response ***\n", Issuance_BlindRawTransactionResult, "\n")
 
   }
@@ -635,7 +612,7 @@ if (!supportFunctions.elements) {
   let Issuance_UnblindRawTransactionResult
   {
     console.log("\n===== issuanceUnblindRawTransaction =====")
-    const paramJson = {
+    const reqJson = {
       "tx": Issuance_BlindRawTransactionResult.hex,
       "txouts": [
         {
@@ -660,8 +637,7 @@ if (!supportFunctions.elements) {
         }
       ]
     }
-    const resStr = UnblindRawTransaction(JSON.stringify(paramJson))
-    Issuance_UnblindRawTransactionResult = JSON.parse(resStr)
+    Issuance_UnblindRawTransactionResult = UnblindRawTransaction(reqJson)
     console.log("\n*** Response ***\n", Issuance_UnblindRawTransactionResult, "\n")
   }
 
@@ -713,7 +689,7 @@ if (!supportFunctions.elements) {
   let Reissuance_CreateRawTransactionResult
   {
     console.log("\n===== Reissuance_CreateRawTransactionResult =====")
-    const paramJson = {
+    const reqJson = {
       "version": 2,
       "locktime": 0,
       "txins": [{
@@ -737,16 +713,15 @@ if (!supportFunctions.elements) {
         "asset": utxo_change.asset
       }
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = ElementsCreateRawTransaction(JSON.stringify(paramJson))
-    Reissuance_CreateRawTransactionResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    Reissuance_CreateRawTransactionResult = ElementsCreateRawTransaction(reqJson)
     console.log("\n*** Response ***\n", Reissuance_CreateRawTransactionResult, "\n")
   }
 
   let Reissuance_SetRawReissueAssetResult
   {
     console.log("\n===== SetRawReissueAsset =====")
-    const paramJson = {
+    const reqJson = {
       "tx": Reissuance_CreateRawTransactionResult.hex,
       "isRandomSortTxOut": false,
       "issuances": [{
@@ -758,30 +733,28 @@ if (!supportFunctions.elements) {
         "assetEntropy": reissueData.assetEntropy
       }]
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = SetRawReissueAsset(JSON.stringify(paramJson))
-    Reissuance_SetRawReissueAssetResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    Reissuance_SetRawReissueAssetResult = SetRawReissueAsset(reqJson)
     console.log("\n*** Response ***\n", Reissuance_SetRawReissueAssetResult, "\n")
   }
 
   let getIssuanceBlindingKeyResult
   {
     console.log("\n===== getIssuanceBlindingKeyResult =====")
-    const getKeyJson = {
+    const reqJson = {
       masterBlindingKey: masterBlindingKey,
       txid: utxo_issuance.txid,
       vout: utxo_issuance.vout
     }
-    console.log("\n*** Request ***\n", getKeyJson)
-    const resStr = GetIssuanceBlindingKey(JSON.stringify(getKeyJson));
-    getIssuanceBlindingKeyResult = JSON.parse(resStr)
+    console.log("\n*** Request ***\n", reqJson)
+    getIssuanceBlindingKeyResult = GetIssuanceBlindingKey(reqJson);
     console.log("\n*** Response ***\n", getIssuanceBlindingKeyResult, "\n")
   }
 
   let Reissuance_BlindRawTransactionResult
   {
     console.log("\n===== Reissuance_BlindRawTransaction =====")
-    const paramJson = {
+    const reqJson = {
       "tx": Reissuance_SetRawReissueAssetResult.hex,
       "txins": [{
         "txid": utxo_change.txid,
@@ -819,16 +792,15 @@ if (!supportFunctions.elements) {
         "tokenBlindingKey": getIssuanceBlindingKeyResult.blindingKey
       }]
     }
-    console.log("*** Request ***\n", paramJson)
-    const resStr = BlindRawTransaction(JSON.stringify(paramJson))
-    Reissuance_BlindRawTransactionResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    Reissuance_BlindRawTransactionResult = BlindRawTransaction(reqJson)
     console.log("\n*** Response ***\n", Reissuance_BlindRawTransactionResult, "\n")
   }
 
   let Reissuance_UnblindRawTransactionResult
   {
     console.log("\n===== reissuanceUnblindRawTransaction =====")
-    const paramJson = {
+    const reqJson = {
       "tx": Reissuance_BlindRawTransactionResult.hex,
       "txouts": [
         {
@@ -853,8 +825,7 @@ if (!supportFunctions.elements) {
         }
       ]
     }
-    const resStr = UnblindRawTransaction(JSON.stringify(paramJson))
-    Reissuance_UnblindRawTransactionResult = JSON.parse(resStr)
+    Reissuance_UnblindRawTransactionResult = UnblindRawTransaction(reqJson)
     console.log("\n*** Response ***\n", Reissuance_UnblindRawTransactionResult, "\n")
   }
 
@@ -862,7 +833,7 @@ if (!supportFunctions.elements) {
   let Pegin_CreateRawPeginResult
   {
     console.log("\n===== Pegin CreateRawPegin =====")
-    const paramJson = {
+    const reqJson = {
       "version": 2,
       "locktime": 0,
       "txins": [{
@@ -891,9 +862,8 @@ if (!supportFunctions.elements) {
       }
     }
 
-    console.log("*** Request ***\n", paramJson)
-    const resStr = CreateRawPegin(JSON.stringify(paramJson))
-    Pegin_CreateRawPeginResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    Pegin_CreateRawPeginResult = CreateRawPegin(reqJson)
     console.log("\n*** Response ***\n", Pegin_CreateRawPeginResult, "\n")
   }
 
@@ -901,7 +871,7 @@ if (!supportFunctions.elements) {
   let Pegout_CreateRawPegoutResult
   {
     console.log("\n===== Pegout CreateRawPegout =====")
-    const paramJson = {
+    const reqJson = {
       "version": 2,
       "locktime": 0,
       "txins": [{
@@ -932,9 +902,8 @@ if (!supportFunctions.elements) {
       }
     }
 
-    console.log("*** Request ***\n", paramJson)
-    const resStr = CreateRawPegout(JSON.stringify(paramJson))
-    Pegout_CreateRawPegoutResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    Pegout_CreateRawPegoutResult = CreateRawPegout(reqJson)
     console.log("\n*** Response ***\n", Pegout_CreateRawPegoutResult, "\n")
   }
 
@@ -946,9 +915,7 @@ if (!supportFunctions.elements) {
       "mainchainNetwork": "regtest",
       "iswitness": true,
     }
-    // console.log(JSON.stringify(reqJson));
-    const resStr = ElementsDecodeRawTransaction(JSON.stringify(reqJson))
-    const result = JSON.parse(resStr)
+    const result = ElementsDecodeRawTransaction(reqJson)
     console.log("\n*** Response ***\n", JSON.stringify(result, null, '  '), "\n")
   }
 
@@ -956,7 +923,7 @@ if (!supportFunctions.elements) {
   let DestroyAmount_CreateDestroyAmountResult
   {
     console.log("\n===== CreateDestroyAmount =====")
-    const paramJson = {
+    const reqJson = {
       "version": 2,
       "locktime": 0,
       "txins": [{
@@ -989,9 +956,8 @@ if (!supportFunctions.elements) {
       }
     }
 
-    console.log("*** Request ***\n", paramJson)
-    const resStr = CreateDestroyAmount(JSON.stringify(paramJson))
-    DestroyAmount_CreateDestroyAmountResult = JSON.parse(resStr)
+    console.log("*** Request ***\n", reqJson)
+    DestroyAmount_CreateDestroyAmountResult = CreateDestroyAmount(reqJson)
     console.log("\n*** Response ***\n", DestroyAmount_CreateDestroyAmountResult, "\n")
   }
 }
