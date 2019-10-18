@@ -1,10 +1,11 @@
 const {CreateKeyPair} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
-const wally = require('../wally');
+// const wally = require('../wally');
+const wally = require('../wally.js');
 const {
   WALLY_WIF_FLAG_COMPRESSED,
   WALLY_WIF_FLAG_UNCOMPRESSED,
-} = require('../wally');
+} = wally;
 
 const emptyFunc = () => { };
 const checkFunction = (jsonString, isWif, isCompress, nettype) => {
