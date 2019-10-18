@@ -1,0 +1,5 @@
+# ./include/cfdjs/Makefile.srclist
+
+CFDJS_PKGINCLUDE_FILES = \
+  cfdjs_common.h
+
