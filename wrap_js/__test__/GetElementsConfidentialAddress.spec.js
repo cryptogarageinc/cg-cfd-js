@@ -1,4 +1,4 @@
-const {GetConfidentialAddress} = require('../build/Release/cfd_js');
+const {GetConfidentialAddress} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCase = [

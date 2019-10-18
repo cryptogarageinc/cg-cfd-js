@@ -1,4 +1,4 @@
-const {SetRawIssueAsset} = require('../build/Release/cfd_js');
+const {SetRawIssueAsset} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCaseElements = [

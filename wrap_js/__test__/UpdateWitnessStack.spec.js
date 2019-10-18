@@ -1,4 +1,4 @@
-const {UpdateWitnessStack} = require('../build/Release/cfd_js');
+const {UpdateWitnessStack} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCase = [

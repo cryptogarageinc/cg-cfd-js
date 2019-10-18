@@ -1,4 +1,4 @@
-const {GetUnblindedAddress} = require('../build/Release/cfd_js');
+const {GetUnblindedAddress} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCase = [

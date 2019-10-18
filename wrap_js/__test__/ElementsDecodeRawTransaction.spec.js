@@ -1,4 +1,4 @@
-const {ElementsDecodeRawTransaction} = require('../build/Release/cfd_js');
+const {ElementsDecodeRawTransaction} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCase = [

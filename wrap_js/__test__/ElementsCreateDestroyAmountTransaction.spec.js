@@ -1,4 +1,4 @@
-const {CreateDestroyAmount} = require('../build/Release/cfd_js');
+const {CreateDestroyAmount} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCase = [

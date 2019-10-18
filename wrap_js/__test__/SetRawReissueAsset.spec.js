@@ -1,4 +1,4 @@
-const {SetRawReissueAsset} = require('../build/Release/cfd_js');
+const {SetRawReissueAsset} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCaseElements = [

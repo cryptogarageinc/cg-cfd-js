@@ -1,4 +1,4 @@
-const {GetMnemonicWordlist} = require('../build/Release/cfd_js');
+const {GetMnemonicWordlist} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 const Bip39DataSource = require('./data/Bip39DataSource');
 

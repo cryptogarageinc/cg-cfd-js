@@ -1,4 +1,4 @@
-const {UnblindRawTransaction} = require('../build/Release/cfd_js');
+const {UnblindRawTransaction} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCase = [

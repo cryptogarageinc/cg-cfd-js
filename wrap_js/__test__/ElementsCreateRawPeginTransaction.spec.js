@@ -1,4 +1,4 @@
-const {CreateRawPegin} = require('../build/Release/cfd_js');
+const {CreateRawPegin} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCase = [

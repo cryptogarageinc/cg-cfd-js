@@ -1,4 +1,4 @@
-const {CreateSignatureHash} = require('../build/Release/cfd_js');
+const {CreateSignatureHash} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 // テストベクター参考（https://techmedia-think.hatenablog.com/entry/2016/07/08/153449）

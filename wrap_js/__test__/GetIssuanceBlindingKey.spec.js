@@ -1,4 +1,4 @@
-const {GetIssuanceBlindingKey} = require('../build/Release/cfd_js');
+const {GetIssuanceBlindingKey} = require('../cfdjs_raw_module');
 const TestHelper = require('./TestHelper');
 
 const testCase = [
