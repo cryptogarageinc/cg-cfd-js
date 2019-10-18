@@ -19,7 +19,7 @@
     "test_logging": "jest --no-cache --silent=false --verbose false",
     "format_all": "run-p code_format js_format",
     "code_format": "clang-format -i --style=file src/*.cpp src/*.h",
-    "format_js": "eslint wrap_js/ --fix",
+    "js_format": "eslint wrap_js/ --fix",
     "cmake_all": "run-s cmake_configure cmake_build",
     "cmake_configure": "run-script-os",
     "cmake_configure:win32": "cmake-js configure -O wrap_js/build --CDENABLE_SHARED=on",
