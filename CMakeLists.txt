@@ -68,8 +68,6 @@ if(NOT CFD_SINGLE_BUILD)
 add_subdirectory(external)
 endif()
 add_subdirectory(src)
-# add native node module for test temporary
-add_subdirectory(wrap_js)
 
 
 ####################
