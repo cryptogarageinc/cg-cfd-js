@@ -6,8 +6,8 @@
  *
  * JSON形式のAPIを提供する.
  */
-#ifndef CFD_SRC_CFDAPI_TRANSACTION_BASE_H_
-#define CFD_SRC_CFDAPI_TRANSACTION_BASE_H_
+#ifndef CFD_JS_SRC_CFDJS_TRANSACTION_BASE_H_
+#define CFD_JS_SRC_CFDJS_TRANSACTION_BASE_H_
 
 #include <functional>
 #include <string>
@@ -112,4 +112,4 @@ class TransactionStructApiBase {
 }  // namespace js
 }  // namespace cfd
 
-#endif  // CFD_SRC_CFDAPI_TRANSACTION_BASE_H_
+#endif  // CFD_JS_SRC_CFDJS_TRANSACTION_BASE_H_

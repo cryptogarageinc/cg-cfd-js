@@ -10,25 +10,9 @@
 #include <string>
 #include <vector>
 
-//#include "cfd/cfd_address.h"
-//#include "cfd/cfd_transaction.h"
-//#include "cfdcore/cfdcore_address.h"
-//#include "cfdcore/cfdcore_coin.h"
-//#include "cfdcore/cfdcore_exception.h"
-//#include "cfdcore/cfdcore_iterator.h"
-//#include "cfdcore/cfdcore_key.h"
-//#include "cfdcore/cfdcore_logger.h"
-//#include "cfdcore/cfdcore_script.h"
-//#include "cfdcore/cfdcore_transaction.h"
-//#include "cfdcore/cfdcore_util.h"
-
-//#include "cfd/cfdapi_address.h"
-//#include "cfd/cfdapi_elements_transaction.h"
 #include "cfd/cfdapi_transaction.h"
 #include "cfdjs/cfdjs_address.h"
-//#include "cfdjs/cfdjs_elements_transaction.h"
 #include "cfdjs/cfdjs_transaction.h"
-//#include "cfdjs/cfdjs_struct.h"
 #include "cfdjs_internal.h"          // NOLINT
 #include "cfdjs_transaction_base.h"  // NOLINT
 

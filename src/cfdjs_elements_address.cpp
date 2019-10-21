@@ -13,7 +13,7 @@
 #include "cfdjs/cfdjs_address.h"
 #include "cfdjs/cfdjs_elements_address.h"
 #include "cfd/cfdapi_elements_address.h"
-#include "cfdjs_internal.h"
+#include "cfdjs_internal.h"   // NOLINT
 
 namespace cfd {
 namespace js {

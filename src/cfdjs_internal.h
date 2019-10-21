@@ -4,8 +4,8 @@
  *
  * @brief cfd_apiの内部定義ヘッダ.
  */
-#ifndef CFD_SRC_CFDAPI_INTERNAL_H_
-#define CFD_SRC_CFDAPI_INTERNAL_H_
+#ifndef CFD_JS_SRC_CFDJS_INTERNAL_H_
+#define CFD_JS_SRC_CFDJS_INTERNAL_H_
 
 #include <string>
 
@@ -104,4 +104,4 @@ ResponseStructType ExecuteResponseStructApi(
 }  // namespace js
 }  // namespace cfd
 
-#endif  // CFD_SRC_CFDAPI_INTERNAL_H_
+#endif  // CFD_JS_SRC_CFDJS_INTERNAL_H_
