@@ -99,7 +99,7 @@ const errorCase = [
     'CreateRawPegout with valid pegout.bitcoinDescriptor',
     CreateRawPegout,
     [`{\"version\":2,\"locktime\":0,\"txins\":[{\"txid\":\"4aa201f333e80b8f62ba5b593edb47b4730212e2917b21279f389ba1c14588a3\",\"vout\":0,\"sequence\":4294967293}],\"txouts\":[{\"address\":\"XBMr6srTXmWuHifFd8gs54xYfiCBsvrksA\",\"amount\":209998999992700,\"asset\":\"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225\"}],\"pegout\":{\"amount\": 1000000000,\"asset\":\"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225\",\"network\":\"regtest\",\"mainchainGenesisBlockHash\":\"0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206\",\"btcAddress\":\"\",\"onlinePubkey\":\"0214156e4ae9168289b4d0c034da94025121d33ad8643663454885032d77640e3d\",\"masterOnlineKey\":\"cVPA9nh4bHhKXinBCLkJJTD3UgfiizWRykXfFegwZzKMNYAKG9RL\",\"bip32Counter\":0,\"whitelist\":\"030e07d4f657c0c169e04fac5d5a8096adb099874834be59ad1e681e22d952ccda0214156e4ae9168289b4d0c034da94025121d33ad8643663454885032d77640e3d\",\"bitcoinDescriptor\":\"\"},\"fee\":{\"amount\":7300,\"asset\":\"5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225\"}}`],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtKey base58 decode error."}}'
+    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPubkey base58 decode error."}}'
   ),
   TestHelper.createElementsTestCase(
     'CreateRawPegout with valid fee.asset',
