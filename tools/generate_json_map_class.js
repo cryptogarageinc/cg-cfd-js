@@ -944,6 +944,9 @@ const generateStructHeader = (dirname, filename, json_list) => {
   while (path.indexOf('.') >= 0) {
     path = path.replace('.', '_');
   }
+  while (path.indexOf('-') >= 0) {
+    path = path.replace('-', '_');
+  }
   const def_name = path.toUpperCase();
   // const include_header = (json_setting.common_header) ? `#include "${json_setting.common_header}"\n` : '';
 
@@ -1018,12 +1021,12 @@ const generateStructHeader = (dirname, filename, json_list) => {
 // search file
 // ----------------------------------------------------------------------------
 let fileList = [];
-const cfdPath = `${__dirname}/../external/cfd/`;
-const cfdPath2 = `${__dirname}/../../cfd/`;
+const cfdPath = `${__dirname}/../external/cfd-js/`;
+const cfdPath2 = `${__dirname}/../../cfd-js/`;
 let folderPath = `src/input_json_format/`;
 const outJsonFolderPath = `${__dirname}/../../cfd-js/src/`;
-let outStructDirPath = `include/cfd/`;
-const outStructFileName = `cfdapi_struct.h`;
+let outStructDirPath = `include/cfdjs/`;
+const outStructFileName = `cfdjs_struct.h`;
 let jsonDataList = [];
 
 if (fs.existsSync(cfdPath) && fs.statSync(cfdPath).isDirectory()) {
@@ -1054,7 +1057,7 @@ fs.readdir(folderPath, (err, files) => {
     // console.log(`resData = ${resData}`)
     jsonDataList.push(new JsonData(jsonObject, reqData, resData))
 
-    const header_str = generateHeader(outHeaderFile, outJsonFolderPath, reqData, resData, jsonObject, `cfd/${outStructFileName}`)
+    const header_str = generateHeader(outHeaderFile, outJsonFolderPath, reqData, resData, jsonObject, `cfdjs/${outStructFileName}`)
     fs.writeFileSync(`${outJsonFolderPath}${outHeaderFile}`, header_str);
     const src_str = generateSource(outSourceFile, outHeaderFile, reqData, resData, jsonObject)
     fs.writeFileSync(`${outJsonFolderPath}${outSourceFile}`, src_str);

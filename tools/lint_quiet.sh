@@ -13,4 +13,5 @@ function search_lint() {
 
 
 cd `git rev-parse --show-toplevel`
+search_lint include/cfdjs ../..
 search_lint src ..

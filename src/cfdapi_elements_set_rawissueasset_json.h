@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -444,16 +444,16 @@ class IssuanceDataRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const IssuanceDataRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  IssuanceDataRequestStruct ConvertToStruct()  const;
+   IssuanceDataRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -700,16 +700,16 @@ class SetRawIssueAssetRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const SetRawIssueAssetRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  SetRawIssueAssetRequestStruct ConvertToStruct()  const;
+   SetRawIssueAssetRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1018,16 +1018,16 @@ class IssuanceDataResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const IssuanceDataResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  IssuanceDataResponseStruct ConvertToStruct()  const;
+   IssuanceDataResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1215,16 +1215,16 @@ class SetRawIssueAssetResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const SetRawIssueAssetResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  SetRawIssueAssetResponseStruct ConvertToStruct()  const;
+   SetRawIssueAssetResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

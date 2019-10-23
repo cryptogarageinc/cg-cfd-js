@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -186,16 +186,16 @@ class GetIssuanceBlindingKeyRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetIssuanceBlindingKeyRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetIssuanceBlindingKeyRequestStruct ConvertToStruct()  const;
+   GetIssuanceBlindingKeyRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -332,16 +332,16 @@ class GetIssuanceBlindingKeyResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetIssuanceBlindingKeyResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetIssuanceBlindingKeyResponseStruct ConvertToStruct()  const;
+   GetIssuanceBlindingKeyResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

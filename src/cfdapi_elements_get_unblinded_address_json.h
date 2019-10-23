@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -100,16 +100,16 @@ class GetUnblindedAddressRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetUnblindedAddressRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetUnblindedAddressRequestStruct ConvertToStruct()  const;
+   GetUnblindedAddressRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -238,16 +238,16 @@ class GetUnblindedAddressResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetUnblindedAddressResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetUnblindedAddressResponseStruct ConvertToStruct()  const;
+   GetUnblindedAddressResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -272,16 +272,16 @@ class ConvertMnemonicToSeedRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ConvertMnemonicToSeedRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ConvertMnemonicToSeedRequestStruct ConvertToStruct()  const;
+   ConvertMnemonicToSeedRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -469,16 +469,16 @@ class ConvertMnemonicToSeedResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ConvertMnemonicToSeedResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ConvertMnemonicToSeedResponseStruct ConvertToStruct()  const;
+   ConvertMnemonicToSeedResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

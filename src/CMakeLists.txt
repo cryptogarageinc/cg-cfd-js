@@ -119,6 +119,14 @@ add_library(${CFDJS_LIBRARY} SHARED)
 target_sources(${CFDJS_LIBRARY}
   PRIVATE
     cfdjs_node_addon.cpp
+    cfdjs_address.cpp
+    cfdjs_elements_address.cpp
+    cfdjs_elements_transaction.cpp
+    cfdjs_hdwallet.cpp
+    cfdjs_key.cpp
+    cfdjs_transaction.cpp
+    cfdjs_transaction_base.cpp
+    cfdjs_utility.cpp
     cfdapi_add_multisig_sign_json.cpp
     cfdapi_add_sign_json.cpp
     cfdapi_get_mnemonic_wordlist_json.cpp

@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -229,16 +229,16 @@ class PrivkeyData
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const PrivkeyDataStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  PrivkeyDataStruct ConvertToStruct()  const;
+   PrivkeyDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -465,16 +465,16 @@ class CalculateEcSignatureRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CalculateEcSignatureRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CalculateEcSignatureRequestStruct ConvertToStruct()  const;
+   CalculateEcSignatureRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -611,16 +611,16 @@ class CalculateEcSignatureResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CalculateEcSignatureResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CalculateEcSignatureResponseStruct ConvertToStruct()  const;
+   CalculateEcSignatureResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

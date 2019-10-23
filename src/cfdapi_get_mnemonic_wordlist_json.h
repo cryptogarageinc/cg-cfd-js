@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -100,16 +100,16 @@ class GetMnemonicWordlistRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetMnemonicWordlistRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetMnemonicWordlistRequestStruct ConvertToStruct()  const;
+   GetMnemonicWordlistRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -238,16 +238,16 @@ class GetMnemonicWordlistResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetMnemonicWordlistResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetMnemonicWordlistResponseStruct ConvertToStruct()  const;
+   GetMnemonicWordlistResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

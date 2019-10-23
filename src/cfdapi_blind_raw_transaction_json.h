@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -315,16 +315,16 @@ class BlindTxInRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const BlindTxInRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  BlindTxInRequestStruct ConvertToStruct()  const;
+   BlindTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -516,16 +516,16 @@ class BlindTxOutRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const BlindTxOutRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  BlindTxOutRequestStruct ConvertToStruct()  const;
+   BlindTxOutRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -787,16 +787,16 @@ class BlindIssuanceRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const BlindIssuanceRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  BlindIssuanceRequestStruct ConvertToStruct()  const;
+   BlindIssuanceRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1066,16 +1066,16 @@ class BlindRawTransactionRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const BlindRawTransactionRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  BlindRawTransactionRequestStruct ConvertToStruct()  const;
+   BlindRawTransactionRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1216,16 +1216,16 @@ class BlindRawTransactionResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const BlindRawTransactionResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  BlindRawTransactionResponseStruct ConvertToStruct()  const;
+   BlindRawTransactionResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

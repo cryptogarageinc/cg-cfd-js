@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -143,16 +143,16 @@ class SignatureHashKeyData
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const SignatureHashKeyDataStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  SignatureHashKeyDataStruct ConvertToStruct()  const;
+   SignatureHashKeyDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -543,16 +543,16 @@ class CreateSignatureHashTxInRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateSignatureHashTxInRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateSignatureHashTxInRequestStruct ConvertToStruct()  const;
+   CreateSignatureHashTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -748,16 +748,16 @@ class CreateSignatureHashRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateSignatureHashRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateSignatureHashRequestStruct ConvertToStruct()  const;
+   CreateSignatureHashRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -890,16 +890,16 @@ class CreateSignatureHashResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateSignatureHashResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateSignatureHashResponseStruct ConvertToStruct()  const;
+   CreateSignatureHashResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

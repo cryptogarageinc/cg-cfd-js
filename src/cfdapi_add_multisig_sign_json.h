@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -315,16 +315,16 @@ class MultisigSignData
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const MultisigSignDataStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  MultisigSignDataStruct ConvertToStruct()  const;
+   MultisigSignDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -731,16 +731,16 @@ class AddMultisigSignTxInRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const AddMultisigSignTxInRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  AddMultisigSignTxInRequestStruct ConvertToStruct()  const;
+   AddMultisigSignTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -979,16 +979,16 @@ class AddMultisigSignRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const AddMultisigSignRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  AddMultisigSignRequestStruct ConvertToStruct()  const;
+   AddMultisigSignRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1125,16 +1125,16 @@ class AddMultisigSignResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const AddMultisigSignResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  AddMultisigSignResponseStruct ConvertToStruct()  const;
+   AddMultisigSignResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

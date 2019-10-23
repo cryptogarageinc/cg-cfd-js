@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -186,16 +186,16 @@ class ElementsDestroyAmountTxIn
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsDestroyAmountTxInStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsDestroyAmountTxInStruct ConvertToStruct()  const;
+   ElementsDestroyAmountTxInStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -461,16 +461,16 @@ class ElementsDestroyAmountTxOut
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsDestroyAmountTxOutStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsDestroyAmountTxOutStruct ConvertToStruct()  const;
+   ElementsDestroyAmountTxOutStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -654,16 +654,16 @@ class ElementsDestroyAmount
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsDestroyAmountStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsDestroyAmountStruct ConvertToStruct()  const;
+   ElementsDestroyAmountStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -839,16 +839,16 @@ class ElementsDestroyAmountFee
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsDestroyAmountFeeStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsDestroyAmountFeeStruct ConvertToStruct()  const;
+   ElementsDestroyAmountFeeStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1196,16 +1196,16 @@ class ElementsCreateDestroyAmountRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreateDestroyAmountRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreateDestroyAmountRequestStruct ConvertToStruct()  const;
+   ElementsCreateDestroyAmountRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1354,16 +1354,16 @@ class ElementsCreateDestroyAmountResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreateDestroyAmountResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreateDestroyAmountResponseStruct ConvertToStruct()  const;
+   ElementsCreateDestroyAmountResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

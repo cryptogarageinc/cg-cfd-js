@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -186,16 +186,16 @@ class ElementsTxInRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsTxInRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsTxInRequestStruct ConvertToStruct()  const;
+   ElementsTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -461,16 +461,16 @@ class ElementsTxOutRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsTxOutRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsTxOutRequestStruct ConvertToStruct()  const;
+   ElementsTxOutRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -654,16 +654,16 @@ class ElementsTxOutFeeRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsTxOutFeeRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsTxOutFeeRequestStruct ConvertToStruct()  const;
+   ElementsTxOutFeeRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -968,16 +968,16 @@ class ElementsCreateRawTransactionRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreateRawTransactionRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreateRawTransactionRequestStruct ConvertToStruct()  const;
+   ElementsCreateRawTransactionRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1122,16 +1122,16 @@ class ElementsCreateRawTransactionResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreateRawTransactionResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreateRawTransactionResponseStruct ConvertToStruct()  const;
+   ElementsCreateRawTransactionResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
