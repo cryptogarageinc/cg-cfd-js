@@ -413,6 +413,11 @@ Value GetMnemonicWordlist(const CallbackInfo &information) {
       information, HDWalletStructApi::GetMnemonicWordlist);
 }
 
+/**
+ * @brief CreateExtkeyFromSeedのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateExtkeyFromSeed(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CreateExtkeyFromSeedRequest,
@@ -422,6 +427,11 @@ Value CreateExtkeyFromSeed(const CallbackInfo &information) {
       information, HDWalletStructApi::CreateExtkeyFromSeed);
 }
 
+/**
+ * @brief CreateExtkeyFromParentのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateExtkeyFromParent(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CreateExtkeyFromParentRequest,
@@ -431,6 +441,11 @@ Value CreateExtkeyFromParent(const CallbackInfo &information) {
       information, HDWalletStructApi::CreateExtkeyFromParent);
 }
 
+/**
+ * @brief CreateExtkeyFromParentPathのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateExtkeyFromParentPath(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CreateExtkeyFromParentPathRequest,
@@ -440,6 +455,11 @@ Value CreateExtkeyFromParentPath(const CallbackInfo &information) {
       information, HDWalletStructApi::CreateExtkeyFromParentPath);
 }
 
+/**
+ * @brief CreateExtPubkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateExtPubkey(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CreateExtPubkeyRequest, api::json::CreateExtPubkeyResponse,
