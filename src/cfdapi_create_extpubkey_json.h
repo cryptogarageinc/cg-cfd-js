@@ -143,14 +143,14 @@ class CreateExtPubkeyRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data  無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateExtPubkeyRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @return Response
    */
   CreateExtPubkeyRequestStruct ConvertToStruct()  const;
 
@@ -285,14 +285,14 @@ class CreateExtPubkeyResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data  無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateExtPubkeyResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @return Response
    */
   CreateExtPubkeyResponseStruct ConvertToStruct()  const;
 

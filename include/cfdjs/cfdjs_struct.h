@@ -403,9 +403,9 @@ struct CreateExtkeyFromParentPathResponseStruct {
  * @brief CreateExtkeyFromSeedRequestStruct 構造体
  */
 struct CreateExtkeyFromSeedRequestStruct {
-  std::string seed = "";            //!< seed  // NOLINT
-  std::string network = "mainnet";  //!< network  // NOLINT
-  std::string extkey_type = "";     //!< extkey_type  // NOLINT
+  std::string seed = "";                   //!< seed  // NOLINT
+  std::string network = "mainnet";         //!< network  // NOLINT
+  std::string extkey_type = "extPrivkey";  //!< extkey_type  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

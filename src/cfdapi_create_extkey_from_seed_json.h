@@ -186,14 +186,14 @@ class CreateExtkeyFromSeedRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data  無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateExtkeyFromSeedRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @return Response
    */
   CreateExtkeyFromSeedRequestStruct ConvertToStruct()  const;
 
@@ -332,14 +332,14 @@ class CreateExtkeyFromSeedResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data  無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateExtkeyFromSeedResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @return Response
    */
   CreateExtkeyFromSeedResponseStruct ConvertToStruct()  const;
 

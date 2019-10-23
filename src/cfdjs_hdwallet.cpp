@@ -4,6 +4,7 @@
  *
  * @brief cfd-apiで利用するHDWallet APIクラスの実装
  */
+#include <limits>
 #include <string>
 #include <vector>
 

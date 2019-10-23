@@ -737,8 +737,8 @@ let extPubkeyFromParentPathResult;
     network: 'mainnet',
     extkeyType: 'extPubkey',
     childNumberArray: [
-      2147483648, 2147483648, 2
-    ]
+      2147483648, 2147483648, 2,
+    ],
   };
   console.log('*** Request ***\n', reqJson);
   extPubkeyFromParentPathResult = CreateExtkeyFromParentPath(reqJson);
