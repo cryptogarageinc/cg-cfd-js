@@ -185,17 +185,17 @@ class GetIssuanceBlindingKeyRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const GetIssuanceBlindingKeyRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   GetIssuanceBlindingKeyRequestStruct ConvertToStruct()  const;
+  GetIssuanceBlindingKeyRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -331,17 +331,17 @@ class GetIssuanceBlindingKeyResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const GetIssuanceBlindingKeyResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   GetIssuanceBlindingKeyResponseStruct ConvertToStruct()  const;
+  GetIssuanceBlindingKeyResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

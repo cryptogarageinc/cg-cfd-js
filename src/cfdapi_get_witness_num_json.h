@@ -142,17 +142,17 @@ class GetWitnessStackNumTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const GetWitnessStackNumTxInRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   GetWitnessStackNumTxInRequestStruct ConvertToStruct()  const;
+  GetWitnessStackNumTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -370,17 +370,17 @@ class GetWitnessStackNumRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const GetWitnessStackNumRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   GetWitnessStackNumRequestStruct ConvertToStruct()  const;
+  GetWitnessStackNumRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -516,17 +516,17 @@ class GetWitnessStackNumResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const GetWitnessStackNumResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   GetWitnessStackNumResponseStruct ConvertToStruct()  const;
+  GetWitnessStackNumResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

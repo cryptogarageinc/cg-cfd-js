@@ -314,17 +314,17 @@ class BlindTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const BlindTxInRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   BlindTxInRequestStruct ConvertToStruct()  const;
+  BlindTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -515,17 +515,17 @@ class BlindTxOutRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const BlindTxOutRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   BlindTxOutRequestStruct ConvertToStruct()  const;
+  BlindTxOutRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -786,17 +786,17 @@ class BlindIssuanceRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const BlindIssuanceRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   BlindIssuanceRequestStruct ConvertToStruct()  const;
+  BlindIssuanceRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1065,17 +1065,17 @@ class BlindRawTransactionRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const BlindRawTransactionRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   BlindRawTransactionRequestStruct ConvertToStruct()  const;
+  BlindRawTransactionRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1215,17 +1215,17 @@ class BlindRawTransactionResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const BlindRawTransactionResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   BlindRawTransactionResponseStruct ConvertToStruct()  const;
+  BlindRawTransactionResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

@@ -228,17 +228,17 @@ class PrivkeyData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const PrivkeyDataStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   PrivkeyDataStruct ConvertToStruct()  const;
+  PrivkeyDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -464,17 +464,17 @@ class CalculateEcSignatureRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CalculateEcSignatureRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   CalculateEcSignatureRequestStruct ConvertToStruct()  const;
+  CalculateEcSignatureRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -610,17 +610,17 @@ class CalculateEcSignatureResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CalculateEcSignatureResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   CalculateEcSignatureResponseStruct ConvertToStruct()  const;
+  CalculateEcSignatureResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

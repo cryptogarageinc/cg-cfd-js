@@ -185,17 +185,17 @@ class ElementsPegoutTxIn
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsPegoutTxInStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsPegoutTxInStruct ConvertToStruct()  const;
+  ElementsPegoutTxInStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -460,17 +460,17 @@ class ElementsPegoutTxOut
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsPegoutTxOutStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsPegoutTxOutStruct ConvertToStruct()  const;
+  ElementsPegoutTxOutStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -997,17 +997,17 @@ class ElementsPegout
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsPegoutStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsPegoutStruct ConvertToStruct()  const;
+  ElementsPegoutStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1214,17 +1214,17 @@ class ElementsPegoutTxOutFee
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsPegoutTxOutFeeStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsPegoutTxOutFeeStruct ConvertToStruct()  const;
+  ElementsPegoutTxOutFeeStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1571,17 +1571,17 @@ class ElementsCreateRawPegoutRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsCreateRawPegoutRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsCreateRawPegoutRequestStruct ConvertToStruct()  const;
+  ElementsCreateRawPegoutRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1772,17 +1772,17 @@ class ElementsCreateRawPegoutResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsCreateRawPegoutResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsCreateRawPegoutResponseStruct ConvertToStruct()  const;
+  ElementsCreateRawPegoutResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

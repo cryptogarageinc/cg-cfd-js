@@ -142,17 +142,17 @@ class SignatureHashKeyData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const SignatureHashKeyDataStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   SignatureHashKeyDataStruct ConvertToStruct()  const;
+  SignatureHashKeyDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -542,17 +542,17 @@ class CreateSignatureHashTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateSignatureHashTxInRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   CreateSignatureHashTxInRequestStruct ConvertToStruct()  const;
+  CreateSignatureHashTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -747,17 +747,17 @@ class CreateSignatureHashRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateSignatureHashRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   CreateSignatureHashRequestStruct ConvertToStruct()  const;
+  CreateSignatureHashRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -889,17 +889,17 @@ class CreateSignatureHashResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateSignatureHashResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   CreateSignatureHashResponseStruct ConvertToStruct()  const;
+  CreateSignatureHashResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

@@ -314,17 +314,17 @@ class MultisigSignData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const MultisigSignDataStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   MultisigSignDataStruct ConvertToStruct()  const;
+  MultisigSignDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -730,17 +730,17 @@ class AddMultisigSignTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const AddMultisigSignTxInRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   AddMultisigSignTxInRequestStruct ConvertToStruct()  const;
+  AddMultisigSignTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -978,17 +978,17 @@ class AddMultisigSignRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const AddMultisigSignRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   AddMultisigSignRequestStruct ConvertToStruct()  const;
+  AddMultisigSignRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1124,17 +1124,17 @@ class AddMultisigSignResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const AddMultisigSignResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   AddMultisigSignResponseStruct ConvertToStruct()  const;
+  AddMultisigSignResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

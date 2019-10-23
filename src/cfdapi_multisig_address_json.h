@@ -271,17 +271,17 @@ class CreateMultisigRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateMultisigRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   CreateMultisigRequestStruct ConvertToStruct()  const;
+  CreateMultisigRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -511,17 +511,17 @@ class CreateMultisigResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateMultisigResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   CreateMultisigResponseStruct ConvertToStruct()  const;
+  CreateMultisigResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
