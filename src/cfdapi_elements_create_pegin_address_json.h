@@ -186,16 +186,16 @@ class ElementsCreatePegInAddressRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreatePegInAddressRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreatePegInAddressRequestStruct ConvertToStruct()  const;
+   ElementsCreatePegInAddressRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -418,16 +418,16 @@ class ElementsCreatePegInAddressResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreatePegInAddressResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreatePegInAddressResponseStruct ConvertToStruct()  const;
+   ElementsCreatePegInAddressResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

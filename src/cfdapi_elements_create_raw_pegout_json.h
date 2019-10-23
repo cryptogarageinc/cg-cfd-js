@@ -186,16 +186,16 @@ class ElementsPegoutTxIn
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsPegoutTxInStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsPegoutTxInStruct ConvertToStruct()  const;
+   ElementsPegoutTxInStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -461,16 +461,16 @@ class ElementsPegoutTxOut
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsPegoutTxOutStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsPegoutTxOutStruct ConvertToStruct()  const;
+   ElementsPegoutTxOutStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -998,16 +998,16 @@ class ElementsPegout
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsPegoutStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsPegoutStruct ConvertToStruct()  const;
+   ElementsPegoutStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1215,16 +1215,16 @@ class ElementsPegoutTxOutFee
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsPegoutTxOutFeeStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsPegoutTxOutFeeStruct ConvertToStruct()  const;
+   ElementsPegoutTxOutFeeStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1572,16 +1572,16 @@ class ElementsCreateRawPegoutRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreateRawPegoutRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreateRawPegoutRequestStruct ConvertToStruct()  const;
+   ElementsCreateRawPegoutRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1773,16 +1773,16 @@ class ElementsCreateRawPegoutResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreateRawPegoutResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreateRawPegoutResponseStruct ConvertToStruct()  const;
+   ElementsCreateRawPegoutResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

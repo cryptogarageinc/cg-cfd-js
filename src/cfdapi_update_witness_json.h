@@ -315,16 +315,16 @@ class WitnessStackData
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const WitnessStackDataStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  WitnessStackDataStruct ConvertToStruct()  const;
+   WitnessStackDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -559,16 +559,16 @@ class UpdateWitnessStackTxInRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const UpdateWitnessStackTxInRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  UpdateWitnessStackTxInRequestStruct ConvertToStruct()  const;
+   UpdateWitnessStackTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -791,16 +791,16 @@ class UpdateWitnessStackRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const UpdateWitnessStackRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  UpdateWitnessStackRequestStruct ConvertToStruct()  const;
+   UpdateWitnessStackRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -937,16 +937,16 @@ class UpdateWitnessStackResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const UpdateWitnessStackResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  UpdateWitnessStackResponseStruct ConvertToStruct()  const;
+   UpdateWitnessStackResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

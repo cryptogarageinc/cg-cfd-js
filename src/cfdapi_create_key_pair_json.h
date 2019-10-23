@@ -186,16 +186,16 @@ class CreateKeyPairRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateKeyPairRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateKeyPairRequestStruct ConvertToStruct()  const;
+   CreateKeyPairRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -375,16 +375,16 @@ class CreateKeyPairResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateKeyPairResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateKeyPairResponseStruct ConvertToStruct()  const;
+   CreateKeyPairResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

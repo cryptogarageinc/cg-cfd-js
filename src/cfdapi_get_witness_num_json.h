@@ -143,16 +143,16 @@ class GetWitnessStackNumTxInRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetWitnessStackNumTxInRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetWitnessStackNumTxInRequestStruct ConvertToStruct()  const;
+   GetWitnessStackNumTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -371,16 +371,16 @@ class GetWitnessStackNumRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetWitnessStackNumRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetWitnessStackNumRequestStruct ConvertToStruct()  const;
+   GetWitnessStackNumRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -517,16 +517,16 @@ class GetWitnessStackNumResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetWitnessStackNumResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetWitnessStackNumResponseStruct ConvertToStruct()  const;
+   GetWitnessStackNumResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

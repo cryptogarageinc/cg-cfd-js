@@ -315,16 +315,16 @@ class ElementsPeginWitness
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsPeginWitnessStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsPeginWitnessStruct ConvertToStruct()  const;
+   ElementsPeginWitnessStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -688,16 +688,16 @@ class ElementsPeginTxIn
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsPeginTxInStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsPeginTxInStruct ConvertToStruct()  const;
+   ElementsPeginTxInStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -975,16 +975,16 @@ class ElementsPeginTxOut
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsPeginTxOutStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsPeginTxOutStruct ConvertToStruct()  const;
+   ElementsPeginTxOutStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1168,16 +1168,16 @@ class ElementsPeginTxOutFee
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsPeginTxOutFeeStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsPeginTxOutFeeStruct ConvertToStruct()  const;
+   ElementsPeginTxOutFeeStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1525,16 +1525,16 @@ class ElementsCreateRawPeginRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreateRawPeginRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreateRawPeginRequestStruct ConvertToStruct()  const;
+   ElementsCreateRawPeginRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1683,16 +1683,16 @@ class ElementsCreateRawPeginResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ElementsCreateRawPeginResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ElementsCreateRawPeginResponseStruct ConvertToStruct()  const;
+   ElementsCreateRawPeginResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

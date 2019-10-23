@@ -69,6 +69,8 @@ namespace json {
 /**
  * @brief Initialize処理を実施する。
  * @details N-APIの利用を前提とする。
+ * @param[in] env 環境情報
+ * @param[out] exports 関数格納オブジェクト
  * @return LibraryFunctionのビットフラグ
  */
 CFD_JS_API void InitializeJsonApi(Napi::Env env, Napi::Object* exports);

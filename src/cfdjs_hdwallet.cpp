@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_hdwallet.cpp
+ * @file cfdjs_hdwallet.cpp
  *
  * @brief cfd-apiで利用するHDWallet APIクラスの実装
  */

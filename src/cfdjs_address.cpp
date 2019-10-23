@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_address.cpp
+ * @file cfdjs_address.cpp
  *
  * @brief cfd-apiで利用するAddress操作の実装ファイル
  */

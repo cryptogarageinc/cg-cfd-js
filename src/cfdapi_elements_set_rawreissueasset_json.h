@@ -358,16 +358,16 @@ class ReissuanceDataRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ReissuanceDataRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ReissuanceDataRequestStruct ConvertToStruct()  const;
+   ReissuanceDataRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -606,16 +606,16 @@ class SetRawReissueAssetRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const SetRawReissueAssetRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  SetRawReissueAssetRequestStruct ConvertToStruct()  const;
+   SetRawReissueAssetRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -881,16 +881,16 @@ class ReissuanceDataResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ReissuanceDataResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ReissuanceDataResponseStruct ConvertToStruct()  const;
+   ReissuanceDataResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1074,16 +1074,16 @@ class SetRawReissueAssetResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const SetRawReissueAssetResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  SetRawReissueAssetResponseStruct ConvertToStruct()  const;
+   SetRawReissueAssetResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

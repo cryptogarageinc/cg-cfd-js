@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_transaction_base.cpp
+ * @file cfdjs_transaction_base.cpp
  *
  * @brief cfd-apiで利用するTransaction作成の実装ファイル
  */
@@ -250,14 +250,29 @@ std::string TransactionStructApiBase::ConvertLockingScriptTypeString(
   return "";
 }
 
+  /**
+   * @brief Convert SignDataStruct to SignParameter object.
+   * @param[in] sign_data   SignDataStruct which is passed by StructApi request.
+   * @return a SignParameter instance
+   */
 template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<SignDataStruct>(
     const SignDataStruct& sign_data);
 
+  /**
+   * @brief Convert SignDataStruct to SignParameter object.
+   * @param[in] sign_data   SignDataStruct which is passed by StructApi request.
+   * @return a SignParameter instance
+   */
 template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<
     MultisigSignDataStruct>(const MultisigSignDataStruct& sign_data);
 
+  /**
+   * @brief Convert SignDataStruct to SignParameter object.
+   * @param[in] sign_data   SignDataStruct which is passed by StructApi request.
+   * @return a SignParameter instance
+   */
 template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<
     WitnessStackDataStruct>(const WitnessStackDataStruct& sign_data);

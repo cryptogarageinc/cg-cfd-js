@@ -272,16 +272,16 @@ class SignData
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const SignDataStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  SignDataStruct ConvertToStruct()  const;
+   SignDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -598,16 +598,16 @@ class AddSignTxInRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const AddSignTxInRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  AddSignTxInRequestStruct ConvertToStruct()  const;
+   AddSignTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -838,16 +838,16 @@ class AddSignRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const AddSignRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  AddSignRequestStruct ConvertToStruct()  const;
+   AddSignRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -984,16 +984,16 @@ class AddSignResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const AddSignResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  AddSignResponseStruct ConvertToStruct()  const;
+   AddSignResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

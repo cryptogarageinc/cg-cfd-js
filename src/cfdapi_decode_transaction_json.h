@@ -186,16 +186,16 @@ class DecodeRawTransactionRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const DecodeRawTransactionRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  DecodeRawTransactionRequestStruct ConvertToStruct()  const;
+   DecodeRawTransactionRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -375,16 +375,16 @@ class DecodeUnlockingScript
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const DecodeUnlockingScriptStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  DecodeUnlockingScriptStruct ConvertToStruct()  const;
+   DecodeUnlockingScriptStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -732,16 +732,16 @@ class DecodeRawTransactionTxIn
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const DecodeRawTransactionTxInStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  DecodeRawTransactionTxInStruct ConvertToStruct()  const;
+   DecodeRawTransactionTxInStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1062,16 +1062,16 @@ class DecodeLockingScript
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const DecodeLockingScriptStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  DecodeLockingScriptStruct ConvertToStruct()  const;
+   DecodeLockingScriptStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1302,16 +1302,16 @@ class DecodeRawTransactionTxOut
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const DecodeRawTransactionTxOutStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  DecodeRawTransactionTxOutStruct ConvertToStruct()  const;
+   DecodeRawTransactionTxOutStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1792,16 +1792,16 @@ class DecodeRawTransactionResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const DecodeRawTransactionResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  DecodeRawTransactionResponseStruct ConvertToStruct()  const;
+   DecodeRawTransactionResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
