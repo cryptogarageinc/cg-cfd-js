@@ -250,17 +250,29 @@ std::string TransactionStructApiBase::ConvertLockingScriptTypeString(
   return "";
 }
 
-/// @relates TransactionStructApiBase
+/**
+ * @relates TransactionStructApiBase
+ * @param[in] sign_data SignDataStruct構造体
+ * @returns SignParameter情報
+ */
 template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<SignDataStruct>(
     const SignDataStruct& sign_data);
 
-/// @relates TransactionStructApiBase
+/**
+ * @relates TransactionStructApiBase
+ * @param[in] sign_data SignDataStruct構造体
+ * @returns SignParameter情報
+ */
 template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<
     MultisigSignDataStruct>(const MultisigSignDataStruct& sign_data);
 
-/// @relates TransactionStructApiBase
+/**
+ * @relates TransactionStructApiBase
+ * @param[in] sign_data SignDataStruct構造体
+ * @returns SignParameter情報
+ */
 template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<
     WitnessStackDataStruct>(const WitnessStackDataStruct& sign_data);
