@@ -23,6 +23,10 @@
 #include "cfdapi_convert_entropy_to_mnemonic_json.h"        // NOLINT
 #include "cfdapi_convert_mnemonic_to_seed_json.h"           // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
+#include "cfdapi_create_extkey_from_parent_json.h"          // NOLINT
+#include "cfdapi_create_extkey_from_path_json.h"            // NOLINT
+#include "cfdapi_create_extkey_from_seed_json.h"            // NOLINT
+#include "cfdapi_create_extpubkey_json.h"                   // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
 #include "cfdapi_decode_transaction_json.h"                 // NOLINT
 #include "cfdapi_elements_create_destroy_amount_json.h"     // NOLINT
@@ -410,6 +414,60 @@ Value GetMnemonicWordlist(const CallbackInfo &information) {
 }
 
 /**
+ * @brief CreateExtkeyFromSeedのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateExtkeyFromSeed(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::CreateExtkeyFromSeedRequest,
+      api::json::CreateExtkeyFromSeedResponse,
+      api::CreateExtkeyFromSeedRequestStruct,
+      api::CreateExtkeyFromSeedResponseStruct>(
+      information, HDWalletStructApi::CreateExtkeyFromSeed);
+}
+
+/**
+ * @brief CreateExtkeyFromParentのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateExtkeyFromParent(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::CreateExtkeyFromParentRequest,
+      api::json::CreateExtkeyFromParentResponse,
+      api::CreateExtkeyFromParentRequestStruct,
+      api::CreateExtkeyFromParentResponseStruct>(
+      information, HDWalletStructApi::CreateExtkeyFromParent);
+}
+
+/**
+ * @brief CreateExtkeyFromParentPathのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateExtkeyFromParentPath(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::CreateExtkeyFromParentPathRequest,
+      api::json::CreateExtkeyFromParentPathResponse,
+      api::CreateExtkeyFromParentPathRequestStruct,
+      api::CreateExtkeyFromParentPathResponseStruct>(
+      information, HDWalletStructApi::CreateExtkeyFromParentPath);
+}
+
+/**
+ * @brief CreateExtPubkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateExtPubkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::CreateExtPubkeyRequest, api::json::CreateExtPubkeyResponse,
+      api::CreateExtPubkeyRequestStruct, api::CreateExtPubkeyResponseStruct>(
+      information, HDWalletStructApi::CreateExtPubkey);
+}
+
+/**
  * @brief CreateKeyPairのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -748,6 +806,18 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "GetMnemonicWordlist"),
       Function::New(env, GetMnemonicWordlist));
+  exports->Set(
+      String::New(env, "CreateExtkeyFromSeed"),
+      Function::New(env, CreateExtkeyFromSeed));
+  exports->Set(
+      String::New(env, "CreateExtkeyFromParent"),
+      Function::New(env, CreateExtkeyFromParent));
+  exports->Set(
+      String::New(env, "CreateExtkeyFromParentPath"),
+      Function::New(env, CreateExtkeyFromParentPath));
+  exports->Set(
+      String::New(env, "CreateExtPubkey"),
+      Function::New(env, CreateExtPubkey));
   exports->Set(
       String::New(env, "CreateKeyPair"), Function::New(env, CreateKeyPair));
   exports->Set(

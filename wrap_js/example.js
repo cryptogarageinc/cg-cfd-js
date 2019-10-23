@@ -17,6 +17,12 @@ const {
   CreateSignatureHash,
   GetSupportedFunction,
   GetMnemonicWordlist,
+  ConvertEntropyToMnemonic,
+  ConvertMnemonicToSeed,
+  CreateExtkeyFromSeed,
+  CreateExtkeyFromParent,
+  CreateExtkeyFromParentPath,
+  CreateExtPubkey,
 } = cfdjsModule;
 
 const DUMMY_TXID_1 = '86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac'; // eslint-disable-line max-len
@@ -669,3 +675,86 @@ let wordlistResult;
   wordlistResult = GetMnemonicWordlist(reqJson);
   console.log('*** Response ***\n', wordlistResult);
 }
+
+let entropyToMnemonicResult;
+{
+  console.log('-- ConvertEntropyToMnemonic start --');
+  const reqJson = {
+    entropy: '7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f',
+    language: 'en',
+  };
+  console.log('*** Request ***\n', reqJson);
+  entropyToMnemonicResult = ConvertEntropyToMnemonic(reqJson);
+  console.log('*** Response ***\n', entropyToMnemonicResult);
+}
+
+let convertMnemonicToSeedResult;
+{
+  console.log('-- ConvertMnemonicToSeed start --');
+  const reqJson = {
+    mnemonic: entropyToMnemonicResult.mnemonic,
+    language: 'en',
+    passphrase: 'keyword',
+  };
+  console.log('*** Request ***\n', reqJson);
+  convertMnemonicToSeedResult = ConvertMnemonicToSeed(reqJson);
+  console.log('*** Response ***\n', convertMnemonicToSeedResult);
+}
+
+let extPrivkeyFromSeedResult;
+{
+  console.log('-- CreateExtkeyFromSeed start --');
+  const reqJson = {
+    seed: convertMnemonicToSeedResult.seed,
+    network: 'mainnet',
+    extkeyType: 'extPrivkey',
+  };
+  console.log('*** Request ***\n', reqJson);
+  extPrivkeyFromSeedResult = CreateExtkeyFromSeed(reqJson);
+  console.log('*** Response ***\n', extPrivkeyFromSeedResult);
+}
+
+let extPrivkeyHardenedFromParentResult;
+{
+  console.log('-- CreateExtkeyFromParent start (m/44\') --');
+  const reqJson = {
+    extkey: extPrivkeyFromSeedResult.extkey,
+    network: 'mainnet',
+    extkeyType: 'extPrivkey',
+    childNumber: 44,
+    hardened: true,
+  };
+  console.log('*** Request ***\n', reqJson);
+  extPrivkeyHardenedFromParentResult = CreateExtkeyFromParent(reqJson);
+  console.log('*** Response ***\n', extPrivkeyHardenedFromParentResult);
+}
+
+let extPubkeyFromParentPathResult;
+{
+  console.log('-- CreateExtkeyFromParentPath start (m/44\'/0\'/0\'/2) --');
+  const reqJson = {
+    extkey: extPrivkeyHardenedFromParentResult.extkey,
+    network: 'mainnet',
+    extkeyType: 'extPubkey',
+    childNumberArray: [
+      2147483648, 2147483648, 2,
+    ],
+  };
+  console.log('*** Request ***\n', reqJson);
+  extPubkeyFromParentPathResult = CreateExtkeyFromParentPath(reqJson);
+  console.log('*** Response ***\n', extPubkeyFromParentPathResult);
+}
+
+
+let createExtPubkeyResult;
+{
+  console.log('-- CreateExtPubkey start (m/44\') --');
+  const reqJson = {
+    extkey: extPrivkeyHardenedFromParentResult.extkey,
+    network: 'mainnet',
+  };
+  console.log('*** Request ***\n', reqJson);
+  createExtPubkeyResult = CreateExtPubkey(reqJson);
+  console.log('*** Response ***\n', createExtPubkeyResult);
+}
+

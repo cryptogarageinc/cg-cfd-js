@@ -344,6 +344,108 @@ struct CreateAddressResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// CreateExtkeyFromParentRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyFromParentRequestStruct 構造体
+ */
+struct CreateExtkeyFromParentRequestStruct {
+  std::string extkey = "";          //!< extkey  // NOLINT
+  std::string network = "mainnet";  //!< network  // NOLINT
+  std::string extkey_type = "";     //!< extkey_type  // NOLINT
+  int64_t child_number = 0;         //!< child_number  // NOLINT
+  bool hardened = false;            //!< hardened  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateExtkeyFromParentResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyFromParentResponseStruct 構造体
+ */
+struct CreateExtkeyFromParentResponseStruct {
+  std::string extkey = "";  //!< extkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateExtkeyFromParentPathRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyFromParentPathRequestStruct 構造体
+ */
+struct CreateExtkeyFromParentPathRequestStruct {
+  std::string extkey = "";                  //!< extkey  // NOLINT
+  std::string network = "mainnet";          //!< network  // NOLINT
+  std::string extkey_type = "";             //!< extkey_type  // NOLINT
+  std::vector<int64_t> child_number_array;  //!< child_number_array  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateExtkeyFromParentPathResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyFromParentPathResponseStruct 構造体
+ */
+struct CreateExtkeyFromParentPathResponseStruct {
+  std::string extkey = "";  //!< extkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateExtkeyFromSeedRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyFromSeedRequestStruct 構造体
+ */
+struct CreateExtkeyFromSeedRequestStruct {
+  std::string seed = "";                   //!< seed  // NOLINT
+  std::string network = "mainnet";         //!< network  // NOLINT
+  std::string extkey_type = "extPrivkey";  //!< extkey_type  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateExtkeyFromSeedResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyFromSeedResponseStruct 構造体
+ */
+struct CreateExtkeyFromSeedResponseStruct {
+  std::string extkey = "";  //!< extkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateExtPubkeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtPubkeyRequestStruct 構造体
+ */
+struct CreateExtPubkeyRequestStruct {
+  std::string extkey = "";          //!< extkey  // NOLINT
+  std::string network = "mainnet";  //!< network  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateExtPubkeyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtPubkeyResponseStruct 構造体
+ */
+struct CreateExtPubkeyResponseStruct {
+  std::string extkey = "";  //!< extkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // CreateKeyPairRequestStruct
 // ------------------------------------------------------------------------
 /**
