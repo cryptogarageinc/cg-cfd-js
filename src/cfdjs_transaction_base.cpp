@@ -250,29 +250,17 @@ std::string TransactionStructApiBase::ConvertLockingScriptTypeString(
   return "";
 }
 
-  /**
-   * @brief Convert SignDataStruct to SignParameter object.
-   * @param[in] sign_data   SignDataStruct which is passed by StructApi request.
-   * @return a SignParameter instance
-   */
+/// @relates TransactionStructApiBase
 template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<SignDataStruct>(
     const SignDataStruct& sign_data);
 
-  /**
-   * @brief Convert SignDataStruct to SignParameter object.
-   * @param[in] sign_data   SignDataStruct which is passed by StructApi request.
-   * @return a SignParameter instance
-   */
+/// @relates TransactionStructApiBase
 template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<
     MultisigSignDataStruct>(const MultisigSignDataStruct& sign_data);
 
-  /**
-   * @brief Convert SignDataStruct to SignParameter object.
-   * @param[in] sign_data   SignDataStruct which is passed by StructApi request.
-   * @return a SignParameter instance
-   */
+/// @relates TransactionStructApiBase
 template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<
     WitnessStackDataStruct>(const WitnessStackDataStruct& sign_data);
