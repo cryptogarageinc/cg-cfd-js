@@ -6,7 +6,7 @@
 		"seed:hint": "seed hex data",
 		"network": "mainnet",
 		"network:hint": "mainnet, testnet or regtest",
-		"extkeyType": "",
+		"extkeyType": "extPrivkey",
 		"extkeyType:hint": "extPrivkey or extPubkey"
 	},
 	"response": {

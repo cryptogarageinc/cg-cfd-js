@@ -256,7 +256,7 @@ class CreateExtkeyFromSeedRequest
   /**
    * @brief JsonAPI(extkeyType) のvalue
    */
-  std::string extkey_type_ = "";
+  std::string extkey_type_ = "extPrivkey";
 };
 
 // ------------------------------------------------------------------------
