@@ -1,0 +1,13 @@
+{
+  "namespace": ["cfd","js","api","json"],
+  "request": {
+    ":class": "GetExtkeyInfoRequest",
+    "extkey": ""
+  },
+  "response": {
+    ":class": "GetExtkeyInfoResponse",
+    "version": "",
+    "depth": 0,
+    "childNumber": ""
+  }
+}

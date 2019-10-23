@@ -152,8 +152,12 @@ target_sources(${CFDJS_LIBRARY}
     cfdapi_elements_set_rawreissueasset_json.cpp
     cfdapi_error_base_json.cpp
     cfdapi_error_json.cpp
+    cfdapi_get_extkeyinfo_json.cpp
     cfdapi_get_issuance_blinding_key_json.cpp
     cfdapi_get_witness_num_json.cpp
+    cfdapi_get_privkey_from_extkey_json.cpp
+    cfdapi_get_pubkey_from_extkey_json.cpp
+    cfdapi_get_pubkey_from_privkey_json.cpp
     cfdapi_elements_get_confidential_address_json.cpp
     cfdapi_elements_get_unblinded_address_json.cpp
     cfdapi_multisig_address_json.cpp

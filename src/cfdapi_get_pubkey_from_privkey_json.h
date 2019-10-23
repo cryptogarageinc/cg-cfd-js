@@ -1,11 +1,11 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_create_extpubkey_json.h
+ * @file cfdapi_get_pubkey_from_privkey_json.h
  *
  * @brief JSONマッピングファイル (自動生成)
  */
-#ifndef CFD_JS_SRC_CFDAPI_CREATE_EXTPUBKEY_JSON_H_
-#define CFD_JS_SRC_CFDAPI_CREATE_EXTPUBKEY_JSON_H_
+#ifndef CFD_JS_SRC_CFDAPI_GET_PUBKEY_FROM_PRIVKEY_JSON_H_
+#define CFD_JS_SRC_CFDAPI_GET_PUBKEY_FROM_PRIVKEY_JSON_H_
 
 #include <set>
 #include <string>
@@ -28,18 +28,18 @@ using cfd::core::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------
-// CreateExtPubkeyRequest
+// GetPubkeyFromPrivkeyRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CreateExtPubkeyRequest）クラス
+ * @brief JSON-API（GetPubkeyFromPrivkeyRequest）クラス
  */
-class CreateExtPubkeyRequest
-  : public cfd::core::JsonClassBase<CreateExtPubkeyRequest> {
+class GetPubkeyFromPrivkeyRequest
+  : public cfd::core::JsonClassBase<GetPubkeyFromPrivkeyRequest> {
  public:
-  CreateExtPubkeyRequest() {
+  GetPubkeyFromPrivkeyRequest() {
     CollectFieldName();
   }
-  virtual ~CreateExtPubkeyRequest() {
+  virtual ~GetPubkeyFromPrivkeyRequest() {
     // do nothing
   }
   /**
@@ -48,89 +48,89 @@ class CreateExtPubkeyRequest
   static void CollectFieldName();
 
   /**
-   * @brief extkey 取得処理
-   * @return extkey
+   * @brief privkey 取得処理
+   * @return privkey
    */
-  std::string GetExtkey() {
-    return extkey_;
+  std::string GetPrivkey() {
+    return privkey_;
   }
   /**
-   * @brief extkey 設定処理
-   * @param[in] extkey    設定値
+   * @brief privkey 設定処理
+   * @param[in] privkey    設定値
    */
-  void SetExtkey(  // line separate
-    const std::string& extkey) {  // NOLINT
-    this->extkey_ = extkey;
+  void SetPrivkey(  // line separate
+    const std::string& privkey) {  // NOLINT
+    this->privkey_ = privkey;
   }
   /**
-   * @brief extkey データ型の取得処理
-   * @return extkeyのデータ型
+   * @brief privkey データ型の取得処理
+   * @return privkeyのデータ型
    */
-  static std::string GetExtkeyFieldType() {
+  static std::string GetPrivkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief extkey フィールドのJSON文字列取得処理
+   * @brief privkey フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetExtkeyString(  // line separate
-      const CreateExtPubkeyRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.extkey_);
+  static std::string GetPrivkeyString(  // line separate
+      const GetPubkeyFromPrivkeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.privkey_);
   }
   /**
-   * @brief extkey フィールドへのJSON情報設定処理
+   * @brief privkey フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetExtkeyString(  // line separate
-      CreateExtPubkeyRequest& obj,  // NOLINT
+  static void SetPrivkeyString(  // line separate
+      GetPubkeyFromPrivkeyRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.extkey_, json_value);
+      obj.privkey_, json_value);
   }
 
   /**
-   * @brief network 取得処理
-   * @return network
+   * @brief isCompressed 取得処理
+   * @return isCompressed
    */
-  std::string GetNetwork() {
-    return network_;
+  bool GetIsCompressed() {
+    return is_compressed_;
   }
   /**
-   * @brief network 設定処理
-   * @param[in] network    設定値
+   * @brief isCompressed 設定処理
+   * @param[in] is_compressed    設定値
    */
-  void SetNetwork(  // line separate
-    const std::string& network) {  // NOLINT
-    this->network_ = network;
+  void SetIsCompressed(  // line separate
+    const bool& is_compressed) {  // NOLINT
+    this->is_compressed_ = is_compressed;
   }
   /**
-   * @brief network データ型の取得処理
-   * @return networkのデータ型
+   * @brief isCompressed データ型の取得処理
+   * @return isCompressedのデータ型
    */
-  static std::string GetNetworkFieldType() {
-    return "std::string";
+  static std::string GetIsCompressedFieldType() {
+    return "bool";
   }
   /**
-   * @brief network フィールドのJSON文字列取得処理
+   * @brief isCompressed フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetNetworkString(  // line separate
-      const CreateExtPubkeyRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.network_);
+  static std::string GetIsCompressedString(  // line separate
+      const GetPubkeyFromPrivkeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_compressed_);
   }
   /**
-   * @brief network フィールドへのJSON情報設定処理
+   * @brief isCompressed フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetNetworkString(  // line separate
-      CreateExtPubkeyRequest& obj,  // NOLINT
+  static void SetIsCompressedString(  // line separate
+      GetPubkeyFromPrivkeyRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.network_, json_value);
+      obj.is_compressed_, json_value);
   }
 
   /**
@@ -146,27 +146,27 @@ class CreateExtPubkeyRequest
    * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
-      const CreateExtPubkeyRequestStruct& data);
+      const GetPubkeyFromPrivkeyRequestStruct& data);
 
   /**
    * @brief クラスから構造体へ変換する.
    * @return  構造体データ
    */
-  CreateExtPubkeyRequestStruct ConvertToStruct()  const;
+  GetPubkeyFromPrivkeyRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief Mapテーブルの型名定義
    */
-  using CreateExtPubkeyRequestMapTable =
-    cfd::core::JsonTableMap<CreateExtPubkeyRequest>;
+  using GetPubkeyFromPrivkeyRequestMapTable =
+    cfd::core::JsonTableMap<GetPubkeyFromPrivkeyRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const CreateExtPubkeyRequestMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const GetPubkeyFromPrivkeyRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -192,7 +192,7 @@ class CreateExtPubkeyRequest
  /**
   * @brief JsonFunctionMapテーブル
   */
-  static CreateExtPubkeyRequestMapTable json_mapper;
+  static GetPubkeyFromPrivkeyRequestMapTable json_mapper;
   /**
    * @brief フィールド名リスト
    */
@@ -203,28 +203,28 @@ class CreateExtPubkeyRequest
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(extkey) のvalue
+   * @brief JsonAPI(privkey) のvalue
    */
-  std::string extkey_ = "";
+  std::string privkey_ = "";
   /**
-   * @brief JsonAPI(network) のvalue
+   * @brief JsonAPI(isCompressed) のvalue
    */
-  std::string network_ = "mainnet";
+  bool is_compressed_ = true;
 };
 
 // ------------------------------------------------------------------------
-// CreateExtPubkeyResponse
+// GetPubkeyFromPrivkeyResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CreateExtPubkeyResponse）クラス
+ * @brief JSON-API（GetPubkeyFromPrivkeyResponse）クラス
  */
-class CreateExtPubkeyResponse
-  : public cfd::core::JsonClassBase<CreateExtPubkeyResponse> {
+class GetPubkeyFromPrivkeyResponse
+  : public cfd::core::JsonClassBase<GetPubkeyFromPrivkeyResponse> {
  public:
-  CreateExtPubkeyResponse() {
+  GetPubkeyFromPrivkeyResponse() {
     CollectFieldName();
   }
-  virtual ~CreateExtPubkeyResponse() {
+  virtual ~GetPubkeyFromPrivkeyResponse() {
     // do nothing
   }
   /**
@@ -233,46 +233,46 @@ class CreateExtPubkeyResponse
   static void CollectFieldName();
 
   /**
-   * @brief extkey 取得処理
-   * @return extkey
+   * @brief pubkey 取得処理
+   * @return pubkey
    */
-  std::string GetExtkey() {
-    return extkey_;
+  std::string GetPubkey() {
+    return pubkey_;
   }
   /**
-   * @brief extkey 設定処理
-   * @param[in] extkey    設定値
+   * @brief pubkey 設定処理
+   * @param[in] pubkey    設定値
    */
-  void SetExtkey(  // line separate
-    const std::string& extkey) {  // NOLINT
-    this->extkey_ = extkey;
+  void SetPubkey(  // line separate
+    const std::string& pubkey) {  // NOLINT
+    this->pubkey_ = pubkey;
   }
   /**
-   * @brief extkey データ型の取得処理
-   * @return extkeyのデータ型
+   * @brief pubkey データ型の取得処理
+   * @return pubkeyのデータ型
    */
-  static std::string GetExtkeyFieldType() {
+  static std::string GetPubkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief extkey フィールドのJSON文字列取得処理
+   * @brief pubkey フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetExtkeyString(  // line separate
-      const CreateExtPubkeyResponse& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.extkey_);
+  static std::string GetPubkeyString(  // line separate
+      const GetPubkeyFromPrivkeyResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.pubkey_);
   }
   /**
-   * @brief extkey フィールドへのJSON情報設定処理
+   * @brief pubkey フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetExtkeyString(  // line separate
-      CreateExtPubkeyResponse& obj,  // NOLINT
+  static void SetPubkeyString(  // line separate
+      GetPubkeyFromPrivkeyResponse& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.extkey_, json_value);
+      obj.pubkey_, json_value);
   }
 
   /**
@@ -288,27 +288,27 @@ class CreateExtPubkeyResponse
    * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
-      const CreateExtPubkeyResponseStruct& data);
+      const GetPubkeyFromPrivkeyResponseStruct& data);
 
   /**
    * @brief クラスから構造体へ変換する.
    * @return  構造体データ
    */
-  CreateExtPubkeyResponseStruct ConvertToStruct()  const;
+  GetPubkeyFromPrivkeyResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief Mapテーブルの型名定義
    */
-  using CreateExtPubkeyResponseMapTable =
-    cfd::core::JsonTableMap<CreateExtPubkeyResponse>;
+  using GetPubkeyFromPrivkeyResponseMapTable =
+    cfd::core::JsonTableMap<GetPubkeyFromPrivkeyResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const CreateExtPubkeyResponseMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const GetPubkeyFromPrivkeyResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -334,7 +334,7 @@ class CreateExtPubkeyResponse
  /**
   * @brief JsonFunctionMapテーブル
   */
-  static CreateExtPubkeyResponseMapTable json_mapper;
+  static GetPubkeyFromPrivkeyResponseMapTable json_mapper;
   /**
    * @brief フィールド名リスト
    */
@@ -345,9 +345,9 @@ class CreateExtPubkeyResponse
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(extkey) のvalue
+   * @brief JsonAPI(pubkey) のvalue
    */
-  std::string extkey_ = "";
+  std::string pubkey_ = "";
 };
 
 // @formatter:on
@@ -358,4 +358,4 @@ class CreateExtPubkeyResponse
 }  // namespace js
 }  // namespace cfd
 
-#endif  // CFD_JS_SRC_CFDAPI_CREATE_EXTPUBKEY_JSON_H_
+#endif  // CFD_JS_SRC_CFDAPI_GET_PUBKEY_FROM_PRIVKEY_JSON_H_
