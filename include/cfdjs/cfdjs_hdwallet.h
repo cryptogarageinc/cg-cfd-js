@@ -12,9 +12,9 @@
 #include <string>
 #include <vector>
 
+#include "cfd/cfdapi_hdwallet.h"
 #include "cfdjs/cfdjs_common.h"
 #include "cfdjs/cfdjs_struct.h"
-// #include "cfdcore/cfdcore_bytedata.h"
 
 /**
  * @brief cfdapi名前空間
@@ -22,6 +22,8 @@
 namespace cfd {
 namespace js {
 namespace api {
+
+using cfd::api::ExtKeyType;
 
 /**
  * @brief HDWallet構造体関数群クラス
@@ -51,6 +53,45 @@ class CFD_JS_EXPORT HDWalletStructApi {
    */
   static ConvertEntropyToMnemonicResponseStruct ConvertEntropyToMnemonic(
       const ConvertEntropyToMnemonicRequestStruct& request);
+
+  /**
+   * @brief JSONパラメータの情報を元に、seedから拡張鍵を生成する.
+   * @param[in] request リクエスト構造体
+   * @return extkeyを含むレスポンス構造体
+   */
+  static CreateExtkeyFromSeedResponseStruct CreateExtkeyFromSeed(
+      const CreateExtkeyFromSeedRequestStruct& request);
+
+  /**
+   * @brief JSONパラメータの情報を元に、拡張鍵から派生拡張鍵を生成する.
+   * @param[in] request リクエスト構造体
+   * @return extkeyを含むレスポンス構造体
+   */
+  static CreateExtkeyFromParentResponseStruct CreateExtkeyFromParent(
+      const CreateExtkeyFromParentRequestStruct& request);
+
+  /**
+   * @brief JSONパラメータの情報を元に、拡張鍵から派生拡張鍵を生成する.
+   * @param[in] request リクエスト構造体
+   * @return extkeyを含むレスポンス構造体
+   */
+  static CreateExtkeyFromParentPathResponseStruct CreateExtkeyFromParentPath(
+      const CreateExtkeyFromParentPathRequestStruct& request);
+
+  /**
+   * @brief JSONパラメータの情報を元に、拡張秘密鍵から同階層の拡張公開鍵を生成する.
+   * @param[in] request リクエスト構造体
+   * @return extkeyを含むレスポンス構造体
+   */
+  static CreateExtPubkeyResponseStruct CreateExtPubkey(
+      const CreateExtPubkeyRequestStruct& request);
+
+  /**
+   * @brief 文字列からExtKeyTypeを取得する.
+   * @param[in] key_type    extkey type string
+   * @return ExtKeyType
+   */
+  static ExtKeyType ConvertExtKeyType(const std::string& key_type);
 
  private:
   HDWalletStructApi();
