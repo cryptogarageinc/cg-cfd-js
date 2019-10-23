@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_elements_transaction.h
+ * @file cfdjs_elements_transaction.h
  *
  * @brief cfd-apiで利用するElements用Transaction操作のクラス定義
  *

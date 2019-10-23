@@ -10,9 +10,9 @@
 
 #include "cfd/cfdapi_key.h"
 
-#include "cfdjs/cfdjs_key.h"
 #include "cfdjs/cfdjs_address.h"
-#include "cfdjs_internal.h"   // NOLINT
+#include "cfdjs/cfdjs_key.h"
+#include "cfdjs_internal.h"  // NOLINT
 
 namespace cfd {
 namespace js {

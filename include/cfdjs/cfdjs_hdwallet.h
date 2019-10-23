@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_hdwallet.h
+ * @file cfdjs_hdwallet.h
  *
  * @brief cfd-apiで利用するHDWallet APIのクラス定義
  *
@@ -14,7 +14,7 @@
 
 #include "cfdjs/cfdjs_common.h"
 #include "cfdjs/cfdjs_struct.h"
-//#include "cfdcore/cfdcore_bytedata.h"
+// #include "cfdcore/cfdcore_bytedata.h"
 
 /**
  * @brief cfdapi名前空間

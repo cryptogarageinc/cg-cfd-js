@@ -10,9 +10,9 @@
 #include <string>
 
 #include "cfd/cfd_common.h"
-#include "cfdjs/cfdjs_struct.h"
 #include "cfdcore/cfdcore_exception.h"
 #include "cfdcore/cfdcore_logger.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {

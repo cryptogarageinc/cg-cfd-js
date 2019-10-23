@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_utility.h
+ * @file cfdjs_utility.h
  *
  * @brief cfd-apiで利用する共通系のクラス定義
  *

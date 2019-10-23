@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_address.h
+ * @file cfdjs_address.h
  *
  * @brief cfd-apiで利用するAddress操作のクラス定義
  *
@@ -12,10 +12,10 @@
 #include <string>
 #include <vector>
 
-#include "cfdjs/cfdjs_common.h"
-#include "cfdjs/cfdjs_struct.h"
 #include "cfdcore/cfdcore_address.h"
 #include "cfdcore/cfdcore_key.h"
+#include "cfdjs/cfdjs_common.h"
+#include "cfdjs/cfdjs_struct.h"
 
 /**
  * @brief cfdapi名前空間

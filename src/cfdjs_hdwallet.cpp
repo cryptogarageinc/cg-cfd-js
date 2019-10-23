@@ -7,8 +7,8 @@
 #include <string>
 #include <vector>
 
-#include "cfdjs/cfdjs_hdwallet.h"
 #include "cfd/cfdapi_hdwallet.h"
+#include "cfdjs/cfdjs_hdwallet.h"
 #include "cfdjs_internal.h"  // NOLINT
 
 //////////////////////////////////

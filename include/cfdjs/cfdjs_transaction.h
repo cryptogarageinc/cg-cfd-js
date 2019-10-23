@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_transaction.h
+ * @file cfdjs_transaction.h
  *
  * @brief cfd-apiで利用するTransaction作成のクラス定義
  *
@@ -12,9 +12,9 @@
 #include <string>
 #include <vector>
 
+#include "cfdcore/cfdcore_script.h"
 #include "cfdjs/cfdjs_common.h"
 #include "cfdjs/cfdjs_struct.h"
-#include "cfdcore/cfdcore_script.h"
 
 namespace cfd {
 namespace js {

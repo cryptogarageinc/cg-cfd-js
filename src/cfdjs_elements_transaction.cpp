@@ -17,8 +17,8 @@
 #include "cfdjs/cfdjs_address.h"
 #include "cfdjs/cfdjs_elements_address.h"
 #include "cfdjs/cfdjs_elements_transaction.h"
-#include "cfdjs_internal.h"   // NOLINT
-#include "cfdjs_transaction_base.h" // NOLINT
+#include "cfdjs_internal.h"          // NOLINT
+#include "cfdjs_transaction_base.h"  // NOLINT
 
 namespace cfd {
 namespace js {

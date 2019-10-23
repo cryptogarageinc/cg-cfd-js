@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_elements_address.h
+ * @file cfdjs_elements_address.h
  *
  * @brief cfd-apiで利用するElementsAddress操作のクラス定義
  *
@@ -13,9 +13,9 @@
 #include <string>
 #include <vector>
 
+#include "cfdcore/cfdcore_elements_address.h"
 #include "cfdjs/cfdjs_common.h"
 #include "cfdjs/cfdjs_struct.h"
-#include "cfdcore/cfdcore_elements_address.h"
 
 /**
  * @brief cfdapi名前空間
