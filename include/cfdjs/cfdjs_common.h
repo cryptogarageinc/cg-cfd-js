@@ -8,7 +8,7 @@
 #include <cstddef>
 #include <cstdint>
 
-#include <napi.h>
+#include <napi.h>  // NOLINT
 
 /**
  * @brief APIのDLLエクスポート定義

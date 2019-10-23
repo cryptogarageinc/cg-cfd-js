@@ -8,13 +8,13 @@
 #include <string>
 
 #include "cfd/cfd_common.h"
-#include "cfd/cfdapi_address.h"
-#include "cfd/cfdapi_elements_address.h"
-#include "cfd/cfdapi_elements_transaction.h"
-#include "cfd/cfdapi_hdwallet.h"
-#include "cfd/cfdapi_key.h"
-#include "cfd/cfdapi_transaction.h"
-#include "cfd/cfdapi_utility.h"
+#include "cfdjs/cfdjs_address.h"
+#include "cfdjs/cfdjs_elements_address.h"
+#include "cfdjs/cfdjs_elements_transaction.h"
+#include "cfdjs/cfdjs_hdwallet.h"
+#include "cfdjs/cfdjs_key.h"
+#include "cfdjs/cfdjs_transaction.h"
+#include "cfdjs/cfdjs_utility.h"
 
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
