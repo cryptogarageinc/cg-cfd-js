@@ -314,17 +314,17 @@ class WitnessStackData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const WitnessStackDataStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   WitnessStackDataStruct ConvertToStruct()  const;
+  WitnessStackDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -558,17 +558,17 @@ class UpdateWitnessStackTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const UpdateWitnessStackTxInRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   UpdateWitnessStackTxInRequestStruct ConvertToStruct()  const;
+  UpdateWitnessStackTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -790,17 +790,17 @@ class UpdateWitnessStackRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const UpdateWitnessStackRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   UpdateWitnessStackRequestStruct ConvertToStruct()  const;
+  UpdateWitnessStackRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -936,17 +936,17 @@ class UpdateWitnessStackResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const UpdateWitnessStackResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   UpdateWitnessStackResponseStruct ConvertToStruct()  const;
+  UpdateWitnessStackResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

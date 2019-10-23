@@ -99,17 +99,17 @@ class GetUnblindedAddressRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const GetUnblindedAddressRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   GetUnblindedAddressRequestStruct ConvertToStruct()  const;
+  GetUnblindedAddressRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -237,17 +237,17 @@ class GetUnblindedAddressResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const GetUnblindedAddressResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   GetUnblindedAddressResponseStruct ConvertToStruct()  const;
+  GetUnblindedAddressResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

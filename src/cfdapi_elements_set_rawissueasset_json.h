@@ -443,17 +443,17 @@ class IssuanceDataRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const IssuanceDataRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   IssuanceDataRequestStruct ConvertToStruct()  const;
+  IssuanceDataRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -699,17 +699,17 @@ class SetRawIssueAssetRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const SetRawIssueAssetRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   SetRawIssueAssetRequestStruct ConvertToStruct()  const;
+  SetRawIssueAssetRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1017,17 +1017,17 @@ class IssuanceDataResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const IssuanceDataResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   IssuanceDataResponseStruct ConvertToStruct()  const;
+  IssuanceDataResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1214,17 +1214,17 @@ class SetRawIssueAssetResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const SetRawIssueAssetResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   SetRawIssueAssetResponseStruct ConvertToStruct()  const;
+  SetRawIssueAssetResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

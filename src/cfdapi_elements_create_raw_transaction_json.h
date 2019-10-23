@@ -185,17 +185,17 @@ class ElementsTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsTxInRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsTxInRequestStruct ConvertToStruct()  const;
+  ElementsTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -460,17 +460,17 @@ class ElementsTxOutRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsTxOutRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsTxOutRequestStruct ConvertToStruct()  const;
+  ElementsTxOutRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -653,17 +653,17 @@ class ElementsTxOutFeeRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsTxOutFeeRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsTxOutFeeRequestStruct ConvertToStruct()  const;
+  ElementsTxOutFeeRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -967,17 +967,17 @@ class ElementsCreateRawTransactionRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsCreateRawTransactionRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsCreateRawTransactionRequestStruct ConvertToStruct()  const;
+  ElementsCreateRawTransactionRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1121,17 +1121,17 @@ class ElementsCreateRawTransactionResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsCreateRawTransactionResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   ElementsCreateRawTransactionResponseStruct ConvertToStruct()  const;
+  ElementsCreateRawTransactionResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
