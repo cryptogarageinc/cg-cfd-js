@@ -143,16 +143,16 @@ class ConvertEntropyToMnemonicRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ConvertEntropyToMnemonicRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ConvertEntropyToMnemonicRequestStruct ConvertToStruct()  const;
+   ConvertEntropyToMnemonicRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -285,16 +285,16 @@ class ConvertEntropyToMnemonicResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const ConvertEntropyToMnemonicResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  ConvertEntropyToMnemonicResponseStruct ConvertToStruct()  const;
+   ConvertEntropyToMnemonicResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

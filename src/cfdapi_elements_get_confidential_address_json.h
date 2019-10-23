@@ -143,16 +143,16 @@ class GetConfidentialAddressRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetConfidentialAddressRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetConfidentialAddressRequestStruct ConvertToStruct()  const;
+   GetConfidentialAddressRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -285,16 +285,16 @@ class GetConfidentialAddressResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetConfidentialAddressResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetConfidentialAddressResponseStruct ConvertToStruct()  const;
+   GetConfidentialAddressResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

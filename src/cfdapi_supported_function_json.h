@@ -143,16 +143,16 @@ class GetSupportedFunctionResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const GetSupportedFunctionResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  GetSupportedFunctionResponseStruct ConvertToStruct()  const;
+   GetSupportedFunctionResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

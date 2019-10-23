@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_internal.h
+ * @file cfdjs_internal.h
  *
  * @brief cfd_apiの内部定義ヘッダ.
  */

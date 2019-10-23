@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_transaction.cpp
+ * @file cfdjs_transaction.cpp
  *
  * @brief cfd-apiで利用するTransaction作成の実装ファイル
  */

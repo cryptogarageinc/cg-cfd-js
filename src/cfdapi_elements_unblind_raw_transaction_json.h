@@ -143,16 +143,16 @@ class UnblindTxOut
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const UnblindTxOutStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  UnblindTxOutStruct ConvertToStruct()  const;
+   UnblindTxOutStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -414,16 +414,16 @@ class UnblindIssuance
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const UnblindIssuanceStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  UnblindIssuanceStruct ConvertToStruct()  const;
+   UnblindIssuanceStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -650,16 +650,16 @@ class UnblindRawTransactionRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const UnblindRawTransactionRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  UnblindRawTransactionRequestStruct ConvertToStruct()  const;
+   UnblindRawTransactionRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -968,16 +968,16 @@ class UnblindOutput
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const UnblindOutputStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  UnblindOutputStruct ConvertToStruct()  const;
+   UnblindOutputStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1337,16 +1337,16 @@ class UnblindIssuanceOutput
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const UnblindIssuanceOutputStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  UnblindIssuanceOutputStruct ConvertToStruct()  const;
+   UnblindIssuanceOutputStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -1581,16 +1581,16 @@ class UnblindRawTransactionResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const UnblindRawTransactionResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  UnblindRawTransactionResponseStruct ConvertToStruct()  const;
+   UnblindRawTransactionResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

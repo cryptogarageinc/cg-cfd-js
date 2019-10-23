@@ -186,16 +186,16 @@ class TxInRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const TxInRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  TxInRequestStruct ConvertToStruct()  const;
+   TxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -375,16 +375,16 @@ class TxOutRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const TxOutRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  TxOutRequestStruct ConvertToStruct()  const;
+   TxOutRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -646,16 +646,16 @@ class CreateRawTransactionRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateRawTransactionRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateRawTransactionRequestStruct ConvertToStruct()  const;
+   CreateRawTransactionRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -796,16 +796,16 @@ class CreateRawTransactionResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateRawTransactionResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateRawTransactionResponseStruct ConvertToStruct()  const;
+   CreateRawTransactionResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

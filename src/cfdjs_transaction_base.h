@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_transaction_base.h
+ * @file cfdjs_transaction_base.h
  *
  * @brief cfd-apiで利用するTransaction作成のクラス定義
  *
@@ -26,7 +26,7 @@ using cfd::core::Pubkey;
 using cfd::core::Script;
 
 /**
- * @typedef LockingScriptType
+ * @enum LockingScriptType
  * @brief LockingScript の Script Type 定義
  */
 enum LockingScriptType {

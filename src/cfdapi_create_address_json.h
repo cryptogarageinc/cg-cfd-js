@@ -143,16 +143,16 @@ class CreateAddressKeyData
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateAddressKeyDataStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateAddressKeyDataStruct ConvertToStruct()  const;
+   CreateAddressKeyDataStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -414,16 +414,16 @@ class CreateAddressRequest
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateAddressRequestStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateAddressRequestStruct ConvertToStruct()  const;
+   CreateAddressRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -650,16 +650,16 @@ class CreateAddressResponse
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @param[in] data   無視対象アイテムのキー名称
    */
   void ConvertFromStruct(
       const CreateAddressResponseStruct& data);
 
   /**
    * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @returns Response
    */
-  CreateAddressResponseStruct ConvertToStruct()  const;
+   CreateAddressResponseStruct ConvertToStruct()  const;
 
  protected:
   /**

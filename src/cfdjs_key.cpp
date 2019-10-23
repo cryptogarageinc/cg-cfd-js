@@ -1,6 +1,6 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_key.cpp
+ * @file cfdjs_key.cpp
  *
  * @brief cfd-apiで利用する鍵関連の実装ファイル
  */
