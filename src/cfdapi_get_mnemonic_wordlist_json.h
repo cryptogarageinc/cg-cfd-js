@@ -99,17 +99,17 @@ class GetMnemonicWordlistRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const GetMnemonicWordlistRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   GetMnemonicWordlistRequestStruct ConvertToStruct()  const;
+  GetMnemonicWordlistRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
@@ -237,17 +237,17 @@ class GetMnemonicWordlistResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] data   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const GetMnemonicWordlistResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @returns Response
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
-   GetMnemonicWordlistResponseStruct ConvertToStruct()  const;
+  GetMnemonicWordlistResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
