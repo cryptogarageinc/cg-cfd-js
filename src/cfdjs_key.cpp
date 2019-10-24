@@ -94,6 +94,25 @@ CalculateEcSignatureResponseStruct KeyStructApi::CalculateEcSignature(
   return result;
 }
 
+GetPubkeyFromPrivkeyResponseStruct KeyStructApi::GetPubkeyFromPrivkey(
+    const GetPubkeyFromPrivkeyRequestStruct& request) {
+  auto call_func = [](const GetPubkeyFromPrivkeyRequestStruct& request)
+      -> GetPubkeyFromPrivkeyResponseStruct {
+    GetPubkeyFromPrivkeyResponseStruct response;
+
+    KeyApi api;
+    response.pubkey =
+        api.GetPubkeyFromPrivkey(request.privkey, request.is_compressed);
+    return response;
+  };
+
+  GetPubkeyFromPrivkeyResponseStruct result;
+  result = ExecuteStructApi<
+      GetPubkeyFromPrivkeyRequestStruct, GetPubkeyFromPrivkeyResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 }  // namespace api
 }  // namespace js
 }  // namespace cfd

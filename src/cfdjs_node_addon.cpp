@@ -468,7 +468,7 @@ Value GetPubkeyFromPrivkey(const CallbackInfo &information) {
       api::json::GetPubkeyFromPrivkeyResponse,
       api::GetPubkeyFromPrivkeyRequestStruct,
       api::GetPubkeyFromPrivkeyResponseStruct>(
-      information, HDWalletStructApi::GetPubkeyFromPrivkey);
+      information, KeyStructApi::GetPubkeyFromPrivkey);
 }
 
 /**

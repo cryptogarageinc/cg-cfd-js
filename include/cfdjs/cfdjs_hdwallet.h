@@ -111,14 +111,6 @@ class CFD_JS_EXPORT HDWalletStructApi {
       const GetPubkeyFromExtkeyRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、秘密鍵から公開鍵を取得する.
-   * @param[in] request リクエスト構造体
-   * @return pubkeyを含むレスポンス構造体
-   */
-  static GetPubkeyFromPrivkeyResponseStruct GetPubkeyFromPrivkey(
-      const GetPubkeyFromPrivkeyRequestStruct& request);
-
-  /**
    * @brief 文字列からExtKeyTypeを取得する.
    * @param[in] key_type    extkey type string
    * @return ExtKeyType
