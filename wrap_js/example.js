@@ -23,6 +23,10 @@ const {
   CreateExtkeyFromParent,
   CreateExtkeyFromParentPath,
   CreateExtPubkey,
+  GetExtkeyInfo,
+  GetPrivkeyFromExtkey,
+  GetPubkeyFromExtkey,
+  GetPubkeyFromPrivkey,
 } = cfdjsModule;
 
 const DUMMY_TXID_1 = '86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac'; // eslint-disable-line max-len
@@ -745,7 +749,6 @@ let extPubkeyFromParentPathResult;
   console.log('*** Response ***\n', extPubkeyFromParentPathResult);
 }
 
-
 let createExtPubkeyResult;
 {
   console.log('-- CreateExtPubkey start (m/44\') --');
@@ -758,3 +761,67 @@ let createExtPubkeyResult;
   console.log('*** Response ***\n', createExtPubkeyResult);
 }
 
+let getExtkeyInfoResult;
+{
+  console.log('-- GetExtkeyInfo start (m/44\'/0\'/0\'/2) --');
+  const reqJson = {
+    extkey: extPubkeyFromParentPathResult.extkey,
+  };
+  console.log('*** Request ***\n', reqJson);
+  getExtkeyInfoResult = GetExtkeyInfo(reqJson);
+  console.log('*** Response ***\n', getExtkeyInfoResult, '\n');
+}
+
+let extPrivkeyFromParentPathResult;
+{
+  console.log('-- CreateExtkeyFromParentPath start (m/44\'/0\'/0\'/2) --');
+  const reqJson = {
+    extkey: extPrivkeyHardenedFromParentResult.extkey,
+    network: 'mainnet',
+    extkeyType: 'extPubkey',
+    childNumberArray: [
+      2147483648, 2147483648, 2,
+    ],
+  };
+  console.log('*** Request ***\n', reqJson);
+  extPrivkeyFromParentPathResult = CreateExtkeyFromParentPath(reqJson);
+  console.log('*** Response ***\n', extPrivkeyFromParentPathResult);
+}
+
+let getPrivkeyFromExtkeyResult;
+{
+  console.log('-- GetPrivkeyFromExtkey start (m/44\'/0\'/0\'/2) --');
+  const reqJson = {
+    extkey: extPrivkeyHardenedFromParentResult.extkey,
+    network: 'mainnet',
+    wif: true,
+    isCompressed: true,
+  };
+  console.log('*** Request ***\n', reqJson);
+  getPrivkeyFromExtkeyResult = GetPrivkeyFromExtkey(reqJson);
+  console.log('*** Response ***\n', getPrivkeyFromExtkeyResult, '\n');
+}
+
+let getPubkeyFromExtkeyResult;
+{
+  console.log('-- GetPubkeyFromExtkey start (m/44\'/0\'/0\'/2) --');
+  const reqJson = {
+    extkey: extPrivkeyFromParentPathResult.extkey,
+    network: 'mainnet',
+  };
+  console.log('*** Request ***\n', reqJson);
+  getPubkeyFromExtkeyResult = GetPubkeyFromExtkey(reqJson);
+  console.log('*** Response ***\n', getPubkeyFromExtkeyResult);
+}
+
+let getPubkeyFromPrivkeyResult;
+{
+  console.log('-- GetPubkeyFromPrivkey start (m/44\'/0\'/0\'/2) --');
+  const reqJson = {
+    privkey: getPrivkeyFromExtkeyResult.privkey,
+    isCompressed: true,
+  };
+  console.log('*** Request ***\n', reqJson);
+  getPubkeyFromPrivkeyResult = GetPubkeyFromPrivkey(reqJson);
+  console.log('*** Response ***\n', getPubkeyFromPrivkeyResult);
+}

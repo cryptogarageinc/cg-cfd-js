@@ -189,7 +189,7 @@ class GetExtkeyInfoResponse
    * @brief version 取得処理
    * @return version
    */
-  std::string GetVersion() {
+  uint32_t GetVersion() {
     return version_;
   }
   /**
@@ -197,7 +197,7 @@ class GetExtkeyInfoResponse
    * @param[in] version    設定値
    */
   void SetVersion(  // line separate
-    const std::string& version) {  // NOLINT
+    const uint32_t& version) {  // NOLINT
     this->version_ = version;
   }
   /**
@@ -205,7 +205,7 @@ class GetExtkeyInfoResponse
    * @return versionのデータ型
    */
   static std::string GetVersionFieldType() {
-    return "std::string";
+    return "uint32_t";
   }
   /**
    * @brief version フィールドのJSON文字列取得処理
@@ -232,7 +232,7 @@ class GetExtkeyInfoResponse
    * @brief depth 取得処理
    * @return depth
    */
-  int64_t GetDepth() {
+  uint8_t GetDepth() {
     return depth_;
   }
   /**
@@ -240,7 +240,7 @@ class GetExtkeyInfoResponse
    * @param[in] depth    設定値
    */
   void SetDepth(  // line separate
-    const int64_t& depth) {  // NOLINT
+    const uint8_t& depth) {  // NOLINT
     this->depth_ = depth;
   }
   /**
@@ -248,7 +248,7 @@ class GetExtkeyInfoResponse
    * @return depthのデータ型
    */
   static std::string GetDepthFieldType() {
-    return "int64_t";
+    return "uint8_t";
   }
   /**
    * @brief depth フィールドのJSON文字列取得処理
@@ -275,7 +275,7 @@ class GetExtkeyInfoResponse
    * @brief childNumber 取得処理
    * @return childNumber
    */
-  std::string GetChildNumber() {
+  uint32_t GetChildNumber() {
     return child_number_;
   }
   /**
@@ -283,7 +283,7 @@ class GetExtkeyInfoResponse
    * @param[in] child_number    設定値
    */
   void SetChildNumber(  // line separate
-    const std::string& child_number) {  // NOLINT
+    const uint32_t& child_number) {  // NOLINT
     this->child_number_ = child_number;
   }
   /**
@@ -291,7 +291,7 @@ class GetExtkeyInfoResponse
    * @return childNumberのデータ型
    */
   static std::string GetChildNumberFieldType() {
-    return "std::string";
+    return "uint32_t";
   }
   /**
    * @brief childNumber フィールドのJSON文字列取得処理
@@ -386,15 +386,15 @@ class GetExtkeyInfoResponse
   /**
    * @brief JsonAPI(version) のvalue
    */
-  std::string version_ = "";
+  uint32_t version_ = 0;
   /**
    * @brief JsonAPI(depth) のvalue
    */
-  int64_t depth_ = 0;
+  uint8_t depth_ = 0;
   /**
    * @brief JsonAPI(childNumber) のvalue
    */
-  std::string child_number_ = "";
+  uint32_t child_number_ = 0;
 };
 
 // @formatter:on

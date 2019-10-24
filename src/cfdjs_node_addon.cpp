@@ -42,8 +42,12 @@
 #include "cfdapi_elements_unblind_raw_transaction_json.h"   // NOLINT
 #include "cfdapi_error_base_json.h"                         // NOLINT
 #include "cfdapi_error_json.h"                              // NOLINT
+#include "cfdapi_get_extkeyinfo_json.h"                     // NOLINT
 #include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
 #include "cfdapi_get_mnemonic_wordlist_json.h"              // NOLINT
+#include "cfdapi_get_privkey_from_extkey_json.h"            // NOLINT
+#include "cfdapi_get_pubkey_from_extkey_json.h"             // NOLINT
+#include "cfdapi_get_pubkey_from_privkey_json.h"            // NOLINT
 #include "cfdapi_get_witness_num_json.h"                    // NOLINT
 #include "cfdapi_multisig_address_json.h"                   // NOLINT
 #include "cfdapi_sighash_elements_json.h"                   // NOLINT
@@ -411,6 +415,60 @@ Value GetMnemonicWordlist(const CallbackInfo &information) {
       api::GetMnemonicWordlistRequestStruct,
       api::GetMnemonicWordlistResponseStruct>(
       information, HDWalletStructApi::GetMnemonicWordlist);
+}
+
+/**
+ * @brief GetExtkeyInfoのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetExtkeyInfo(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::GetExtkeyInfoRequest, api::json::GetExtkeyInfoResponse,
+      api::GetExtkeyInfoRequestStruct, api::GetExtkeyInfoResponseStruct>(
+      information, HDWalletStructApi::GetExtkeyInfo);
+}
+
+/**
+ * @brief GetPrivkeyFromExtkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetPrivkeyFromExtkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::GetPrivkeyFromExtkeyRequest,
+      api::json::GetPrivkeyFromExtkeyResponse,
+      api::GetPrivkeyFromExtkeyRequestStruct,
+      api::GetPrivkeyFromExtkeyResponseStruct>(
+      information, HDWalletStructApi::GetPrivkeyFromExtkey);
+}
+
+/**
+ * @brief GetPubkeyFromExtkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetPubkeyFromExtkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::GetPubkeyFromExtkeyRequest,
+      api::json::GetPubkeyFromExtkeyResponse,
+      api::GetPubkeyFromExtkeyRequestStruct,
+      api::GetPubkeyFromExtkeyResponseStruct>(
+      information, HDWalletStructApi::GetPubkeyFromExtkey);
+}
+
+/**
+ * @brief GetPubkeyFromPrivkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetPubkeyFromPrivkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::GetPubkeyFromPrivkeyRequest,
+      api::json::GetPubkeyFromPrivkeyResponse,
+      api::GetPubkeyFromPrivkeyRequestStruct,
+      api::GetPubkeyFromPrivkeyResponseStruct>(
+      information, HDWalletStructApi::GetPubkeyFromPrivkey);
 }
 
 /**
@@ -806,6 +864,17 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "GetMnemonicWordlist"),
       Function::New(env, GetMnemonicWordlist));
+  exports->Set(
+      String::New(env, "GetExtkeyInfo"), Function::New(env, GetExtkeyInfo));
+  exports->Set(
+      String::New(env, "GetPrivkeyFromExtkey"),
+      Function::New(env, GetPrivkeyFromExtkey));
+  exports->Set(
+      String::New(env, "GetPubkeyFromExtkey"),
+      Function::New(env, GetPubkeyFromExtkey));
+  exports->Set(
+      String::New(env, "GetPubkeyFromPrivkey"),
+      Function::New(env, GetPubkeyFromPrivkey));
   exports->Set(
       String::New(env, "CreateExtkeyFromSeed"),
       Function::New(env, CreateExtkeyFromSeed));

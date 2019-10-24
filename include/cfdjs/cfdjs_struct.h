@@ -1304,9 +1304,9 @@ struct GetExtkeyInfoRequestStruct {
  * @brief GetExtkeyInfoResponseStruct 構造体
  */
 struct GetExtkeyInfoResponseStruct {
-  std::string version = "";       //!< version  // NOLINT
-  int64_t depth = 0;              //!< depth  // NOLINT
-  std::string child_number = "";  //!< child_number  // NOLINT
+  uint32_t version = 0;       //!< version  // NOLINT
+  uint8_t depth = 0;          //!< depth  // NOLINT
+  uint32_t child_number = 0;  //!< child_number  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
