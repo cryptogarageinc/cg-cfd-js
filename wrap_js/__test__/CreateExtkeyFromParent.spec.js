@@ -81,13 +81,13 @@ const errorCase = [
     'CreateExtkeyFromParent Error(empty key data)',
     CreateExtkeyFromParent,
     ['{"extkey":"", "network":"mainnet", "extkeyType":"extPrivkey", "childNumber":0, "hardened":false}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"Illegal output_key_type. Cannot create privkey from pubkey."}}'
+    '{"error":{"code":1,"type":"illegal_argument","message":"Illegal extkey. base58 decode error."}}'
   ),
   TestHelper.createTestCase(
     'CreateExtkeyFromParent Error(invalid key data)',
     CreateExtkeyFromParent,
     ['{"extkey":"xprivdummydata", "network":"mainnet", "extkeyType":"extPrivkey", "childNumber":0, "hardened":false}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"Illegal output_key_type. Cannot create privkey from pubkey."}}'
+    '{"error":{"code":1,"type":"illegal_argument","message":"Illegal extkey. base58 decode error."}}'
   ),
   TestHelper.createTestCase(
     'CreateExtkeyFromParent Error(not match network type)',
