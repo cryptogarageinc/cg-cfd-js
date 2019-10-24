@@ -1,11 +1,11 @@
 // Copyright 2019 CryptoGarage
 /**
- * @file cfdapi_create_extpubkey_json.h
+ * @file cfdapi_get_pubkey_from_extkey_json.h
  *
  * @brief JSONマッピングファイル (自動生成)
  */
-#ifndef CFD_JS_SRC_CFDAPI_CREATE_EXTPUBKEY_JSON_H_
-#define CFD_JS_SRC_CFDAPI_CREATE_EXTPUBKEY_JSON_H_
+#ifndef CFD_JS_SRC_CFDAPI_GET_PUBKEY_FROM_EXTKEY_JSON_H_
+#define CFD_JS_SRC_CFDAPI_GET_PUBKEY_FROM_EXTKEY_JSON_H_
 
 #include <set>
 #include <string>
@@ -28,18 +28,18 @@ using cfd::core::JsonVector;
 // @formatter:off
 
 // ------------------------------------------------------------------------
-// CreateExtPubkeyRequest
+// GetPubkeyFromExtkeyRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CreateExtPubkeyRequest）クラス
+ * @brief JSON-API（GetPubkeyFromExtkeyRequest）クラス
  */
-class CreateExtPubkeyRequest
-  : public cfd::core::JsonClassBase<CreateExtPubkeyRequest> {
+class GetPubkeyFromExtkeyRequest
+  : public cfd::core::JsonClassBase<GetPubkeyFromExtkeyRequest> {
  public:
-  CreateExtPubkeyRequest() {
+  GetPubkeyFromExtkeyRequest() {
     CollectFieldName();
   }
-  virtual ~CreateExtPubkeyRequest() {
+  virtual ~GetPubkeyFromExtkeyRequest() {
     // do nothing
   }
   /**
@@ -75,7 +75,7 @@ class CreateExtPubkeyRequest
    * @return JSON文字列
    */
   static std::string GetExtkeyString(  // line separate
-      const CreateExtPubkeyRequest& obj) {  // NOLINT
+      const GetPubkeyFromExtkeyRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.extkey_);
   }
   /**
@@ -84,7 +84,7 @@ class CreateExtPubkeyRequest
    * @param[in] json_value  JSON情報
    */
   static void SetExtkeyString(  // line separate
-      CreateExtPubkeyRequest& obj,  // NOLINT
+      GetPubkeyFromExtkeyRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.extkey_, json_value);
@@ -118,7 +118,7 @@ class CreateExtPubkeyRequest
    * @return JSON文字列
    */
   static std::string GetNetworkString(  // line separate
-      const CreateExtPubkeyRequest& obj) {  // NOLINT
+      const GetPubkeyFromExtkeyRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.network_);
   }
   /**
@@ -127,7 +127,7 @@ class CreateExtPubkeyRequest
    * @param[in] json_value  JSON情報
    */
   static void SetNetworkString(  // line separate
-      CreateExtPubkeyRequest& obj,  // NOLINT
+      GetPubkeyFromExtkeyRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.network_, json_value);
@@ -146,27 +146,27 @@ class CreateExtPubkeyRequest
    * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
-      const CreateExtPubkeyRequestStruct& data);
+      const GetPubkeyFromExtkeyRequestStruct& data);
 
   /**
    * @brief クラスから構造体へ変換する.
    * @return  構造体データ
    */
-  CreateExtPubkeyRequestStruct ConvertToStruct()  const;
+  GetPubkeyFromExtkeyRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief Mapテーブルの型名定義
    */
-  using CreateExtPubkeyRequestMapTable =
-    cfd::core::JsonTableMap<CreateExtPubkeyRequest>;
+  using GetPubkeyFromExtkeyRequestMapTable =
+    cfd::core::JsonTableMap<GetPubkeyFromExtkeyRequest>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const CreateExtPubkeyRequestMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const GetPubkeyFromExtkeyRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -192,7 +192,7 @@ class CreateExtPubkeyRequest
  /**
   * @brief JsonFunctionMapテーブル
   */
-  static CreateExtPubkeyRequestMapTable json_mapper;
+  static GetPubkeyFromExtkeyRequestMapTable json_mapper;
   /**
    * @brief フィールド名リスト
    */
@@ -213,18 +213,18 @@ class CreateExtPubkeyRequest
 };
 
 // ------------------------------------------------------------------------
-// CreateExtPubkeyResponse
+// GetPubkeyFromExtkeyResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CreateExtPubkeyResponse）クラス
+ * @brief JSON-API（GetPubkeyFromExtkeyResponse）クラス
  */
-class CreateExtPubkeyResponse
-  : public cfd::core::JsonClassBase<CreateExtPubkeyResponse> {
+class GetPubkeyFromExtkeyResponse
+  : public cfd::core::JsonClassBase<GetPubkeyFromExtkeyResponse> {
  public:
-  CreateExtPubkeyResponse() {
+  GetPubkeyFromExtkeyResponse() {
     CollectFieldName();
   }
-  virtual ~CreateExtPubkeyResponse() {
+  virtual ~GetPubkeyFromExtkeyResponse() {
     // do nothing
   }
   /**
@@ -233,46 +233,46 @@ class CreateExtPubkeyResponse
   static void CollectFieldName();
 
   /**
-   * @brief extkey 取得処理
-   * @return extkey
+   * @brief pubkey 取得処理
+   * @return pubkey
    */
-  std::string GetExtkey() {
-    return extkey_;
+  std::string GetPubkey() {
+    return pubkey_;
   }
   /**
-   * @brief extkey 設定処理
-   * @param[in] extkey    設定値
+   * @brief pubkey 設定処理
+   * @param[in] pubkey    設定値
    */
-  void SetExtkey(  // line separate
-    const std::string& extkey) {  // NOLINT
-    this->extkey_ = extkey;
+  void SetPubkey(  // line separate
+    const std::string& pubkey) {  // NOLINT
+    this->pubkey_ = pubkey;
   }
   /**
-   * @brief extkey データ型の取得処理
-   * @return extkeyのデータ型
+   * @brief pubkey データ型の取得処理
+   * @return pubkeyのデータ型
    */
-  static std::string GetExtkeyFieldType() {
+  static std::string GetPubkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief extkey フィールドのJSON文字列取得処理
+   * @brief pubkey フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetExtkeyString(  // line separate
-      const CreateExtPubkeyResponse& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.extkey_);
+  static std::string GetPubkeyString(  // line separate
+      const GetPubkeyFromExtkeyResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.pubkey_);
   }
   /**
-   * @brief extkey フィールドへのJSON情報設定処理
+   * @brief pubkey フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetExtkeyString(  // line separate
-      CreateExtPubkeyResponse& obj,  // NOLINT
+  static void SetPubkeyString(  // line separate
+      GetPubkeyFromExtkeyResponse& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.extkey_, json_value);
+      obj.pubkey_, json_value);
   }
 
   /**
@@ -288,27 +288,27 @@ class CreateExtPubkeyResponse
    * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
-      const CreateExtPubkeyResponseStruct& data);
+      const GetPubkeyFromExtkeyResponseStruct& data);
 
   /**
    * @brief クラスから構造体へ変換する.
    * @return  構造体データ
    */
-  CreateExtPubkeyResponseStruct ConvertToStruct()  const;
+  GetPubkeyFromExtkeyResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief Mapテーブルの型名定義
    */
-  using CreateExtPubkeyResponseMapTable =
-    cfd::core::JsonTableMap<CreateExtPubkeyResponse>;
+  using GetPubkeyFromExtkeyResponseMapTable =
+    cfd::core::JsonTableMap<GetPubkeyFromExtkeyResponse>;
 
   /**
    * @brief JSONマッピングオブジェクトを取得する。
    * @return JSONマッピングオブジェクト
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const CreateExtPubkeyResponseMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const GetPubkeyFromExtkeyResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -334,7 +334,7 @@ class CreateExtPubkeyResponse
  /**
   * @brief JsonFunctionMapテーブル
   */
-  static CreateExtPubkeyResponseMapTable json_mapper;
+  static GetPubkeyFromExtkeyResponseMapTable json_mapper;
   /**
    * @brief フィールド名リスト
    */
@@ -345,9 +345,9 @@ class CreateExtPubkeyResponse
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(extkey) のvalue
+   * @brief JsonAPI(pubkey) のvalue
    */
-  std::string extkey_ = "";
+  std::string pubkey_ = "";
 };
 
 // @formatter:on
@@ -358,4 +358,4 @@ class CreateExtPubkeyResponse
 }  // namespace js
 }  // namespace cfd
 
-#endif  // CFD_JS_SRC_CFDAPI_CREATE_EXTPUBKEY_JSON_H_
+#endif  // CFD_JS_SRC_CFDAPI_GET_PUBKEY_FROM_EXTKEY_JSON_H_

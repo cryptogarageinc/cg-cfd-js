@@ -1287,6 +1287,31 @@ struct UnblindRawTransactionResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// GetExtkeyInfoRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetExtkeyInfoRequestStruct 構造体
+ */
+struct GetExtkeyInfoRequestStruct {
+  std::string extkey = "";  //!< extkey  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetExtkeyInfoResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetExtkeyInfoResponseStruct 構造体
+ */
+struct GetExtkeyInfoResponseStruct {
+  uint32_t version = 0;       //!< version  // NOLINT
+  uint8_t depth = 0;          //!< depth  // NOLINT
+  uint32_t child_number = 0;  //!< child_number  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // GetIssuanceBlindingKeyRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -1330,6 +1355,80 @@ struct GetMnemonicWordlistRequestStruct {
  */
 struct GetMnemonicWordlistResponseStruct {
   std::vector<std::string> wordlist;  //!< wordlist  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyFromExtkeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPrivkeyFromExtkeyRequestStruct 構造体
+ */
+struct GetPrivkeyFromExtkeyRequestStruct {
+  std::string extkey = "";          //!< extkey  // NOLINT
+  std::string network = "mainnet";  //!< network  // NOLINT
+  bool wif = true;                  //!< wif  // NOLINT
+  bool is_compressed = true;        //!< is_compressed  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyFromExtkeyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPrivkeyFromExtkeyResponseStruct 構造体
+ */
+struct GetPrivkeyFromExtkeyResponseStruct {
+  std::string privkey = "";  //!< privkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPubkeyFromExtkeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPubkeyFromExtkeyRequestStruct 構造体
+ */
+struct GetPubkeyFromExtkeyRequestStruct {
+  std::string extkey = "";          //!< extkey  // NOLINT
+  std::string network = "mainnet";  //!< network  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPubkeyFromExtkeyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPubkeyFromExtkeyResponseStruct 構造体
+ */
+struct GetPubkeyFromExtkeyResponseStruct {
+  std::string pubkey = "";  //!< pubkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPubkeyFromPrivkeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPubkeyFromPrivkeyRequestStruct 構造体
+ */
+struct GetPubkeyFromPrivkeyRequestStruct {
+  std::string privkey = "";   //!< privkey  // NOLINT
+  bool is_compressed = true;  //!< is_compressed  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPubkeyFromPrivkeyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPubkeyFromPrivkeyResponseStruct 構造体
+ */
+struct GetPubkeyFromPrivkeyResponseStruct {
+  std::string pubkey = "";  //!< pubkey  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

@@ -26,6 +26,8 @@ using cfd::api::HDWalletApi;
 using cfd::core::ByteData;
 using cfd::core::CfdError;
 using cfd::core::CfdException;
+using cfd::core::ExtPrivkey;
+using cfd::core::ExtPubkey;
 using cfd::core::NetType;
 
 GetMnemonicWordlistResponseStruct HDWalletStructApi::GetMnemonicWordlist(
@@ -219,6 +221,94 @@ CreateExtPubkeyResponseStruct HDWalletStructApi::CreateExtPubkey(
   CreateExtPubkeyResponseStruct result;
   result = ExecuteStructApi<
       CreateExtPubkeyRequestStruct, CreateExtPubkeyResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+GetExtkeyInfoResponseStruct HDWalletStructApi::GetExtkeyInfo(
+    const GetExtkeyInfoRequestStruct& request) {
+  auto call_func = [](const GetExtkeyInfoRequestStruct& request)
+      -> GetExtkeyInfoResponseStruct {
+    GetExtkeyInfoResponseStruct response;
+
+    try {
+      ExtPrivkey privkey(request.extkey);
+      response.version = privkey.GetVersion();
+      response.depth = privkey.GetDepth();
+      response.child_number = privkey.GetChildNum();
+      return response;
+    } catch (...) {
+      // fall-through
+    }
+
+    ExtPubkey pubkey(request.extkey);
+    response.version = pubkey.GetVersion();
+    response.depth = pubkey.GetDepth();
+    response.child_number = pubkey.GetChildNum();
+    return response;
+  };
+
+  GetExtkeyInfoResponseStruct result;
+  result = ExecuteStructApi<
+      GetExtkeyInfoRequestStruct, GetExtkeyInfoResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+GetPrivkeyFromExtkeyResponseStruct HDWalletStructApi::GetPrivkeyFromExtkey(
+    const GetPrivkeyFromExtkeyRequestStruct& request) {
+  auto call_func = [](const GetPrivkeyFromExtkeyRequestStruct& request)
+      -> GetPrivkeyFromExtkeyResponseStruct {
+    GetPrivkeyFromExtkeyResponseStruct response;
+    const NetType net_type = AddressStructApi::ConvertNetType(request.network);
+
+    HDWalletApi api;
+    response.privkey = api.GetPrivkeyFromExtkey(
+        request.extkey, net_type, request.wif, request.is_compressed);
+    return response;
+  };
+
+  GetPrivkeyFromExtkeyResponseStruct result;
+  result = ExecuteStructApi<
+      GetPrivkeyFromExtkeyRequestStruct, GetPrivkeyFromExtkeyResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+GetPubkeyFromExtkeyResponseStruct HDWalletStructApi::GetPubkeyFromExtkey(
+    const GetPubkeyFromExtkeyRequestStruct& request) {
+  auto call_func = [](const GetPubkeyFromExtkeyRequestStruct& request)
+      -> GetPubkeyFromExtkeyResponseStruct {
+    GetPubkeyFromExtkeyResponseStruct response;
+    const NetType net_type = AddressStructApi::ConvertNetType(request.network);
+
+    HDWalletApi api;
+    response.pubkey = api.GetPubkeyFromExtkey(request.extkey, net_type);
+    return response;
+  };
+
+  GetPubkeyFromExtkeyResponseStruct result;
+  result = ExecuteStructApi<
+      GetPubkeyFromExtkeyRequestStruct, GetPubkeyFromExtkeyResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+GetPubkeyFromPrivkeyResponseStruct HDWalletStructApi::GetPubkeyFromPrivkey(
+    const GetPubkeyFromPrivkeyRequestStruct& request) {
+  auto call_func = [](const GetPubkeyFromPrivkeyRequestStruct& request)
+      -> GetPubkeyFromPrivkeyResponseStruct {
+    GetPubkeyFromPrivkeyResponseStruct response;
+
+    HDWalletApi api;
+    response.pubkey =
+        api.GetPubkeyFromPrivkey(request.privkey, request.is_compressed);
+    return response;
+  };
+
+  GetPubkeyFromPrivkeyResponseStruct result;
+  result = ExecuteStructApi<
+      GetPubkeyFromPrivkeyRequestStruct, GetPubkeyFromPrivkeyResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
