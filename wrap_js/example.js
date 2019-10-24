@@ -778,7 +778,7 @@ let extPrivkeyFromParentPathResult;
   const reqJson = {
     extkey: extPrivkeyHardenedFromParentResult.extkey,
     network: 'mainnet',
-    extkeyType: 'extPubkey',
+    extkeyType: 'extPrivkey',
     childNumberArray: [
       2147483648, 2147483648, 2,
     ],
@@ -792,7 +792,7 @@ let getPrivkeyFromExtkeyResult;
 {
   console.log('-- GetPrivkeyFromExtkey start (m/44\'/0\'/0\'/2) --');
   const reqJson = {
-    extkey: extPrivkeyHardenedFromParentResult.extkey,
+    extkey: extPrivkeyFromParentPathResult.extkey,
     network: 'mainnet',
     wif: true,
     isCompressed: true,
