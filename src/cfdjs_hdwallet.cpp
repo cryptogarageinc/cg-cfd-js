@@ -294,25 +294,6 @@ GetPubkeyFromExtkeyResponseStruct HDWalletStructApi::GetPubkeyFromExtkey(
   return result;
 }
 
-GetPubkeyFromPrivkeyResponseStruct HDWalletStructApi::GetPubkeyFromPrivkey(
-    const GetPubkeyFromPrivkeyRequestStruct& request) {
-  auto call_func = [](const GetPubkeyFromPrivkeyRequestStruct& request)
-      -> GetPubkeyFromPrivkeyResponseStruct {
-    GetPubkeyFromPrivkeyResponseStruct response;
-
-    HDWalletApi api;
-    response.pubkey =
-        api.GetPubkeyFromPrivkey(request.privkey, request.is_compressed);
-    return response;
-  };
-
-  GetPubkeyFromPrivkeyResponseStruct result;
-  result = ExecuteStructApi<
-      GetPubkeyFromPrivkeyRequestStruct, GetPubkeyFromPrivkeyResponseStruct>(
-      request, call_func, std::string(__FUNCTION__));
-  return result;
-}
-
 ExtKeyType HDWalletStructApi::ConvertExtKeyType(const std::string& key_type) {
   ExtKeyType result;
   if (key_type == "extPrivkey") {
