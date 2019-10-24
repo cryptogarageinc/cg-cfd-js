@@ -33,13 +33,13 @@ const errorCase = [
     'GetPubkeyFromExtkey empty extkey.',
     GetPubkeyFromExtkey,
     ['{"extkey":"","network":"mainnet"}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPubkey base58 decode error."}}'
+    '{"error":{"code":1,"type":"illegal_argument","message":"Illegal extkey. base58 decode error."}}'
   ),
   TestHelper.createBitcoinTestCase(
     'GetPubkeyFromExtkey invalid extkey.',
     GetPubkeyFromExtkey,
     ['{"extkey":"Ltpv78nmdb9RW2JVn6dGat5MR1edEbTEXKUPH8gmTKk6o6RTGLJXRjRHvYzW6fWzSbRcf4ydLekAGxWr7NFTgjz9MTnjGhjCocnDqg1uoSyMkKV","network":"regtest"}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPubkey unserialize error."}}'
+    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPrivkey unserialize error."}}'
   ),
   TestHelper.createBitcoinTestCase(
     'GetPubkeyFromExtkey invalid network.',
