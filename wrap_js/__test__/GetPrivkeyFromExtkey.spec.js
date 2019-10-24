@@ -53,6 +53,12 @@ const errorCase = [
     ['{"extkey":"xprvA2YKGLieCs6cWCiczALiH1jzk3VCCS5M1pGQfWPkamCdR9UpBgE2Gb8AKAyVjKHkz8v37avcfRjdcnP19dVAmZrvZQfvTcXXSAiFNQ6tTtU","network":"liquidv1","wif": true,"isCompressed":true}'],
     '{"error":{"code":1,"type":"illegal_argument","message":"Invalid network_type passed. network_type must be \\"mainnet\\" or \\"testnet\\" or \\"regtest\\"."}}'
   ),
+  TestHelper.createBitcoinTestCase(
+    'GetPrivkeyFromExtkey unmatch network.',
+    GetPrivkeyFromExtkey,
+    ['{"extkey":"xprvA2YKGLieCs6cWCiczALiH1jzk3VCCS5M1pGQfWPkamCdR9UpBgE2Gb8AKAyVjKHkz8v37avcfRjdcnP19dVAmZrvZQfvTcXXSAiFNQ6tTtU","network":"testnet","wif": true,"isCompressed":true}'],
+    '{"error":{"code":1,"type":"illegal_argument","message":"extkey networkType unmatch."}}'
+  ),
 ];
 
 TestHelper.doTest('GetPrivkeyFromExtkey', testCase);
