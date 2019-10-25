@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -314,15 +314,15 @@ class MultisigSignData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const MultisigSignDataStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   MultisigSignDataStruct ConvertToStruct()  const;
 
@@ -730,15 +730,15 @@ class AddMultisigSignTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const AddMultisigSignTxInRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   AddMultisigSignTxInRequestStruct ConvertToStruct()  const;
 
@@ -978,15 +978,15 @@ class AddMultisigSignRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const AddMultisigSignRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   AddMultisigSignRequestStruct ConvertToStruct()  const;
 
@@ -1124,15 +1124,15 @@ class AddMultisigSignResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const AddMultisigSignResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   AddMultisigSignResponseStruct ConvertToStruct()  const;
 

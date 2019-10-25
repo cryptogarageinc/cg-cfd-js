@@ -119,6 +119,14 @@ add_library(${CFDJS_LIBRARY} SHARED)
 target_sources(${CFDJS_LIBRARY}
   PRIVATE
     cfdjs_node_addon.cpp
+    cfdjs_address.cpp
+    cfdjs_elements_address.cpp
+    cfdjs_elements_transaction.cpp
+    cfdjs_hdwallet.cpp
+    cfdjs_key.cpp
+    cfdjs_transaction.cpp
+    cfdjs_transaction_base.cpp
+    cfdjs_utility.cpp
     cfdapi_add_multisig_sign_json.cpp
     cfdapi_add_sign_json.cpp
     cfdapi_get_mnemonic_wordlist_json.cpp
@@ -127,6 +135,10 @@ target_sources(${CFDJS_LIBRARY}
     cfdapi_convert_entropy_to_mnemonic_json.cpp
     cfdapi_convert_mnemonic_to_seed_json.cpp
     cfdapi_create_address_json.cpp
+    cfdapi_create_extkey_from_parent_json.cpp
+    cfdapi_create_extkey_from_path_json.cpp
+    cfdapi_create_extkey_from_seed_json.cpp
+    cfdapi_create_extpubkey_json.cpp
     cfdapi_create_key_pair_json.cpp
     cfdapi_decode_transaction_json.cpp
     cfdapi_elements_create_raw_transaction_json.cpp
@@ -140,8 +152,12 @@ target_sources(${CFDJS_LIBRARY}
     cfdapi_elements_set_rawreissueasset_json.cpp
     cfdapi_error_base_json.cpp
     cfdapi_error_json.cpp
+    cfdapi_get_extkeyinfo_json.cpp
     cfdapi_get_issuance_blinding_key_json.cpp
     cfdapi_get_witness_num_json.cpp
+    cfdapi_get_privkey_from_extkey_json.cpp
+    cfdapi_get_pubkey_from_extkey_json.cpp
+    cfdapi_get_pubkey_from_privkey_json.cpp
     cfdapi_elements_get_confidential_address_json.cpp
     cfdapi_elements_get_unblinded_address_json.cpp
     cfdapi_multisig_address_json.cpp

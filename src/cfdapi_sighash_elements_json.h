@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -142,15 +142,15 @@ class ElementsSignatureHashKeyData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsSignatureHashKeyDataStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   ElementsSignatureHashKeyDataStruct ConvertToStruct()  const;
 
@@ -585,15 +585,15 @@ class CreateElementsSignatureHashTxIn
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateElementsSignatureHashTxInStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   CreateElementsSignatureHashTxInStruct ConvertToStruct()  const;
 
@@ -794,15 +794,15 @@ class CreateElementsSignatureHashRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateElementsSignatureHashRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   CreateElementsSignatureHashRequestStruct ConvertToStruct()  const;
 
@@ -936,15 +936,15 @@ class CreateElementsSignatureHashResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateElementsSignatureHashResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   CreateElementsSignatureHashResponseStruct ConvertToStruct()  const;
 

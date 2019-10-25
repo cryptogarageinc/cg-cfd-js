@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -142,15 +142,15 @@ class SignatureHashKeyData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const SignatureHashKeyDataStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   SignatureHashKeyDataStruct ConvertToStruct()  const;
 
@@ -542,15 +542,15 @@ class CreateSignatureHashTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateSignatureHashTxInRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   CreateSignatureHashTxInRequestStruct ConvertToStruct()  const;
 
@@ -747,15 +747,15 @@ class CreateSignatureHashRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateSignatureHashRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   CreateSignatureHashRequestStruct ConvertToStruct()  const;
 
@@ -889,15 +889,15 @@ class CreateSignatureHashResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const CreateSignatureHashResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   CreateSignatureHashResponseStruct ConvertToStruct()  const;
 

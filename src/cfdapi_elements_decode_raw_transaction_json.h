@@ -13,7 +13,7 @@
 
 #include "cfdcore/cfdcore_json_mapping_base.h"
 
-#include "cfd/cfdapi_struct.h"
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -228,15 +228,15 @@ class ElementsDecodeRawTransactionRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsDecodeRawTransactionRequestStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   ElementsDecodeRawTransactionRequestStruct ConvertToStruct()  const;
 
@@ -421,15 +421,15 @@ class ElementsDecodeUnlockingScript
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsDecodeUnlockingScriptStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   ElementsDecodeUnlockingScriptStruct ConvertToStruct()  const;
 
@@ -907,15 +907,15 @@ class ElementsDecodeIssuance
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsDecodeIssuanceStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   ElementsDecodeIssuanceStruct ConvertToStruct()  const;
 
@@ -1421,15 +1421,15 @@ class ElementsDecodeRawTransactionTxIn
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsDecodeRawTransactionTxInStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   ElementsDecodeRawTransactionTxInStruct ConvertToStruct()  const;
 
@@ -2021,15 +2021,15 @@ class ElementsDecodeLockingScript
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsDecodeLockingScriptStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   ElementsDecodeLockingScriptStruct ConvertToStruct()  const;
 
@@ -2715,15 +2715,15 @@ class ElementsDecodeRawTransactionTxOut
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsDecodeRawTransactionTxOutStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   ElementsDecodeRawTransactionTxOutStruct ConvertToStruct()  const;
 
@@ -3331,15 +3331,15 @@ class ElementsDecodeRawTransactionResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
    */
   void ConvertFromStruct(
       const ElementsDecodeRawTransactionResponseStruct& data);
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
    */
   ElementsDecodeRawTransactionResponseStruct ConvertToStruct()  const;
 

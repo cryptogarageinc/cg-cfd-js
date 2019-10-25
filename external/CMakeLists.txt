@@ -1,9 +1,24 @@
 project(external_download NONE)
 
+# load file
+set(EXTERNAL_DEBUG_FILENAME  external_project_debug.config)
+set(DEBUG_VERSION_FILE  ${CMAKE_SOURCE_DIR}/${EXTERNAL_DEBUG_FILENAME})
+if(EXISTS ${DEBUG_VERSION_FILE})
+transform_makefile_srclist(${DEBUG_VERSION_FILE} "${CMAKE_CURRENT_BINARY_DIR}/${EXTERNAL_DEBUG_FILENAME}.cmake")
+include(${CMAKE_CURRENT_BINARY_DIR}/${EXTERNAL_DEBUG_FILENAME}.cmake)
+endif()
+
 # cfd
+if(CFD_TARGET_VERSION)
+set(CFD_TARGET_TAG  ${CFD_TARGET_VERSION})
+message(STATUS "[external project debug] cfd target=${CFD_TARGET_VERSION}")
+else()
+set(CFD_TARGET_TAG  v0.0.8)
+endif()
+
 set(TEMPLATE_PROJECT_NAME           cfd)
 set(TEMPLATE_PROJECT_GIT_REPOSITORY https://github.com/cryptogarageinc/cfd.git)
-set(TEMPLATE_PROJECT_GIT_TAG        v0.0.7)
+set(TEMPLATE_PROJECT_GIT_TAG        ${CFD_TARGET_TAG})
 set(PROJECT_EXTERNAL  "${CMAKE_SOURCE_DIR}/external/${TEMPLATE_PROJECT_NAME}/external")
 set(DIR_PATH "${CFD_ROOT_BINARY_DIR}/${TEMPLATE_PROJECT_NAME}")
 set(DL_PATH "${CFD_ROOT_BINARY_DIR}/external/${TEMPLATE_PROJECT_NAME}/download")

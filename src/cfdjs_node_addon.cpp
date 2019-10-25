@@ -8,13 +8,13 @@
 #include <string>
 
 #include "cfd/cfd_common.h"
-#include "cfd/cfdapi_address.h"
-#include "cfd/cfdapi_elements_address.h"
-#include "cfd/cfdapi_elements_transaction.h"
-#include "cfd/cfdapi_hdwallet.h"
-#include "cfd/cfdapi_key.h"
-#include "cfd/cfdapi_transaction.h"
-#include "cfd/cfdapi_utility.h"
+#include "cfdjs/cfdjs_address.h"
+#include "cfdjs/cfdjs_elements_address.h"
+#include "cfdjs/cfdjs_elements_transaction.h"
+#include "cfdjs/cfdjs_hdwallet.h"
+#include "cfdjs/cfdjs_key.h"
+#include "cfdjs/cfdjs_transaction.h"
+#include "cfdjs/cfdjs_utility.h"
 
 #include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
 #include "cfdapi_add_sign_json.h"                           // NOLINT
@@ -23,6 +23,10 @@
 #include "cfdapi_convert_entropy_to_mnemonic_json.h"        // NOLINT
 #include "cfdapi_convert_mnemonic_to_seed_json.h"           // NOLINT
 #include "cfdapi_create_address_json.h"                     // NOLINT
+#include "cfdapi_create_extkey_from_parent_json.h"          // NOLINT
+#include "cfdapi_create_extkey_from_path_json.h"            // NOLINT
+#include "cfdapi_create_extkey_from_seed_json.h"            // NOLINT
+#include "cfdapi_create_extpubkey_json.h"                   // NOLINT
 #include "cfdapi_create_key_pair_json.h"                    // NOLINT
 #include "cfdapi_decode_transaction_json.h"                 // NOLINT
 #include "cfdapi_elements_create_destroy_amount_json.h"     // NOLINT
@@ -38,8 +42,12 @@
 #include "cfdapi_elements_unblind_raw_transaction_json.h"   // NOLINT
 #include "cfdapi_error_base_json.h"                         // NOLINT
 #include "cfdapi_error_json.h"                              // NOLINT
+#include "cfdapi_get_extkeyinfo_json.h"                     // NOLINT
 #include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
 #include "cfdapi_get_mnemonic_wordlist_json.h"              // NOLINT
+#include "cfdapi_get_privkey_from_extkey_json.h"            // NOLINT
+#include "cfdapi_get_pubkey_from_extkey_json.h"             // NOLINT
+#include "cfdapi_get_pubkey_from_privkey_json.h"            // NOLINT
 #include "cfdapi_get_witness_num_json.h"                    // NOLINT
 #include "cfdapi_multisig_address_json.h"                   // NOLINT
 #include "cfdapi_sighash_elements_json.h"                   // NOLINT
@@ -149,7 +157,8 @@ Value NodeAddonJsonApi(
 /**
  * @brief NodeAddonのJSON APIテンプレート関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
- * @param[in] call_function   cfdの呼び出し関数
+ * @param[in] bitcoin_function   bitcoin有効時に呼び出されるcfdの呼び出し関数
+ * @param[in] elements_function   elements有効時に呼び出されるcfdの呼び出し関数
  * @return 戻り値(JSON文字列)
  */
 template <
@@ -278,6 +287,11 @@ namespace js {
 namespace api {
 namespace json {
 
+/**
+ * @brief GetSupportedFunctionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value GetSupportedFunction(const CallbackInfo &information) {
   return NodeAddonJsonResponseApi<
       api::json::GetSupportedFunctionResponse,
@@ -285,6 +299,11 @@ Value GetSupportedFunction(const CallbackInfo &information) {
       information, UtilStructApi::GetSupportedFunction);
 }
 
+/**
+ * @brief CreateRawTransactionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateRawTransaction(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CreateRawTransactionRequest,
@@ -294,6 +313,11 @@ Value CreateRawTransaction(const CallbackInfo &information) {
       information, TransactionStructApi::CreateRawTransaction);
 }
 
+/**
+ * @brief DecodeRawTransactionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value DecodeRawTransaction(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::DecodeRawTransactionRequest,
@@ -303,6 +327,11 @@ Value DecodeRawTransaction(const CallbackInfo &information) {
       information, TransactionStructApi::DecodeRawTransaction);
 }
 
+/**
+ * @brief ConvertEntropyToMnemonicのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value ConvertEntropyToMnemonic(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::ConvertEntropyToMnemonicRequest,
@@ -312,6 +341,11 @@ Value ConvertEntropyToMnemonic(const CallbackInfo &information) {
       information, HDWalletStructApi::ConvertEntropyToMnemonic);
 }
 
+/**
+ * @brief ConvertMnemonicToSeedのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value ConvertMnemonicToSeed(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::ConvertMnemonicToSeedRequest,
@@ -321,6 +355,11 @@ Value ConvertMnemonicToSeed(const CallbackInfo &information) {
       information, HDWalletStructApi::ConvertMnemonicToSeed);
 }
 
+/**
+ * @brief CreateAddressのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateAddress(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::CreateAddressRequest, api::json::CreateAddressResponse,
@@ -333,6 +372,11 @@ Value CreateAddress(const CallbackInfo &information) {
 #endif
 }
 
+/**
+ * @brief CreateMultisigのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateMultisig(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::CreateMultisigRequest, api::json::CreateMultisigResponse,
@@ -345,6 +389,11 @@ Value CreateMultisig(const CallbackInfo &information) {
 #endif
 }
 
+/**
+ * @brief CreateSignatureHashのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateSignatureHash(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CreateSignatureHashRequest,
@@ -354,6 +403,11 @@ Value CreateSignatureHash(const CallbackInfo &information) {
       information, TransactionStructApi::CreateSignatureHash);
 }
 
+/**
+ * @brief GetMnemonicWordlistのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value GetMnemonicWordlist(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::GetMnemonicWordlistRequest,
@@ -363,6 +417,119 @@ Value GetMnemonicWordlist(const CallbackInfo &information) {
       information, HDWalletStructApi::GetMnemonicWordlist);
 }
 
+/**
+ * @brief GetExtkeyInfoのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetExtkeyInfo(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::GetExtkeyInfoRequest, api::json::GetExtkeyInfoResponse,
+      api::GetExtkeyInfoRequestStruct, api::GetExtkeyInfoResponseStruct>(
+      information, HDWalletStructApi::GetExtkeyInfo);
+}
+
+/**
+ * @brief GetPrivkeyFromExtkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetPrivkeyFromExtkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::GetPrivkeyFromExtkeyRequest,
+      api::json::GetPrivkeyFromExtkeyResponse,
+      api::GetPrivkeyFromExtkeyRequestStruct,
+      api::GetPrivkeyFromExtkeyResponseStruct>(
+      information, HDWalletStructApi::GetPrivkeyFromExtkey);
+}
+
+/**
+ * @brief GetPubkeyFromExtkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetPubkeyFromExtkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::GetPubkeyFromExtkeyRequest,
+      api::json::GetPubkeyFromExtkeyResponse,
+      api::GetPubkeyFromExtkeyRequestStruct,
+      api::GetPubkeyFromExtkeyResponseStruct>(
+      information, HDWalletStructApi::GetPubkeyFromExtkey);
+}
+
+/**
+ * @brief GetPubkeyFromPrivkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetPubkeyFromPrivkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::GetPubkeyFromPrivkeyRequest,
+      api::json::GetPubkeyFromPrivkeyResponse,
+      api::GetPubkeyFromPrivkeyRequestStruct,
+      api::GetPubkeyFromPrivkeyResponseStruct>(
+      information, KeyStructApi::GetPubkeyFromPrivkey);
+}
+
+/**
+ * @brief CreateExtkeyFromSeedのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateExtkeyFromSeed(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::CreateExtkeyFromSeedRequest,
+      api::json::CreateExtkeyFromSeedResponse,
+      api::CreateExtkeyFromSeedRequestStruct,
+      api::CreateExtkeyFromSeedResponseStruct>(
+      information, HDWalletStructApi::CreateExtkeyFromSeed);
+}
+
+/**
+ * @brief CreateExtkeyFromParentのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateExtkeyFromParent(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::CreateExtkeyFromParentRequest,
+      api::json::CreateExtkeyFromParentResponse,
+      api::CreateExtkeyFromParentRequestStruct,
+      api::CreateExtkeyFromParentResponseStruct>(
+      information, HDWalletStructApi::CreateExtkeyFromParent);
+}
+
+/**
+ * @brief CreateExtkeyFromParentPathのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateExtkeyFromParentPath(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::CreateExtkeyFromParentPathRequest,
+      api::json::CreateExtkeyFromParentPathResponse,
+      api::CreateExtkeyFromParentPathRequestStruct,
+      api::CreateExtkeyFromParentPathResponseStruct>(
+      information, HDWalletStructApi::CreateExtkeyFromParentPath);
+}
+
+/**
+ * @brief CreateExtPubkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateExtPubkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi<
+      api::json::CreateExtPubkeyRequest, api::json::CreateExtPubkeyResponse,
+      api::CreateExtPubkeyRequestStruct, api::CreateExtPubkeyResponseStruct>(
+      information, HDWalletStructApi::CreateExtPubkey);
+}
+
+/**
+ * @brief CreateKeyPairのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateKeyPair(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CreateKeyPairRequest, api::json::CreateKeyPairResponse,
@@ -370,6 +537,11 @@ Value CreateKeyPair(const CallbackInfo &information) {
       information, KeyStructApi::CreateKeyPair);
 }
 
+/**
+ * @brief CalculateEcSignatureのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CalculateEcSignature(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CalculateEcSignatureRequest,
@@ -379,6 +551,11 @@ Value CalculateEcSignature(const CallbackInfo &information) {
       information, KeyStructApi::CalculateEcSignature);
 }
 
+/**
+ * @brief AddSignのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value AddSign(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::AddSignRequest, api::json::AddSignResponse,
@@ -391,6 +568,11 @@ Value AddSign(const CallbackInfo &information) {
 #endif
 }
 
+/**
+ * @brief UpdateWitnessStackのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value UpdateWitnessStack(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::UpdateWitnessStackRequest,
@@ -405,6 +587,11 @@ Value UpdateWitnessStack(const CallbackInfo &information) {
 #endif
 }
 
+/**
+ * @brief GetWitnessStackNumのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value GetWitnessStackNum(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::GetWitnessStackNumRequest,
@@ -419,6 +606,11 @@ Value GetWitnessStackNum(const CallbackInfo &information) {
 #endif
 }
 
+/**
+ * @brief AddMultisigSignのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value AddMultisigSign(const CallbackInfo &information) {
   return NodeAddonElementsCheckApi<
       api::json::AddMultisigSignRequest, api::json::AddMultisigSignResponse,
@@ -433,6 +625,11 @@ Value AddMultisigSign(const CallbackInfo &information) {
 
 #ifndef CFD_DISABLE_ELEMENTS
 
+/**
+ * @brief GetConfidentialAddressのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value GetConfidentialAddress(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::GetConfidentialAddressRequest,
@@ -442,6 +639,11 @@ Value GetConfidentialAddress(const CallbackInfo &information) {
       information, ElementsAddressStructApi::GetConfidentialAddress);
 }
 
+/**
+ * @brief GetUnblindedAddressのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value GetUnblindedAddress(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::GetUnblindedAddressRequest,
@@ -451,6 +653,11 @@ Value GetUnblindedAddress(const CallbackInfo &information) {
       information, ElementsAddressStructApi::GetUnblindedAddress);
 }
 
+/**
+ * @brief CreatePegInAddressのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreatePegInAddress(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::ElementsCreatePegInAddressRequest,
@@ -460,6 +667,11 @@ Value CreatePegInAddress(const CallbackInfo &information) {
       information, ElementsAddressStructApi::CreatePegInAddress);
 }
 
+/**
+ * @brief ElementsCreateRawTransactionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value ElementsCreateRawTransaction(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::ElementsCreateRawTransactionRequest,
@@ -469,6 +681,11 @@ Value ElementsCreateRawTransaction(const CallbackInfo &information) {
       information, ElementsTransactionStructApi::CreateRawTransaction);
 }
 
+/**
+ * @brief ElementsDecodeRawTransactionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value ElementsDecodeRawTransaction(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::ElementsDecodeRawTransactionRequest,
@@ -478,6 +695,11 @@ Value ElementsDecodeRawTransaction(const CallbackInfo &information) {
       information, ElementsTransactionStructApi::DecodeRawTransaction);
 }
 
+/**
+ * @brief BlindRawTransactionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value BlindRawTransaction(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::BlindRawTransactionRequest,
@@ -488,6 +710,11 @@ Value BlindRawTransaction(const CallbackInfo &information) {
       ElementsTransactionStructApi::BlindTransaction);  // NOLINT
 }
 
+/**
+ * @brief UnblindRawTransactionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value UnblindRawTransaction(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::UnblindRawTransactionRequest,
@@ -497,6 +724,11 @@ Value UnblindRawTransaction(const CallbackInfo &information) {
       information, ElementsTransactionStructApi::UnblindTransaction);
 }
 
+/**
+ * @brief SetRawIssueAssetのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value SetRawIssueAsset(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::SetRawIssueAssetRequest, api::json::SetRawIssueAssetResponse,
@@ -504,6 +736,11 @@ Value SetRawIssueAsset(const CallbackInfo &information) {
       information, ElementsTransactionStructApi::SetRawIssueAsset);
 }
 
+/**
+ * @brief SetRawReissueAssetのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value SetRawReissueAsset(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::SetRawReissueAssetRequest,
@@ -513,6 +750,11 @@ Value SetRawReissueAsset(const CallbackInfo &information) {
       information, ElementsTransactionStructApi::SetRawReissueAsset);
 }
 
+/**
+ * @brief CreateElementsSignatureHashのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateElementsSignatureHash(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::CreateElementsSignatureHashRequest,
@@ -522,6 +764,11 @@ Value CreateElementsSignatureHash(const CallbackInfo &information) {
       information, ElementsTransactionStructApi::CreateSignatureHash);
 }
 
+/**
+ * @brief CreateRawPeginのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateRawPegin(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::ElementsCreateRawPeginRequest,
@@ -531,6 +778,11 @@ Value CreateRawPegin(const CallbackInfo &information) {
       information, ElementsTransactionStructApi::CreateRawPeginTransaction);
 }
 
+/**
+ * @brief CreateRawPegoutのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateRawPegout(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::ElementsCreateRawPegoutRequest,
@@ -540,6 +792,11 @@ Value CreateRawPegout(const CallbackInfo &information) {
       information, ElementsTransactionStructApi::CreateRawPegoutTransaction);
 }
 
+/**
+ * @brief GetIssuanceBlindingKeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value GetIssuanceBlindingKey(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::GetIssuanceBlindingKeyRequest,
@@ -549,6 +806,11 @@ Value GetIssuanceBlindingKey(const CallbackInfo &information) {
       information, ElementsTransactionStructApi::GetIssuanceBlindingKey);
 }
 
+/**
+ * @brief CreateDestroyAmountのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
 Value CreateDestroyAmount(const CallbackInfo &information) {
   return NodeAddonJsonApi<
       api::json::ElementsCreateDestroyAmountRequest,
@@ -560,6 +822,11 @@ Value CreateDestroyAmount(const CallbackInfo &information) {
 }
 #endif  // CFD_DISABLE_ELEMENTS
 
+/**
+ * @brief JSON APIの生成初期化関数.
+ * @param[in] env         環境情報
+ * @param[out] exports    関数格納ポインタ
+ */
 void InitializeJsonApi(Env env, Object *exports) {
   cfd::Initialize();
   exports->Set(
@@ -597,6 +864,29 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "GetMnemonicWordlist"),
       Function::New(env, GetMnemonicWordlist));
+  exports->Set(
+      String::New(env, "GetExtkeyInfo"), Function::New(env, GetExtkeyInfo));
+  exports->Set(
+      String::New(env, "GetPrivkeyFromExtkey"),
+      Function::New(env, GetPrivkeyFromExtkey));
+  exports->Set(
+      String::New(env, "GetPubkeyFromExtkey"),
+      Function::New(env, GetPubkeyFromExtkey));
+  exports->Set(
+      String::New(env, "GetPubkeyFromPrivkey"),
+      Function::New(env, GetPubkeyFromPrivkey));
+  exports->Set(
+      String::New(env, "CreateExtkeyFromSeed"),
+      Function::New(env, CreateExtkeyFromSeed));
+  exports->Set(
+      String::New(env, "CreateExtkeyFromParent"),
+      Function::New(env, CreateExtkeyFromParent));
+  exports->Set(
+      String::New(env, "CreateExtkeyFromParentPath"),
+      Function::New(env, CreateExtkeyFromParentPath));
+  exports->Set(
+      String::New(env, "CreateExtPubkey"),
+      Function::New(env, CreateExtPubkey));
   exports->Set(
       String::New(env, "CreateKeyPair"), Function::New(env, CreateKeyPair));
   exports->Set(
