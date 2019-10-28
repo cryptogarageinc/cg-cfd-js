@@ -106,7 +106,7 @@
     "eslint_check": "eslint wrap_js/ --quiet",
     "git_subm_update": "git submodule -q foreach git fetch -q && git submodule -q update -i",
     "check": "run-s doxygen_check ctest_quiet test_quiet example elements_example lint_all",
-    "check_all": "run-s cmake_clean git_subm_update doxygen_check cmake_quiet ctest_quiet test_quiet example elements_example lint_all"
+    "check_all": "run-s cmake_clean git_subm_update cmake_quiet doxygen_check ctest_quiet test_quiet example elements_example lint_all"
   },
   "author": "",
   "license": "MIT",
