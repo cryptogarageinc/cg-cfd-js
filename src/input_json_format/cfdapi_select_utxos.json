@@ -10,12 +10,23 @@
       "amount": 0,
       "amount:type": "int64_t",
       "asset": "",
-      "asset:hint": "This field is avalable only elements utxo."
+      "asset:hint": "This field is avalable only elements utxo.",
+      "descriptor": "",
+      "descriptor:hint": "descriptor is required, you needs to consider fee amount"
     }],
     "targetAmount": 0,
     "targetAmount:type": "int64_t",
     "targetAsset": "",
-    "targetAsset:hint": "This field is avalable only elements utxo."
+    "targetAsset:hint": "This field is avalable only elements utxo.",
+    "feeInfo": {
+      ":class": "CoinSelectionFeeInfomationField",
+      "feeRate": 1,
+      "feeRate:hint": "",
+      "transaction": "",
+      "transaction:hint": "",
+      "isElements": false,
+      "isElements:hint": "require when you set the transaction field"
+    }
   },
   "response": {
     ":class": "SelectUtxosResponse",
@@ -27,9 +38,13 @@
       "amount": 0,
       "amount:type": "int64_t",
       "asset": "",
-      "asset:hint": "This field is avalable only elements utxo."
+      "asset:hint": "This field is avalable only elements utxo.",
+      "descriptor": "",
+      "descriptor:hint": "descriptor is required, you needs to consider fee amount"
     }],
     "selectedAmount": 0,
-    "selectedAmount:type": "int64_t"
+    "selectedAmount:type": "int64_t",
+    "feeAmount": 0,
+    "feeAmount:type": "int64_t"
   }
 }
