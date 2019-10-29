@@ -97,8 +97,8 @@ const analyzeJson = (jsonObj, objName = '') => {
     // 対応不要
     result = new JsonMappingData(objName, 'boolean', jsonObj, '');
   } else if (jsonObj) {
-    let obj_key = Object.keys(jsonObj);
-    let obj_values = Object.values(jsonObj);
+    const obj_key = Object.keys(jsonObj);
+    const obj_values = Object.values(jsonObj);
     if (obj_key == 0) { // array
       // console.log(`read arr = ${obj_values}`)
       let past_type = '';
@@ -180,7 +180,7 @@ const analyzeJson = (jsonObj, objName = '') => {
             } else if (typeof value == 'boolean') {
               type_str = 'bool';
             } else if (value) {
-              let obj_key2 = Object.keys(value);
+              const obj_key2 = Object.keys(value);
               if (obj_key2 == 0) { // array
                 // 要素を先に調べるべき？
                 type_str = '';
@@ -236,6 +236,7 @@ const getChildClasses = (jsonMapData, list) => {
 // ----------------------------------------------------------------------------
 const generateSource = (filename, headerName, req, res, json_setting) => {
   const result = [];
+  const processed_list = [];
   const namespace = json_setting.namespace;
   const include_nolint = (headerName.indexOf('/') >= 0) ? '' : '  // NOLINT';
 
@@ -288,6 +289,9 @@ using cfd::core::JsonVector;
 
       for (const map_key in map_list) {
         const map_data = map_list[map_key];
+        if (processed_list.includes(map_data.type)) {
+          continue;
+        }
         const source_class_header = `
 // ------------------------------------------------------------------------
 // ${map_data.type}
@@ -351,6 +355,8 @@ void ${map_data.type}::CollectFieldName() {
           result.push('  return result;');
           result.push('}');
         }
+
+        processed_list.push(map_data.type);
       }
     }
   }
@@ -594,6 +600,7 @@ ${struct_convert_function}
 // ----------------------------------------------------------------------------
 const generateHeader = (filename, dirname, req, res, json_setting, append_header_name = '') => {
   const result = [];
+  const processed_list = [];
 
   const namespace = json_setting.namespace;
   const export_define = (json_setting.export) ? `${json_setting.export} ` : '';
@@ -688,6 +695,9 @@ using cfd::core::JsonVector;
 
       for (const map_key in map_list) {
         const map_data = map_list[map_key];
+        if (processed_list.includes(map_data.type)) {
+          continue;
+        }
         const class_header = generateClassHeader(map_data, export_define);
         result.push(class_header);
 
@@ -722,6 +732,8 @@ using cfd::core::JsonVector;
         }
 
         result.push('};');
+
+        processed_list.push(map_data.type);
       }
     }
   }
@@ -757,7 +769,7 @@ struct ${map_data.struct_type} {`;
 // ----------------------------------------------------------------------------
 // generate struct item data function
 // ----------------------------------------------------------------------------
-const generateStructItemData = (text_array, req, res, json_data, last_namespaces, has_error_output) => {
+const generateStructItemData = (text_array, req, res, json_data, last_namespaces, has_error_output, processed_list) => {
   if (req || res) {
     let namespace = '';
     let last_namespace = '';
@@ -820,7 +832,7 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
 
       for (const map_key in map_list) {
         const map_data = map_list[map_key];
-        if (!map_data.is_output_struct) {
+        if (!map_data.is_output_struct || processed_list.includes(map_data.struct_type)) {
           console.log(`skip output struct: ${map_data.struct_type}`);
           continue;
         }
@@ -879,6 +891,8 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
         }
         text_array.push(`  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.`);
         text_array.push('};');
+
+        processed_list.push(map_data.struct_type);
       }
     }
   }
@@ -889,6 +903,7 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
 // ----------------------------------------------------------------------------
 const generateStructHeader = (dirname, filename, json_list) => {
   const result = [];
+  const processedStructTypes = [];
 
   let path = `${dirname}/${filename}_`;
   if (path.startsWith(__dirname)) {
@@ -954,7 +969,8 @@ const generateStructHeader = (dirname, filename, json_list) => {
       const req = json_list[json_data_index].request_data;
       const res = json_list[json_data_index].response_data;
       generateStructItemData(result, req, res,
-          json_list[json_data_index].json_data, last_namespace, false);
+          json_list[json_data_index].json_data, last_namespace, false,
+          processedStructTypes);
       last_namespace = json_list[json_data_index].json_data.namespace;
     }
   }
@@ -967,7 +983,8 @@ const generateStructHeader = (dirname, filename, json_list) => {
       const req = json_list[json_data_index].request_data;
       const res = json_list[json_data_index].response_data;
       generateStructItemData(result, req, res,
-          json_list[json_data_index].json_data, last_namespace, true);
+          json_list[json_data_index].json_data, last_namespace, true,
+          processedStructTypes);
       const json_data = json_list[json_data_index].json_data;
       last_namespace = json_list[json_data_index].json_data.namespace;
     }
