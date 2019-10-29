@@ -1,0 +1,35 @@
+{
+  "namespace": ["cfd","js","api","json"],
+  "request": {
+    ":class": "SelectUtxosRequest",
+    "utxos": [{
+      ":class": "UtxoJsonData",
+      "txid": "",
+      "vout": 0,
+      "vout:type": "uint32_t",
+      "amount": 0,
+      "amount:type": "int64_t",
+      "asset": "",
+      "asset:hint": "This field is avalable only elements utxo."
+    }],
+    "targetAmount": 0,
+    "targetAmount:type": "int64_t",
+    "targetAsset": "",
+    "targetAsset:hint": "This field is avalable only elements utxo."
+  },
+  "response": {
+    ":class": "SelectUtxosResponse",
+    "utxos": [{
+      ":class": "UtxoJsonData",
+      "txid": "",
+      "vout": 0,
+      "vout:type": "uint32_t",
+      "amount": 0,
+      "amount:type": "int64_t",
+      "asset": "",
+      "asset:hint": "This field is avalable only elements utxo."
+    }],
+    "selectedAmount": 0,
+    "selectedAmount:type": "int64_t"
+  }
+}
