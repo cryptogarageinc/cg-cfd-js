@@ -22,32 +22,6 @@ using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
 using cfd::core::JsonValueVector;
 using cfd::core::JsonVector;
-// clang-format off
-// @formatter:off
-
-// ------------------------------------------------------------------------
-// UtxoJsonWrapData
-// ------------------------------------------------------------------------
-void UtxoJsonWrapData::ConvertFromUtxoModel(const Utxo& data) {
-  if (data.binary_data != nullptr) {
-    this = static_cast<UtxoJsonData*>(data.binary_data);
-  }
-}
-
-Utxo UtxoJsonWrapData::ConvertToUtxo() const {
-  const Utxo result;
-  result.txid = Txid(txid_).GetData().GetBytes().data();
-  result.vout = vout_;
-  result.amount = static_cast<uint64_t>(amount_);
-  result.asset = ConfidentialAssetId(asset_).GetData().GetBytes().data();
-  // FIXME(fujita-cg): descriptor をUTXOモデルに追加したい?
-  result.binary_data = this;
-  return result;
-}
-
-void UtxoJsonWrapData::PostDeserialize() {
-  SetUtxo(ConvertToUtxo());
-}
 
 // ------------------------------------------------------------------------
 // CoinSelectionFeeInfomationWrapField(不要?)
@@ -56,19 +30,55 @@ void UtxoJsonWrapData::PostDeserialize() {
 // ------------------------------------------------------------------------
 // SelectUtxosWrapRequest
 // ------------------------------------------------------------------------
+void SelectUtxosWrapRequest::PostDeserialize() {
+  JsonObjectVector<UtxoJsonData, UtxoJsonDataStruct>& json_list = GetUtxos();
+  utxo_list_.resize(json_list.size());
+  const auto& ite = json_list.cbegin();
+  const auto& ite_end = json_list.cend();
+  auto& utxo_ite = utxo_list_.begin();
+  while (ite != ite_end) {
+    ConvertToUtxo(*ite, utxo_ite);
+    ++ite;
+    ++utxo_ite;
+  }
+}
 
-// TODO: Deserialize時に、Requestを UtxoJsonWrapData に変換する処理
-//   UtxoJsonWrapDataではなく、Requestにメンバーとしてstd::vector<Utxo>を
-//   持たせても良いかもしれない
+const std::vector<Utxo>& SelectUtxosWrapRequest::GetUtxoList() const {
+  return utxo_list_;
+}
+
+void SelectUtxosWrapRequest::ConvertToUtxo(const UtxoJsonData& data, Utxo* utxo) {
+#ifndef CFD_DISABLE_ELEMENTS
+  CoinSelection::ConvertToUtxo(
+    0, BlockHash(), Txid(data.GetTxid()), data.GetVout(), Script(),
+    data.GetDescriptor(), Amount::CreateBySatoshiAmount(data.GetAmount()),
+    ConfidentialAssetId(data.GetAsset()), reinterpret_cast<const void*>(&data), utxo);
+#else
+  CoinSelection::ConvertToUtxo(
+    0, BlockHash(), Txid(data.GetTxid()), data.GetVout(), Script(),
+    data.GetDescriptor(), Amount::CreateBySatoshiAmount(data.GetAmount()),
+    reinterpret_cast<const void*>(&data), utxo);
+#endif  // CFD_DISABLE_ELEMENTS
+}
 
 // ------------------------------------------------------------------------
 // SelectUtxosWrapResponse
 // ------------------------------------------------------------------------
-
-// TODO: Serialize時に、 UtxoJsonWrapData からResponseに変換する処理
-
-// @formatter:on
-// clang-format on
+void SelectUtxosWrapResponse::SetTargetUtxoList(const std::vector<Utxo>& utxo_list) {
+  JsonObjectVector<UtxoJsonData, UtxoJsonDataStruct>& json_list = GetUtxos();
+  json_list.clear();
+  Utxo temp;
+  for (const auto& utxo : utxo_list) {
+    if (utxo.binary_data != nullptr) {
+      const UtxoJsonData* json_data = static_cast<const UtxoJsonData*>(utxo.binary_data);
+      // 整合性チェック(末尾の作業領域は除外)
+      SelectUtxosWrapRequest::ConvertToUtxo(*json_data, &temp);
+      if (memcmp(&utxo, &temp, sizeof(Utxo) - 24) == 0) {
+        json_list.push_back(*json_data);
+      }
+    }
+  }
+}
 
 }  // namespace json
 }  // namespace api

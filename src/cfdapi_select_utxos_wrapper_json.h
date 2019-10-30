@@ -16,63 +16,11 @@ namespace js {
 namespace api {
 namespace json {
 
+using cfd::Utxo;
 using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
 using cfd::core::JsonValueVector;
 using cfd::core::JsonVector;
-// clang-format off
-// @formatter:off
-
-// ------------------------------------------------------------------------
-// UtxoJsonWrapData
-// ------------------------------------------------------------------------
-/**
- * @brief UtxoJsonWrapDataクラス
- */
-class UtxoJsonWrapData
-  : public UtxoJsonData {
- public:
-  /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
-   */
-  void ConvertFromUtxoDataStruct(
-      const UtxoDataStruct& data);
-
-  /**
-   * @brief クラスから内部モデルへ変換する.
-   * @return  Utxoデータ
-   */
-  Utxo ConvertToUtxo() const;
-
-  /**
-   * @brief Utxoデータを返却する.
-   * @return Utxoインスタンス
-   */
-  Utxo GetUtxo() const { return utxo_; };
-
-  /**
-   * @brief Utxoデータを設定する
-   * @param[in] 設定するUtxoインスタンス
-   */
-  void SetUtxo(const Utxo& utxo) {
-    utxo_ = utxo;
-  };
-  
-  /**
-   * @brief デシリアライズ終了時にコールされる関数。
-   *
-   * 必要に応じて継承クラス側でオーバーライドする。
-   */
-  virtual void PostDeserialize();
-
- private:
-  Utxo utxo_;
-};
-
-// ------------------------------------------------------------------------
-// CoinSelectionFeeInfomationWrapField(不要?)
-// ------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------
 // SelectUtxosWrapRequest
@@ -83,12 +31,28 @@ class UtxoJsonWrapData
 class SelectUtxosWrapRequest
   : public SelectUtxosRequest {
  public:
+  /**
+   * @brief デシリアライズ終了時にコールされる関数。
+   *
+   * 必要に応じて継承クラス側でオーバーライドする。
+   */
+  virtual void PostDeserialize();
 
- // TODO: Deserialize時の変換処理
+  /**
+   * @brief Utxo一覧を取得する.
+   * @return Utxo一覧
+   */
+  const std::vector<Utxo>& GetUtxoList() const;
 
- protected:
- 
+  /**
+   * @brief クラスから内部モデルへ変換する.
+   * @param[in] data   utxo json data
+   * @param[out] utxo  utxo data
+   */
+  static void ConvertToUtxo(const UtxoJsonData& data, Utxo* utxo);
+
  private:
+  std::vector<Utxo> utxo_list_;   //!< utxo一覧
 };
 
 // ------------------------------------------------------------------------
@@ -100,16 +64,12 @@ class SelectUtxosWrapRequest
 class SelectUtxosWrapResponse
   : public SelectUtxosResponse {
  public:
-
- // TODO: Serialize時の変換処理
-
- protected:
- 
- private:
+  /**
+   * @brief Utxo一覧を設定する.
+   * @param[in] utxo_list   Utxo一覧
+   */
+  void SetTargetUtxoList(const std::vector<Utxo>& utxo_list);
 };
-
-// @formatter:on
-// clang-format on
 
 }  // namespace json
 }  // namespace api

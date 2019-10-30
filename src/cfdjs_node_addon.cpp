@@ -277,6 +277,68 @@ Value NodeAddonJsonResponseApi(
   }
 }
 
+/**
+ * @brief NodeAddonのJSON APIテンプレート関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @param[in] call_function   cfdの呼び出し関数
+ * @return 戻り値(JSON文字列)
+ */
+template <
+    typename RequestType, typename ResponseType>
+Value NodeAddonDirectJsonApi(
+    const CallbackInfo &information,
+    std::function<void(const RequestType &, ResponseType*)>
+        call_function) {
+  Env env = information.Env();
+  if (information.Length() < 1) {
+    TypeError::New(env, "Invalid arguments.").ThrowAsJavaScriptException();
+    return env.Null();
+  }
+  if (!information[0].IsString()) {
+    TypeError::New(env, "Wrong arguments.").ThrowAsJavaScriptException();
+    return env.Null();
+  }
+
+  try {
+    // リクエストjson_strから、モデルへ変換
+    RequestType req;
+    try {
+      req.Deserialize(information[0].As<String>().Utf8Value());
+    } catch (const CfdException &cfd_except) {
+      ErrorResponse res = ErrorResponse::ConvertFromCfdException(cfd_except);
+      return String::New(env, res.Serialize().c_str());
+    } catch (...) {
+      CfdException ex(
+          CfdError::kCfdOutOfRangeError,
+          "JSON value convert error. Value out of range.");
+      ErrorResponse res = ErrorResponse::ConvertFromCfdException(ex);
+      return String::New(env, res.Serialize().c_str());
+    }
+
+    std::string json_message;
+    try {
+      ResponseType response;
+      call_function(req, &response);
+      json_message = response.Serialize();
+    } catch (const CfdException &cfd_except) {
+      ErrorResponse res = ErrorResponse::ConvertFromCfdException(cfd_except);
+      json_message = res.Serialize();
+    }
+
+    // utf-8
+    return String::New(env, json_message.c_str());
+  } catch (const std::exception &except) {
+    // illegal route
+    std::string errmsg = "exception=" + std::string(except.what());
+    TypeError::New(env, errmsg).ThrowAsJavaScriptException();
+    return env.Null();
+  } catch (...) {
+    // illegal route
+    TypeError::New(env, "Illegal exception.").ThrowAsJavaScriptException();
+    return env.Null();
+  }
+}
+
 }  // namespace json
 }  // namespace api
 }  // namespace js
