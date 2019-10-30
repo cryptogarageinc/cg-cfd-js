@@ -51,7 +51,7 @@ class UtxoJsonData
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -94,7 +94,7 @@ class UtxoJsonData
    * @brief vout 取得処理
    * @return vout
    */
-  uint32_t GetVout() {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -137,7 +137,7 @@ class UtxoJsonData
    * @brief amount 取得処理
    * @return amount
    */
-  int64_t GetAmount() {
+  int64_t GetAmount() const {
     return amount_;
   }
   /**
@@ -180,7 +180,7 @@ class UtxoJsonData
    * @brief asset 取得処理
    * @return asset
    */
-  std::string GetAsset() {
+  std::string GetAsset() const {
     return asset_;
   }
   /**
@@ -223,7 +223,7 @@ class UtxoJsonData
    * @brief descriptor 取得処理
    * @return descriptor
    */
-  std::string GetDescriptor() {
+  std::string GetDescriptor() const {
     return descriptor_;
   }
   /**

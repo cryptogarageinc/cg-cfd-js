@@ -7,8 +7,9 @@
 #ifndef CFD_JS_SRC_CFDAPI_SELECT_UTXOS_WRAPPER_JSON_H_
 #define CFD_JS_SRC_CFDAPI_SELECT_UTXOS_WRAPPER_JSON_H_
 
-#include "cfdapi_select_utxos_json.h"  // NOLINT
+#include <vector>
 #include "cfd/cfd_utxo.h"
+#include "cfdapi_select_utxos_json.h"  // NOLINT
 #include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
@@ -28,8 +29,7 @@ using cfd::core::JsonVector;
 /**
  * @brief JSON-API（SelectUtxosWrapRequest）クラス
  */
-class SelectUtxosWrapRequest
-  : public SelectUtxosRequest {
+class SelectUtxosWrapRequest : public SelectUtxosRequest {
  public:
   /**
    * @brief デシリアライズ終了時にコールされる関数。
@@ -52,7 +52,7 @@ class SelectUtxosWrapRequest
   static void ConvertToUtxo(const UtxoJsonData& data, Utxo* utxo);
 
  private:
-  std::vector<Utxo> utxo_list_;   //!< utxo一覧
+  std::vector<Utxo> utxo_list_;  //!< utxo一覧
 };
 
 // ------------------------------------------------------------------------
@@ -61,8 +61,7 @@ class SelectUtxosWrapRequest
 /**
  * @brief JSON-API（SelectUtxosWrapResponse）クラス
  */
-class SelectUtxosWrapResponse
-  : public SelectUtxosResponse {
+class SelectUtxosWrapResponse : public SelectUtxosResponse {
  public:
   /**
    * @brief Utxo一覧を設定する.
@@ -76,4 +75,4 @@ class SelectUtxosWrapResponse
 }  // namespace js
 }  // namespace cfd
 
-#endif  // CFD_JS_SRC_CFDAPI_SELECT_UTXOS_JSON_H_
+#endif  // CFD_JS_SRC_CFDAPI_SELECT_UTXOS_WRAPPER_JSON_H_

@@ -12,5 +12,6 @@ CFDJS_PKGINCLUDE_FILES = \
   cfdjs_struct.h \
   cfdjs_transaction.h \
   cfdjs_utility.h \
+  cfdjs_coin.h \
   $(CFDJS_ELEMENTS_PKGINCLUDE_FILES)
 
