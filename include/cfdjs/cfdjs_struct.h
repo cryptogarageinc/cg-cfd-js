@@ -1521,7 +1521,7 @@ struct UtxoJsonDataStruct {
  * @brief CoinSelectionFeeInfomationFieldStruct 構造体
  */
 struct CoinSelectionFeeInfomationFieldStruct {
-  int64_t fee_rate = 1;          //!< fee_rate  // NOLINT
+  double fee_rate = 1;           //!< fee_rate  // NOLINT
   std::string transaction = "";  //!< transaction  // NOLINT
   bool is_elements = false;      //!< is_elements  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.

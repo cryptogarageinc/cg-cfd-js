@@ -21,9 +21,10 @@
     "feeInfo": {
       ":class": "CoinSelectionFeeInfomationField",
       "feeRate": 1,
-      "feeRate:hint": "",
+      "feeRate:type": "double",
+      "feeRate:hint": "network fee rate",
       "transaction": "",
-      "transaction:hint": "",
+      "transaction:hint": "transaction hex",
       "isElements": false,
       "isElements:hint": "require when you set the transaction field"
     }
