@@ -24,6 +24,7 @@ const {
   CreateRawPegin,
   CreateRawPegout,
   CreateDestroyAmount,
+  SelectUtxos,
 } = cfdjsModule;
 
 let supportFunctions;
@@ -1008,5 +1009,47 @@ if (!supportFunctions.elements) {
     destroyAmountCreateDestroyAmountResult = CreateDestroyAmount(reqJson);
     console.log('\n*** Response ***\n',
         destroyAmountCreateDestroyAmountResult, '\n');
+  }
+
+  let coinSelectionResult;
+  {
+    console.log('-- SelectUtxos start --');
+    const reqJson = {
+      utxos: [{
+        txid: '822ad1c6edee82486dc47de04cb9453b0b63712bdb6c45755af847dfc44fbb3e',
+        vout: 1,
+        amount: 1000000,
+        asset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+        descriptor: 'pkh([e4679995]02f8a0a7e12d38c313d51383ead3fccd3b70439f0c7c4c1ecd897f8767b194fc41)#p79a945u',
+      }, {
+        txid: '6eb04fc724dd8c1a3ea680c993b3b3d262cce0764e7b27fdbbce6636f7a89dd1',
+        vout: 1,
+        amount: 200000000,
+        asset: '1b7d916b84c15ef482f665d8fce11a624e3650fbf6add4193949555b934df355',
+        descriptor: 'sh(wpkh([4ff503c6/0\'/0\'/51\']03d9410e6cfbe3b3f170799c4584db8cbeee339c9a45e1377d6be9f041e26cceb8))#ayrfywq5',
+      }, {
+        txid: 'd8faf09177d9e269a0f48f3488b7ce1f7d8d7ebda31184c6ad0ec7bcbd9c6de2',
+        vout: 0,
+        amount: 122600,
+        asset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+        descriptor: 'sh(wpkh([4ff503c6/0\'/0\'/10\']02464f5da28e7c9a6ea7283623ef0c9e843a89e17687b87d20a59a2c390206286e))#njnsj47e',
+      }, {
+        txid: 'acad36ed40d1091267dd9643194734d6f0bd97be5ea90d625decdcae61baa6f1',
+        vout: 0,
+        amount: 29080,
+        asset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+        descriptor: 'sh(wpkh([4ff503c6/0\'/0\'/1\']0216a3b1b11e83add2ad65574abed0d395a49773d66c9c6e38ab45351e014c4b17))#za299c3j',
+      }],
+      targetAmount: 1100000,
+      targetAsset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+      feeInfo: {
+        feeRate: 1,
+        transaction: '020000000000010125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a01000000000010c8e0030c1bd6cfbda70607a2e6b954e229da07b9cf199003f44fff9d96ff1e010c49c017a9144c3ab60591ff8463c57aa3a318ed5154fb7652e98700000000',
+        isElements: true,
+      },
+    };
+    console.log('*** Request ***\n', reqJson);
+    coinSelectionResult = SelectUtxos(reqJson);
+    console.log('*** Response ***\n', coinSelectionResult);
   }
 }

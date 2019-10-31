@@ -25,6 +25,7 @@ namespace js {
 namespace api {
 
 using cfd::core::AddressType;
+using cfd::core::NetType;
 
 /**
  * @brief Address関連の関数群クラス
