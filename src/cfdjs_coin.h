@@ -6,8 +6,8 @@
  *
  * JSON形式のAPIを提供する.
  */
-#ifndef CFD_JS_INCLUDE_CFDJS_CFDJS_COIN_H_
-#define CFD_JS_INCLUDE_CFDJS_CFDJS_COIN_H_
+#ifndef CFD_JS_SRC_CFDJS_COIN_H
+#define CFD_JS_SRC_CFDJS_COIN_H
 
 #include <string>
 #include <vector>
@@ -45,4 +45,4 @@ class CFD_JS_EXPORT CoinJsonApi {
 }  // namespace js
 }  // namespace cfd
 
-#endif  // CFD_JS_INCLUDE_CFDJS_CFDJS_COIN_H_
+#endif  // CFD_JS_SRC_CFDJS_COIN_H
