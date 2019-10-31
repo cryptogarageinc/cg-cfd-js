@@ -39,8 +39,10 @@ void CoinJsonApi::SelectUtxos(
 #ifndef CFD_DISABLE_ELEMENTS
     ConfidentialTransactionController ctxc(fee_info.GetTransaction());
     option.InitializeConfidentialTxSize(ctxc);
-    option.SetFeeAsset(ConfidentialAssetId(req->GetTargetAsset()));
-    filter.target_asset = ConfidentialAssetId(req->GetTargetAsset());
+    if (!req->GetTargetAsset().empty()) {
+      option.SetFeeAsset(ConfidentialAssetId(req->GetTargetAsset()));
+      filter.target_asset = ConfidentialAssetId(req->GetTargetAsset());
+    }
 #else
     warn(CFD_LOG_SOURCE, "Not Support Elements.");
     throw CfdException(

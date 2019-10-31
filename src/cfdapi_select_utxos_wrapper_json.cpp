@@ -22,7 +22,6 @@ using cfd::core::JsonObjectVector;
 using cfd::core::JsonValueVector;
 using cfd::core::JsonVector;
 
-
 // ------------------------------------------------------------------------
 // CoinSelectionFeeInfomationWrapField(不要?)
 // ------------------------------------------------------------------------
@@ -49,18 +48,10 @@ const std::vector<Utxo>& SelectUtxosWrapRequest::GetUtxoList() const {
 
 void SelectUtxosWrapRequest::ConvertToUtxo(
     const UtxoJsonData& data, Utxo* utxo) {
-#ifndef CFD_DISABLE_ELEMENTS
   CoinSelection::ConvertToUtxo(
-      0, BlockHash(), Txid(data.GetTxid()), data.GetVout(), Script(),
-      data.GetDescriptor(), Amount::CreateBySatoshiAmount(data.GetAmount()),
-      ConfidentialAssetId(data.GetAsset()),
+      Txid(data.GetTxid()), data.GetVout(), data.GetDescriptor(),
+      Amount::CreateBySatoshiAmount(data.GetAmount()), data.GetAsset(),
       reinterpret_cast<const void*>(&data), utxo);
-#else
-  CoinSelection::ConvertToUtxo(
-      0, BlockHash(), Txid(data.GetTxid()), data.GetVout(), Script(),
-      data.GetDescriptor(), Amount::CreateBySatoshiAmount(data.GetAmount()),
-      reinterpret_cast<const void*>(&data), utxo);
-#endif  // CFD_DISABLE_ELEMENTS
 }
 
 // ------------------------------------------------------------------------

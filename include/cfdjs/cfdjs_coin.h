@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-#include "cfdapi_select_utxos_wrapper_json.h"             // NOLINT
+#include "cfdapi_select_utxos_wrapper_json.h"  // NOLINT
 #include "cfdjs/cfdjs_common.h"
 
 /**
