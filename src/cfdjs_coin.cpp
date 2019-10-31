@@ -8,7 +8,7 @@
 #include <vector>
 
 #include "cfd/cfd_utxo.h"
-#include "cfdjs/cfdjs_coin.h"
+#include "cfdjs_coin.h"      // NOLINT
 #include "cfdjs_internal.h"  // NOLINT
 
 namespace cfd {
