@@ -51,7 +51,7 @@ class GetPrivkeyFromExtkeyRequest
    * @brief extkey 取得処理
    * @return extkey
    */
-  std::string GetExtkey() {
+  std::string GetExtkey() const {
     return extkey_;
   }
   /**
@@ -94,7 +94,7 @@ class GetPrivkeyFromExtkeyRequest
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -137,7 +137,7 @@ class GetPrivkeyFromExtkeyRequest
    * @brief wif 取得処理
    * @return wif
    */
-  bool GetWif() {
+  bool GetWif() const {
     return wif_;
   }
   /**
@@ -180,7 +180,7 @@ class GetPrivkeyFromExtkeyRequest
    * @brief isCompressed 取得処理
    * @return isCompressed
    */
-  bool GetIsCompressed() {
+  bool GetIsCompressed() const {
     return is_compressed_;
   }
   /**
@@ -330,7 +330,7 @@ class GetPrivkeyFromExtkeyResponse
    * @brief privkey 取得処理
    * @return privkey
    */
-  std::string GetPrivkey() {
+  std::string GetPrivkey() const {
     return privkey_;
   }
   /**

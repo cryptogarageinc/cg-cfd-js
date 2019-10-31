@@ -51,7 +51,7 @@ class GetWitnessStackNumTxInRequest
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -94,7 +94,7 @@ class GetWitnessStackNumTxInRequest
    * @brief vout 取得処理
    * @return vout
    */
-  uint32_t GetVout() {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -236,7 +236,7 @@ class GetWitnessStackNumRequest
    * @brief tx 取得処理
    * @return tx
    */
-  std::string GetTx() {
+  std::string GetTx() const {
     return tx_;
   }
   /**
@@ -279,7 +279,7 @@ class GetWitnessStackNumRequest
    * @brief isElements 取得処理
    * @return isElements
    */
-  bool GetIsElements() {
+  bool GetIsElements() const {
     return is_elements_;
   }
   /**
@@ -468,7 +468,7 @@ class GetWitnessStackNumResponse
    * @brief count 取得処理
    * @return count
    */
-  int64_t GetCount() {
+  int64_t GetCount() const {
     return count_;
   }
   /**

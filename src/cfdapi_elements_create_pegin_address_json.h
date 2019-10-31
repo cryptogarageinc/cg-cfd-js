@@ -51,7 +51,7 @@ class ElementsCreatePegInAddressRequest
    * @brief fedpegscript 取得処理
    * @return fedpegscript
    */
-  std::string GetFedpegscript() {
+  std::string GetFedpegscript() const {
     return fedpegscript_;
   }
   /**
@@ -94,7 +94,7 @@ class ElementsCreatePegInAddressRequest
    * @brief pubkey 取得処理
    * @return pubkey
    */
-  std::string GetPubkey() {
+  std::string GetPubkey() const {
     return pubkey_;
   }
   /**
@@ -137,7 +137,7 @@ class ElementsCreatePegInAddressRequest
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -283,7 +283,7 @@ class ElementsCreatePegInAddressResponse
    * @brief mainchainAddress 取得処理
    * @return mainchainAddress
    */
-  std::string GetMainchainAddress() {
+  std::string GetMainchainAddress() const {
     return mainchain_address_;
   }
   /**
@@ -326,7 +326,7 @@ class ElementsCreatePegInAddressResponse
    * @brief claimScript 取得処理
    * @return claimScript
    */
-  std::string GetClaimScript() {
+  std::string GetClaimScript() const {
     return claim_script_;
   }
   /**
@@ -369,7 +369,7 @@ class ElementsCreatePegInAddressResponse
    * @brief tweakFedpegscript 取得処理
    * @return tweakFedpegscript
    */
-  std::string GetTweakFedpegscript() {
+  std::string GetTweakFedpegscript() const {
     return tweak_fedpegscript_;
   }
   /**

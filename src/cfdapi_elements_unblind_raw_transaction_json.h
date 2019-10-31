@@ -51,7 +51,7 @@ class UnblindTxOut
    * @brief index 取得処理
    * @return index
    */
-  uint32_t GetIndex() {
+  uint32_t GetIndex() const {
     return index_;
   }
   /**
@@ -94,7 +94,7 @@ class UnblindTxOut
    * @brief blindingKey 取得処理
    * @return blindingKey
    */
-  std::string GetBlindingKey() {
+  std::string GetBlindingKey() const {
     return blinding_key_;
   }
   /**
@@ -236,7 +236,7 @@ class UnblindIssuance
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -279,7 +279,7 @@ class UnblindIssuance
    * @brief vout 取得処理
    * @return vout
    */
-  int64_t GetVout() {
+  int64_t GetVout() const {
     return vout_;
   }
   /**
@@ -322,7 +322,7 @@ class UnblindIssuance
    * @brief assetBlindingKey 取得処理
    * @return assetBlindingKey
    */
-  std::string GetAssetBlindingKey() {
+  std::string GetAssetBlindingKey() const {
     return asset_blinding_key_;
   }
   /**
@@ -365,7 +365,7 @@ class UnblindIssuance
    * @brief tokenBlindingKey 取得処理
    * @return tokenBlindingKey
    */
-  std::string GetTokenBlindingKey() {
+  std::string GetTokenBlindingKey() const {
     return token_blinding_key_;
   }
   /**
@@ -515,7 +515,7 @@ class UnblindRawTransactionRequest
    * @brief tx 取得処理
    * @return tx
    */
-  std::string GetTx() {
+  std::string GetTx() const {
     return tx_;
   }
   /**
@@ -747,7 +747,7 @@ class UnblindOutput
    * @brief index 取得処理
    * @return index
    */
-  uint32_t GetIndex() {
+  uint32_t GetIndex() const {
     return index_;
   }
   /**
@@ -790,7 +790,7 @@ class UnblindOutput
    * @brief asset 取得処理
    * @return asset
    */
-  std::string GetAsset() {
+  std::string GetAsset() const {
     return asset_;
   }
   /**
@@ -833,7 +833,7 @@ class UnblindOutput
    * @brief blindFactor 取得処理
    * @return blindFactor
    */
-  std::string GetBlindFactor() {
+  std::string GetBlindFactor() const {
     return blind_factor_;
   }
   /**
@@ -876,7 +876,7 @@ class UnblindOutput
    * @brief assetBlindFactor 取得処理
    * @return assetBlindFactor
    */
-  std::string GetAssetBlindFactor() {
+  std::string GetAssetBlindFactor() const {
     return asset_blind_factor_;
   }
   /**
@@ -919,7 +919,7 @@ class UnblindOutput
    * @brief amount 取得処理
    * @return amount
    */
-  int64_t GetAmount() {
+  int64_t GetAmount() const {
     return amount_;
   }
   /**
@@ -1073,7 +1073,7 @@ class UnblindIssuanceOutput
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -1116,7 +1116,7 @@ class UnblindIssuanceOutput
    * @brief vout 取得処理
    * @return vout
    */
-  int64_t GetVout() {
+  int64_t GetVout() const {
     return vout_;
   }
   /**
@@ -1159,7 +1159,7 @@ class UnblindIssuanceOutput
    * @brief asset 取得処理
    * @return asset
    */
-  std::string GetAsset() {
+  std::string GetAsset() const {
     return asset_;
   }
   /**
@@ -1202,7 +1202,7 @@ class UnblindIssuanceOutput
    * @brief assetamount 取得処理
    * @return assetamount
    */
-  int64_t GetAssetamount() {
+  int64_t GetAssetamount() const {
     return assetamount_;
   }
   /**
@@ -1245,7 +1245,7 @@ class UnblindIssuanceOutput
    * @brief token 取得処理
    * @return token
    */
-  std::string GetToken() {
+  std::string GetToken() const {
     return token_;
   }
   /**
@@ -1288,7 +1288,7 @@ class UnblindIssuanceOutput
    * @brief tokenamount 取得処理
    * @return tokenamount
    */
-  int64_t GetTokenamount() {
+  int64_t GetTokenamount() const {
     return tokenamount_;
   }
   /**
@@ -1446,7 +1446,7 @@ class UnblindRawTransactionResponse
    * @brief hex 取得処理
    * @return hex
    */
-  std::string GetHex() {
+  std::string GetHex() const {
     return hex_;
   }
   /**

@@ -51,7 +51,7 @@ class GetIssuanceBlindingKeyRequest
    * @brief masterBlindingKey 取得処理
    * @return masterBlindingKey
    */
-  std::string GetMasterBlindingKey() {
+  std::string GetMasterBlindingKey() const {
     return master_blinding_key_;
   }
   /**
@@ -94,7 +94,7 @@ class GetIssuanceBlindingKeyRequest
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -137,7 +137,7 @@ class GetIssuanceBlindingKeyRequest
    * @brief vout 取得処理
    * @return vout
    */
-  uint32_t GetVout() {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -283,7 +283,7 @@ class GetIssuanceBlindingKeyResponse
    * @brief blindingKey 取得処理
    * @return blindingKey
    */
-  std::string GetBlindingKey() {
+  std::string GetBlindingKey() const {
     return blinding_key_;
   }
   /**
