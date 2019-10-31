@@ -216,7 +216,7 @@ const FIXED_ELEMENTS_FEE_INFO = {
 const elementsTestCase = [
   (() => {
     const utxos = testUtxos([1, 2, 5, 10, 20]);
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - 38[1,2,5,10,20]coins, req: 37 coins',
       SelectUtxos,
       [JSON.stringify({
@@ -232,7 +232,7 @@ const elementsTestCase = [
   })(),
   (() => {
     const utxos = testUtxos([1, 2, 5, 10, 20]);
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - 38[1,2,5,10,20]coins, req: 38 coins',
       SelectUtxos,
       [JSON.stringify({
@@ -248,7 +248,7 @@ const elementsTestCase = [
   })(),
   (() => {
     const utxos = testUtxos([1, 2, 5, 10, 20]);
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - 38[1,2,5,10,20]coins, req: 34 coins',
       SelectUtxos,
       [JSON.stringify({
@@ -264,7 +264,7 @@ const elementsTestCase = [
   })(),
   (() => {
     const utxos = testUtxos([6, 7, 8, 20, 30]);
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - 71[6,7,8,20,30]coins, req: 16 coins',
       SelectUtxos,
       [JSON.stringify({
@@ -280,7 +280,7 @@ const elementsTestCase = [
   })(),
   (() => {
     const utxos = testUtxos([6, 7, 8, 30]);
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - 51[6,7,8,30]coins, req: 16 coins',
       SelectUtxos,
       [JSON.stringify({
@@ -296,7 +296,7 @@ const elementsTestCase = [
   })(),
   (() => {
     const utxos = testUtxos([0.1, 0.2, 0.3, 0.4, 0.5]);
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - 5.5[0.1, 0.2, 0.3, 0.4, 0.5]coins, req: 1.0 coins',
       SelectUtxos,
       [JSON.stringify({
@@ -315,7 +315,7 @@ const elementsTestCase = [
 const elementsErrorCase = [
   (() => {
     const utxos = testUtxos();
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - Error - empty coins, req: 1.0 coins',
       SelectUtxos,
       [JSON.stringify({
@@ -328,7 +328,7 @@ const elementsErrorCase = [
   })(),
   (() => {
     const utxos = testUtxos([1, 2]);
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - Error - 3[1, 2]coins, req: 5.0 coins',
       SelectUtxos,
       [JSON.stringify({
@@ -341,7 +341,7 @@ const elementsErrorCase = [
   })(),
   (() => {
     const utxos = testUtxos([1, 2]);
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - Error - empty fee info',
       SelectUtxos,
       [JSON.stringify({
@@ -353,7 +353,7 @@ const elementsErrorCase = [
   })(),
   (() => {
     const utxos = testUtxos([1, 2]);
-    return TestHelper.createBitcoinTestCase(
+    return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - Error - invalid transaction',
       SelectUtxos,
       [JSON.stringify({
