@@ -9,7 +9,6 @@
 
 #include "cfd/cfd_common.h"
 #include "cfdjs/cfdjs_address.h"
-#include "cfdjs/cfdjs_coin.h"
 #include "cfdjs/cfdjs_elements_address.h"
 #include "cfdjs/cfdjs_elements_transaction.h"
 #include "cfdjs/cfdjs_hdwallet.h"
@@ -57,6 +56,7 @@
 #include "cfdapi_supported_function_json.h"                 // NOLINT
 #include "cfdapi_transaction_json.h"                        // NOLINT
 #include "cfdapi_update_witness_json.h"                     // NOLINT
+#include "cfdjs_coin.h"                                     // NOLINT
 
 #include "cfdjs/cfdjs_common.h"
 
