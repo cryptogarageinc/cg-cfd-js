@@ -51,7 +51,7 @@ class SignData
    * @brief hex 取得処理
    * @return hex
    */
-  std::string GetHex() {
+  std::string GetHex() const {
     return hex_;
   }
   /**
@@ -94,7 +94,7 @@ class SignData
    * @brief type 取得処理
    * @return type
    */
-  std::string GetType() {
+  std::string GetType() const {
     return type_;
   }
   /**
@@ -137,7 +137,7 @@ class SignData
    * @brief derEncode 取得処理
    * @return derEncode
    */
-  bool GetDerEncode() {
+  bool GetDerEncode() const {
     return der_encode_;
   }
   /**
@@ -180,7 +180,7 @@ class SignData
    * @brief sighashType 取得処理
    * @return sighashType
    */
-  std::string GetSighashType() {
+  std::string GetSighashType() const {
     return sighash_type_;
   }
   /**
@@ -223,7 +223,7 @@ class SignData
    * @brief sighashAnyoneCanPay 取得処理
    * @return sighashAnyoneCanPay
    */
-  bool GetSighashAnyoneCanPay() {
+  bool GetSighashAnyoneCanPay() const {
     return sighash_anyone_can_pay_;
   }
   /**
@@ -377,7 +377,7 @@ class AddSignTxInRequest
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -420,7 +420,7 @@ class AddSignTxInRequest
    * @brief vout 取得処理
    * @return vout
    */
-  uint32_t GetVout() {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -463,7 +463,7 @@ class AddSignTxInRequest
    * @brief isWitness 取得処理
    * @return isWitness
    */
-  bool GetIsWitness() {
+  bool GetIsWitness() const {
     return is_witness_;
   }
   /**
@@ -549,7 +549,7 @@ class AddSignTxInRequest
    * @brief clearStack 取得処理
    * @return clearStack
    */
-  bool GetClearStack() {
+  bool GetClearStack() const {
     return clear_stack_;
   }
   /**
@@ -703,7 +703,7 @@ class AddSignRequest
    * @brief tx 取得処理
    * @return tx
    */
-  std::string GetTx() {
+  std::string GetTx() const {
     return tx_;
   }
   /**
@@ -746,7 +746,7 @@ class AddSignRequest
    * @brief isElements 取得処理
    * @return isElements
    */
-  bool GetIsElements() {
+  bool GetIsElements() const {
     return is_elements_;
   }
   /**
@@ -935,7 +935,7 @@ class AddSignResponse
    * @brief hex 取得処理
    * @return hex
    */
-  std::string GetHex() {
+  std::string GetHex() const {
     return hex_;
   }
   /**

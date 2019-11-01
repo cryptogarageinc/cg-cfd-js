@@ -51,7 +51,7 @@ class CreateExtkeyFromParentRequest
    * @brief extkey 取得処理
    * @return extkey
    */
-  std::string GetExtkey() {
+  std::string GetExtkey() const {
     return extkey_;
   }
   /**
@@ -94,7 +94,7 @@ class CreateExtkeyFromParentRequest
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -137,7 +137,7 @@ class CreateExtkeyFromParentRequest
    * @brief extkeyType 取得処理
    * @return extkeyType
    */
-  std::string GetExtkeyType() {
+  std::string GetExtkeyType() const {
     return extkey_type_;
   }
   /**
@@ -180,7 +180,7 @@ class CreateExtkeyFromParentRequest
    * @brief childNumber 取得処理
    * @return childNumber
    */
-  int64_t GetChildNumber() {
+  int64_t GetChildNumber() const {
     return child_number_;
   }
   /**
@@ -223,7 +223,7 @@ class CreateExtkeyFromParentRequest
    * @brief hardened 取得処理
    * @return hardened
    */
-  bool GetHardened() {
+  bool GetHardened() const {
     return hardened_;
   }
   /**
@@ -377,7 +377,7 @@ class CreateExtkeyFromParentResponse
    * @brief extkey 取得処理
    * @return extkey
    */
-  std::string GetExtkey() {
+  std::string GetExtkey() const {
     return extkey_;
   }
   /**

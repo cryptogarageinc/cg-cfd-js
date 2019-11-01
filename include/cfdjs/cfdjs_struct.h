@@ -1500,6 +1500,62 @@ struct CreateMultisigResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// UtxoJsonDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief UtxoJsonDataStruct 構造体
+ */
+struct UtxoJsonDataStruct {
+  std::string txid = "";        //!< txid  // NOLINT
+  uint32_t vout = 0;            //!< vout  // NOLINT
+  int64_t amount = 0;           //!< amount  // NOLINT
+  std::string asset = "";       //!< asset  // NOLINT
+  std::string descriptor = "";  //!< descriptor  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CoinSelectionFeeInfomationFieldStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CoinSelectionFeeInfomationFieldStruct 構造体
+ */
+struct CoinSelectionFeeInfomationFieldStruct {
+  double fee_rate = 1;           //!< fee_rate  // NOLINT
+  std::string transaction = "";  //!< transaction  // NOLINT
+  bool is_elements = false;      //!< is_elements  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SelectUtxosRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SelectUtxosRequestStruct 構造体
+ */
+struct SelectUtxosRequestStruct {
+  std::vector<UtxoJsonDataStruct> utxos;           //!< utxos  // NOLINT
+  int64_t target_amount = 0;                       //!< target_amount  // NOLINT
+  std::string target_asset = "";                   //!< target_asset  // NOLINT
+  CoinSelectionFeeInfomationFieldStruct fee_info;  //!< fee_info  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SelectUtxosResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SelectUtxosResponseStruct 構造体
+ */
+struct SelectUtxosResponseStruct {
+  std::vector<UtxoJsonDataStruct> utxos;  //!< utxos  // NOLINT
+  int64_t selected_amount = 0;            //!< selected_amount  // NOLINT
+  int64_t fee_amount = 0;                 //!< fee_amount  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // SignatureHashKeyDataStruct
 // ------------------------------------------------------------------------
 /**

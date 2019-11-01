@@ -51,7 +51,7 @@ class GetSupportedFunctionResponse
    * @brief bitcoin 取得処理
    * @return bitcoin
    */
-  bool GetBitcoin() {
+  bool GetBitcoin() const {
     return bitcoin_;
   }
   /**
@@ -94,7 +94,7 @@ class GetSupportedFunctionResponse
    * @brief elements 取得処理
    * @return elements
    */
-  bool GetElements() {
+  bool GetElements() const {
     return elements_;
   }
   /**

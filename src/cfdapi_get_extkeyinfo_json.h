@@ -51,7 +51,7 @@ class GetExtkeyInfoRequest
    * @brief extkey 取得処理
    * @return extkey
    */
-  std::string GetExtkey() {
+  std::string GetExtkey() const {
     return extkey_;
   }
   /**
@@ -189,7 +189,7 @@ class GetExtkeyInfoResponse
    * @brief version 取得処理
    * @return version
    */
-  uint32_t GetVersion() {
+  uint32_t GetVersion() const {
     return version_;
   }
   /**
@@ -232,7 +232,7 @@ class GetExtkeyInfoResponse
    * @brief depth 取得処理
    * @return depth
    */
-  uint8_t GetDepth() {
+  uint8_t GetDepth() const {
     return depth_;
   }
   /**
@@ -275,7 +275,7 @@ class GetExtkeyInfoResponse
    * @brief childNumber 取得処理
    * @return childNumber
    */
-  uint32_t GetChildNumber() {
+  uint32_t GetChildNumber() const {
     return child_number_;
   }
   /**

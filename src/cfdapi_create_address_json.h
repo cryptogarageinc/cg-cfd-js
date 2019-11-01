@@ -51,7 +51,7 @@ class CreateAddressKeyData
    * @brief hex 取得処理
    * @return hex
    */
-  std::string GetHex() {
+  std::string GetHex() const {
     return hex_;
   }
   /**
@@ -94,7 +94,7 @@ class CreateAddressKeyData
    * @brief type 取得処理
    * @return type
    */
-  std::string GetType() {
+  std::string GetType() const {
     return type_;
   }
   /**
@@ -236,7 +236,7 @@ class CreateAddressRequest
    * @brief isElements 取得処理
    * @return isElements
    */
-  bool GetIsElements() {
+  bool GetIsElements() const {
     return is_elements_;
   }
   /**
@@ -322,7 +322,7 @@ class CreateAddressRequest
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -365,7 +365,7 @@ class CreateAddressRequest
    * @brief hashType 取得処理
    * @return hashType
    */
-  std::string GetHashType() {
+  std::string GetHashType() const {
     return hash_type_;
   }
   /**
@@ -515,7 +515,7 @@ class CreateAddressResponse
    * @brief address 取得処理
    * @return address
    */
-  std::string GetAddress() {
+  std::string GetAddress() const {
     return address_;
   }
   /**
@@ -558,7 +558,7 @@ class CreateAddressResponse
    * @brief lockingScript 取得処理
    * @return lockingScript
    */
-  std::string GetLockingScript() {
+  std::string GetLockingScript() const {
     return locking_script_;
   }
   /**
@@ -601,7 +601,7 @@ class CreateAddressResponse
    * @brief redeemScript 取得処理
    * @return redeemScript
    */
-  std::string GetRedeemScript() {
+  std::string GetRedeemScript() const {
     return redeem_script_;
   }
   /**

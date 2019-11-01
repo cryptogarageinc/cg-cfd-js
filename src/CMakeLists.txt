@@ -127,6 +127,7 @@ target_sources(${CFDJS_LIBRARY}
     cfdjs_transaction.cpp
     cfdjs_transaction_base.cpp
     cfdjs_utility.cpp
+    cfdjs_coin.cpp
     cfdapi_add_multisig_sign_json.cpp
     cfdapi_add_sign_json.cpp
     cfdapi_get_mnemonic_wordlist_json.cpp
@@ -166,6 +167,8 @@ target_sources(${CFDJS_LIBRARY}
     cfdapi_supported_function_json.cpp
     cfdapi_transaction_json.cpp
     cfdapi_update_witness_json.cpp
+    cfdapi_select_utxos_json.cpp
+    cfdapi_select_utxos_wrapper_json.cpp
 )
 
 target_compile_options(${CFDJS_LIBRARY}

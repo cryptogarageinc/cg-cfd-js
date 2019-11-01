@@ -51,7 +51,7 @@ class ConvertEntropyToMnemonicRequest
    * @brief entropy 取得処理
    * @return entropy
    */
-  std::string GetEntropy() {
+  std::string GetEntropy() const {
     return entropy_;
   }
   /**
@@ -94,7 +94,7 @@ class ConvertEntropyToMnemonicRequest
    * @brief language 取得処理
    * @return language
    */
-  std::string GetLanguage() {
+  std::string GetLanguage() const {
     return language_;
   }
   /**

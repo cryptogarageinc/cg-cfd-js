@@ -13,7 +13,7 @@ if(CFD_TARGET_VERSION)
 set(CFD_TARGET_TAG  ${CFD_TARGET_VERSION})
 message(STATUS "[external project debug] cfd target=${CFD_TARGET_VERSION}")
 else()
-set(CFD_TARGET_TAG  v0.0.8)
+set(CFD_TARGET_TAG  v0.0.9)
 endif()
 
 set(TEMPLATE_PROJECT_NAME           cfd)

@@ -51,7 +51,7 @@ class GetConfidentialAddressRequest
    * @brief unblindedAddress 取得処理
    * @return unblindedAddress
    */
-  std::string GetUnblindedAddress() {
+  std::string GetUnblindedAddress() const {
     return unblinded_address_;
   }
   /**
@@ -94,7 +94,7 @@ class GetConfidentialAddressRequest
    * @brief key 取得処理
    * @return key
    */
-  std::string GetKey() {
+  std::string GetKey() const {
     return key_;
   }
   /**
@@ -236,7 +236,7 @@ class GetConfidentialAddressResponse
    * @brief confidentialAddress 取得処理
    * @return confidentialAddress
    */
-  std::string GetConfidentialAddress() {
+  std::string GetConfidentialAddress() const {
     return confidential_address_;
   }
   /**
