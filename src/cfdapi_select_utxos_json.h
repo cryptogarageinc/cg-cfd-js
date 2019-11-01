@@ -377,7 +377,7 @@ class CoinSelectionFeeInfomationField
    * @brief feeRate 取得処理
    * @return feeRate
    */
-  int64_t GetFeeRate() {
+  double GetFeeRate() const {
     return fee_rate_;
   }
   /**
@@ -385,7 +385,7 @@ class CoinSelectionFeeInfomationField
    * @param[in] fee_rate    設定値
    */
   void SetFeeRate(  // line separate
-    const int64_t& fee_rate) {  // NOLINT
+    const double& fee_rate) {  // NOLINT
     this->fee_rate_ = fee_rate;
   }
   /**
@@ -393,7 +393,7 @@ class CoinSelectionFeeInfomationField
    * @return feeRateのデータ型
    */
   static std::string GetFeeRateFieldType() {
-    return "int64_t";
+    return "double";
   }
   /**
    * @brief feeRate フィールドのJSON文字列取得処理
@@ -420,7 +420,7 @@ class CoinSelectionFeeInfomationField
    * @brief transaction 取得処理
    * @return transaction
    */
-  std::string GetTransaction() {
+  std::string GetTransaction() const {
     return transaction_;
   }
   /**
@@ -463,7 +463,7 @@ class CoinSelectionFeeInfomationField
    * @brief isElements 取得処理
    * @return isElements
    */
-  bool GetIsElements() {
+  bool GetIsElements() const {
     return is_elements_;
   }
   /**
@@ -574,7 +574,7 @@ class CoinSelectionFeeInfomationField
   /**
    * @brief JsonAPI(feeRate) のvalue
    */
-  int64_t fee_rate_ = 1;
+  double fee_rate_ = 1;
   /**
    * @brief JsonAPI(transaction) のvalue
    */
@@ -652,7 +652,7 @@ class SelectUtxosRequest
    * @brief targetAmount 取得処理
    * @return targetAmount
    */
-  int64_t GetTargetAmount() {
+  int64_t GetTargetAmount() const {
     return target_amount_;
   }
   /**
@@ -695,7 +695,7 @@ class SelectUtxosRequest
    * @brief targetAsset 取得処理
    * @return targetAsset
    */
-  std::string GetTargetAsset() {
+  std::string GetTargetAsset() const {
     return target_asset_;
   }
   /**
@@ -931,7 +931,7 @@ class SelectUtxosResponse
    * @brief selectedAmount 取得処理
    * @return selectedAmount
    */
-  int64_t GetSelectedAmount() {
+  int64_t GetSelectedAmount() const {
     return selected_amount_;
   }
   /**
@@ -974,7 +974,7 @@ class SelectUtxosResponse
    * @brief feeAmount 取得処理
    * @return feeAmount
    */
-  int64_t GetFeeAmount() {
+  int64_t GetFeeAmount() const {
     return fee_amount_;
   }
   /**

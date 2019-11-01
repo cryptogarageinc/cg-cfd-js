@@ -51,7 +51,7 @@ class PrivkeyData
    * @brief privkey 取得処理
    * @return privkey
    */
-  std::string GetPrivkey() {
+  std::string GetPrivkey() const {
     return privkey_;
   }
   /**
@@ -94,7 +94,7 @@ class PrivkeyData
    * @brief wif 取得処理
    * @return wif
    */
-  bool GetWif() {
+  bool GetWif() const {
     return wif_;
   }
   /**
@@ -137,7 +137,7 @@ class PrivkeyData
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -180,7 +180,7 @@ class PrivkeyData
    * @brief isCompressed 取得処理
    * @return isCompressed
    */
-  bool GetIsCompressed() {
+  bool GetIsCompressed() const {
     return is_compressed_;
   }
   /**
@@ -330,7 +330,7 @@ class CalculateEcSignatureRequest
    * @brief sighash 取得処理
    * @return sighash
    */
-  std::string GetSighash() {
+  std::string GetSighash() const {
     return sighash_;
   }
   /**
@@ -416,7 +416,7 @@ class CalculateEcSignatureRequest
    * @brief isGrindR 取得処理
    * @return isGrindR
    */
-  bool GetIsGrindR() {
+  bool GetIsGrindR() const {
     return is_grind_r_;
   }
   /**
@@ -562,7 +562,7 @@ class CalculateEcSignatureResponse
    * @brief signature 取得処理
    * @return signature
    */
-  std::string GetSignature() {
+  std::string GetSignature() const {
     return signature_;
   }
   /**

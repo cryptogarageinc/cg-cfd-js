@@ -51,7 +51,7 @@ class CreateExtkeyFromSeedRequest
    * @brief seed 取得処理
    * @return seed
    */
-  std::string GetSeed() {
+  std::string GetSeed() const {
     return seed_;
   }
   /**
@@ -94,7 +94,7 @@ class CreateExtkeyFromSeedRequest
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -137,7 +137,7 @@ class CreateExtkeyFromSeedRequest
    * @brief extkeyType 取得処理
    * @return extkeyType
    */
-  std::string GetExtkeyType() {
+  std::string GetExtkeyType() const {
     return extkey_type_;
   }
   /**
@@ -283,7 +283,7 @@ class CreateExtkeyFromSeedResponse
    * @brief extkey 取得処理
    * @return extkey
    */
-  std::string GetExtkey() {
+  std::string GetExtkey() const {
     return extkey_;
   }
   /**

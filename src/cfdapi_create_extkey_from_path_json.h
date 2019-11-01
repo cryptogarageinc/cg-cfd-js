@@ -51,7 +51,7 @@ class CreateExtkeyFromParentPathRequest
    * @brief extkey 取得処理
    * @return extkey
    */
-  std::string GetExtkey() {
+  std::string GetExtkey() const {
     return extkey_;
   }
   /**
@@ -94,7 +94,7 @@ class CreateExtkeyFromParentPathRequest
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -137,7 +137,7 @@ class CreateExtkeyFromParentPathRequest
    * @brief extkeyType 取得処理
    * @return extkeyType
    */
-  std::string GetExtkeyType() {
+  std::string GetExtkeyType() const {
     return extkey_type_;
   }
   /**
@@ -330,7 +330,7 @@ class CreateExtkeyFromParentPathResponse
    * @brief extkey 取得処理
    * @return extkey
    */
-  std::string GetExtkey() {
+  std::string GetExtkey() const {
     return extkey_;
   }
   /**

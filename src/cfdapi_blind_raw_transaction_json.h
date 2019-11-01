@@ -51,7 +51,7 @@ class BlindTxInRequest
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -94,7 +94,7 @@ class BlindTxInRequest
    * @brief vout 取得処理
    * @return vout
    */
-  int64_t GetVout() {
+  int64_t GetVout() const {
     return vout_;
   }
   /**
@@ -137,7 +137,7 @@ class BlindTxInRequest
    * @brief asset 取得処理
    * @return asset
    */
-  std::string GetAsset() {
+  std::string GetAsset() const {
     return asset_;
   }
   /**
@@ -180,7 +180,7 @@ class BlindTxInRequest
    * @brief blindFactor 取得処理
    * @return blindFactor
    */
-  std::string GetBlindFactor() {
+  std::string GetBlindFactor() const {
     return blind_factor_;
   }
   /**
@@ -223,7 +223,7 @@ class BlindTxInRequest
    * @brief assetBlindFactor 取得処理
    * @return assetBlindFactor
    */
-  std::string GetAssetBlindFactor() {
+  std::string GetAssetBlindFactor() const {
     return asset_blind_factor_;
   }
   /**
@@ -266,7 +266,7 @@ class BlindTxInRequest
    * @brief amount 取得処理
    * @return amount
    */
-  int64_t GetAmount() {
+  int64_t GetAmount() const {
     return amount_;
   }
   /**
@@ -424,7 +424,7 @@ class BlindTxOutRequest
    * @brief index 取得処理
    * @return index
    */
-  uint32_t GetIndex() {
+  uint32_t GetIndex() const {
     return index_;
   }
   /**
@@ -467,7 +467,7 @@ class BlindTxOutRequest
    * @brief blindPubkey 取得処理
    * @return blindPubkey
    */
-  std::string GetBlindPubkey() {
+  std::string GetBlindPubkey() const {
     return blind_pubkey_;
   }
   /**
@@ -609,7 +609,7 @@ class BlindIssuanceRequest
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -652,7 +652,7 @@ class BlindIssuanceRequest
    * @brief vout 取得処理
    * @return vout
    */
-  int64_t GetVout() {
+  int64_t GetVout() const {
     return vout_;
   }
   /**
@@ -695,7 +695,7 @@ class BlindIssuanceRequest
    * @brief assetBlindingKey 取得処理
    * @return assetBlindingKey
    */
-  std::string GetAssetBlindingKey() {
+  std::string GetAssetBlindingKey() const {
     return asset_blinding_key_;
   }
   /**
@@ -738,7 +738,7 @@ class BlindIssuanceRequest
    * @brief tokenBlindingKey 取得処理
    * @return tokenBlindingKey
    */
-  std::string GetTokenBlindingKey() {
+  std::string GetTokenBlindingKey() const {
     return token_blinding_key_;
   }
   /**
@@ -888,7 +888,7 @@ class BlindRawTransactionRequest
    * @brief tx 取得処理
    * @return tx
    */
-  std::string GetTx() {
+  std::string GetTx() const {
     return tx_;
   }
   /**
@@ -1167,7 +1167,7 @@ class BlindRawTransactionResponse
    * @brief hex 取得処理
    * @return hex
    */
-  std::string GetHex() {
+  std::string GetHex() const {
     return hex_;
   }
   /**

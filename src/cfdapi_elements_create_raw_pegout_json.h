@@ -51,7 +51,7 @@ class ElementsPegoutTxIn
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -94,7 +94,7 @@ class ElementsPegoutTxIn
    * @brief vout 取得処理
    * @return vout
    */
-  uint32_t GetVout() {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -137,7 +137,7 @@ class ElementsPegoutTxIn
    * @brief sequence 取得処理
    * @return sequence
    */
-  uint32_t GetSequence() {
+  uint32_t GetSequence() const {
     return sequence_;
   }
   /**
@@ -283,7 +283,7 @@ class ElementsPegoutTxOut
    * @brief address 取得処理
    * @return address
    */
-  std::string GetAddress() {
+  std::string GetAddress() const {
     return address_;
   }
   /**
@@ -326,7 +326,7 @@ class ElementsPegoutTxOut
    * @brief amount 取得処理
    * @return amount
    */
-  int64_t GetAmount() {
+  int64_t GetAmount() const {
     return amount_;
   }
   /**
@@ -369,7 +369,7 @@ class ElementsPegoutTxOut
    * @brief asset 取得処理
    * @return asset
    */
-  std::string GetAsset() {
+  std::string GetAsset() const {
     return asset_;
   }
   /**
@@ -412,7 +412,7 @@ class ElementsPegoutTxOut
    * @brief isRemoveNonce 取得処理
    * @return isRemoveNonce
    */
-  bool GetIsRemoveNonce() {
+  bool GetIsRemoveNonce() const {
     return is_remove_nonce_;
   }
   /**
@@ -562,7 +562,7 @@ class ElementsPegout
    * @brief amount 取得処理
    * @return amount
    */
-  int64_t GetAmount() {
+  int64_t GetAmount() const {
     return amount_;
   }
   /**
@@ -605,7 +605,7 @@ class ElementsPegout
    * @brief asset 取得処理
    * @return asset
    */
-  std::string GetAsset() {
+  std::string GetAsset() const {
     return asset_;
   }
   /**
@@ -648,7 +648,7 @@ class ElementsPegout
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -691,7 +691,7 @@ class ElementsPegout
    * @brief mainchainGenesisBlockHash 取得処理
    * @return mainchainGenesisBlockHash
    */
-  std::string GetMainchainGenesisBlockHash() {
+  std::string GetMainchainGenesisBlockHash() const {
     return mainchain_genesis_block_hash_;
   }
   /**
@@ -734,7 +734,7 @@ class ElementsPegout
    * @brief btcAddress 取得処理
    * @return btcAddress
    */
-  std::string GetBtcAddress() {
+  std::string GetBtcAddress() const {
     return btc_address_;
   }
   /**
@@ -777,7 +777,7 @@ class ElementsPegout
    * @brief onlinePubkey 取得処理
    * @return onlinePubkey
    */
-  std::string GetOnlinePubkey() {
+  std::string GetOnlinePubkey() const {
     return online_pubkey_;
   }
   /**
@@ -820,7 +820,7 @@ class ElementsPegout
    * @brief masterOnlineKey 取得処理
    * @return masterOnlineKey
    */
-  std::string GetMasterOnlineKey() {
+  std::string GetMasterOnlineKey() const {
     return master_online_key_;
   }
   /**
@@ -863,7 +863,7 @@ class ElementsPegout
    * @brief bitcoinDescriptor 取得処理
    * @return bitcoinDescriptor
    */
-  std::string GetBitcoinDescriptor() {
+  std::string GetBitcoinDescriptor() const {
     return bitcoin_descriptor_;
   }
   /**
@@ -906,7 +906,7 @@ class ElementsPegout
    * @brief bip32Counter 取得処理
    * @return bip32Counter
    */
-  int64_t GetBip32Counter() {
+  int64_t GetBip32Counter() const {
     return bip32_counter_;
   }
   /**
@@ -949,7 +949,7 @@ class ElementsPegout
    * @brief whitelist 取得処理
    * @return whitelist
    */
-  std::string GetWhitelist() {
+  std::string GetWhitelist() const {
     return whitelist_;
   }
   /**
@@ -1123,7 +1123,7 @@ class ElementsPegoutTxOutFee
    * @brief amount 取得処理
    * @return amount
    */
-  int64_t GetAmount() {
+  int64_t GetAmount() const {
     return amount_;
   }
   /**
@@ -1166,7 +1166,7 @@ class ElementsPegoutTxOutFee
    * @brief asset 取得処理
    * @return asset
    */
-  std::string GetAsset() {
+  std::string GetAsset() const {
     return asset_;
   }
   /**
@@ -1308,7 +1308,7 @@ class ElementsCreateRawPegoutRequest
    * @brief version 取得処理
    * @return version
    */
-  uint32_t GetVersion() {
+  uint32_t GetVersion() const {
     return version_;
   }
   /**
@@ -1351,7 +1351,7 @@ class ElementsCreateRawPegoutRequest
    * @brief locktime 取得処理
    * @return locktime
    */
-  uint32_t GetLocktime() {
+  uint32_t GetLocktime() const {
     return locktime_;
   }
   /**
@@ -1681,7 +1681,7 @@ class ElementsCreateRawPegoutResponse
    * @brief hex 取得処理
    * @return hex
    */
-  std::string GetHex() {
+  std::string GetHex() const {
     return hex_;
   }
   /**
@@ -1724,7 +1724,7 @@ class ElementsCreateRawPegoutResponse
    * @brief btcAddress 取得処理
    * @return btcAddress
    */
-  std::string GetBtcAddress() {
+  std::string GetBtcAddress() const {
     return btc_address_;
   }
   /**

@@ -51,7 +51,7 @@ class ReissuanceDataRequest
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -94,7 +94,7 @@ class ReissuanceDataRequest
    * @brief vout 取得処理
    * @return vout
    */
-  uint32_t GetVout() {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -137,7 +137,7 @@ class ReissuanceDataRequest
    * @brief amount 取得処理
    * @return amount
    */
-  int64_t GetAmount() {
+  int64_t GetAmount() const {
     return amount_;
   }
   /**
@@ -180,7 +180,7 @@ class ReissuanceDataRequest
    * @brief address 取得処理
    * @return address
    */
-  std::string GetAddress() {
+  std::string GetAddress() const {
     return address_;
   }
   /**
@@ -223,7 +223,7 @@ class ReissuanceDataRequest
    * @brief assetBlindingNonce 取得処理
    * @return assetBlindingNonce
    */
-  std::string GetAssetBlindingNonce() {
+  std::string GetAssetBlindingNonce() const {
     return asset_blinding_nonce_;
   }
   /**
@@ -266,7 +266,7 @@ class ReissuanceDataRequest
    * @brief assetEntropy 取得処理
    * @return assetEntropy
    */
-  std::string GetAssetEntropy() {
+  std::string GetAssetEntropy() const {
     return asset_entropy_;
   }
   /**
@@ -309,7 +309,7 @@ class ReissuanceDataRequest
    * @brief isRemoveNonce 取得処理
    * @return isRemoveNonce
    */
-  bool GetIsRemoveNonce() {
+  bool GetIsRemoveNonce() const {
     return is_remove_nonce_;
   }
   /**
@@ -471,7 +471,7 @@ class SetRawReissueAssetRequest
    * @brief tx 取得処理
    * @return tx
    */
-  std::string GetTx() {
+  std::string GetTx() const {
     return tx_;
   }
   /**
@@ -514,7 +514,7 @@ class SetRawReissueAssetRequest
    * @brief isRandomSortTxOut 取得処理
    * @return isRandomSortTxOut
    */
-  bool GetIsRandomSortTxOut() {
+  bool GetIsRandomSortTxOut() const {
     return is_random_sort_tx_out_;
   }
   /**
@@ -703,7 +703,7 @@ class ReissuanceDataResponse
    * @brief txid 取得処理
    * @return txid
    */
-  std::string GetTxid() {
+  std::string GetTxid() const {
     return txid_;
   }
   /**
@@ -746,7 +746,7 @@ class ReissuanceDataResponse
    * @brief vout 取得処理
    * @return vout
    */
-  uint32_t GetVout() {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -789,7 +789,7 @@ class ReissuanceDataResponse
    * @brief asset 取得処理
    * @return asset
    */
-  std::string GetAsset() {
+  std::string GetAsset() const {
     return asset_;
   }
   /**
@@ -832,7 +832,7 @@ class ReissuanceDataResponse
    * @brief entropy 取得処理
    * @return entropy
    */
-  std::string GetEntropy() {
+  std::string GetEntropy() const {
     return entropy_;
   }
   /**
@@ -982,7 +982,7 @@ class SetRawReissueAssetResponse
    * @brief hex 取得処理
    * @return hex
    */
-  std::string GetHex() {
+  std::string GetHex() const {
     return hex_;
   }
   /**

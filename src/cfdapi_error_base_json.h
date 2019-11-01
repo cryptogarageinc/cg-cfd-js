@@ -51,7 +51,7 @@ class InnerErrorResponse
    * @brief code 取得処理
    * @return code
    */
-  int64_t GetCode() {
+  int64_t GetCode() const {
     return code_;
   }
   /**
@@ -94,7 +94,7 @@ class InnerErrorResponse
    * @brief type 取得処理
    * @return type
    */
-  std::string GetType() {
+  std::string GetType() const {
     return type_;
   }
   /**
@@ -137,7 +137,7 @@ class InnerErrorResponse
    * @brief message 取得処理
    * @return message
    */
-  std::string GetMessage() {
+  std::string GetMessage() const {
     return message_;
   }
   /**

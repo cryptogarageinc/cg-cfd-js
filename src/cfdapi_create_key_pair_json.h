@@ -51,7 +51,7 @@ class CreateKeyPairRequest
    * @brief wif 取得処理
    * @return wif
    */
-  bool GetWif() {
+  bool GetWif() const {
     return wif_;
   }
   /**
@@ -94,7 +94,7 @@ class CreateKeyPairRequest
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -137,7 +137,7 @@ class CreateKeyPairRequest
    * @brief isCompressed 取得処理
    * @return isCompressed
    */
-  bool GetIsCompressed() {
+  bool GetIsCompressed() const {
     return is_compressed_;
   }
   /**
@@ -283,7 +283,7 @@ class CreateKeyPairResponse
    * @brief privkey 取得処理
    * @return privkey
    */
-  std::string GetPrivkey() {
+  std::string GetPrivkey() const {
     return privkey_;
   }
   /**
@@ -326,7 +326,7 @@ class CreateKeyPairResponse
    * @brief pubkey 取得処理
    * @return pubkey
    */
-  std::string GetPubkey() {
+  std::string GetPubkey() const {
     return pubkey_;
   }
   /**

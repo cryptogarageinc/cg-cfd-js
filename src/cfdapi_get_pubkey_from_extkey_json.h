@@ -51,7 +51,7 @@ class GetPubkeyFromExtkeyRequest
    * @brief extkey 取得処理
    * @return extkey
    */
-  std::string GetExtkey() {
+  std::string GetExtkey() const {
     return extkey_;
   }
   /**
@@ -94,7 +94,7 @@ class GetPubkeyFromExtkeyRequest
    * @brief network 取得処理
    * @return network
    */
-  std::string GetNetwork() {
+  std::string GetNetwork() const {
     return network_;
   }
   /**
@@ -236,7 +236,7 @@ class GetPubkeyFromExtkeyResponse
    * @brief pubkey 取得処理
    * @return pubkey
    */
-  std::string GetPubkey() {
+  std::string GetPubkey() const {
     return pubkey_;
   }
   /**

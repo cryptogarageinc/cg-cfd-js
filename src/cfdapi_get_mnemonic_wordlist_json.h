@@ -51,7 +51,7 @@ class GetMnemonicWordlistRequest
    * @brief language 取得処理
    * @return language
    */
-  std::string GetLanguage() {
+  std::string GetLanguage() const {
     return language_;
   }
   /**

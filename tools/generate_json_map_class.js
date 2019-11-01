@@ -470,7 +470,7 @@ const generateValueFunctionByHeader = (map_data, child_data) => {
    * @brief ${child_data.name} 取得処理
    * @return ${child_data.name}
    */
-  ${child_data.type} Get${child_data.method_name}() {
+  ${child_data.type} Get${child_data.method_name}() const {
     return ${child_data.variable_name}_;
   }
   /**
