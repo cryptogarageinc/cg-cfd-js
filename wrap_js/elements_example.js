@@ -25,6 +25,7 @@ const {
   CreateRawPegout,
   CreateDestroyAmount,
   SelectUtxos,
+  EstimateFee,
 } = cfdjsModule;
 
 let supportFunctions;
@@ -1009,6 +1010,66 @@ if (!supportFunctions.elements) {
     destroyAmountCreateDestroyAmountResult = CreateDestroyAmount(reqJson);
     console.log('\n*** Response ***\n',
         destroyAmountCreateDestroyAmountResult, '\n');
+  }
+
+  let estimateFeeResult;
+  {
+    console.log('-- EstimateFee start --');
+    const reqJson = {
+      selectUtxos: [{
+        txid: '822ad1c6edee82486dc47de04cb9453b0b63712bdb6c45755af847dfc44fbb3e',
+        vout: 1,
+        amount: 12000000,
+        asset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+        descriptor: 'pkh([e4679995]02f8a0a7e12d38c313d51383ead3fccd3b70439f0c7c4c1ecd897f8767b194fc41)#p79a945u',
+      }, {
+        txid: 'acad36ed40d1091267dd9643194734d6f0bd97be5ea90d625decdcae61baa6f1',
+        vout: 0,
+        amount: 29080,
+        asset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+        descriptor: 'sh(wpkh([4ff503c6/0\'/0\'/1\']0216a3b1b11e83add2ad65574abed0d395a49773d66c9c6e38ab45351e014c4b17))#za299c3j',
+        isIssuance: false,
+        isBlindIssuance: false,
+      }],
+      feeRate: 1,
+      transaction: '020000000000010125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a01000000000010c8e0030c1bd6cfbda70607a2e6b954e229da07b9cf199003f44fff9d96ff1e010c49c017a9144c3ab60591ff8463c57aa3a318ed5154fb7652e98700000000',
+      isElements: true,
+      isBlind: true,
+      feeAsset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+    };
+    console.log('*** Request ***\n', reqJson);
+    estimateFeeResult = EstimateFee(reqJson);
+    console.log('*** Response ***\n', estimateFeeResult);
+  }
+
+  let estimateFeeIssueResult;
+  {
+    console.log('-- EstimateFee(blind issue) start --');
+    const reqJson = {
+      selectUtxos: [{
+        txid: '822ad1c6edee82486dc47de04cb9453b0b63712bdb6c45755af847dfc44fbb3e',
+        vout: 1,
+        amount: 12000000,
+        asset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+        descriptor: 'pkh([e4679995]02f8a0a7e12d38c313d51383ead3fccd3b70439f0c7c4c1ecd897f8767b194fc41)#p79a945u',
+      }, {
+        txid: 'acad36ed40d1091267dd9643194734d6f0bd97be5ea90d625decdcae61baa6f1',
+        vout: 0,
+        amount: 29080,
+        asset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+        descriptor: 'sh(wpkh([4ff503c6/0\'/0\'/1\']0216a3b1b11e83add2ad65574abed0d395a49773d66c9c6e38ab45351e014c4b17))#za299c3j',
+        isIssuance: true,
+        isBlindIssuance: true,
+      }],
+      feeRate: 1,
+      transaction: '020000000000010125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a01000000000010c8e0030c1bd6cfbda70607a2e6b954e229da07b9cf199003f44fff9d96ff1e010c49c017a9144c3ab60591ff8463c57aa3a318ed5154fb7652e98700000000',
+      isElements: true,
+      isBlind: true,
+      feeAsset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+    };
+    console.log('*** Request ***\n', reqJson);
+    estimateFeeIssueResult = EstimateFee(reqJson);
+    console.log('*** Response ***\n', estimateFeeIssueResult);
   }
 
   let coinSelectionResult;

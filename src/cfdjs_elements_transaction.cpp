@@ -13,12 +13,15 @@
 
 #include "cfd/cfd_address.h"
 #include "cfd/cfd_elements_address.h"
+#include "cfd/cfdapi_coin.h"
 #include "cfd/cfdapi_elements_transaction.h"
+#include "cfdapi_estimate_fee_json.h"  // NOLINT
 #include "cfdjs/cfdjs_address.h"
 #include "cfdjs/cfdjs_elements_address.h"
 #include "cfdjs/cfdjs_elements_transaction.h"
-#include "cfdjs_internal.h"          // NOLINT
-#include "cfdjs_transaction_base.h"  // NOLINT
+#include "cfdjs_internal.h"                   // NOLINT
+#include "cfdjs_json_elements_transaction.h"  // NOLINT
+#include "cfdjs_transaction_base.h"           // NOLINT
 
 namespace cfd {
 namespace js {
@@ -27,6 +30,7 @@ namespace api {
 using cfd::ConfidentialTransactionController;
 using cfd::ElementsAddressFactory;
 using cfd::api::ElementsTransactionApi;
+using cfd::api::ElementsUtxoAndOption;
 using cfd::api::IssuanceBlindKeys;
 using cfd::api::IssuanceOutput;
 using cfd::api::TxInBlindParameters;
@@ -1316,6 +1320,58 @@ ElementsTransactionStructApi::CreateDestroyAmountTransaction(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
+
+namespace json {
+
+// -----------------------------------------------------------------------------
+// ElementsTransactionJsonApiクラス
+// -----------------------------------------------------------------------------
+void ElementsTransactionJsonApi::EstimateFee(
+    EstimateFeeRequest* request, EstimateFeeResponse* response) {
+  std::vector<ElementsUtxoAndOption> utxos;
+
+  // elements only.
+  ConfidentialAssetId fee_asset;
+  if (!request->GetFeeAsset().empty()) {
+    fee_asset = ConfidentialAssetId(request->GetFeeAsset());
+  }
+
+  for (auto& utxo : request->GetSelectUtxos()) {
+    ElementsUtxoAndOption data = {};
+    data.utxo.txid = Txid(utxo.GetTxid());
+    data.utxo.vout = utxo.GetVout();
+    if (!utxo.GetAsset().empty()) {
+      data.utxo.asset = ConfidentialAssetId(utxo.GetAsset());
+    }
+    if (!utxo.GetRedeemScript().empty()) {
+      data.utxo.redeem_script = Script(utxo.GetRedeemScript());
+    }
+    data.utxo.descriptor = utxo.GetDescriptor();
+    data.utxo.binary_data = nullptr;
+
+    data.is_issuance = utxo.GetIsIssuance();
+    data.is_blind_issuance = utxo.GetIsBlindIssuance();
+    data.is_pegin = utxo.GetIsPegin();
+    data.pegin_btc_tx_size = utxo.GetPeginBtcTxSize();
+    if (!utxo.GetFedpegScript().empty()) {
+      data.fedpeg_script = Script(utxo.GetFedpegScript());
+    }
+    utxos.push_back(data);
+  }
+
+  Amount tx_fee;
+  Amount utxo_fee;
+  ElementsTransactionApi api;
+  Amount fee = api.EstimateFee(
+      request->GetTransaction(), utxos, fee_asset, &tx_fee, &utxo_fee,
+      request->GetIsBlind(), request->GetFeeRate());
+
+  response->SetFeeAmount(fee.GetSatoshiValue());
+  response->SetTxFeeAmount(tx_fee.GetSatoshiValue());
+  response->SetUtxoFeeAmount(utxo_fee.GetSatoshiValue());
+}
+
+}  // namespace json
 
 }  // namespace api
 }  // namespace js

@@ -1287,6 +1287,56 @@ struct UnblindRawTransactionResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// SelectUtxoDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SelectUtxoDataStruct 構造体
+ */
+struct SelectUtxoDataStruct {
+  std::string txid = "";           //!< txid  // NOLINT
+  uint32_t vout = 0;               //!< vout  // NOLINT
+  std::string asset = "";          //!< asset  // NOLINT
+  std::string redeem_script = "";  //!< redeem_script  // NOLINT
+  std::string descriptor = "";     //!< descriptor  // NOLINT
+  bool is_issuance = false;        //!< is_issuance  // NOLINT
+  bool is_blind_issuance = false;  //!< is_blind_issuance  // NOLINT
+  bool is_pegin = false;           //!< is_pegin  // NOLINT
+  int64_t pegin_btc_tx_size = 0;   //!< pegin_btc_tx_size  // NOLINT
+  std::string fedpeg_script = "";  //!< fedpeg_script  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// EstimateFeeRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief EstimateFeeRequestStruct 構造体
+ */
+struct EstimateFeeRequestStruct {
+  std::vector<SelectUtxoDataStruct> select_utxos;  //!< select_utxos  // NOLINT
+  double fee_rate = 1;                             //!< fee_rate  // NOLINT
+  std::string transaction = "";                    //!< transaction  // NOLINT
+  bool is_elements = false;                        //!< is_elements  // NOLINT
+  bool is_blind = true;                            //!< is_blind  // NOLINT
+  std::string fee_asset = "";                      //!< fee_asset  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// EstimateFeeResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief EstimateFeeResponseStruct 構造体
+ */
+struct EstimateFeeResponseStruct {
+  int64_t fee_amount = 0;       //!< fee_amount  // NOLINT
+  int64_t tx_fee_amount = 0;    //!< tx_fee_amount  // NOLINT
+  int64_t utxo_fee_amount = 0;  //!< utxo_fee_amount  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // GetExtkeyInfoRequestStruct
 // ------------------------------------------------------------------------
 /**
