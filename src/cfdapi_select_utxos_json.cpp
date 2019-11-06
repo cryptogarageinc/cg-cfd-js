@@ -107,6 +107,13 @@ void CoinSelectionFeeInfomationField::CollectFieldName() {
   cfd::core::CLASS_FUNCTION_TABLE<CoinSelectionFeeInfomationField> func_table;  // NOLINT
 
   func_table = {
+    CoinSelectionFeeInfomationField::GetTxFeeAmountString,
+    CoinSelectionFeeInfomationField::SetTxFeeAmountString,
+    CoinSelectionFeeInfomationField::GetTxFeeAmountFieldType,
+  };
+  json_mapper.emplace("txFeeAmount", func_table);
+  item_list.push_back("txFeeAmount");
+  func_table = {
     CoinSelectionFeeInfomationField::GetFeeRateString,
     CoinSelectionFeeInfomationField::SetFeeRateString,
     CoinSelectionFeeInfomationField::GetFeeRateFieldType,
@@ -114,34 +121,36 @@ void CoinSelectionFeeInfomationField::CollectFieldName() {
   json_mapper.emplace("feeRate", func_table);
   item_list.push_back("feeRate");
   func_table = {
-    CoinSelectionFeeInfomationField::GetTransactionString,
-    CoinSelectionFeeInfomationField::SetTransactionString,
-    CoinSelectionFeeInfomationField::GetTransactionFieldType,
+    CoinSelectionFeeInfomationField::GetLongTermFeeRateString,
+    CoinSelectionFeeInfomationField::SetLongTermFeeRateString,
+    CoinSelectionFeeInfomationField::GetLongTermFeeRateFieldType,
   };
-  json_mapper.emplace("transaction", func_table);
-  item_list.push_back("transaction");
+  json_mapper.emplace("longTermFeeRate", func_table);
+  item_list.push_back("longTermFeeRate");
   func_table = {
-    CoinSelectionFeeInfomationField::GetIsElementsString,
-    CoinSelectionFeeInfomationField::SetIsElementsString,
-    CoinSelectionFeeInfomationField::GetIsElementsFieldType,
+    CoinSelectionFeeInfomationField::GetFeeAssetString,
+    CoinSelectionFeeInfomationField::SetFeeAssetString,
+    CoinSelectionFeeInfomationField::GetFeeAssetFieldType,
   };
-  json_mapper.emplace("isElements", func_table);
-  item_list.push_back("isElements");
+  json_mapper.emplace("feeAsset", func_table);
+  item_list.push_back("feeAsset");
 }
 
 void CoinSelectionFeeInfomationField::ConvertFromStruct(
     const CoinSelectionFeeInfomationFieldStruct& data) {
+  tx_fee_amount_ = data.tx_fee_amount;
   fee_rate_ = data.fee_rate;
-  transaction_ = data.transaction;
-  is_elements_ = data.is_elements;
+  long_term_fee_rate_ = data.long_term_fee_rate;
+  fee_asset_ = data.fee_asset;
   ignore_items = data.ignore_items;
 }
 
 CoinSelectionFeeInfomationFieldStruct CoinSelectionFeeInfomationField::ConvertToStruct() const {  // NOLINT
   CoinSelectionFeeInfomationFieldStruct result;
+  result.tx_fee_amount = tx_fee_amount_;
   result.fee_rate = fee_rate_;
-  result.transaction = transaction_;
-  result.is_elements = is_elements_;
+  result.long_term_fee_rate = long_term_fee_rate_;
+  result.fee_asset = fee_asset_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -181,6 +190,13 @@ void SelectUtxosRequest::CollectFieldName() {
   json_mapper.emplace("targetAsset", func_table);
   item_list.push_back("targetAsset");
   func_table = {
+    SelectUtxosRequest::GetIsElementsString,
+    SelectUtxosRequest::SetIsElementsString,
+    SelectUtxosRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
     SelectUtxosRequest::GetFeeInfoString,
     SelectUtxosRequest::SetFeeInfoString,
     SelectUtxosRequest::GetFeeInfoFieldType,
@@ -194,6 +210,7 @@ void SelectUtxosRequest::ConvertFromStruct(
   utxos_.ConvertFromStruct(data.utxos);
   target_amount_ = data.target_amount;
   target_asset_ = data.target_asset;
+  is_elements_ = data.is_elements;
   fee_info_.ConvertFromStruct(data.fee_info);
   ignore_items = data.ignore_items;
 }
@@ -203,6 +220,7 @@ SelectUtxosRequestStruct SelectUtxosRequest::ConvertToStruct() const {  // NOLIN
   result.utxos = utxos_.ConvertToStruct();
   result.target_amount = target_amount_;
   result.target_asset = target_asset_;
+  result.is_elements = is_elements_;
   result.fee_info = fee_info_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
@@ -242,6 +260,13 @@ void SelectUtxosResponse::CollectFieldName() {
   };
   json_mapper.emplace("feeAmount", func_table);
   item_list.push_back("feeAmount");
+  func_table = {
+    SelectUtxosResponse::GetUtxoFeeAmountString,
+    SelectUtxosResponse::SetUtxoFeeAmountString,
+    SelectUtxosResponse::GetUtxoFeeAmountFieldType,
+  };
+  json_mapper.emplace("utxoFeeAmount", func_table);
+  item_list.push_back("utxoFeeAmount");
 }
 
 void SelectUtxosResponse::ConvertFromStruct(
@@ -249,6 +274,7 @@ void SelectUtxosResponse::ConvertFromStruct(
   utxos_.ConvertFromStruct(data.utxos);
   selected_amount_ = data.selected_amount;
   fee_amount_ = data.fee_amount;
+  utxo_fee_amount_ = data.utxo_fee_amount;
   ignore_items = data.ignore_items;
 }
 
@@ -257,6 +283,7 @@ SelectUtxosResponseStruct SelectUtxosResponse::ConvertToStruct() const {  // NOL
   result.utxos = utxos_.ConvertToStruct();
   result.selected_amount = selected_amount_;
   result.fee_amount = fee_amount_;
+  result.utxo_fee_amount = utxo_fee_amount_;
   result.ignore_items = ignore_items;
   return result;
 }

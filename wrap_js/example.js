@@ -843,7 +843,7 @@ let estimateFeeResult;
       amount: 156250000,
       descriptor: 'sh(wpkh([ef735203/0\'/0\'/4\']0231c043ae680664a2c5df38cf0d8eab29f1b61ce93855040c613b2f41f7c036af))#pezpv0hm',
     }],
-    feeRate: 1,
+    feeRate: 20,
     transaction: '02000000000100e1f5050000000017a914e37a3603a4d392f9ecb68b32eac6ba19adc4968f8700000000',
     isElements: false,
   };
@@ -872,11 +872,12 @@ let coinSelectionResult;
       amount: 156250000,
       descriptor: 'sh(wpkh([ef735203/0\'/0\'/4\']0231c043ae680664a2c5df38cf0d8eab29f1b61ce93855040c613b2f41f7c036af))#pezpv0hm',
     }],
-    targetAmount: 100000000,
+    targetAmount: 117179000,
+    isElements: false,
     feeInfo: {
-      feeRate: 1,
-      transaction: '02000000000100e1f5050000000017a914e37a3603a4d392f9ecb68b32eac6ba19adc4968f8700000000',
-      isElements: false,
+      txFeeAmount: estimateFeeResult.feeAmount,
+      feeRate: 20,
+      longTermFeeRate: 20,
     },
   };
   console.log('*** Request ***\n', reqJson);

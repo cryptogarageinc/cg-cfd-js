@@ -1571,9 +1571,10 @@ struct UtxoJsonDataStruct {
  * @brief CoinSelectionFeeInfomationFieldStruct 構造体
  */
 struct CoinSelectionFeeInfomationFieldStruct {
-  double fee_rate = 1;           //!< fee_rate  // NOLINT
-  std::string transaction = "";  //!< transaction  // NOLINT
-  bool is_elements = false;      //!< is_elements  // NOLINT
+  int64_t tx_fee_amount = 0;       //!< tx_fee_amount  // NOLINT
+  double fee_rate = 20;            //!< fee_rate  // NOLINT
+  double long_term_fee_rate = 20;  //!< long_term_fee_rate  // NOLINT
+  std::string fee_asset = "";      //!< fee_asset  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1587,6 +1588,7 @@ struct SelectUtxosRequestStruct {
   std::vector<UtxoJsonDataStruct> utxos;           //!< utxos  // NOLINT
   int64_t target_amount = 0;                       //!< target_amount  // NOLINT
   std::string target_asset = "";                   //!< target_asset  // NOLINT
+  bool is_elements = false;                        //!< is_elements  // NOLINT
   CoinSelectionFeeInfomationFieldStruct fee_info;  //!< fee_info  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1601,6 +1603,7 @@ struct SelectUtxosResponseStruct {
   std::vector<UtxoJsonDataStruct> utxos;  //!< utxos  // NOLINT
   int64_t selected_amount = 0;            //!< selected_amount  // NOLINT
   int64_t fee_amount = 0;                 //!< fee_amount  // NOLINT
+  int64_t utxo_fee_amount = 0;            //!< utxo_fee_amount  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

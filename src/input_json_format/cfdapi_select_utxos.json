@@ -18,15 +18,20 @@
     "targetAmount:type": "int64_t",
     "targetAsset": "",
     "targetAsset:hint": "This field is avalable only elements utxo.",
+    "isElements": false,
+    "isElements:hint": "require when you set the transaction field",
     "feeInfo": {
       ":class": "CoinSelectionFeeInfomationField",
-      "feeRate": 1,
+      "txFeeAmount": 0,
+      "txFeeAmount:type": "int64_t",
+      "feeRate": 20,
       "feeRate:type": "double",
       "feeRate:hint": "network fee rate",
-      "transaction": "",
-      "transaction:hint": "transaction hex",
-      "isElements": false,
-      "isElements:hint": "require when you set the transaction field"
+      "longTermFeeRate": 20,
+      "longTermFeeRate:type": "double",
+      "longTermFeeRate:hint": "network long-term fee rate",
+      "feeAsset": "",
+      "feeAsset:hint": "This field is avalable only elements."
     }
   },
   "response": {
@@ -46,6 +51,9 @@
     "selectedAmount": 0,
     "selectedAmount:type": "int64_t",
     "feeAmount": 0,
-    "feeAmount:type": "int64_t"
+    "feeAmount:type": "int64_t",
+    "feeAmount:hint": "This field is avalable only searched by BnB algorithm.",
+    "utxoFeeAmount": 0,
+    "utxoFeeAmount:type": "int64_t"
   }
 }

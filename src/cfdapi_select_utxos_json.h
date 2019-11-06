@@ -374,6 +374,49 @@ class CoinSelectionFeeInfomationField
   static void CollectFieldName();
 
   /**
+   * @brief txFeeAmount 取得処理
+   * @return txFeeAmount
+   */
+  int64_t GetTxFeeAmount() const {
+    return tx_fee_amount_;
+  }
+  /**
+   * @brief txFeeAmount 設定処理
+   * @param[in] tx_fee_amount    設定値
+   */
+  void SetTxFeeAmount(  // line separate
+    const int64_t& tx_fee_amount) {  // NOLINT
+    this->tx_fee_amount_ = tx_fee_amount;
+  }
+  /**
+   * @brief txFeeAmount データ型の取得処理
+   * @return txFeeAmountのデータ型
+   */
+  static std::string GetTxFeeAmountFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief txFeeAmount フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTxFeeAmountString(  // line separate
+      const CoinSelectionFeeInfomationField& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_fee_amount_);
+  }
+  /**
+   * @brief txFeeAmount フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTxFeeAmountString(  // line separate
+      CoinSelectionFeeInfomationField& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_fee_amount_, json_value);
+  }
+
+  /**
    * @brief feeRate 取得処理
    * @return feeRate
    */
@@ -417,89 +460,89 @@ class CoinSelectionFeeInfomationField
   }
 
   /**
-   * @brief transaction 取得処理
-   * @return transaction
+   * @brief longTermFeeRate 取得処理
+   * @return longTermFeeRate
    */
-  std::string GetTransaction() const {
-    return transaction_;
+  double GetLongTermFeeRate() const {
+    return long_term_fee_rate_;
   }
   /**
-   * @brief transaction 設定処理
-   * @param[in] transaction    設定値
+   * @brief longTermFeeRate 設定処理
+   * @param[in] long_term_fee_rate    設定値
    */
-  void SetTransaction(  // line separate
-    const std::string& transaction) {  // NOLINT
-    this->transaction_ = transaction;
+  void SetLongTermFeeRate(  // line separate
+    const double& long_term_fee_rate) {  // NOLINT
+    this->long_term_fee_rate_ = long_term_fee_rate;
   }
   /**
-   * @brief transaction データ型の取得処理
-   * @return transactionのデータ型
+   * @brief longTermFeeRate データ型の取得処理
+   * @return longTermFeeRateのデータ型
    */
-  static std::string GetTransactionFieldType() {
-    return "std::string";
+  static std::string GetLongTermFeeRateFieldType() {
+    return "double";
   }
   /**
-   * @brief transaction フィールドのJSON文字列取得処理
+   * @brief longTermFeeRate フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTransactionString(  // line separate
+  static std::string GetLongTermFeeRateString(  // line separate
       const CoinSelectionFeeInfomationField& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.transaction_);
+    return cfd::core::ConvertToString(obj.long_term_fee_rate_);
   }
   /**
-   * @brief transaction フィールドへのJSON情報設定処理
+   * @brief longTermFeeRate フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTransactionString(  // line separate
+  static void SetLongTermFeeRateString(  // line separate
       CoinSelectionFeeInfomationField& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.transaction_, json_value);
+      obj.long_term_fee_rate_, json_value);
   }
 
   /**
-   * @brief isElements 取得処理
-   * @return isElements
+   * @brief feeAsset 取得処理
+   * @return feeAsset
    */
-  bool GetIsElements() const {
-    return is_elements_;
+  std::string GetFeeAsset() const {
+    return fee_asset_;
   }
   /**
-   * @brief isElements 設定処理
-   * @param[in] is_elements    設定値
+   * @brief feeAsset 設定処理
+   * @param[in] fee_asset    設定値
    */
-  void SetIsElements(  // line separate
-    const bool& is_elements) {  // NOLINT
-    this->is_elements_ = is_elements;
+  void SetFeeAsset(  // line separate
+    const std::string& fee_asset) {  // NOLINT
+    this->fee_asset_ = fee_asset;
   }
   /**
-   * @brief isElements データ型の取得処理
-   * @return isElementsのデータ型
+   * @brief feeAsset データ型の取得処理
+   * @return feeAssetのデータ型
    */
-  static std::string GetIsElementsFieldType() {
-    return "bool";
+  static std::string GetFeeAssetFieldType() {
+    return "std::string";
   }
   /**
-   * @brief isElements フィールドのJSON文字列取得処理
+   * @brief feeAsset フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetIsElementsString(  // line separate
+  static std::string GetFeeAssetString(  // line separate
       const CoinSelectionFeeInfomationField& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.is_elements_);
+    return cfd::core::ConvertToString(obj.fee_asset_);
   }
   /**
-   * @brief isElements フィールドへのJSON情報設定処理
+   * @brief feeAsset フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetIsElementsString(  // line separate
+  static void SetFeeAssetString(  // line separate
       CoinSelectionFeeInfomationField& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.is_elements_, json_value);
+      obj.fee_asset_, json_value);
   }
 
   /**
@@ -572,17 +615,21 @@ class CoinSelectionFeeInfomationField
   std::set<std::string> ignore_items;
 
   /**
+   * @brief JsonAPI(txFeeAmount) のvalue
+   */
+  int64_t tx_fee_amount_ = 0;
+  /**
    * @brief JsonAPI(feeRate) のvalue
    */
-  double fee_rate_ = 1;
+  double fee_rate_ = 20;
   /**
-   * @brief JsonAPI(transaction) のvalue
+   * @brief JsonAPI(longTermFeeRate) のvalue
    */
-  std::string transaction_ = "";
+  double long_term_fee_rate_ = 20;
   /**
-   * @brief JsonAPI(isElements) のvalue
+   * @brief JsonAPI(feeAsset) のvalue
    */
-  bool is_elements_ = false;
+  std::string fee_asset_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -735,6 +782,49 @@ class SelectUtxosRequest
   }
 
   /**
+   * @brief isElements 取得処理
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief isElements 設定処理
+   * @param[in] is_elements    設定値
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief isElements データ型の取得処理
+   * @return isElementsのデータ型
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief isElements フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetIsElementsString(  // line separate
+      const SelectUtxosRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief isElements フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetIsElementsString(  // line separate
+      SelectUtxosRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
    * @brief feeInfo 取得処理
    * @return feeInfo
    */
@@ -858,6 +948,10 @@ class SelectUtxosRequest
    * @brief JsonAPI(targetAsset) のvalue
    */
   std::string target_asset_ = "";
+  /**
+   * @brief JsonAPI(isElements) のvalue
+   */
+  bool is_elements_ = false;
   /**
    * @brief JsonAPI(feeInfo) のvalue
    */
@@ -1014,6 +1108,49 @@ class SelectUtxosResponse
   }
 
   /**
+   * @brief utxoFeeAmount 取得処理
+   * @return utxoFeeAmount
+   */
+  int64_t GetUtxoFeeAmount() const {
+    return utxo_fee_amount_;
+  }
+  /**
+   * @brief utxoFeeAmount 設定処理
+   * @param[in] utxo_fee_amount    設定値
+   */
+  void SetUtxoFeeAmount(  // line separate
+    const int64_t& utxo_fee_amount) {  // NOLINT
+    this->utxo_fee_amount_ = utxo_fee_amount;
+  }
+  /**
+   * @brief utxoFeeAmount データ型の取得処理
+   * @return utxoFeeAmountのデータ型
+   */
+  static std::string GetUtxoFeeAmountFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief utxoFeeAmount フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetUtxoFeeAmountString(  // line separate
+      const SelectUtxosResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.utxo_fee_amount_);
+  }
+  /**
+   * @brief utxoFeeAmount フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetUtxoFeeAmountString(  // line separate
+      SelectUtxosResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.utxo_fee_amount_, json_value);
+  }
+
+  /**
    * @brief 無視対象アイテムを設定する。
    * @param[in] key   無視対象アイテムのキー名称
    */
@@ -1094,6 +1231,10 @@ class SelectUtxosResponse
    * @brief JsonAPI(feeAmount) のvalue
    */
   int64_t fee_amount_ = 0;
+  /**
+   * @brief JsonAPI(utxoFeeAmount) のvalue
+   */
+  int64_t utxo_fee_amount_ = 0;
 };
 
 // @formatter:on
