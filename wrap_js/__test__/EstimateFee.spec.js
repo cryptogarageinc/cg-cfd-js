@@ -147,7 +147,7 @@ const testCase = [
     );
   })(),
   (() => {
-    const selectUtxos = testScriptUtxos([6, 7]);
+    const selectUtxos = testSegwitUtxos([6, 7]);
     return TestHelper.createBitcoinTestCase(
       'EstimateFee 13[6,7]coins-segwit, tx: 3 output, feeRate: 1',
       EstimateFee,
@@ -157,11 +157,11 @@ const testCase = [
         transaction: '02000000034cdeada737db97af334f0fa4e87432d6068759eea65a3067d1f14a979e5a9dea0000000000ffffffff81ddd34c6c0c32544e3b89f5e24c6cd7afca62f2b5069281ac9fced6251191d20000000000ffffffff81ddd34c6c0c32544e3b89f5e24c6cd7afca62f2b5069281ac9fced6251191d20100000000ffffffff030200000000000000220020c5ae4ff17cec055e964b573601328f3f879fa441e53ef88acdfd4d8e8df429ef406f400100000000220020ea5a7208cddfbc20dd93e12bf29deb00b68c056382a502446c9c5b55490954d215cd5b0700000000220020f39f6272ba6b57918eb047c5dc44fb475356b0f24c12fca39b19284e80008a4200000000',
         isElements: false,
       })],
-      '{\"feeAmount\":294,\"txFeeAmount\":139,\"utxoFeeAmount\":155}'
+      '{\"feeAmount\":275,\"txFeeAmount\":139,\"utxoFeeAmount\":136}'
     );
   })(),
   (() => {
-    const selectUtxos = testSegwitUtxos([6]);
+    const selectUtxos = testScriptUtxos([6]);
     return TestHelper.createBitcoinTestCase(
       'EstimateFee 6[6]coins-script, tx: 1 output, feeRate: 1',
       EstimateFee,
@@ -171,7 +171,7 @@ const testCase = [
         transaction: '02000000014cdeada737db97af334f0fa4e87432d6068759eea65a3067d1f14a979e5a9dea0000000000ffffffff0101000000000000002200201863143c14c5166804bd19203356da136c985678cd4d27a1b8c632960490326200000000',
         isElements: false,
       })],
-      '{\"feeAmount\":121,\"txFeeAmount\":53,\"utxoFeeAmount\":68}'
+      '{\"feeAmount\":150,\"txFeeAmount\":53,\"utxoFeeAmount\":97}'
     );
   })(),
   (() => {
@@ -185,7 +185,7 @@ const testCase = [
         transaction: '02000000034cdeada737db97af334f0fa4e87432d6068759eea65a3067d1f14a979e5a9dea0000000000ffffffff81ddd34c6c0c32544e3b89f5e24c6cd7afca62f2b5069281ac9fced6251191d20000000000ffffffff81ddd34c6c0c32544e3b89f5e24c6cd7afca62f2b5069281ac9fced6251191d20100000000ffffffff030200000000000000220020c5ae4ff17cec055e964b573601328f3f879fa441e53ef88acdfd4d8e8df429ef406f400100000000220020ea5a7208cddfbc20dd93e12bf29deb00b68c056382a502446c9c5b55490954d215cd5b0700000000220020f39f6272ba6b57918eb047c5dc44fb475356b0f24c12fca39b19284e80008a4200000000',
         isElements: false,
       })],
-      '{\"feeAmount\":294,\"txFeeAmount\":139,\"utxoFeeAmount\":155}'
+      '{\"feeAmount\":332,\"txFeeAmount\":139,\"utxoFeeAmount\":193}'
     );
   })(),
 ];
@@ -314,7 +314,7 @@ const elementsTestCase = [
     );
   })(),
   (() => {
-    const selectUtxos = testScriptUtxos([6, 7]);
+    const selectUtxos = testSegwitUtxos([6, 7]);
     return TestHelper.createElementsTestCase(
       'EstimateFee Elements - 13[6,7]coins-segwit, tx: 2 output, feeRate: 1',
       EstimateFee,
@@ -325,11 +325,11 @@ const elementsTestCase = [
         isElements: true,
         feeAsset: FEE_ASSET,
       })],
-      '{\"feeAmount\":1977,\"txFeeAmount\":1820,\"utxoFeeAmount\":157}'
+      '{\"feeAmount\":1958,\"txFeeAmount\":1820,\"utxoFeeAmount\":138}'
     );
   })(),
   (() => {
-    const selectUtxos = testSegwitUtxos([6]);
+    const selectUtxos = testScriptUtxos([6]);
     return TestHelper.createElementsTestCase(
       'EstimateFee Elements - 6[6]coins-script, tx: 1 output, feeRate: 1',
       EstimateFee,
@@ -340,7 +340,7 @@ const elementsTestCase = [
         isElements: true,
         feeAsset: FEE_ASSET,
       })],
-      '{\"feeAmount\":1007,\"txFeeAmount\":938,\"utxoFeeAmount\":69}'
+      '{\"feeAmount\":1035,\"txFeeAmount\":938,\"utxoFeeAmount\":97}'
     );
   })(),
   (() => {
@@ -355,7 +355,7 @@ const elementsTestCase = [
         isElements: true,
         feeAsset: FEE_ASSET,
       })],
-      '{\"feeAmount\":1977,\"txFeeAmount\":1820,\"utxoFeeAmount\":157}'
+      '{\"feeAmount\":2014,\"txFeeAmount\":1820,\"utxoFeeAmount\":194}'
     );
   })(),
   (() => {
