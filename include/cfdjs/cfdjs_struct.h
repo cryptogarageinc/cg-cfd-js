@@ -1598,10 +1598,11 @@ struct UtxoJsonDataStruct {
  * @brief CoinSelectionFeeInfomationFieldStruct 構造体
  */
 struct CoinSelectionFeeInfomationFieldStruct {
-  int64_t tx_fee_amount = 0;       //!< tx_fee_amount  // NOLINT
-  double fee_rate = 20;            //!< fee_rate  // NOLINT
-  double long_term_fee_rate = 20;  //!< long_term_fee_rate  // NOLINT
-  std::string fee_asset = "";      //!< fee_asset  // NOLINT
+  int64_t tx_fee_amount = 0;         //!< tx_fee_amount  // NOLINT
+  double fee_rate = 20;              //!< fee_rate  // NOLINT
+  double long_term_fee_rate = 20;    //!< long_term_fee_rate  // NOLINT
+  int64_t knapsack_min_change = -1;  //!< knapsack_min_change  // NOLINT
+  std::string fee_asset = "";        //!< fee_asset  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

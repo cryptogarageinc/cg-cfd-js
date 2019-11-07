@@ -128,6 +128,13 @@ void CoinSelectionFeeInfomationField::CollectFieldName() {
   json_mapper.emplace("longTermFeeRate", func_table);
   item_list.push_back("longTermFeeRate");
   func_table = {
+    CoinSelectionFeeInfomationField::GetKnapsackMinChangeString,
+    CoinSelectionFeeInfomationField::SetKnapsackMinChangeString,
+    CoinSelectionFeeInfomationField::GetKnapsackMinChangeFieldType,
+  };
+  json_mapper.emplace("knapsackMinChange", func_table);
+  item_list.push_back("knapsackMinChange");
+  func_table = {
     CoinSelectionFeeInfomationField::GetFeeAssetString,
     CoinSelectionFeeInfomationField::SetFeeAssetString,
     CoinSelectionFeeInfomationField::GetFeeAssetFieldType,
@@ -141,6 +148,7 @@ void CoinSelectionFeeInfomationField::ConvertFromStruct(
   tx_fee_amount_ = data.tx_fee_amount;
   fee_rate_ = data.fee_rate;
   long_term_fee_rate_ = data.long_term_fee_rate;
+  knapsack_min_change_ = data.knapsack_min_change;
   fee_asset_ = data.fee_asset;
   ignore_items = data.ignore_items;
 }
@@ -150,6 +158,7 @@ CoinSelectionFeeInfomationFieldStruct CoinSelectionFeeInfomationField::ConvertTo
   result.tx_fee_amount = tx_fee_amount_;
   result.fee_rate = fee_rate_;
   result.long_term_fee_rate = long_term_fee_rate_;
+  result.knapsack_min_change = knapsack_min_change_;
   result.fee_asset = fee_asset_;
   result.ignore_items = ignore_items;
   return result;

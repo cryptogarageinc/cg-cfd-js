@@ -51,6 +51,7 @@ void CoinJsonApi::SelectUtxos(
   }
   option.SetEffectiveFeeBaserate(fee_info.GetFeeRate());
   option.SetLongTermFeeBaserate(fee_info.GetLongTermFeeRate());
+  option.SetKnapsackMinimumChange(fee_info.GetKnapsackMinChange());
 
   // out parameter
   Amount select_value;

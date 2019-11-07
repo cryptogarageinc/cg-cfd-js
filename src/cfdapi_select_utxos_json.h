@@ -503,6 +503,49 @@ class CoinSelectionFeeInfomationField
   }
 
   /**
+   * @brief knapsackMinChange 取得処理
+   * @return knapsackMinChange
+   */
+  int64_t GetKnapsackMinChange() const {
+    return knapsack_min_change_;
+  }
+  /**
+   * @brief knapsackMinChange 設定処理
+   * @param[in] knapsack_min_change    設定値
+   */
+  void SetKnapsackMinChange(  // line separate
+    const int64_t& knapsack_min_change) {  // NOLINT
+    this->knapsack_min_change_ = knapsack_min_change;
+  }
+  /**
+   * @brief knapsackMinChange データ型の取得処理
+   * @return knapsackMinChangeのデータ型
+   */
+  static std::string GetKnapsackMinChangeFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief knapsackMinChange フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetKnapsackMinChangeString(  // line separate
+      const CoinSelectionFeeInfomationField& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.knapsack_min_change_);
+  }
+  /**
+   * @brief knapsackMinChange フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetKnapsackMinChangeString(  // line separate
+      CoinSelectionFeeInfomationField& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.knapsack_min_change_, json_value);
+  }
+
+  /**
    * @brief feeAsset 取得処理
    * @return feeAsset
    */
@@ -626,6 +669,10 @@ class CoinSelectionFeeInfomationField
    * @brief JsonAPI(longTermFeeRate) のvalue
    */
   double long_term_fee_rate_ = 20;
+  /**
+   * @brief JsonAPI(knapsackMinChange) のvalue
+   */
+  int64_t knapsack_min_change_ = -1;
   /**
    * @brief JsonAPI(feeAsset) のvalue
    */
