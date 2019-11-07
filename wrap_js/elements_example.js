@@ -26,6 +26,7 @@ const {
   CreateDestroyAmount,
   SelectUtxos,
   EstimateFee,
+  GetAddressesFromMultisig,
 } = cfdjsModule;
 
 let supportFunctions;
@@ -70,6 +71,20 @@ if (!supportFunctions.elements) {
     console.log('\n*** Response ***\n', createMultisigResult, '\n');
   }
 
+  let getAddressesFromMultisigResult;
+  {
+    console.log('\n===== GetAddressesFromMultisig =====');
+    const reqJson = {
+      'isElements': true,
+      'redeemScript': createMultisigResult.witnessScript,
+      'network': 'liquidv1',
+      'hashType': 'p2sh-p2wpkh',
+    };
+    console.log('*** Request ***\n', reqJson);
+    getAddressesFromMultisigResult = GetAddressesFromMultisig(reqJson);
+    console.log('\n*** Response ***\n', getAddressesFromMultisigResult, '\n');
+  }
+
   // ElementsAPI ---------------------------------------------------------------
   let createElementsP2pkhAddressResult;
   {
@@ -103,6 +118,23 @@ if (!supportFunctions.elements) {
     console.log('*** Request ***\n', reqJson);
     createElementsP2shAddressResult = CreateAddress(reqJson);
     console.log('\n*** Response ***\n', createElementsP2shAddressResult, '\n');
+  }
+
+  let createElementsP2shP2wpkhAddressResult;
+  {
+    console.log('\n===== createElementsP2shP2wpkhAddress =====');
+    const reqJson = {
+      'keyData': {
+        'hex': '0205ffcdde75f262d66ada3dd877c7471f8f8ee9ee24d917c3e18d01cee458bafe', // eslint-disable-line max-len
+        'type': 'pubkey',
+      },
+      'network': 'liquidv1',
+      'isElements': true,
+      'hashType': 'p2sh-p2wpkh',
+    };
+    console.log('*** Request ***\n', reqJson);
+    createElementsP2shP2wpkhAddressResult = CreateAddress(reqJson);
+    console.log('\n*** Response ***\n', createElementsP2shP2wpkhAddressResult, '\n');
   }
 
   let getElementsConfidentialAddressResult;

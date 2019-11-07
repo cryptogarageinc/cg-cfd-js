@@ -29,6 +29,7 @@ const {
   GetPubkeyFromPrivkey,
   SelectUtxos,
   EstimateFee,
+  GetAddressesFromMultisig,
 } = cfdjsModule;
 
 const DUMMY_TXID_1 = '86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac'; // eslint-disable-line max-len
@@ -82,6 +83,20 @@ let createMultisigResult;
   console.log('*** Request ***\n', reqJson);
   createMultisigResult = CreateMultisig(reqJson);
   console.log('\n*** Response ***\n', createMultisigResult, '\n');
+}
+
+let getAddressesFromMultisigResult;
+{
+  console.log('\n===== GetAddressesFromMultisig =====');
+  const reqJson = {
+    'isElements': false,
+    'redeemScript': createMultisigResult.witnessScript,
+    'network': NET_TYPE,
+    'hashType': 'p2wpkh',
+  };
+  console.log('*** Request ***\n', reqJson);
+  getAddressesFromMultisigResult = GetAddressesFromMultisig(reqJson);
+  console.log('\n*** Response ***\n', getAddressesFromMultisigResult, '\n');
 }
 
 // CreateRawTransaction

@@ -1337,6 +1337,33 @@ struct EstimateFeeResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// GetAddressesFromMultisigRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetAddressesFromMultisigRequestStruct 構造体
+ */
+struct GetAddressesFromMultisigRequestStruct {
+  bool is_elements = false;          //!< is_elements  // NOLINT
+  std::string redeem_script = "";    //!< redeem_script  // NOLINT
+  std::string network = "mainnet";   //!< network  // NOLINT
+  std::string hash_type = "p2wpkh";  //!< hash_type  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetAddressesFromMultisigResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetAddressesFromMultisigResponseStruct 構造体
+ */
+struct GetAddressesFromMultisigResponseStruct {
+  std::vector<std::string> addresses;  //!< addresses  // NOLINT
+  std::vector<std::string> pubkeys;    //!< pubkeys  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // GetExtkeyInfoRequestStruct
 // ------------------------------------------------------------------------
 /**

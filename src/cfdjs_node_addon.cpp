@@ -43,6 +43,7 @@
 #include "cfdapi_error_base_json.h"                         // NOLINT
 #include "cfdapi_error_json.h"                              // NOLINT
 #include "cfdapi_estimate_fee_json.h"                       // NOLINT
+#include "cfdapi_get_addresses_from_multisig_json.h"        // NOLINT
 #include "cfdapi_get_extkeyinfo_json.h"                     // NOLINT
 #include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
 #include "cfdapi_get_mnemonic_wordlist_json.h"              // NOLINT
@@ -539,6 +540,25 @@ Value CreateMultisig(const CallbackInfo &information) {
 }
 
 /**
+ * @brief GetAddressesFromMultisigのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetAddressesFromMultisig(const CallbackInfo &information) {
+  return NodeAddonElementsCheckApi<
+      api::json::GetAddressesFromMultisigRequest,
+      api::json::GetAddressesFromMultisigResponse,
+      api::GetAddressesFromMultisigRequestStruct,
+      api::GetAddressesFromMultisigResponseStruct>(
+      information, AddressStructApi::GetAddressesFromMultisig,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressStructApi::GetAddressesFromMultisig);
+#else
+      AddressStructApi::GetAddressesFromMultisig);
+#endif
+}
+
+/**
  * @brief CreateSignatureHashのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -1024,6 +1044,9 @@ void InitializeJsonApi(Env env, Object *exports) {
       String::New(env, "CreateAddress"), Function::New(env, CreateAddress));
   exports->Set(
       String::New(env, "CreateMultisig"), Function::New(env, CreateMultisig));
+  exports->Set(
+      String::New(env, "GetAddressesFromMultisig"),
+      Function::New(env, GetAddressesFromMultisig));
   exports->Set(
       String::New(env, "CreateSignatureHash"),
       Function::New(env, CreateSignatureHash));

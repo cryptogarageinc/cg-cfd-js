@@ -49,6 +49,14 @@ class CFD_JS_EXPORT AddressStructApi {
       const CreateMultisigRequestStruct& request);
 
   /**
+   * @brief JSONパラメータの情報を元に、Pubkey Addressを作成する
+   * @param[in] request Pubkey Addressを構築するパラメータ
+   * @return AddressとPubkeyの一覧を格納した構造体
+   */
+  static GetAddressesFromMultisigResponseStruct GetAddressesFromMultisig(
+      const GetAddressesFromMultisigRequestStruct& request);
+
+  /**
    * @brief bitcoinネットワーク文字列を、NetType構造体へ変換する.
    * @param[in] network_type ネットワーク文字列
    * @return 引数に対応するNetType構造体
