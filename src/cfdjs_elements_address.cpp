@@ -122,6 +122,41 @@ CreateMultisigResponseStruct ElementsAddressStructApi::CreateMultisig(
   return result;
 }
 
+GetAddressesFromMultisigResponseStruct
+ElementsAddressStructApi::GetAddressesFromMultisig(
+    const GetAddressesFromMultisigRequestStruct& request) {
+  auto call_func = [](const GetAddressesFromMultisigRequestStruct& request)
+      -> GetAddressesFromMultisigResponseStruct {  // NOLINT
+    GetAddressesFromMultisigResponseStruct response;
+
+    ElementsNetType net_type = ConvertElementsNetType(request.network);
+    AddressType addr_type =
+        AddressStructApi::ConvertAddressType(request.hash_type);
+    Script redeem_script(request.redeem_script);
+
+    ElementsAddressApi api;
+    std::vector<Pubkey> pubkeys;
+    std::vector<Address> addresses = api.GetAddressesFromMultisig(
+        net_type, addr_type, redeem_script, &pubkeys);
+
+    // レスポンスとなるモデルへ変換
+    for (const auto& addr : addresses) {
+      response.addresses.push_back(addr.GetAddress());
+    }
+    for (const auto& pubkey : pubkeys) {
+      response.pubkeys.push_back(pubkey.GetHex());
+    }
+    return response;
+  };
+
+  GetAddressesFromMultisigResponseStruct result;
+  result = ExecuteStructApi<
+      GetAddressesFromMultisigRequestStruct,
+      GetAddressesFromMultisigResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 GetConfidentialAddressResponseStruct
 ElementsAddressStructApi::GetConfidentialAddress(
     const GetConfidentialAddressRequestStruct& request) {

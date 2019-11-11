@@ -42,6 +42,8 @@
 #include "cfdapi_elements_unblind_raw_transaction_json.h"   // NOLINT
 #include "cfdapi_error_base_json.h"                         // NOLINT
 #include "cfdapi_error_json.h"                              // NOLINT
+#include "cfdapi_estimate_fee_json.h"                       // NOLINT
+#include "cfdapi_get_addresses_from_multisig_json.h"        // NOLINT
 #include "cfdapi_get_extkeyinfo_json.h"                     // NOLINT
 #include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
 #include "cfdapi_get_mnemonic_wordlist_json.h"              // NOLINT
@@ -57,6 +59,8 @@
 #include "cfdapi_transaction_json.h"                        // NOLINT
 #include "cfdapi_update_witness_json.h"                     // NOLINT
 #include "cfdjs_coin.h"                                     // NOLINT
+#include "cfdjs_json_elements_transaction.h"                // NOLINT
+#include "cfdjs_json_transaction.h"                         // NOLINT
 
 #include "cfdjs/cfdjs_common.h"
 
@@ -339,6 +343,90 @@ Value NodeAddonDirectJsonApi(
   }
 }
 
+/**
+ * @brief NodeAddonのJSON APIテンプレート関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @param[in] bitcoin_function   bitcoin有効時に呼び出されるcfdの呼び出し関数
+ * @param[in] elements_function   elements有効時に呼び出されるcfdの呼び出し関数
+ * @return 戻り値(JSON文字列)
+ */
+template <typename RequestType, typename ResponseType>
+Value NodeAddonElementsCheckDirectApi(
+    const CallbackInfo &information,
+    std::function<void(RequestType *, ResponseType *)>
+        bitcoin_function,  // NOLINT
+    std::function<void(RequestType *, ResponseType *)>
+        elements_function) {  // NOLINT
+  Env env = information.Env();
+  if (information.Length() < 1) {
+    TypeError::New(env, "Invalid arguments.").ThrowAsJavaScriptException();
+    return env.Null();
+  }
+  if (!information[0].IsString()) {
+    TypeError::New(env, "Wrong arguments.").ThrowAsJavaScriptException();
+    return env.Null();
+  }
+
+  try {
+    // リクエストjson_strから、モデルへ変換
+    RequestType req;
+    try {
+      req.Deserialize(information[0].As<String>().Utf8Value());
+    } catch (const CfdException &cfd_except) {
+      ErrorResponse res = ErrorResponse::ConvertFromCfdException(cfd_except);
+      return String::New(env, res.Serialize().c_str());
+    } catch (...) {
+      CfdException ex(
+          CfdError::kCfdOutOfRangeError,
+          "JSON value convert error. Value out of range.");
+      ErrorResponse res = ErrorResponse::ConvertFromCfdException(ex);
+      return String::New(env, res.Serialize().c_str());
+    }
+
+    std::string json_message;
+    try {
+      ResponseType response;
+
+      if (req.GetIsElements()) {
+#ifndef CFD_DISABLE_ELEMENTS
+        elements_function(&req, &response);
+#else
+        CfdException ex(
+            CfdError::kCfdIllegalArgumentError, "functionType not supported.");
+        ErrorResponse res = ErrorResponse::ConvertFromCfdException(ex);
+        return String::New(env, res.Serialize().c_str());
+#endif  // CFD_DISABLE_ELEMENTS
+      } else {
+#ifndef CFD_DISABLE_BITCOIN
+        bitcoin_function(&req, &response);
+#else
+        CfdException ex(
+            CfdError::kCfdIllegalArgumentError, "functionType not supported.");
+        ErrorResponse res = ErrorResponse::ConvertFromCfdException(ex);
+        return String::New(env, res.Serialize().c_str());
+#endif  // CFD_DISABLE_BITCOIN
+      }
+
+      json_message = response.Serialize();
+    } catch (const CfdException &cfd_except) {
+      ErrorResponse res = ErrorResponse::ConvertFromCfdException(cfd_except);
+      json_message = res.Serialize();
+    }
+
+    // utf-8
+    return String::New(env, json_message.c_str());
+  } catch (const std::exception &except) {
+    // illegal route
+    std::string errmsg = "exception=" + std::string(except.what());
+    TypeError::New(env, errmsg).ThrowAsJavaScriptException();
+    return env.Null();
+  } catch (...) {
+    // illegal route
+    TypeError::New(env, "Illegal exception.").ThrowAsJavaScriptException();
+    return env.Null();
+  }
+}
+
 }  // namespace json
 }  // namespace api
 }  // namespace js
@@ -448,6 +536,25 @@ Value CreateMultisig(const CallbackInfo &information) {
       ElementsAddressStructApi::CreateMultisig);
 #else
       AddressStructApi::CreateMultisig);
+#endif
+}
+
+/**
+ * @brief GetAddressesFromMultisigのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetAddressesFromMultisig(const CallbackInfo &information) {
+  return NodeAddonElementsCheckApi<
+      api::json::GetAddressesFromMultisigRequest,
+      api::json::GetAddressesFromMultisigResponse,
+      api::GetAddressesFromMultisigRequestStruct,
+      api::GetAddressesFromMultisigResponseStruct>(
+      information, AddressStructApi::GetAddressesFromMultisig,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressStructApi::GetAddressesFromMultisig);
+#else
+      AddressStructApi::GetAddressesFromMultisig);
 #endif
 }
 
@@ -682,6 +789,22 @@ Value AddMultisigSign(const CallbackInfo &information) {
       ElementsTransactionStructApi::AddMultisigSign);
 #else
       TransactionStructApi::AddMultisigSign);
+#endif
+}
+
+/**
+ * @brief EstimateFeeのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value EstimateFee(const CallbackInfo &information) {
+  return NodeAddonElementsCheckDirectApi<
+      api::json::EstimateFeeRequest, api::json::EstimateFeeResponse>(
+      information, TransactionJsonApi::EstimateFee,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionJsonApi::EstimateFee);
+#else
+      TransactionJsonApi::EstimateFee);
 #endif
 }
 
@@ -922,6 +1045,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "CreateMultisig"), Function::New(env, CreateMultisig));
   exports->Set(
+      String::New(env, "GetAddressesFromMultisig"),
+      Function::New(env, GetAddressesFromMultisig));
+  exports->Set(
       String::New(env, "CreateSignatureHash"),
       Function::New(env, CreateSignatureHash));
   exports->Set(
@@ -965,6 +1091,8 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "CalculateEcSignature"),
       Function::New(env, CalculateEcSignature));
+  exports->Set(
+      String::New(env, "EstimateFee"), Function::New(env, EstimateFee));
   exports->Set(
       String::New(env, "SelectUtxos"), Function::New(env, SelectUtxos));
 #ifndef CFD_DISABLE_ELEMENTS

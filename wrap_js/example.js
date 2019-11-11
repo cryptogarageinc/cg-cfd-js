@@ -28,6 +28,8 @@ const {
   GetPubkeyFromExtkey,
   GetPubkeyFromPrivkey,
   SelectUtxos,
+  EstimateFee,
+  GetAddressesFromMultisig,
 } = cfdjsModule;
 
 const DUMMY_TXID_1 = '86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac'; // eslint-disable-line max-len
@@ -81,6 +83,20 @@ let createMultisigResult;
   console.log('*** Request ***\n', reqJson);
   createMultisigResult = CreateMultisig(reqJson);
   console.log('\n*** Response ***\n', createMultisigResult, '\n');
+}
+
+let getAddressesFromMultisigResult;
+{
+  console.log('\n===== GetAddressesFromMultisig =====');
+  const reqJson = {
+    'isElements': false,
+    'redeemScript': createMultisigResult.witnessScript,
+    'network': NET_TYPE,
+    'hashType': 'p2wpkh',
+  };
+  console.log('*** Request ***\n', reqJson);
+  getAddressesFromMultisigResult = GetAddressesFromMultisig(reqJson);
+  console.log('\n*** Response ***\n', getAddressesFromMultisigResult, '\n');
 }
 
 // CreateRawTransaction
@@ -827,6 +843,30 @@ let getPubkeyFromPrivkeyResult;
   console.log('*** Response ***\n', getPubkeyFromPrivkeyResult);
 }
 
+let estimateFeeResult;
+{
+  console.log('-- EstimateFee start --');
+  const reqJson = {
+    selectUtxos: [{
+      txid: 'ab05c759d35eca58d2f1fe973b0282654a610c4ddc0566356dff96fb06e3c5ff',
+      vout: 0,
+      amount: 78125000,
+      descriptor: 'sh(wpkh([ef735203/0\'/0\'/5\']03948c01f159b4204b682668d6e850440564b6610c0e5bf30da684b2131f77c449))#2u75feqc',
+    }, {
+      txid: '0f59594cfecf8fe1733521e29736352935711f34cd958f34df4a031858f6ecfd',
+      vout: 0,
+      amount: 156250000,
+      descriptor: 'sh(wpkh([ef735203/0\'/0\'/4\']0231c043ae680664a2c5df38cf0d8eab29f1b61ce93855040c613b2f41f7c036af))#pezpv0hm',
+    }],
+    feeRate: 20,
+    transaction: '02000000000100e1f5050000000017a914e37a3603a4d392f9ecb68b32eac6ba19adc4968f8700000000',
+    isElements: false,
+  };
+  console.log('*** Request ***\n', reqJson);
+  estimateFeeResult = EstimateFee(reqJson);
+  console.log('*** Response ***\n', estimateFeeResult);
+}
+
 let coinSelectionResult;
 {
   console.log('-- SelectUtxos start --');
@@ -847,11 +887,12 @@ let coinSelectionResult;
       amount: 156250000,
       descriptor: 'sh(wpkh([ef735203/0\'/0\'/4\']0231c043ae680664a2c5df38cf0d8eab29f1b61ce93855040c613b2f41f7c036af))#pezpv0hm',
     }],
-    targetAmount: 100000000,
+    targetAmount: 117179000,
+    isElements: false,
     feeInfo: {
-      feeRate: 1,
-      transaction: '02000000000100e1f5050000000017a914e37a3603a4d392f9ecb68b32eac6ba19adc4968f8700000000',
-      isElements: false,
+      txFeeAmount: estimateFeeResult.feeAmount,
+      feeRate: 20,
+      longTermFeeRate: 20,
     },
   };
   console.log('*** Request ***\n', reqJson);

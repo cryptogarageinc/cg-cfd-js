@@ -46,6 +46,14 @@ class CFD_JS_EXPORT ElementsAddressStructApi {
       const CreateMultisigRequestStruct& request);
 
   /**
+   * @brief JSONパラメータの情報を元に、Pubkey Addressを作成する
+   * @param[in] request Pubkey Addressを構築するパラメータ
+   * @return AddressとPubkeyの一覧を格納した構造体
+   */
+  static GetAddressesFromMultisigResponseStruct GetAddressesFromMultisig(
+      const GetAddressesFromMultisigRequestStruct& request);
+
+  /**
    * @brief
    * 構造体の情報を元に、UnblinedAddressからElements用ConfidentialAddressを取得する
    * @param[in] request ConfidentialAddressを構築するパラメータ

@@ -10,10 +10,13 @@
 #include <string>
 #include <vector>
 
+#include "cfd/cfdapi_coin.h"
 #include "cfd/cfdapi_transaction.h"
+#include "cfdapi_estimate_fee_json.h"  // NOLINT
 #include "cfdjs/cfdjs_address.h"
 #include "cfdjs/cfdjs_transaction.h"
 #include "cfdjs_internal.h"          // NOLINT
+#include "cfdjs_json_transaction.h"  // NOLINT
 #include "cfdjs_transaction_base.h"  // NOLINT
 
 namespace cfd {
@@ -22,6 +25,7 @@ namespace api {
 
 using cfd::TransactionController;
 using cfd::api::TransactionApi;
+using cfd::api::UtxoData;
 using cfd::core::Address;
 using cfd::core::AddressType;
 using cfd::core::Amount;
@@ -521,6 +525,44 @@ bool TransactionStructApi::CheckNullDataScript(const Script& script) {
   }
   return is_match;
 }
+
+namespace json {
+
+// -----------------------------------------------------------------------------
+// TransactionJsonApiクラス
+// -----------------------------------------------------------------------------
+void TransactionJsonApi::EstimateFee(
+    EstimateFeeRequest* request, EstimateFeeResponse* response) {
+  std::vector<UtxoData> utxos;
+
+  for (auto& utxo : request->GetSelectUtxos()) {
+    UtxoData data = {};
+    data.txid = Txid(utxo.GetTxid());
+    data.vout = utxo.GetVout();
+    if (!utxo.GetAsset().empty()) {
+      data.asset = ConfidentialAssetId(utxo.GetAsset());
+    }
+    if (!utxo.GetRedeemScript().empty()) {
+      data.redeem_script = Script(utxo.GetRedeemScript());
+    }
+    data.descriptor = utxo.GetDescriptor();
+    data.binary_data = nullptr;
+    utxos.push_back(data);
+  }
+
+  Amount tx_fee;
+  Amount utxo_fee;
+  TransactionApi api;
+  Amount fee = api.EstimateFee(
+      request->GetTransaction(), utxos, &tx_fee, &utxo_fee,
+      request->GetFeeRate());
+
+  response->SetFeeAmount(fee.GetSatoshiValue());
+  response->SetTxFeeAmount(tx_fee.GetSatoshiValue());
+  response->SetUtxoFeeAmount(utxo_fee.GetSatoshiValue());
+}
+
+}  // namespace json
 
 }  // namespace api
 }  // namespace js
