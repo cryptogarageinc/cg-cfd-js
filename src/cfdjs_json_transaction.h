@@ -1,0 +1,45 @@
+// Copyright 2019 CryptoGarage
+/**
+ * @file cfdjs_json_transaction.h
+ *
+ * @brief cfd-apiで利用するTransaction作成のクラス定義
+ *
+ * JSON形式のAPIを提供する.
+ */
+#ifndef CFD_JS_SRC_CFDJS_JSON_TRANSACTION_H_
+#define CFD_JS_SRC_CFDJS_JSON_TRANSACTION_H_
+
+#include "cfd/cfdapi_coin.h"
+#include "cfdapi_estimate_fee_json.h"  // NOLINT
+#include "cfdcore/cfdcore_script.h"
+#include "cfdjs/cfdjs_common.h"
+#include "cfdjs/cfdjs_struct.h"
+
+namespace cfd {
+namespace js {
+namespace api {
+namespace json {
+
+/**
+ * @brief Transaction関連のJSON APIクラス
+ */
+class CFD_JS_EXPORT TransactionJsonApi {
+ public:
+  /**
+   * @brief JSONパラメータの情報を元に、Fee計算を行う
+   * @param[in] request    Fee計算を実施するためのパラメータ
+   * @param[out] response  Fee計算結果を含むresponseデータ
+   */
+  static void EstimateFee(
+      EstimateFeeRequest* request, EstimateFeeResponse* response);
+
+ private:
+  TransactionJsonApi();
+};
+
+}  // namespace json
+}  // namespace api
+}  // namespace js
+}  // namespace cfd
+
+#endif  // CFD_JS_SRC_CFDJS_JSON_TRANSACTION_H_

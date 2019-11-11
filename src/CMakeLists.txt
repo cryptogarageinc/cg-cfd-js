@@ -153,6 +153,8 @@ target_sources(${CFDJS_LIBRARY}
     cfdapi_elements_set_rawreissueasset_json.cpp
     cfdapi_error_base_json.cpp
     cfdapi_error_json.cpp
+    cfdapi_estimate_fee_json.cpp
+    cfdapi_get_addresses_from_multisig_json.cpp
     cfdapi_get_extkeyinfo_json.cpp
     cfdapi_get_issuance_blinding_key_json.cpp
     cfdapi_get_witness_num_json.cpp

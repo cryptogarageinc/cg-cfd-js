@@ -5,6 +5,9 @@ const emptyFunc = () => {};
 const convertFunc = (jsonString) => {
   const parseResult = JSON.parse(jsonString);
   try {
+    if (!parseResult.utxos) {
+      return {amount: 0, coinNum: 0};
+    }
     const amount = parseResult.utxos.reduce((acc, cur) => (
       acc + cur.amount
     ), 0);
@@ -45,9 +48,21 @@ const clearUtxos = () => {
 };
 
 const FIXED_BITCOIN_FEE_INFO = {
+  txFeeAmount: 1000,
   feeRate: 0,
-  transaction: '02000000000000000000',
-  isElements: false,
+  longTermFeeRate: 0,
+};
+
+const UNUSE_FEE_BITCOIN_FEE_INFO = {
+  txFeeAmount: 0,
+  feeRate: 0,
+  longTermFeeRate: 0,
+};
+
+const USE_FEE_BITCOIN_FEE_INFO = {
+  txFeeAmount: 3000,
+  feeRate: 20,
+  longTermFeeRate: 20,
 };
 
 const testCase = [
@@ -59,7 +74,8 @@ const testCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (37 * COIN_BASE),
-        feeInfo: FIXED_BITCOIN_FEE_INFO,
+        isElements: false,
+        feeInfo: UNUSE_FEE_BITCOIN_FEE_INFO,
       })],
       {amount: (37 * COIN_BASE), coinNum: 4},
       emptyFunc,
@@ -75,7 +91,8 @@ const testCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (38 * COIN_BASE),
-        feeInfo: FIXED_BITCOIN_FEE_INFO,
+        isElements: false,
+        feeInfo: UNUSE_FEE_BITCOIN_FEE_INFO,
       })],
       {amount: (38 * COIN_BASE), coinNum: 5},
       emptyFunc,
@@ -91,6 +108,7 @@ const testCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (34 * COIN_BASE),
+        isElements: false,
         feeInfo: FIXED_BITCOIN_FEE_INFO,
       })],
       {amount: (35 * COIN_BASE), coinNum: 3},
@@ -107,6 +125,7 @@ const testCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (16 * COIN_BASE),
+        isElements: false,
         feeInfo: FIXED_BITCOIN_FEE_INFO,
       })],
       {amount: ( 20 * COIN_BASE), coinNum: 1},
@@ -123,6 +142,7 @@ const testCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (16 * COIN_BASE),
+        isElements: false,
         feeInfo: FIXED_BITCOIN_FEE_INFO,
       })],
       {amount: ( 21 * COIN_BASE), coinNum: 3},
@@ -134,14 +154,15 @@ const testCase = [
   (() => {
     const utxos = testUtxos([0.1, 0.2, 0.3, 0.4, 0.5]);
     return TestHelper.createBitcoinTestCase(
-      'SelectUtxos 5.5[0.1, 0.2, 0.3, 0.4, 0.5]coins, req: 1.0 coins',
+      'SelectUtxos 1.5[0.1, 0.2, 0.3, 0.4, 0.5]coins, req: 1.0 coins',
       SelectUtxos,
       [JSON.stringify({
         utxos,
-        targetAmount: (1.0 * COIN_BASE),
-        feeInfo: FIXED_BITCOIN_FEE_INFO,
+        targetAmount: (1.2 * COIN_BASE),
+        isElements: false,
+        feeInfo: USE_FEE_BITCOIN_FEE_INFO,
       })],
-      {amount: ( 1.0 * COIN_BASE), coinNum: 4},
+      {amount: ( 1.3 * COIN_BASE), coinNum: 4},
       emptyFunc,
       clearUtxos,
       convertFunc,
@@ -158,6 +179,7 @@ const errorCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (0.1 * COIN_BASE),
+        isElements: false,
         feeInfo: FIXED_BITCOIN_FEE_INFO,
       })],
       '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to select coin. Not enough utxos.\"}}'
@@ -171,46 +193,30 @@ const errorCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (5.0 * COIN_BASE),
+        isElements: false,
         feeInfo: FIXED_BITCOIN_FEE_INFO,
       })],
       '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to select coin. Not enough utxos.\"}}'
     );
   })(),
-  (() => {
-    const utxos = testUtxos([1, 2]);
-    return TestHelper.createBitcoinTestCase(
-      'SelectUtxos Error - empty fee info',
-      SelectUtxos,
-      [JSON.stringify({
-        utxos,
-        targetAmount: (1.0 * COIN_BASE),
-      })],
-      '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"transaction data invalid.\"}}'
-    );
-  })(),
-  (() => {
-    const utxos = testUtxos([1, 2]);
-    return TestHelper.createBitcoinTestCase(
-      'SelectUtxos Error - invalid transaction',
-      SelectUtxos,
-      [JSON.stringify({
-        utxos,
-        targetAmount: (1.0 * COIN_BASE),
-        feeInfo: {
-          feeRate: 0,
-          transaction: '0200000000000000000000',
-          isElements: false,
-        },
-      })],
-      '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"transaction data invalid.\"}}'
-    );
-  })(),
 ];
 
 const FIXED_ELEMENTS_FEE_INFO = {
+  txFeeAmount: 1000,
   feeRate: 0,
-  transaction: '0200000000000000000000',
-  isElements: true,
+  longTermFeeRate: 0,
+};
+
+const UNUSE_FEE_ELEMENTS_FEE_INFO = {
+  txFeeAmount: 0,
+  feeRate: 0,
+  longTermFeeRate: 0,
+};
+
+const USE_FEE_ELEMENTS_FEE_INFO = {
+  txFeeAmount: 30000,
+  feeRate: 20,
+  longTermFeeRate: 20,
 };
 
 const elementsTestCase = [
@@ -222,7 +228,8 @@ const elementsTestCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (37 * COIN_BASE),
-        feeInfo: FIXED_ELEMENTS_FEE_INFO,
+        isElements: true,
+        feeInfo: UNUSE_FEE_ELEMENTS_FEE_INFO,
       })],
       {amount: (37 * COIN_BASE), coinNum: 4},
       emptyFunc,
@@ -238,7 +245,8 @@ const elementsTestCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (38 * COIN_BASE),
-        feeInfo: FIXED_ELEMENTS_FEE_INFO,
+        isElements: true,
+        feeInfo: UNUSE_FEE_ELEMENTS_FEE_INFO,
       })],
       {amount: (38 * COIN_BASE), coinNum: 5},
       emptyFunc,
@@ -254,6 +262,7 @@ const elementsTestCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (34 * COIN_BASE),
+        isElements: true,
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
       {amount: (35 * COIN_BASE), coinNum: 3},
@@ -270,6 +279,7 @@ const elementsTestCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (16 * COIN_BASE),
+        isElements: true,
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
       {amount: ( 20 * COIN_BASE), coinNum: 1},
@@ -286,6 +296,7 @@ const elementsTestCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (16 * COIN_BASE),
+        isElements: true,
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
       {amount: ( 21 * COIN_BASE), coinNum: 3},
@@ -297,14 +308,15 @@ const elementsTestCase = [
   (() => {
     const utxos = testUtxos([0.1, 0.2, 0.3, 0.4, 0.5]);
     return TestHelper.createElementsTestCase(
-      'SelectUtxos - Elements - 5.5[0.1, 0.2, 0.3, 0.4, 0.5]coins, req: 1.0 coins',
+      'SelectUtxos - Elements - 1.5[0.1, 0.2, 0.3, 0.4, 0.5]coins, req: 1.0 coins',
       SelectUtxos,
       [JSON.stringify({
         utxos,
-        targetAmount: (1.0 * COIN_BASE),
-        feeInfo: FIXED_ELEMENTS_FEE_INFO,
+        targetAmount: (1.2 * COIN_BASE),
+        isElements: true,
+        feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
       })],
-      {amount: ( 1.0 * COIN_BASE), coinNum: 4},
+      {amount: ( 1.3 * COIN_BASE), coinNum: 4},
       emptyFunc,
       clearUtxos,
       convertFunc,
@@ -321,6 +333,7 @@ const elementsErrorCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (0.1 * COIN_BASE),
+        isElements: true,
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
       '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to select coin. Not enough utxos.\"}}'
@@ -334,38 +347,10 @@ const elementsErrorCase = [
       [JSON.stringify({
         utxos,
         targetAmount: (5.0 * COIN_BASE),
+        isElements: true,
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
       '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to select coin. Not enough utxos.\"}}'
-    );
-  })(),
-  (() => {
-    const utxos = testUtxos([1, 2]);
-    return TestHelper.createElementsTestCase(
-      'SelectUtxos - Elements - Error - empty fee info',
-      SelectUtxos,
-      [JSON.stringify({
-        utxos,
-        targetAmount: (1.0 * COIN_BASE),
-      })],
-      '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"transaction data invalid.\"}}'
-    );
-  })(),
-  (() => {
-    const utxos = testUtxos([1, 2]);
-    return TestHelper.createElementsTestCase(
-      'SelectUtxos - Elements - Error - invalid transaction',
-      SelectUtxos,
-      [JSON.stringify({
-        utxos,
-        targetAmount: (1.0 * COIN_BASE),
-        feeInfo: {
-          feeRate: 0,
-          transaction: '02000000000000000000',
-          isElements: true,
-        },
-      })],
-      '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"transaction data invalid.\"}}'
     );
   })(),
 ];

@@ -30,18 +30,18 @@ void CoinJsonApi::SelectUtxos(
   // in parameter
   CoinSelectionOption option;
   UtxoFilter filter;
-  if (!fee_info.GetIsElements()) {
+  if (!req->GetIsElements()) {
     // Bitcoin
-    TransactionController txc(fee_info.GetTransaction());
-    option.InitializeTxSize(txc);
+    option.InitializeTxSizeInfo();
   } else {
     // Elements
 #ifndef CFD_DISABLE_ELEMENTS
-    ConfidentialTransactionController ctxc(fee_info.GetTransaction());
-    option.InitializeConfidentialTxSize(ctxc);
+    option.InitializeConfidentialTxSizeInfo();
     if (!req->GetTargetAsset().empty()) {
-      option.SetFeeAsset(ConfidentialAssetId(req->GetTargetAsset()));
       filter.target_asset = ConfidentialAssetId(req->GetTargetAsset());
+    }
+    if (!fee_info.GetFeeAsset().empty()) {
+      option.SetFeeAsset(ConfidentialAssetId(fee_info.GetFeeAsset()));
     }
 #else
     warn(CFD_LOG_SOURCE, "Not Support Elements.");
@@ -50,18 +50,30 @@ void CoinJsonApi::SelectUtxos(
 #endif  //  CFD_DISABLE_ELEMENTS
   }
   option.SetEffectiveFeeBaserate(fee_info.GetFeeRate());
+  option.SetLongTermFeeBaserate(fee_info.GetLongTermFeeRate());
+  option.SetKnapsackMinimumChange(fee_info.GetKnapsackMinChange());
 
   // out parameter
   Amount select_value;
-  Amount fee;
+  Amount utxo_fee;
+  Amount tx_fee = Amount::CreateBySatoshiAmount(fee_info.GetTxFeeAmount());
+  bool use_bnb = false;
 
   CoinSelection coin_selection;
   std::vector<Utxo> ret_utxos = coin_selection.SelectCoinsMinConf(
-      target_amount, utxos, filter, option, &select_value, &fee);
+      target_amount, utxos, filter, option, tx_fee, &select_value, &utxo_fee,
+      &use_bnb);
 
   res->SetTargetUtxoList(ret_utxos);
-  res->SetFeeAmount(fee.GetSatoshiValue());
   res->SetSelectedAmount(select_value.GetSatoshiValue());
+  res->SetUtxoFeeAmount(utxo_fee.GetSatoshiValue());
+  if (!use_bnb) {
+    res->SetIgnoreItem("feeAmount");
+  } else {
+    Amount fee = tx_fee;
+    fee += utxo_fee;
+    res->SetFeeAmount(fee.GetSatoshiValue());
+  }
 }
 
 }  // namespace json
