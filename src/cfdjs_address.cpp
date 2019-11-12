@@ -269,7 +269,7 @@ ParseDescriptorResponseStruct AddressStructApi::ConvertDescriptorData(
   }
   if ((!result.address.empty()) && (result.type != "pk")) {
     result.hash_type =
-        convert_to_hashtype(script_data.address.GetAddressType(), result.type);
+        convert_to_hashtype(script_data.address_type, result.type);
   }
   if (result.hash_type.empty()) result.ignore_items.insert("hashType");
   if (!script_data.redeem_script.IsEmpty()) {
@@ -278,16 +278,28 @@ ParseDescriptorResponseStruct AddressStructApi::ConvertDescriptorData(
     result.ignore_items.insert("redeemScript");
   }
 
+  std::vector<DescriptorScriptData> setting_scripts;
+  bool is_force_multisig = false;
   if (!script_list.empty()) {
-    for (const auto& data : script_list) {
+    setting_scripts = script_list;
+  } else if (
+      (!result.address.empty()) &&
+      ((!script_data.redeem_script.IsEmpty()) || (!script_data.key.empty()))) {
+    setting_scripts.push_back(script_data);
+  } else if (script_data.locking_script.IsMultisigScript()) {
+    setting_scripts.push_back(script_data);
+    is_force_multisig = true;
+  }
+
+  if (!setting_scripts.empty()) {
+    for (const auto& data : setting_scripts) {
       DescriptorScriptJsonStruct script_struct;
       script_struct.depth = data.depth;
       script_struct.address = data.address.GetAddress();
       if (script_struct.address.empty()) {
         script_struct.ignore_items.insert("address");
       } else {
-        script_struct.hash_type =
-            convert_to_hashtype(data.address.GetAddressType(), "");
+        script_struct.hash_type = convert_to_hashtype(data.address_type, "");
       }
       if (!data.locking_script.IsEmpty()) {
         script_struct.locking_script = data.locking_script.GetHex();
@@ -303,7 +315,7 @@ ParseDescriptorResponseStruct AddressStructApi::ConvertDescriptorData(
         script_struct.ignore_items.insert("redeemScript");
       }
 
-      if (data.redeem_script.IsMultisigScript()) {
+      if (is_force_multisig || data.redeem_script.IsMultisigScript()) {
         script_struct.ignore_items.insert("key");
         script_struct.ignore_items.insert("keyType");
         for (const auto& key_data : multisig_key_list) {
