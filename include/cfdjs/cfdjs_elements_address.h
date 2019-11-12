@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 
+#include "cfd/cfdapi_address.h"
 #include "cfdcore/cfdcore_elements_address.h"
 #include "cfdjs/cfdjs_common.h"
 #include "cfdjs/cfdjs_struct.h"
@@ -23,6 +24,9 @@
 namespace cfd {
 namespace js {
 namespace api {
+
+using cfd::api::DescriptorKeyData;
+using cfd::api::DescriptorScriptData;
 
 /**
  * @brief ElementsAddress関連の関数群クラス
@@ -79,6 +83,14 @@ class CFD_JS_EXPORT ElementsAddressStructApi {
    */
   static ElementsCreatePegInAddressResponseStruct CreatePegInAddress(
       const ElementsCreatePegInAddressRequestStruct& request);
+
+  /**
+   * @brief JSONパラメータの情報を元に、Descriptorを解析する
+   * @param[in] request Descriptorを構築するパラメータ
+   * @return Descriptor解析結果を格納した構造体
+   */
+  static ParseDescriptorResponseStruct ParseDescriptor(
+      const ParseDescriptorRequestStruct& request);
 
   /**
    * @brief elementsネットワーク文字列を、ElementsNetType構造体へ変換する.
