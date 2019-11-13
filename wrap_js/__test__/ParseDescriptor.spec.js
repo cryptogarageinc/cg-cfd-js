@@ -110,7 +110,7 @@ const testCase = [
     '{\"type\":\"addr\",\"address\":\"bc1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3qccfmv3\",\"lockingScript\":\"00201863143c14c5166804bd19203356da136c985678cd4d27a1b8c6329604903262\",\"hashType\":\"p2wsh\"}'
   ),
   TestHelper.createBitcoinTestCase(
-    'ParseDescriptor raw mainnet',
+    'ParseDescriptor raw checksum mainnet',
     ParseDescriptor,
     ['{"isElements":false,"descriptor":"raw(6a4c4f54686973204f505f52455455524e207472616e73616374696f6e206f7574707574207761732063726561746564206279206d6f646966696564206372656174657261777472616e73616374696f6e2e)#zf2avljj","network":"mainnet"}'],
     '{\"type\":\"raw\",\"lockingScript\":\"6a4c4f54686973204f505f52455455524e207472616e73616374696f6e206f7574707574207761732063726561746564206279206d6f646966696564206372656174657261777472616e73616374696f6e2e\"}'
@@ -134,6 +134,12 @@ const testCase = [
     ['{"isElements":true,"descriptor":"addr(ert1q0jnggjwnn22a4ywxc2pcw86c0d6tghqkgk3hlryrxl7nmxkylmnq3j0gqq)","network":"regtest"}'],
     '{\"type\":\"addr\",\"address\":\"ert1q0jnggjwnn22a4ywxc2pcw86c0d6tghqkgk3hlryrxl7nmxkylmnq3j0gqq\",\"lockingScript\":\"00207ca68449d39a95da91c6c283871f587b74b45c1645a37f8c8337fd3d9ac4fee6\",\"hashType\":\"p2wsh\"}'
   ),
+  TestHelper.createElementsTestCase(
+    'ParseDescriptor Elements utxo sh-wpkh regtest',
+    ParseDescriptor,
+    ['{"isElements":true,"descriptor":"sh(wpkh([0a6b2302/0\'/1\'/223\']03ad52910ed03e60dc6019c8f8cf373a4466ba945ad135240f5792415e2498d927))#svdwefzy","network":"regtest"}'],
+    '{\"type\":\"sh\",\"address\":\"XCEs4H1JSJ7ezGVRmkLeptqgvzPQpwLYHZ\",\"lockingScript\":\"a91409c370a0373e00cf7e3dc6bb2f37f9fb881baff487\",\"hashType\":\"p2sh-p2wpkh\",\"redeemScript\":\"0014d1495dfca98f5d205b683a4eea1b10c7e29c1c92\",\"scripts\":[{\"depth\":0,\"lockingScript\":\"a91409c370a0373e00cf7e3dc6bb2f37f9fb881baff487\",\"address\":\"XCEs4H1JSJ7ezGVRmkLeptqgvzPQpwLYHZ\",\"hashType\":\"p2sh-p2wpkh\",\"redeemScript\":\"0014d1495dfca98f5d205b683a4eea1b10c7e29c1c92\"},{\"depth\":1,\"lockingScript\":\"0014d1495dfca98f5d205b683a4eea1b10c7e29c1c92\",\"address\":\"ert1q69y4ml9f3awjqkmg8f8w5xcscl3fc8yjtt05y5\",\"hashType\":\"p2wpkh\",\"keyType\":\"pubkey\",\"key\":\"03ad52910ed03e60dc6019c8f8cf373a4466ba945ad135240f5792415e2498d927\"}]}'
+  ),
 ];
 
 const errorCase = [
@@ -147,7 +153,7 @@ const errorCase = [
     'ParseDescriptor Error(descriptor is invalid)',
     ParseDescriptor,
     ['{"isElements":false,"descriptor":"pkdh(02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5)","network":"mainnet"}'],
-    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to unknown name.\"}}'
+    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to analyze descriptor.\"}}'
   ),
   TestHelper.createBitcoinTestCase(
     'ParseDescriptor Error(addr prefix is invalid)',
@@ -168,22 +174,40 @@ const errorCase = [
     '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to wsh parent. only top or sh.\"}}'
   ),
   TestHelper.createBitcoinTestCase(
+    'ParseDescriptor Error(descriptor is illegal(key in wsh))',
+    ParseDescriptor,
+    ['{"isElements":false,"descriptor":"wsh(02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5)","network":"mainnet"}'],
+    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to check script type. child is script only.\"}}'
+  ),
+  TestHelper.createBitcoinTestCase(
     'ParseDescriptor Error(descriptor is illegal(wsh in wpkh))',
     ParseDescriptor,
     ['{"isElements":false,"descriptor":"wpkh(wsh(pkh(02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5)))","network":"mainnet"}'],
-    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to child type. child is key only.\"}}'
+    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to check key-hash type. child is key only.\"}}'
   ),
   TestHelper.createBitcoinTestCase(
     'ParseDescriptor Error(descriptor is illegal(wpkh in wsh))',
     ParseDescriptor,
     ['{"isElements":false,"descriptor":"wsh(wpkh(pkh(02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5)))","network":"mainnet"}'],
-    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to wpkh parent. cannot wsh.\"}}'
+    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to check wpkh. wpkh cannot be a child of wsh.\"}}'
   ),
   TestHelper.createBitcoinTestCase(
     'ParseDescriptor Error(descriptor is illegal(sh position fail))',
     ParseDescriptor,
     ['{"isElements":false,"descriptor":"wsh(sh(pkh(02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5)))","network":"mainnet"}'],
-    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to depth is not zero.\"}}'
+    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to depth. The target can only exist at the top.\"}}'
+  ),
+  TestHelper.createBitcoinTestCase(
+    'ParseDescriptor Error(checksum fail)',
+    ParseDescriptor,
+    ['{"isElements":false,"descriptor":"raw(6a4c4f54686973204f505f52455455524e207472616e73616374696f6e206f7574707574207761732063726561746564206279206d6f646966696564206372656174657261777472616e73616374696f6e2e)#z02avljj","network":"mainnet"}'],
+    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Unmatch checksum.\"}}'
+  ),
+  TestHelper.createBitcoinTestCase(
+    'ParseDescriptor Error(extpubkey hardened derive fail)',
+    ParseDescriptor,
+    ['{"isElements":false,"descriptor":"pkh([d34db33f/44\'/0\'/0\']xpub6ERApfZwUNrhLCkDtcHTcxd75RbzS1ed54G1LkBUHQVHQKqhMkhgbmJbZRkrgZw4koxb5JaHWkY4ALHY2grBGRjaDMzQLcgJvLJuZZvRcEL/1/*)","network":"mainnet","bip32DerivationPath":"0h/44"}'],
+    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"ExtPubkey hardened derive error.\"}}'
   ),
   // ---Elements----
   TestHelper.createElementsTestCase(
