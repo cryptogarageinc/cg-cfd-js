@@ -4,8 +4,10 @@
  *
  * @brief JSONマッピングファイル (自動生成)
  */
+#include <map>
 #include <set>
 #include <string>
+#include <utility>
 #include <vector>
 
 #include "cfdapi_select_utxos_wrapper_json.h"  // NOLINT
@@ -40,10 +42,25 @@ void SelectUtxosWrapRequest::PostDeserialize() {
     ++ite;
     ++utxo_ite;
   }
+  UniValue json_elements_flag = GetIsElements();
+  bool elements_flag = json_elements_flag.getBool();
+  if (elements_flag) {
+    JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>& json_target_list = GetTargets();
+    auto ite = json_target_list.cbegin();
+    const auto& ite_end = json_target_list.cend();
+    while (ite != ite_end) {
+      map_target_amount_.insert(std::make_pair(ite->GetAsset(), Amount::CreateBySatoshiAmount(ite->GetAmount())));
+      ++ite;
+    }
+  }
 }
 
 const std::vector<Utxo>& SelectUtxosWrapRequest::GetUtxoList() const {
   return utxo_list_;
+}
+
+const AmountMap& SelectUtxosWrapRequest::GetTargetAmountMap() const {
+  return map_target_amount_;
 }
 
 void SelectUtxosWrapRequest::ConvertToUtxo(
@@ -72,6 +89,18 @@ void SelectUtxosWrapResponse::SetTargetUtxoList(
         json_list.push_back(*json_data);
       }
     }
+  }
+}
+
+void SelectUtxosWrapResponse::SetSelectedAmountMap(
+    const AmountMap& map_selected_amount) {
+  JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>& json_selected_list = GetSelectedAmounts();
+  json_selected_list.clear();
+  for (const auto& selected_amount : map_selected_amount) {
+    TargetAmountMapData selected_amount_data;
+    selected_amount_data.SetAsset(selected_amount.first);
+    selected_amount_data.SetAmount(selected_amount.second.GetSatoshiValue());
+    json_selected_list.push_back(selected_amount_data);
   }
 }
 

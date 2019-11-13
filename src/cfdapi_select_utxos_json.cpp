@@ -94,6 +94,50 @@ UtxoJsonDataStruct UtxoJsonData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// TargetAmountMapData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<TargetAmountMapData>
+  TargetAmountMapData::json_mapper;
+std::vector<std::string> TargetAmountMapData::item_list;
+
+void TargetAmountMapData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<TargetAmountMapData> func_table;  // NOLINT
+
+  func_table = {
+    TargetAmountMapData::GetAssetString,
+    TargetAmountMapData::SetAssetString,
+    TargetAmountMapData::GetAssetFieldType,
+  };
+  json_mapper.emplace("asset", func_table);
+  item_list.push_back("asset");
+  func_table = {
+    TargetAmountMapData::GetAmountString,
+    TargetAmountMapData::SetAmountString,
+    TargetAmountMapData::GetAmountFieldType,
+  };
+  json_mapper.emplace("amount", func_table);
+  item_list.push_back("amount");
+}
+
+void TargetAmountMapData::ConvertFromStruct(
+    const TargetAmountMapDataStruct& data) {
+  asset_ = data.asset;
+  amount_ = data.amount;
+  ignore_items = data.ignore_items;
+}
+
+TargetAmountMapDataStruct TargetAmountMapData::ConvertToStruct() const {  // NOLINT
+  TargetAmountMapDataStruct result;
+  result.asset = asset_;
+  result.amount = amount_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // CoinSelectionFeeInfomationField
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<CoinSelectionFeeInfomationField>
@@ -192,19 +236,19 @@ void SelectUtxosRequest::CollectFieldName() {
   json_mapper.emplace("targetAmount", func_table);
   item_list.push_back("targetAmount");
   func_table = {
-    SelectUtxosRequest::GetTargetAssetString,
-    SelectUtxosRequest::SetTargetAssetString,
-    SelectUtxosRequest::GetTargetAssetFieldType,
-  };
-  json_mapper.emplace("targetAsset", func_table);
-  item_list.push_back("targetAsset");
-  func_table = {
     SelectUtxosRequest::GetIsElementsString,
     SelectUtxosRequest::SetIsElementsString,
     SelectUtxosRequest::GetIsElementsFieldType,
   };
   json_mapper.emplace("isElements", func_table);
   item_list.push_back("isElements");
+  func_table = {
+    SelectUtxosRequest::GetTargetsString,
+    SelectUtxosRequest::SetTargetsString,
+    SelectUtxosRequest::GetTargetsFieldType,
+  };
+  json_mapper.emplace("targets", func_table);
+  item_list.push_back("targets");
   func_table = {
     SelectUtxosRequest::GetFeeInfoString,
     SelectUtxosRequest::SetFeeInfoString,
@@ -218,8 +262,8 @@ void SelectUtxosRequest::ConvertFromStruct(
     const SelectUtxosRequestStruct& data) {
   utxos_.ConvertFromStruct(data.utxos);
   target_amount_ = data.target_amount;
-  target_asset_ = data.target_asset;
   is_elements_ = data.is_elements;
+  targets_.ConvertFromStruct(data.targets);
   fee_info_.ConvertFromStruct(data.fee_info);
   ignore_items = data.ignore_items;
 }
@@ -228,8 +272,8 @@ SelectUtxosRequestStruct SelectUtxosRequest::ConvertToStruct() const {  // NOLIN
   SelectUtxosRequestStruct result;
   result.utxos = utxos_.ConvertToStruct();
   result.target_amount = target_amount_;
-  result.target_asset = target_asset_;
   result.is_elements = is_elements_;
+  result.targets = targets_.ConvertToStruct();
   result.fee_info = fee_info_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
@@ -263,6 +307,13 @@ void SelectUtxosResponse::CollectFieldName() {
   json_mapper.emplace("selectedAmount", func_table);
   item_list.push_back("selectedAmount");
   func_table = {
+    SelectUtxosResponse::GetSelectedAmountsString,
+    SelectUtxosResponse::SetSelectedAmountsString,
+    SelectUtxosResponse::GetSelectedAmountsFieldType,
+  };
+  json_mapper.emplace("selectedAmounts", func_table);
+  item_list.push_back("selectedAmounts");
+  func_table = {
     SelectUtxosResponse::GetFeeAmountString,
     SelectUtxosResponse::SetFeeAmountString,
     SelectUtxosResponse::GetFeeAmountFieldType,
@@ -282,6 +333,7 @@ void SelectUtxosResponse::ConvertFromStruct(
     const SelectUtxosResponseStruct& data) {
   utxos_.ConvertFromStruct(data.utxos);
   selected_amount_ = data.selected_amount;
+  selected_amounts_.ConvertFromStruct(data.selected_amounts);
   fee_amount_ = data.fee_amount;
   utxo_fee_amount_ = data.utxo_fee_amount;
   ignore_items = data.ignore_items;
@@ -291,6 +343,7 @@ SelectUtxosResponseStruct SelectUtxosResponse::ConvertToStruct() const {  // NOL
   SelectUtxosResponseStruct result;
   result.utxos = utxos_.ConvertToStruct();
   result.selected_amount = selected_amount_;
+  result.selected_amounts = selected_amounts_.ConvertToStruct();
   result.fee_amount = fee_amount_;
   result.utxo_fee_amount = utxo_fee_amount_;
   result.ignore_items = ignore_items;

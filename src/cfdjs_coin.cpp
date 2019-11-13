@@ -4,6 +4,7 @@
  *
  * @brief cfd-apiで利用するCoin操作の実装ファイル
  */
+#include <algorithm>
 #include <string>
 #include <vector>
 
@@ -19,29 +20,56 @@ namespace json {
 using cfd::Utxo;
 using cfd::core::CfdError;
 using cfd::core::CfdException;
+using cfd::AmountMap;
+
+static constexpr const char* kDefaultBitCoinAsset = "";
 
 void CoinJsonApi::SelectUtxos(
     SelectUtxosWrapRequest* req, SelectUtxosWrapResponse* res) {
   const std::vector<Utxo>& utxos = req->GetUtxoList();
   CoinSelectionFeeInfomationField fee_info = req->GetFeeInfo();
-  Amount target_amount = Amount::CreateBySatoshiAmount(req->GetTargetAmount());
-  std::string target_asset = req->GetTargetAsset();
+  AmountMap map_target_amount;
+  bool use_targets = false;
 
   // in parameter
   CoinSelectionOption option;
   UtxoFilter filter;
   if (!req->GetIsElements()) {
     // Bitcoin
+    map_target_amount[kDefaultBitCoinAsset] = Amount::CreateBySatoshiAmount(req->GetTargetAmount());
     option.InitializeTxSizeInfo();
   } else {
     // Elements
 #ifndef CFD_DISABLE_ELEMENTS
     option.InitializeConfidentialTxSizeInfo();
-    if (!req->GetTargetAsset().empty()) {
-      filter.target_asset = ConfidentialAssetId(req->GetTargetAsset());
+    if (!req->GetTargetAmountMap().empty()) {
+      const AmountMap& targets = req->GetTargetAmountMap();
+      map_target_amount.insert(targets.begin(), targets.end());
+      use_targets = true;
+    } else {
+      warn(
+          CFD_LOG_SOURCE,
+          "Failed to SelectUtxos. targetAsset is required.");
+      throw CfdException(
+          CfdError::kCfdIllegalArgumentError,
+          "Failed to SelectUtxos. targetAsset is required.");
     }
+
+    // set fee asset
     if (!fee_info.GetFeeAsset().empty()) {
-      option.SetFeeAsset(ConfidentialAssetId(fee_info.GetFeeAsset()));
+      std::string fee_asset = fee_info.GetFeeAsset();
+      option.SetFeeAsset(ConfidentialAssetId(fee_asset));
+      auto iter = map_target_amount.find(fee_asset);
+      if (iter == end(map_target_amount)) {
+        map_target_amount.insert(std::make_pair(fee_asset, Amount::CreateBySatoshiAmount(0)));
+      }
+    } else {
+      warn(
+          CFD_LOG_SOURCE,
+          "Failed to SelectUtxos. feeAsset is required.");
+      throw CfdException(
+          CfdError::kCfdIllegalArgumentError,
+          "Failed to SelectUtxos. feeAsset is required.");
     }
 #else
     warn(CFD_LOG_SOURCE, "Not Support Elements.");
@@ -54,25 +82,36 @@ void CoinJsonApi::SelectUtxos(
   option.SetKnapsackMinimumChange(fee_info.GetKnapsackMinChange());
 
   // out parameter
-  Amount select_value;
+  AmountMap map_select_amount;
   Amount utxo_fee;
   Amount tx_fee = Amount::CreateBySatoshiAmount(fee_info.GetTxFeeAmount());
-  bool use_bnb = false;
+  std::map<std::string, bool> map_use_bnb;
 
   CoinSelection coin_selection;
-  std::vector<Utxo> ret_utxos = coin_selection.SelectCoinsMinConf(
-      target_amount, utxos, filter, option, tx_fee, &select_value, &utxo_fee,
-      &use_bnb);
+  std::vector<Utxo> ret_utxos = coin_selection.SelectCoins(
+      map_target_amount, utxos, filter, option, tx_fee, &map_select_amount, &utxo_fee,
+      &map_use_bnb);
 
   res->SetTargetUtxoList(ret_utxos);
-  res->SetSelectedAmount(select_value.GetSatoshiValue());
-  res->SetUtxoFeeAmount(utxo_fee.GetSatoshiValue());
-  if (!use_bnb) {
-    res->SetIgnoreItem("feeAmount");
+  if (use_targets) {
+    res->SetSelectedAmountMap(map_select_amount);
+    res->SetIgnoreItem("selectedAmount");
   } else {
-    Amount fee = tx_fee;
-    fee += utxo_fee;
-    res->SetFeeAmount(fee.GetSatoshiValue());
+    if (map_select_amount.size() != 1) {
+      // FIXME: Exception?
+    }
+    res->SetSelectedAmount(map_select_amount.begin()->second.GetSatoshiValue());
+    res->SetIgnoreItem("selectedAmounts");
+  }
+  if (utxo_fee == 0) {
+    res->SetIgnoreItem("utxoFeeAmount");
+  }
+  res->SetUtxoFeeAmount(utxo_fee.GetSatoshiValue());
+  Amount fee = tx_fee;
+  fee += utxo_fee;
+  res->SetFeeAmount(fee.GetSatoshiValue());
+  if (fee == 0) {
+    res->SetIgnoreItem("feeAmount");
   }
 }
 
