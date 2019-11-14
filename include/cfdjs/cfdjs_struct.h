@@ -1395,7 +1395,7 @@ struct FundFeeInfomationStruct {
   double fee_rate = 20;               //!< fee_rate  // NOLINT
   double long_term_fee_rate = 20;     //!< long_term_fee_rate  // NOLINT
   int64_t knapsack_min_change = -1;   //!< knapsack_min_change  // NOLINT
-  int64_t excess_fee_amount = 0;      //!< excess_fee_amount  // NOLINT
+  double dust_fee_rate = 3;           //!< dust_fee_rate  // NOLINT
   std::string fee_asset = "";         //!< fee_asset  // NOLINT
   bool is_blind_estimate_fee = true;  //!< is_blind_estimate_fee  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.

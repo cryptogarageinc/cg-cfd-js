@@ -306,12 +306,12 @@ void FundFeeInfomation::CollectFieldName() {
   json_mapper.emplace("knapsackMinChange", func_table);
   item_list.push_back("knapsackMinChange");
   func_table = {
-    FundFeeInfomation::GetExcessFeeAmountString,
-    FundFeeInfomation::SetExcessFeeAmountString,
-    FundFeeInfomation::GetExcessFeeAmountFieldType,
+    FundFeeInfomation::GetDustFeeRateString,
+    FundFeeInfomation::SetDustFeeRateString,
+    FundFeeInfomation::GetDustFeeRateFieldType,
   };
-  json_mapper.emplace("excessFeeAmount", func_table);
-  item_list.push_back("excessFeeAmount");
+  json_mapper.emplace("dustFeeRate", func_table);
+  item_list.push_back("dustFeeRate");
   func_table = {
     FundFeeInfomation::GetFeeAssetString,
     FundFeeInfomation::SetFeeAssetString,
@@ -333,7 +333,7 @@ void FundFeeInfomation::ConvertFromStruct(
   fee_rate_ = data.fee_rate;
   long_term_fee_rate_ = data.long_term_fee_rate;
   knapsack_min_change_ = data.knapsack_min_change;
-  excess_fee_amount_ = data.excess_fee_amount;
+  dust_fee_rate_ = data.dust_fee_rate;
   fee_asset_ = data.fee_asset;
   is_blind_estimate_fee_ = data.is_blind_estimate_fee;
   ignore_items = data.ignore_items;
@@ -344,7 +344,7 @@ FundFeeInfomationStruct FundFeeInfomation::ConvertToStruct() const {  // NOLINT
   result.fee_rate = fee_rate_;
   result.long_term_fee_rate = long_term_fee_rate_;
   result.knapsack_min_change = knapsack_min_change_;
-  result.excess_fee_amount = excess_fee_amount_;
+  result.dust_fee_rate = dust_fee_rate_;
   result.fee_asset = fee_asset_;
   result.is_blind_estimate_fee = is_blind_estimate_fee_;
   result.ignore_items = ignore_items;

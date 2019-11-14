@@ -933,10 +933,10 @@ let fundRawTransactionResult;
     targetAmount: 0,
     reserveAddress: createP2shP2wpkhAddressResult.address,
     feeInfo: {
-      feeRate: 1,
-      longTermFeeRate: 1,
+      feeRate: 20,
+      longTermFeeRate: 20,
       knapsackMinChange: 1000,
-      excessFeeAmount: 2000,
+      dustFeeRate: 3,
     },
   };
   console.log('*** Request ***\n', reqJson);

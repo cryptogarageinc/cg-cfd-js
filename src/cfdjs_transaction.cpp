@@ -592,7 +592,7 @@ void TransactionJsonApi::FundRawTransaction(
   option.SetEffectiveFeeBaserate(fee_info.GetFeeRate());
   option.SetLongTermFeeBaserate(fee_info.GetLongTermFeeRate());
   option.SetKnapsackMinimumChange(fee_info.GetKnapsackMinChange());
-  option.SetExcessFeeRange(fee_info.GetExcessFeeAmount());
+  option.SetDustFeeRate(fee_info.GetDustFeeRate());
 
   NetType net_type = AddressStructApi::ConvertNetType(request->GetNetwork());
   Amount target_amount =

@@ -1343,46 +1343,46 @@ class FundFeeInfomation
   }
 
   /**
-   * @brief excessFeeAmount 取得処理
-   * @return excessFeeAmount
+   * @brief dustFeeRate 取得処理
+   * @return dustFeeRate
    */
-  int64_t GetExcessFeeAmount() const {
-    return excess_fee_amount_;
+  double GetDustFeeRate() const {
+    return dust_fee_rate_;
   }
   /**
-   * @brief excessFeeAmount 設定処理
-   * @param[in] excess_fee_amount    設定値
+   * @brief dustFeeRate 設定処理
+   * @param[in] dust_fee_rate    設定値
    */
-  void SetExcessFeeAmount(  // line separate
-    const int64_t& excess_fee_amount) {  // NOLINT
-    this->excess_fee_amount_ = excess_fee_amount;
+  void SetDustFeeRate(  // line separate
+    const double& dust_fee_rate) {  // NOLINT
+    this->dust_fee_rate_ = dust_fee_rate;
   }
   /**
-   * @brief excessFeeAmount データ型の取得処理
-   * @return excessFeeAmountのデータ型
+   * @brief dustFeeRate データ型の取得処理
+   * @return dustFeeRateのデータ型
    */
-  static std::string GetExcessFeeAmountFieldType() {
-    return "int64_t";
+  static std::string GetDustFeeRateFieldType() {
+    return "double";
   }
   /**
-   * @brief excessFeeAmount フィールドのJSON文字列取得処理
+   * @brief dustFeeRate フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetExcessFeeAmountString(  // line separate
+  static std::string GetDustFeeRateString(  // line separate
       const FundFeeInfomation& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.excess_fee_amount_);
+    return cfd::core::ConvertToString(obj.dust_fee_rate_);
   }
   /**
-   * @brief excessFeeAmount フィールドへのJSON情報設定処理
+   * @brief dustFeeRate フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetExcessFeeAmountString(  // line separate
+  static void SetDustFeeRateString(  // line separate
       FundFeeInfomation& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.excess_fee_amount_, json_value);
+      obj.dust_fee_rate_, json_value);
   }
 
   /**
@@ -1553,9 +1553,9 @@ class FundFeeInfomation
    */
   int64_t knapsack_min_change_ = -1;
   /**
-   * @brief JsonAPI(excessFeeAmount) のvalue
+   * @brief JsonAPI(dustFeeRate) のvalue
    */
-  int64_t excess_fee_amount_ = 0;
+  double dust_fee_rate_ = 3;
   /**
    * @brief JsonAPI(feeAsset) のvalue
    */

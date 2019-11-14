@@ -1421,7 +1421,7 @@ void ElementsTransactionJsonApi::FundRawTransaction(
   option.SetEffectiveFeeBaserate(fee_info.GetFeeRate());
   option.SetLongTermFeeBaserate(fee_info.GetLongTermFeeRate());
   option.SetKnapsackMinimumChange(fee_info.GetKnapsackMinChange());
-  option.SetExcessFeeRange(fee_info.GetExcessFeeAmount());
+  option.SetDustFeeRate(fee_info.GetDustFeeRate());
   if (!fee_info.GetFeeAsset().empty()) {
     fee_asset = ConfidentialAssetId(fee_info.GetFeeAsset());
     option.SetFeeAsset(fee_asset);
