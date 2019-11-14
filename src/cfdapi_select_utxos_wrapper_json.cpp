@@ -45,11 +45,13 @@ void SelectUtxosWrapRequest::PostDeserialize() {
   UniValue json_elements_flag = GetIsElements();
   bool elements_flag = json_elements_flag.getBool();
   if (elements_flag) {
-    JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>& json_target_list = GetTargets();
+    JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>&
+        json_target_list = GetTargets();
     auto ite = json_target_list.cbegin();
     const auto& ite_end = json_target_list.cend();
     while (ite != ite_end) {
-      map_target_amount_.insert(std::make_pair(ite->GetAsset(), Amount::CreateBySatoshiAmount(ite->GetAmount())));
+      map_target_amount_.insert(std::make_pair(
+          ite->GetAsset(), Amount::CreateBySatoshiAmount(ite->GetAmount())));
       ++ite;
     }
   }
@@ -94,7 +96,8 @@ void SelectUtxosWrapResponse::SetTargetUtxoList(
 
 void SelectUtxosWrapResponse::SetSelectedAmountMap(
     const AmountMap& map_selected_amount) {
-  JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>& json_selected_list = GetSelectedAmounts();
+  JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>&
+      json_selected_list = GetSelectedAmounts();
   json_selected_list.clear();
   for (const auto& selected_amount : map_selected_amount) {
     TargetAmountMapData selected_amount_data;

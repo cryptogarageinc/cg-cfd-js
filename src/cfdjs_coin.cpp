@@ -5,6 +5,7 @@
  * @brief cfd-apiで利用するCoin操作の実装ファイル
  */
 #include <algorithm>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -17,10 +18,10 @@ namespace js {
 namespace api {
 namespace json {
 
+using cfd::AmountMap;
 using cfd::Utxo;
 using cfd::core::CfdError;
 using cfd::core::CfdException;
-using cfd::AmountMap;
 
 //! Defaultとして設定するBitcoin の Asset Id
 static constexpr const char* kDefaultBitCoinAsset = "";
@@ -37,7 +38,8 @@ void CoinJsonApi::SelectUtxos(
   UtxoFilter filter;
   if (!req->GetIsElements()) {
     // Bitcoin
-    map_target_amount[kDefaultBitCoinAsset] = Amount::CreateBySatoshiAmount(req->GetTargetAmount());
+    map_target_amount[kDefaultBitCoinAsset] =
+        Amount::CreateBySatoshiAmount(req->GetTargetAmount());
     option.InitializeTxSizeInfo();
   } else {
     // Elements
@@ -48,9 +50,7 @@ void CoinJsonApi::SelectUtxos(
       map_target_amount.insert(targets.begin(), targets.end());
       use_targets = true;
     } else {
-      warn(
-          CFD_LOG_SOURCE,
-          "Failed to SelectUtxos. targets is required.");
+      warn(CFD_LOG_SOURCE, "Failed to SelectUtxos. targets is required.");
       throw CfdException(
           CfdError::kCfdIllegalArgumentError,
           "Failed to SelectUtxos. targets is required.");
@@ -60,12 +60,11 @@ void CoinJsonApi::SelectUtxos(
     if (!fee_info.GetFeeAsset().empty()) {
       std::string fee_asset = fee_info.GetFeeAsset();
       option.SetFeeAsset(ConfidentialAssetId(fee_asset));
-    } else if (fee_info.GetFeeRate() == 0 || fee_info.GetLongTermFeeRate() == 0) {
+    } else if (
+        fee_info.GetFeeRate() == 0 || fee_info.GetLongTermFeeRate() == 0) {
       // fall through
     } else {
-      warn(
-          CFD_LOG_SOURCE,
-          "Failed to SelectUtxos. feeAsset is required.");
+      warn(CFD_LOG_SOURCE, "Failed to SelectUtxos. feeAsset is required.");
       throw CfdException(
           CfdError::kCfdIllegalArgumentError,
           "Failed to SelectUtxos. feeAsset is required.");
@@ -88,8 +87,8 @@ void CoinJsonApi::SelectUtxos(
 
   CoinSelection coin_selection;
   std::vector<Utxo> ret_utxos = coin_selection.SelectCoins(
-      map_target_amount, utxos, filter, option, tx_fee, &map_select_amount, &utxo_fee,
-      &map_use_bnb);
+      map_target_amount, utxos, filter, option, tx_fee, &map_select_amount,
+      &utxo_fee, &map_use_bnb);
 
   res->SetTargetUtxoList(ret_utxos);
   if (use_targets) {
@@ -99,7 +98,8 @@ void CoinJsonApi::SelectUtxos(
     if (map_select_amount.size() != 1) {
       // FIXME: Exception?
     }
-    res->SetSelectedAmount(map_select_amount.begin()->second.GetSatoshiValue());
+    res->SetSelectedAmount(
+        map_select_amount.begin()->second.GetSatoshiValue());
     res->SetIgnoreItem("selectedAmounts");
   }
   if (utxo_fee == 0) {

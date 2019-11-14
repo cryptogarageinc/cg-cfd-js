@@ -60,7 +60,7 @@ class SelectUtxosWrapRequest : public SelectUtxosRequest {
 
  private:
   std::vector<Utxo> utxo_list_;  //!< utxo一覧
-  AmountMap map_target_amount_; //!< target amount一覧
+  AmountMap map_target_amount_;  //!< target amount一覧
 };
 
 // ------------------------------------------------------------------------
