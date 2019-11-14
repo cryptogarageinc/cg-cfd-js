@@ -195,7 +195,7 @@ const errorCase = [
     'ParseDescriptor Error(descriptor is illegal(sh position fail))',
     ParseDescriptor,
     ['{"isElements":false,"descriptor":"wsh(sh(pkh(02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5)))","network":"mainnet"}'],
-    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to depth. The target can only exist at the top.\"}}'
+    '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to analyse descriptor. The target can only exist at the top.\"}}'
   ),
   TestHelper.createBitcoinTestCase(
     'ParseDescriptor Error(checksum fail)',
