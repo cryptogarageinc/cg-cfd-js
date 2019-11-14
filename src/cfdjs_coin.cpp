@@ -29,7 +29,6 @@ void CoinJsonApi::SelectUtxos(
   CoinSelectionFeeInfomationField fee_info = req->GetFeeInfo();
   Amount target_amount;
   AmountMap map_target_amount;
-  bool use_targets = false;
   bool is_elements = req->GetIsElements();
 
   // in parameter
