@@ -53,12 +53,11 @@ void CoinJsonApi::SelectUtxos(
       use_targets = true;
     } else {
       warn(CFD_LOG_SOURCE,
-          "Failed to SelectUtxos. targets is required"
-          "when isElements sets true.");
+          "Failed to SelectUtxos. targets is required.: is_elements=[{}]",
+          is_elements);
       throw CfdException(
           CfdError::kCfdIllegalArgumentError,
-          "Failed to SelectUtxos. targets is required"
-          "when isElements sets true.");
+          "Failed to SelectUtxos. targets is required.");
     }
 
     // set fee asset

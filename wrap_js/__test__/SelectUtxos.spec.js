@@ -190,7 +190,7 @@ const errorCase = [
         isElements: false,
         feeInfo: FIXED_BITCOIN_FEE_INFO,
       })],
-      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to select coin. Not enough utxos.\"}}'
+      '{"error":{"code":2,"type":"illegal_state","message":"Failed to select coin. Not enough utxos."}}'
     );
   })(),
   (() => {
@@ -204,7 +204,7 @@ const errorCase = [
         isElements: false,
         feeInfo: FIXED_BITCOIN_FEE_INFO,
       })],
-      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to select coin. Not enough utxos.\"}}'
+      '{"error":{"code":2,"type":"illegal_state","message":"Failed to select coin. Not enough utxos."}}'
     );
   })(),
 ];
@@ -442,7 +442,7 @@ const elementsErrorCase = [
         isElements: true,
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
-      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to SelectCoins. Target asset is not found in utxo list.\"}}'
+      '{"error":{"code":2,"type":"illegal_state","message":"Failed to SelectCoins. Target asset is not found in utxo list."}}'
     );
   })(),
   (() => {
@@ -459,7 +459,7 @@ const elementsErrorCase = [
         isElements: true,
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
-      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to select coin. Not enough utxos.\"}}'
+      '{"error":{"code":2,"type":"illegal_state","message":"Failed to select coin. Not enough utxos."}}'
     );
   })(),
   (() => {
@@ -476,11 +476,14 @@ const elementsErrorCase = [
         isElements: true,
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
-      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to SelectCoins. Target asset is not found in utxo list.\"}}'
+      '{"error":{"code":2,"type":"illegal_state","message":"Failed to SelectCoins. Target asset is not found in utxo list."}}'
     );
   })(),
   (() => {
-    const utxos = testUtxos([1, 2], ASSET_ID_B);
+    const utxoA = testUtxos([1, 2, 5], ASSET_ID_A);
+    const utxoB = testUtxos([3, 7, 8], ASSET_ID_B);
+    const utxoC = testUtxos([4, 6, 9], ASSET_ID_C);
+    const utxos = utxoA.concat(utxoB, utxoC);
     return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - Error - target asset not specify',
       SelectUtxos,
@@ -493,11 +496,34 @@ const elementsErrorCase = [
         isElements: true,
         feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
       })],
-      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to SelectCoins. Target asset is not found in utxo list.\"}}'
+      '{"error":{"code":1,"type":"illegal_argument","message":"Empty AssetId is invalid."}}'
     );
   })(),
   (() => {
-    const utxos = testUtxos([1, 2], ASSET_ID_B);
+    const utxoA = testUtxos([1, 2, 5], ASSET_ID_A);
+    const utxoB = testUtxos([3, 7, 8], ASSET_ID_B);
+    const utxoC = testUtxos([4, 6, 9], ASSET_ID_C);
+    const utxos = utxoA.concat(utxoB, utxoC);
+    return TestHelper.createElementsTestCase(
+      'SelectUtxos - Elements - Error - invalid target asset',
+      SelectUtxos,
+      [JSON.stringify({
+        utxos,
+        targets: [{
+          asset: '00',
+          amount: (1 * COIN_BASE),
+        }],
+        isElements: true,
+        feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
+      })],
+      '{"error":{"code":1,"type":"illegal_argument","message":"AssetId size Invalid."}}'
+    );
+  })(),
+  (() => {
+    const utxoA = testUtxos([1, 2, 5], ASSET_ID_A);
+    const utxoB = testUtxos([3, 7, 8], ASSET_ID_B);
+    const utxoC = testUtxos([4, 6, 9], ASSET_ID_C);
+    const utxos = utxoA.concat(utxoB, utxoC);
     return TestHelper.createElementsTestCase(
       'SelectUtxos - Elements - Error - misconfigure not set targets field',
       SelectUtxos,
@@ -507,13 +533,13 @@ const elementsErrorCase = [
         isElements: true,
         feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
       })],
-      '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to SelectUtxos. targets is required.\"}}'
+      '{"error":{"code":1,"type":"illegal_argument","message":"Failed to SelectUtxos. targets is required."}}'
     );
   })(),
   (() => {
     const utxos = testUtxos([1, 2], ASSET_ID_B);
     return TestHelper.createElementsTestCase(
-      'SelectUtxos - Elements - Error - fee asset not specify',
+      'SelectUtxos - Elements - Error - fee asset not set',
       SelectUtxos,
       [JSON.stringify({
         utxos,
@@ -528,7 +554,29 @@ const elementsErrorCase = [
           longTermFeeRate: 20,
         },
       })],
-      '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to SelectUtxos. feeAsset is required.\"}}'
+      '{"error":{"code":1,"type":"illegal_argument","message":"Failed to SelectUtxos. feeAsset is required."}}'
+    );
+  })(),
+  (() => {
+    const utxos = testUtxos([1, 2], ASSET_ID_B);
+    return TestHelper.createElementsTestCase(
+      'SelectUtxos - Elements - Error - invalid fee asset',
+      SelectUtxos,
+      [JSON.stringify({
+        utxos,
+        targets: [{
+          asset: ASSET_ID_B,
+          amount: (1 * COIN_BASE),
+        }],
+        isElements: true,
+        feeInfo: {
+          txFeeAmount: 3000,
+          feeRate: 20,
+          longTermFeeRate: 20,
+          feeAsset: '00',
+        },
+      })],
+      '{"error":{"code":1,"type":"illegal_argument","message":"AssetId size Invalid."}}'
     );
   })(),
 ];
