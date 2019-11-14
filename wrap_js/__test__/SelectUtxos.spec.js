@@ -393,7 +393,33 @@ const elementsTestCase = [
         isElements: true,
         feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
       })],
-      {amount: (12 * COIN_BASE), coinNum: 2, feeAmount: 31800, utxoFeeAmount: 1800},
+      {amount: (12 * COIN_BASE), coinNum: 2, feeAmount: 33600, utxoFeeAmount: 3600},
+      emptyFunc,
+      clearUtxos,
+      convertFunc,
+    );
+  })(),
+  (() => {
+    const utxoA = testUtxos([1, 2, 5], ASSET_ID_A);
+    const utxoB = testUtxos([3, 7, 8], ASSET_ID_B);
+    const utxoC = testUtxos([4, 6, 9], ASSET_ID_C);
+    const utxos = utxoA.concat(utxoB, utxoC);
+    return TestHelper.createElementsTestCase(
+      'SelectUtxos - Elements - Pattern 08',
+      SelectUtxos,
+      [JSON.stringify({
+        utxos,
+        targets: [{
+          asset: ASSET_ID_B,
+          amount: (5 * COIN_BASE),
+        }, {
+          asset: ASSET_ID_C,
+          amount: (5 * COIN_BASE),
+        }],
+        isElements: true,
+        feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
+      })],
+      {amount: (14 * COIN_BASE), coinNum: 3, feeAmount: 35400, utxoFeeAmount: 5400},
       emptyFunc,
       clearUtxos,
       convertFunc,
@@ -416,7 +442,7 @@ const elementsErrorCase = [
         isElements: true,
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
-      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to select coin. Not enough utxos.\"}}'
+      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to SelectCoins. Target asset is not found in utxo list.\"}}'
     );
   })(),
   (() => {
@@ -434,6 +460,75 @@ const elementsErrorCase = [
         feeInfo: FIXED_ELEMENTS_FEE_INFO,
       })],
       '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to select coin. Not enough utxos.\"}}'
+    );
+  })(),
+  (() => {
+    const utxos = testUtxos([1, 2], ASSET_ID_B);
+    return TestHelper.createElementsTestCase(
+      'SelectUtxos - Elements - Error - fee asset not include in utxos',
+      SelectUtxos,
+      [JSON.stringify({
+        utxos,
+        targets: [{
+          asset: ASSET_ID_B,
+          amount: (1 * COIN_BASE),
+        }],
+        isElements: true,
+        feeInfo: FIXED_ELEMENTS_FEE_INFO,
+      })],
+      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to SelectCoins. Target asset is not found in utxo list.\"}}'
+    );
+  })(),
+  (() => {
+    const utxos = testUtxos([1, 2], ASSET_ID_B);
+    return TestHelper.createElementsTestCase(
+      'SelectUtxos - Elements - Error - target asset not specify',
+      SelectUtxos,
+      [JSON.stringify({
+        utxos,
+        targets: [{
+          asset: '',
+          amount: (1 * COIN_BASE),
+        }],
+        isElements: true,
+        feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
+      })],
+      '{\"error\":{\"code\":2,\"type\":\"illegal_state\",\"message\":\"Failed to SelectCoins. Target asset is not found in utxo list.\"}}'
+    );
+  })(),
+  (() => {
+    const utxos = testUtxos([1, 2], ASSET_ID_B);
+    return TestHelper.createElementsTestCase(
+      'SelectUtxos - Elements - Error - misconfigure not set targets field',
+      SelectUtxos,
+      [JSON.stringify({
+        utxos,
+        targetAmount: (1 * COIN_BASE),
+        isElements: true,
+        feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
+      })],
+      '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to SelectUtxos. targets is required.\"}}'
+    );
+  })(),
+  (() => {
+    const utxos = testUtxos([1, 2], ASSET_ID_B);
+    return TestHelper.createElementsTestCase(
+      'SelectUtxos - Elements - Error - fee asset not specify',
+      SelectUtxos,
+      [JSON.stringify({
+        utxos,
+        targets: [{
+          asset: ASSET_ID_B,
+          amount: (1 * COIN_BASE),
+        }],
+        isElements: true,
+        feeInfo: {
+          txFeeAmount: 3000,
+          feeRate: 20,
+          longTermFeeRate: 20,
+        },
+      })],
+      '{\"error\":{\"code\":1,\"type\":\"illegal_argument\",\"message\":\"Failed to SelectUtxos. feeAsset is required.\"}}'
     );
   })(),
 ];

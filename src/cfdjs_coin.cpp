@@ -22,6 +22,7 @@ using cfd::core::CfdError;
 using cfd::core::CfdException;
 using cfd::AmountMap;
 
+//! Defaultとして設定するBitcoin の Asset Id
 static constexpr const char* kDefaultBitCoinAsset = "";
 
 void CoinJsonApi::SelectUtxos(
@@ -49,20 +50,18 @@ void CoinJsonApi::SelectUtxos(
     } else {
       warn(
           CFD_LOG_SOURCE,
-          "Failed to SelectUtxos. targetAsset is required.");
+          "Failed to SelectUtxos. targets is required.");
       throw CfdException(
           CfdError::kCfdIllegalArgumentError,
-          "Failed to SelectUtxos. targetAsset is required.");
+          "Failed to SelectUtxos. targets is required.");
     }
 
     // set fee asset
     if (!fee_info.GetFeeAsset().empty()) {
       std::string fee_asset = fee_info.GetFeeAsset();
       option.SetFeeAsset(ConfidentialAssetId(fee_asset));
-      auto iter = map_target_amount.find(fee_asset);
-      if (iter == end(map_target_amount)) {
-        map_target_amount.insert(std::make_pair(fee_asset, Amount::CreateBySatoshiAmount(0)));
-      }
+    } else if (fee_info.GetFeeRate() == 0 || fee_info.GetLongTermFeeRate() == 0) {
+      // fall through
     } else {
       warn(
           CFD_LOG_SOURCE,

@@ -78,7 +78,7 @@ class SelectUtxosWrapResponse : public SelectUtxosResponse {
   void SetTargetUtxoList(const std::vector<Utxo>& utxo_list);
   /**
    * @brief Asset毎のAmount額Mapを設定する.
-   * @param[in] utxo_list   Asset毎のAmount額Map
+   * @param[in] map_selected_amount   Asset毎のAmount額Map
    */
   void SetSelectedAmountMap(const AmountMap& map_selected_amount);
 };
