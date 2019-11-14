@@ -695,46 +695,46 @@ class EstimateFeeRequest
   }
 
   /**
-   * @brief transaction 取得処理
-   * @return transaction
+   * @brief tx 取得処理
+   * @return tx
    */
-  std::string GetTransaction() const {
-    return transaction_;
+  std::string GetTx() const {
+    return tx_;
   }
   /**
-   * @brief transaction 設定処理
-   * @param[in] transaction    設定値
+   * @brief tx 設定処理
+   * @param[in] tx    設定値
    */
-  void SetTransaction(  // line separate
-    const std::string& transaction) {  // NOLINT
-    this->transaction_ = transaction;
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
   }
   /**
-   * @brief transaction データ型の取得処理
-   * @return transactionのデータ型
+   * @brief tx データ型の取得処理
+   * @return txのデータ型
    */
-  static std::string GetTransactionFieldType() {
+  static std::string GetTxFieldType() {
     return "std::string";
   }
   /**
-   * @brief transaction フィールドのJSON文字列取得処理
+   * @brief tx フィールドのJSON文字列取得処理
    * @param[in,out] obj     クラスオブジェクト
    * @return JSON文字列
    */
-  static std::string GetTransactionString(  // line separate
+  static std::string GetTxString(  // line separate
       const EstimateFeeRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.transaction_);
+    return cfd::core::ConvertToString(obj.tx_);
   }
   /**
-   * @brief transaction フィールドへのJSON情報設定処理
+   * @brief tx フィールドへのJSON情報設定処理
    * @param[in,out] obj     クラスオブジェクト
    * @param[in] json_value  JSON情報
    */
-  static void SetTransactionString(  // line separate
+  static void SetTxString(  // line separate
       EstimateFeeRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.transaction_, json_value);
+      obj.tx_, json_value);
   }
 
   /**
@@ -944,9 +944,9 @@ class EstimateFeeRequest
    */
   double fee_rate_ = 1;
   /**
-   * @brief JsonAPI(transaction) のvalue
+   * @brief JsonAPI(tx) のvalue
    */
-  std::string transaction_ = "";
+  std::string tx_ = "";
   /**
    * @brief JsonAPI(isElements) のvalue
    */

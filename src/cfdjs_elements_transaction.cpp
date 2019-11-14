@@ -42,6 +42,7 @@ using cfd::api::TxOutPegoutParameters;
 using cfd::api::TxOutUnblindKeys;
 using cfd::api::UnblindIssuanceOutputs;
 using cfd::api::UnblindOutputs;
+using cfd::api::UtxoData;
 using cfd::core::Address;
 using cfd::core::AddressType;
 using cfd::core::Amount;
@@ -1363,12 +1364,104 @@ void ElementsTransactionJsonApi::EstimateFee(
   Amount utxo_fee;
   ElementsTransactionApi api;
   Amount fee = api.EstimateFee(
-      request->GetTransaction(), utxos, fee_asset, &tx_fee, &utxo_fee,
+      request->GetTx(), utxos, fee_asset, &tx_fee, &utxo_fee,
       request->GetIsBlind(), request->GetFeeRate());
 
   response->SetFeeAmount(fee.GetSatoshiValue());
   response->SetTxFeeAmount(tx_fee.GetSatoshiValue());
   response->SetUtxoFeeAmount(utxo_fee.GetSatoshiValue());
+}
+
+void ElementsTransactionJsonApi::FundRawTransaction(
+    FundRawTransactionRequest* request, FundRawTransactionResponse* response) {
+  std::vector<UtxoData> utxos;
+  std::vector<ElementsUtxoAndOption> select_utxos;
+
+  for (auto& utxo : request->GetUtxos()) {
+    UtxoData data = {};
+    data.txid = Txid(utxo.GetTxid());
+    data.vout = utxo.GetVout();
+    data.amount = Amount::CreateBySatoshiAmount(utxo.GetAmount());
+    if (!utxo.GetAsset().empty()) {
+      data.asset = ConfidentialAssetId(utxo.GetAsset());
+    }
+    data.descriptor = utxo.GetDescriptor();
+    data.binary_data = nullptr;
+    utxos.push_back(data);
+  }
+  for (auto& utxo : request->GetSelectUtxos()) {
+    ElementsUtxoAndOption data = {};
+    data.utxo.txid = Txid(utxo.GetTxid());
+    data.utxo.vout = utxo.GetVout();
+    data.utxo.amount = Amount::CreateBySatoshiAmount(utxo.GetAmount());
+    if (!utxo.GetAsset().empty()) {
+      data.utxo.asset = ConfidentialAssetId(utxo.GetAsset());
+    }
+    if (!utxo.GetRedeemScript().empty()) {
+      data.utxo.redeem_script = Script(utxo.GetRedeemScript());
+    }
+    data.utxo.descriptor = utxo.GetDescriptor();
+    data.utxo.binary_data = nullptr;
+
+    data.is_issuance = utxo.GetIsIssuance();
+    data.is_blind_issuance = utxo.GetIsBlindIssuance();
+    data.is_pegin = utxo.GetIsPegin();
+    data.pegin_btc_tx_size = utxo.GetPeginBtcTxSize();
+    if (!utxo.GetFedpegScript().empty()) {
+      data.fedpeg_script = Script(utxo.GetFedpegScript());
+    }
+    select_utxos.push_back(data);
+  }
+
+  // in parameter
+  const FundFeeInfomation& fee_info = request->GetFeeInfo();
+  CoinSelectionOption option;
+  ConfidentialAssetId fee_asset;
+  option.InitializeConfidentialTxSizeInfo();
+  option.SetEffectiveFeeBaserate(fee_info.GetFeeRate());
+  option.SetLongTermFeeBaserate(fee_info.GetLongTermFeeRate());
+  option.SetKnapsackMinimumChange(fee_info.GetKnapsackMinChange());
+  option.SetExcessFeeRange(fee_info.GetExcessFeeAmount());
+  if (!fee_info.GetFeeAsset().empty()) {
+    fee_asset = ConfidentialAssetId(fee_info.GetFeeAsset());
+    option.SetFeeAsset(fee_asset);
+  }
+
+  std::map<std::string, Amount> target_amount_map;
+  std::map<std::string, std::string> reserve_address_map;
+  for (const auto& target : request->GetTargets()) {
+    ElementsUtxoAndOption data = {};
+    std::string asset = target.GetAsset();
+    Amount amount = Amount::CreateBySatoshiAmount(target.GetAmount());
+    target_amount_map.emplace(asset, amount);
+    reserve_address_map.emplace(asset, target.GetReserveAddress());
+  }
+  if (target_amount_map.empty()) {  // targets未設定時
+    Amount amount = Amount::CreateBySatoshiAmount(request->GetTargetAmount());
+    target_amount_map.emplace("", amount);
+    reserve_address_map.emplace("", request->GetReserveAddress());
+  }
+
+  NetType net_type =
+      ElementsAddressStructApi::ConvertElementsNetType(request->GetNetwork());
+  Amount fee;
+  std::vector<std::string> append_txout_addresses;
+  ElementsTransactionApi api;
+  ConfidentialTransactionController ctxc = api.FundRawTransaction(
+      request->GetTx(), utxos, target_amount_map, select_utxos,
+      reserve_address_map, fee_asset, fee_info.GetIsBlindEstimateFee(),
+      fee_info.GetFeeRate(), &fee, nullptr, &option, &append_txout_addresses,
+      net_type);
+
+  response->SetHex(ctxc.GetHex());
+  if (!append_txout_addresses.empty()) {
+    for (const auto& addr : append_txout_addresses) {
+      response->GetUsedAddresses().push_back(addr);
+    }
+  }
+  if (fee_info.GetFeeRate() > 0) {
+    response->SetFeeAmount(fee.GetSatoshiValue());
+  }
 }
 
 }  // namespace json

@@ -166,12 +166,12 @@ void EstimateFeeRequest::CollectFieldName() {
   json_mapper.emplace("feeRate", func_table);
   item_list.push_back("feeRate");
   func_table = {
-    EstimateFeeRequest::GetTransactionString,
-    EstimateFeeRequest::SetTransactionString,
-    EstimateFeeRequest::GetTransactionFieldType,
+    EstimateFeeRequest::GetTxString,
+    EstimateFeeRequest::SetTxString,
+    EstimateFeeRequest::GetTxFieldType,
   };
-  json_mapper.emplace("transaction", func_table);
-  item_list.push_back("transaction");
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
   func_table = {
     EstimateFeeRequest::GetIsElementsString,
     EstimateFeeRequest::SetIsElementsString,
@@ -199,7 +199,7 @@ void EstimateFeeRequest::ConvertFromStruct(
     const EstimateFeeRequestStruct& data) {
   select_utxos_.ConvertFromStruct(data.select_utxos);
   fee_rate_ = data.fee_rate;
-  transaction_ = data.transaction;
+  tx_ = data.tx;
   is_elements_ = data.is_elements;
   is_blind_ = data.is_blind;
   fee_asset_ = data.fee_asset;
@@ -210,7 +210,7 @@ EstimateFeeRequestStruct EstimateFeeRequest::ConvertToStruct() const {  // NOLIN
   EstimateFeeRequestStruct result;
   result.select_utxos = select_utxos_.ConvertToStruct();
   result.fee_rate = fee_rate_;
-  result.transaction = transaction_;
+  result.tx = tx_;
   result.is_elements = is_elements_;
   result.is_blind = is_blind_;
   result.fee_asset = fee_asset_;

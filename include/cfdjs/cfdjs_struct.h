@@ -1315,7 +1315,7 @@ struct SelectUtxoDataStruct {
 struct EstimateFeeRequestStruct {
   std::vector<SelectUtxoDataStruct> select_utxos;  //!< select_utxos  // NOLINT
   double fee_rate = 1;                             //!< fee_rate  // NOLINT
-  std::string transaction = "";                    //!< transaction  // NOLINT
+  std::string tx = "";                             //!< tx  // NOLINT
   bool is_elements = false;                        //!< is_elements  // NOLINT
   bool is_blind = true;                            //!< is_blind  // NOLINT
   std::string fee_asset = "";                      //!< fee_asset  // NOLINT
@@ -1332,6 +1332,104 @@ struct EstimateFeeResponseStruct {
   int64_t fee_amount = 0;       //!< fee_amount  // NOLINT
   int64_t tx_fee_amount = 0;    //!< tx_fee_amount  // NOLINT
   int64_t utxo_fee_amount = 0;  //!< utxo_fee_amount  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// FundUtxoJsonDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief FundUtxoJsonDataStruct 構造体
+ */
+struct FundUtxoJsonDataStruct {
+  std::string txid = "";        //!< txid  // NOLINT
+  uint32_t vout = 0;            //!< vout  // NOLINT
+  int64_t amount = 0;           //!< amount  // NOLINT
+  std::string asset = "";       //!< asset  // NOLINT
+  std::string descriptor = "";  //!< descriptor  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// FundSelectUtxoDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief FundSelectUtxoDataStruct 構造体
+ */
+struct FundSelectUtxoDataStruct {
+  std::string txid = "";           //!< txid  // NOLINT
+  uint32_t vout = 0;               //!< vout  // NOLINT
+  int64_t amount = 0;              //!< amount  // NOLINT
+  std::string asset = "";          //!< asset  // NOLINT
+  std::string redeem_script = "";  //!< redeem_script  // NOLINT
+  std::string descriptor = "";     //!< descriptor  // NOLINT
+  bool is_issuance = false;        //!< is_issuance  // NOLINT
+  bool is_blind_issuance = false;  //!< is_blind_issuance  // NOLINT
+  bool is_pegin = false;           //!< is_pegin  // NOLINT
+  int64_t pegin_btc_tx_size = 0;   //!< pegin_btc_tx_size  // NOLINT
+  std::string fedpeg_script = "";  //!< fedpeg_script  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// FundAmountMapDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief FundAmountMapDataStruct 構造体
+ */
+struct FundAmountMapDataStruct {
+  std::string asset = "";            //!< asset  // NOLINT
+  int64_t amount = 0;                //!< amount  // NOLINT
+  std::string reserve_address = "";  //!< reserve_address  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// FundFeeInfomationStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief FundFeeInfomationStruct 構造体
+ */
+struct FundFeeInfomationStruct {
+  double fee_rate = 20;               //!< fee_rate  // NOLINT
+  double long_term_fee_rate = 20;     //!< long_term_fee_rate  // NOLINT
+  int64_t knapsack_min_change = -1;   //!< knapsack_min_change  // NOLINT
+  int64_t excess_fee_amount = 0;      //!< excess_fee_amount  // NOLINT
+  std::string fee_asset = "";         //!< fee_asset  // NOLINT
+  bool is_blind_estimate_fee = true;  //!< is_blind_estimate_fee  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// FundRawTransactionRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief FundRawTransactionRequestStruct 構造体
+ */
+struct FundRawTransactionRequestStruct {
+  std::vector<FundUtxoJsonDataStruct> utxos;           //!< utxos  // NOLINT
+  std::vector<FundSelectUtxoDataStruct> select_utxos;  //!< select_utxos  // NOLINT
+  std::string tx = "";                                 //!< tx  // NOLINT
+  bool is_elements = false;                            //!< is_elements  // NOLINT
+  std::string network = "mainnet";                     //!< network  // NOLINT
+  int64_t target_amount = 0;                           //!< target_amount  // NOLINT
+  std::string reserve_address = "";                    //!< reserve_address  // NOLINT
+  std::vector<FundAmountMapDataStruct> targets;        //!< targets  // NOLINT
+  FundFeeInfomationStruct fee_info;                    //!< fee_info  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// FundRawTransactionResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief FundRawTransactionResponseStruct 構造体
+ */
+struct FundRawTransactionResponseStruct {
+  std::string hex = "";                     //!< hex  // NOLINT
+  std::vector<std::string> used_addresses;  //!< used_addresses  // NOLINT
+  int64_t fee_amount = 0;                   //!< fee_amount  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

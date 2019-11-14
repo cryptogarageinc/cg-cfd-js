@@ -43,6 +43,7 @@
 #include "cfdapi_error_base_json.h"                         // NOLINT
 #include "cfdapi_error_json.h"                              // NOLINT
 #include "cfdapi_estimate_fee_json.h"                       // NOLINT
+#include "cfdapi_fund_raw_transaction_json.h"               // NOLINT
 #include "cfdapi_get_addresses_from_multisig_json.h"        // NOLINT
 #include "cfdapi_get_extkeyinfo_json.h"                     // NOLINT
 #include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
@@ -819,6 +820,23 @@ Value SelectUtxos(const CallbackInfo &information) {
       information, CoinJsonApi::SelectUtxos);
 }
 
+/**
+ * @brief FundRawTransactionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value FundRawTransaction(const CallbackInfo &information) {
+  return NodeAddonElementsCheckDirectApi<
+      api::json::FundRawTransactionRequest,
+      api::json::FundRawTransactionResponse>(
+      information, TransactionJsonApi::FundRawTransaction,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionJsonApi::FundRawTransaction);
+#else
+      TransactionJsonApi::FundRawTransaction);
+#endif
+}
+
 #ifndef CFD_DISABLE_ELEMENTS
 
 /**
@@ -1095,6 +1113,9 @@ void InitializeJsonApi(Env env, Object *exports) {
       String::New(env, "EstimateFee"), Function::New(env, EstimateFee));
   exports->Set(
       String::New(env, "SelectUtxos"), Function::New(env, SelectUtxos));
+  exports->Set(
+      String::New(env, "FundRawTransaction"),
+      Function::New(env, FundRawTransaction));
 #ifndef CFD_DISABLE_ELEMENTS
   exports->Set(
       String::New(env, "GetConfidentialAddress"),
