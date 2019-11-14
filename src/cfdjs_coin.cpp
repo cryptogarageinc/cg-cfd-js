@@ -30,30 +30,35 @@ void CoinJsonApi::SelectUtxos(
     SelectUtxosWrapRequest* req, SelectUtxosWrapResponse* res) {
   const std::vector<Utxo>& utxos = req->GetUtxoList();
   CoinSelectionFeeInfomationField fee_info = req->GetFeeInfo();
+  Amount target_amount;
   AmountMap map_target_amount;
   bool use_targets = false;
+  bool is_elements = req->GetIsElements();
 
   // in parameter
   CoinSelectionOption option;
   UtxoFilter filter;
-  if (!req->GetIsElements()) {
+  if (!is_elements) {
     // Bitcoin
-    map_target_amount[kDefaultBitCoinAsset] =
-        Amount::CreateBySatoshiAmount(req->GetTargetAmount());
+    target_amount = Amount::CreateBySatoshiAmount(req->GetTargetAmount());
     option.InitializeTxSizeInfo();
   } else {
     // Elements
 #ifndef CFD_DISABLE_ELEMENTS
     option.InitializeConfidentialTxSizeInfo();
     if (!req->GetTargetAmountMap().empty()) {
+      // asset idの厳密チェックは、CoinSelectionのロジックで実施
       const AmountMap& targets = req->GetTargetAmountMap();
       map_target_amount.insert(targets.begin(), targets.end());
       use_targets = true;
     } else {
-      warn(CFD_LOG_SOURCE, "Failed to SelectUtxos. targets is required.");
+      warn(CFD_LOG_SOURCE,
+          "Failed to SelectUtxos. targets is required"
+          "when isElements sets true.");
       throw CfdException(
           CfdError::kCfdIllegalArgumentError,
-          "Failed to SelectUtxos. targets is required.");
+          "Failed to SelectUtxos. targets is required"
+          "when isElements sets true.");
     }
 
     // set fee asset
@@ -80,27 +85,37 @@ void CoinJsonApi::SelectUtxos(
   option.SetKnapsackMinimumChange(fee_info.GetKnapsackMinChange());
 
   // out parameter
+  Amount select_amount;
   AmountMap map_select_amount;
   Amount utxo_fee;
   Amount tx_fee = Amount::CreateBySatoshiAmount(fee_info.GetTxFeeAmount());
+  bool use_bnb = false;
   std::map<std::string, bool> map_use_bnb;
 
   CoinSelection coin_selection;
-  std::vector<Utxo> ret_utxos = coin_selection.SelectCoins(
-      map_target_amount, utxos, filter, option, tx_fee, &map_select_amount,
-      &utxo_fee, &map_use_bnb);
+  std::vector<Utxo> ret_utxos;
+  if (!is_elements) {
+    ret_utxos = coin_selection.SelectCoins(
+        target_amount, utxos, filter, option, tx_fee, &select_amount,
+        &utxo_fee, &use_bnb);
+  }
+  else {
+#ifndef CFD_DISABLE_ELEMENTS
+    ret_utxos = coin_selection.SelectCoins(
+        map_target_amount, utxos, filter, option, tx_fee, &map_select_amount,
+        &utxo_fee, &map_use_bnb);
+#endif  //  CFD_DISABLE_ELEMENTS
+  }
 
   res->SetTargetUtxoList(ret_utxos);
-  if (use_targets) {
+  if (!is_elements) {
+    res->SetSelectedAmount(select_amount.GetSatoshiValue());
+    res->SetIgnoreItem("selectedAmounts");
+  } else {
+#ifndef CFD_DISABLE_ELEMENTS
     res->SetSelectedAmountMap(map_select_amount);
     res->SetIgnoreItem("selectedAmount");
-  } else {
-    if (map_select_amount.size() != 1) {
-      // FIXME: Exception?
-    }
-    res->SetSelectedAmount(
-        map_select_amount.begin()->second.GetSatoshiValue());
-    res->SetIgnoreItem("selectedAmounts");
+#endif  //  CFD_DISABLE_ELEMENTS
   }
   if (utxo_fee == 0) {
     res->SetIgnoreItem("utxoFeeAmount");
