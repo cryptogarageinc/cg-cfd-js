@@ -23,9 +23,6 @@ using cfd::Utxo;
 using cfd::core::CfdError;
 using cfd::core::CfdException;
 
-//! Defaultとして設定するBitcoin の Asset Id
-static constexpr const char* kDefaultBitCoinAsset = "";
-
 void CoinJsonApi::SelectUtxos(
     SelectUtxosWrapRequest* req, SelectUtxosWrapResponse* res) {
   const std::vector<Utxo>& utxos = req->GetUtxoList();
@@ -52,7 +49,8 @@ void CoinJsonApi::SelectUtxos(
       map_target_amount.insert(targets.begin(), targets.end());
       use_targets = true;
     } else {
-      warn(CFD_LOG_SOURCE,
+      warn(
+          CFD_LOG_SOURCE,
           "Failed to SelectUtxos. targets is required.: is_elements=[{}]",
           is_elements);
       throw CfdException(
@@ -97,8 +95,7 @@ void CoinJsonApi::SelectUtxos(
     ret_utxos = coin_selection.SelectCoins(
         target_amount, utxos, filter, option, tx_fee, &select_amount,
         &utxo_fee, &use_bnb);
-  }
-  else {
+  } else {
 #ifndef CFD_DISABLE_ELEMENTS
     ret_utxos = coin_selection.SelectCoins(
         map_target_amount, utxos, filter, option, tx_fee, &map_select_amount,
