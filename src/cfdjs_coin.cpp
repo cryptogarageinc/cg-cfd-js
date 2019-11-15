@@ -46,7 +46,6 @@ void CoinJsonApi::SelectUtxos(
       // asset idの厳密チェックは、CoinSelectionのロジックで実施
       const AmountMap& targets = req->GetTargetAmountMap();
       map_target_amount.insert(targets.begin(), targets.end());
-      use_targets = true;
     } else {
       warn(
           CFD_LOG_SOURCE,
