@@ -1577,6 +1577,67 @@ struct CreateMultisigResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// ParseDescriptorRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ParseDescriptorRequestStruct 構造体
+ */
+struct ParseDescriptorRequestStruct {
+  bool is_elements = false;                //!< is_elements  // NOLINT
+  std::string descriptor = "";             //!< descriptor  // NOLINT
+  std::string network = "mainnet";         //!< network  // NOLINT
+  std::string bip32_derivation_path = "";  //!< bip32_derivation_path  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// DescriptorKeyJsonStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DescriptorKeyJsonStruct 構造体
+ */
+struct DescriptorKeyJsonStruct {
+  std::string key_type = "";  //!< key_type  // NOLINT
+  std::string key = "";       //!< key  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// DescriptorScriptJsonStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DescriptorScriptJsonStruct 構造体
+ */
+struct DescriptorScriptJsonStruct {
+  uint32_t depth = 0;                         //!< depth  // NOLINT
+  std::string locking_script = "";            //!< locking_script  // NOLINT
+  std::string address = "";                   //!< address  // NOLINT
+  std::string hash_type = "";                 //!< hash_type  // NOLINT
+  std::string redeem_script = "";             //!< redeem_script  // NOLINT
+  std::string key_type = "";                  //!< key_type  // NOLINT
+  std::string key = "";                       //!< key  // NOLINT
+  std::vector<DescriptorKeyJsonStruct> keys;  //!< keys  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ParseDescriptorResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ParseDescriptorResponseStruct 構造体
+ */
+struct ParseDescriptorResponseStruct {
+  std::string type = "";                            //!< type  // NOLINT
+  std::string address = "";                         //!< address  // NOLINT
+  std::string locking_script = "";                  //!< locking_script  // NOLINT
+  std::string hash_type = "";                       //!< hash_type  // NOLINT
+  std::string redeem_script = "";                   //!< redeem_script  // NOLINT
+  std::vector<DescriptorScriptJsonStruct> scripts;  //!< scripts  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // UtxoJsonDataStruct
 // ------------------------------------------------------------------------
 /**

@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+#include "cfd/cfdapi_address.h"
 #include "cfdcore/cfdcore_address.h"
 #include "cfdcore/cfdcore_key.h"
 #include "cfdjs/cfdjs_common.h"
@@ -24,6 +25,8 @@ namespace cfd {
 namespace js {
 namespace api {
 
+using cfd::api::DescriptorKeyData;
+using cfd::api::DescriptorScriptData;
 using cfd::core::AddressType;
 using cfd::core::NetType;
 
@@ -57,6 +60,14 @@ class CFD_JS_EXPORT AddressStructApi {
       const GetAddressesFromMultisigRequestStruct& request);
 
   /**
+   * @brief JSONパラメータの情報を元に、Descriptorを解析する
+   * @param[in] request Descriptorを構築するパラメータ
+   * @return Descriptor解析結果を格納した構造体
+   */
+  static ParseDescriptorResponseStruct ParseDescriptor(
+      const ParseDescriptorRequestStruct& request);
+
+  /**
    * @brief bitcoinネットワーク文字列を、NetType構造体へ変換する.
    * @param[in] network_type ネットワーク文字列
    * @return 引数に対応するNetType構造体
@@ -71,6 +82,19 @@ class CFD_JS_EXPORT AddressStructApi {
    * @throws CfdException if address_type does not match any known AddressType.
    */
   static AddressType ConvertAddressType(const std::string& address_type);
+
+  /**
+   * @brief Convert descriptor parse data to struct.
+   * @param[in] script_data         the top script data.
+   * @param[in] script_list         the script list.
+   * @param[in] multisig_key_list   the multisig key list.
+   * @return the descriptor struct data.
+   * @throws CfdException if address_type does not match any known AddressType.
+   */
+  static ParseDescriptorResponseStruct ConvertDescriptorData(
+      const DescriptorScriptData& script_data,
+      const std::vector<DescriptorScriptData>& script_list,
+      const std::vector<DescriptorKeyData>& multisig_key_list);
 
  private:
   AddressStructApi();

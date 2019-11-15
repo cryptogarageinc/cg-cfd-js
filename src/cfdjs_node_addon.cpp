@@ -52,6 +52,7 @@
 #include "cfdapi_get_pubkey_from_privkey_json.h"            // NOLINT
 #include "cfdapi_get_witness_num_json.h"                    // NOLINT
 #include "cfdapi_multisig_address_json.h"                   // NOLINT
+#include "cfdapi_parse_descriptor_json.h"                   // NOLINT
 #include "cfdapi_select_utxos_wrapper_json.h"               // NOLINT
 #include "cfdapi_sighash_elements_json.h"                   // NOLINT
 #include "cfdapi_sighash_json.h"                            // NOLINT
@@ -559,6 +560,23 @@ Value GetAddressesFromMultisig(const CallbackInfo &information) {
 }
 
 /**
+ * @brief ParseDescriptorのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value ParseDescriptor(const CallbackInfo &information) {
+  return NodeAddonElementsCheckApi<
+      api::json::ParseDescriptorRequest, api::json::ParseDescriptorResponse,
+      api::ParseDescriptorRequestStruct, api::ParseDescriptorResponseStruct>(
+      information, AddressStructApi::ParseDescriptor,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressStructApi::ParseDescriptor);
+#else
+      AddressStructApi::ParseDescriptor);
+#endif
+}
+
+/**
  * @brief CreateSignatureHashのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -1047,6 +1065,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "GetAddressesFromMultisig"),
       Function::New(env, GetAddressesFromMultisig));
+  exports->Set(
+      String::New(env, "ParseDescriptor"),
+      Function::New(env, ParseDescriptor));
   exports->Set(
       String::New(env, "CreateSignatureHash"),
       Function::New(env, CreateSignatureHash));
