@@ -31,6 +31,7 @@ const {
   EstimateFee,
   GetAddressesFromMultisig,
   FundRawTransaction,
+  ParseDescriptor,
 } = cfdjsModule;
 
 const DUMMY_TXID_1 = '86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac'; // eslint-disable-line max-len
@@ -949,4 +950,18 @@ let fundRawTransactionResult;
   const decResult = DecodeRawTransaction(decReqJson);
   console.log('*** decode tx ***\n',
       JSON.stringify(decResult, null, '  '));
+}
+
+let parseDescriptorResult;
+{
+  console.log('-- ParseDescriptor start --');
+  const reqJson = {
+    descriptor: 'sh(wpkh([ef735203/0\'/0\'/4\']0231c043ae680664a2c5df38cf0d8eab29f1b61ce93855040c613b2f41f7c036af))#pezpv0hm',
+    network: 'mainnet',
+    bip32DerivationPath: '',
+    isElements: false,
+  };
+  console.log('*** Request ***\n', reqJson);
+  parseDescriptorResult = ParseDescriptor(reqJson);
+  console.log('*** Response ***\n', parseDescriptorResult);
 }

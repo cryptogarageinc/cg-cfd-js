@@ -165,6 +165,7 @@ target_sources(${CFDJS_LIBRARY}
     cfdapi_elements_get_confidential_address_json.cpp
     cfdapi_elements_get_unblinded_address_json.cpp
     cfdapi_multisig_address_json.cpp
+    cfdapi_parse_descriptor_json.cpp
     cfdapi_sighash_elements_json.cpp
     cfdapi_sighash_json.cpp
     cfdapi_supported_function_json.cpp
