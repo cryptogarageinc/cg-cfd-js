@@ -28,7 +28,6 @@ const {
   EstimateFee,
   GetAddressesFromMultisig,
   ParseDescriptor,
-  FundRawTransaction,
 } = cfdjsModule;
 
 let supportFunctions;
