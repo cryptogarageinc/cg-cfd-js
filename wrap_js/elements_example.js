@@ -28,6 +28,7 @@ const {
   EstimateFee,
   GetAddressesFromMultisig,
   ParseDescriptor,
+  FundRawTransaction,
 } = cfdjsModule;
 
 let supportFunctions;
@@ -1150,18 +1151,19 @@ if (!supportFunctions.elements) {
     coinSelectionResult = SelectUtxos(reqJson);
     console.log('*** Response ***\n', coinSelectionResult);
   }
-}
 
-let parseDescriptorResult;
-{
-  console.log('-- ParseDescriptor start --');
-  const reqJson = {
-    descriptor: 'pkh([e4679995]02f8a0a7e12d38c313d51383ead3fccd3b70439f0c7c4c1ecd897f8767b194fc41)#p79a945u',
-    network: 'liquidv1',
-    bip32DerivationPath: '',
-    isElements: true,
-  };
-  console.log('*** Request ***\n', reqJson);
-  parseDescriptorResult = ParseDescriptor(reqJson);
-  console.log('*** Response ***\n', parseDescriptorResult);
+  let parseDescriptorResult;
+  {
+    console.log('-- ParseDescriptor start --');
+    const reqJson = {
+      descriptor: 'pkh([e4679995]02f8a0a7e12d38c313d51383ead3fccd3b70439f0c7c4c1ecd897f8767b194fc41)#p79a945u',
+      network: 'liquidv1',
+      bip32DerivationPath: '',
+      isElements: true,
+    };
+    console.log('*** Request ***\n', reqJson);
+    parseDescriptorResult = ParseDescriptor(reqJson);
+    console.log('*** Response ***\n', parseDescriptorResult);
+  }
+
 }

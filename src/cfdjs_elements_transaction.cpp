@@ -7,6 +7,7 @@
 #ifndef CFD_DISABLE_ELEMENTS
 #include <algorithm>
 #include <limits>
+#include <map>
 #include <set>
 #include <string>
 #include <vector>
@@ -1425,6 +1426,12 @@ void ElementsTransactionJsonApi::FundRawTransaction(
   if (!fee_info.GetFeeAsset().empty()) {
     fee_asset = ConfidentialAssetId(fee_info.GetFeeAsset());
     option.SetFeeAsset(fee_asset);
+  }
+
+  if (fee_info.GetFeeRate() > 0) {
+    throw CfdException(
+        CfdError::kCfdIllegalArgumentError,
+        "Elements FundRawTransaction not implements.");
   }
 
   std::map<std::string, Amount> target_amount_map;
