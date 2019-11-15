@@ -217,14 +217,12 @@ const FIXED_ELEMENTS_FEE_INFO = {
   txFeeAmount: 1000,
   feeRate: 0,
   longTermFeeRate: 0,
-  feeAsset: ASSET_ID_A,
 };
 
 const UNUSE_FEE_ELEMENTS_FEE_INFO = {
   txFeeAmount: 0,
   feeRate: 0,
   longTermFeeRate: 0,
-  feeAsset: ASSET_ID_A,
 };
 
 const USE_FEE_ELEMENTS_FEE_INFO = {
@@ -425,6 +423,37 @@ const elementsTestCase = [
       convertFunc,
     );
   })(),
+  (() => {
+    const utxoA = testUtxos([1, 2, 5], ASSET_ID_A);
+    const utxoB = testUtxos([3, 7, 8], ASSET_ID_B);
+    const utxoC = testUtxos([4, 6, 9], ASSET_ID_C);
+    const utxos = utxoA.concat(utxoB, utxoC);
+    return TestHelper.createElementsTestCase(
+      'SelectUtxos - Elements - Pattern 09(misconfigure set fee asset but feeRate=0)',
+      SelectUtxos,
+      [JSON.stringify({
+        utxos,
+        targets: [{
+          asset: ASSET_ID_B,
+          amount: (5 * COIN_BASE),
+        }, {
+          asset: ASSET_ID_C,
+          amount: (5 * COIN_BASE),
+        }],
+        isElements: true,
+        feeInfo: {
+          txFeeAmount: 30000,
+          feeRate: 0,
+          longTermFeeRate: 20,
+          feeAsset: ASSET_ID_A,
+        },
+      })],
+      {amount: (13 * COIN_BASE), coinNum: 2, feeAmount: 30000},
+      emptyFunc,
+      clearUtxos,
+      convertFunc,
+    );
+  })(),
 ];
 
 const elementsErrorCase = [
@@ -440,7 +469,7 @@ const elementsErrorCase = [
           amount: (0.1 * COIN_BASE),
         }],
         isElements: true,
-        feeInfo: FIXED_ELEMENTS_FEE_INFO,
+        feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
       })],
       '{"error":{"code":2,"type":"illegal_state","message":"Failed to SelectCoins. Target asset is not found in utxo list."}}'
     );
@@ -457,7 +486,7 @@ const elementsErrorCase = [
           amount: (5 * COIN_BASE),
         }],
         isElements: true,
-        feeInfo: FIXED_ELEMENTS_FEE_INFO,
+        feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
       })],
       '{"error":{"code":2,"type":"illegal_state","message":"Failed to select coin. Not enough utxos."}}'
     );
@@ -474,7 +503,7 @@ const elementsErrorCase = [
           amount: (1 * COIN_BASE),
         }],
         isElements: true,
-        feeInfo: FIXED_ELEMENTS_FEE_INFO,
+        feeInfo: USE_FEE_ELEMENTS_FEE_INFO,
       })],
       '{"error":{"code":2,"type":"illegal_state","message":"Failed to SelectCoins. Target asset is not found in utxo list."}}'
     );
