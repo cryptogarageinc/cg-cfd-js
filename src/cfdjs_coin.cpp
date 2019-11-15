@@ -93,24 +93,19 @@ void CoinJsonApi::SelectUtxos(
     ret_utxos = coin_selection.SelectCoins(
         target_amount, utxos, filter, option, tx_fee, &select_amount,
         &utxo_fee, &use_bnb);
+    res->SetSelectedAmount(select_amount.GetSatoshiValue());
+    res->SetIgnoreItem("selectedAmounts");
   } else {
 #ifndef CFD_DISABLE_ELEMENTS
     ret_utxos = coin_selection.SelectCoins(
         map_target_amount, utxos, filter, option, tx_fee, &map_select_amount,
         &utxo_fee, &map_use_bnb);
-#endif  //  CFD_DISABLE_ELEMENTS
-  }
-
-  res->SetTargetUtxoList(ret_utxos);
-  if (!is_elements) {
-    res->SetSelectedAmount(select_amount.GetSatoshiValue());
-    res->SetIgnoreItem("selectedAmounts");
-  } else {
-#ifndef CFD_DISABLE_ELEMENTS
     res->SetSelectedAmountMap(map_select_amount);
     res->SetIgnoreItem("selectedAmount");
 #endif  //  CFD_DISABLE_ELEMENTS
   }
+
+  res->SetTargetUtxoList(ret_utxos);
   if (utxo_fee == 0) {
     res->SetIgnoreItem("utxoFeeAmount");
   }
