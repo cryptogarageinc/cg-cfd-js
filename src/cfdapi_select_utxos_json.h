@@ -354,6 +354,191 @@ class UtxoJsonData
 };
 
 // ------------------------------------------------------------------------
+// TargetAmountMapData
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API（TargetAmountMapData）クラス
+ */
+class TargetAmountMapData
+  : public cfd::core::JsonClassBase<TargetAmountMapData> {
+ public:
+  TargetAmountMapData() {
+    CollectFieldName();
+  }
+  virtual ~TargetAmountMapData() {
+    // do nothing
+  }
+  /**
+   * @brief フィールド名を収集する.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief asset 取得処理
+   * @return asset
+   */
+  std::string GetAsset() const {
+    return asset_;
+  }
+  /**
+   * @brief asset 設定処理
+   * @param[in] asset    設定値
+   */
+  void SetAsset(  // line separate
+    const std::string& asset) {  // NOLINT
+    this->asset_ = asset;
+  }
+  /**
+   * @brief asset データ型の取得処理
+   * @return assetのデータ型
+   */
+  static std::string GetAssetFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief asset フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetAssetString(  // line separate
+      const TargetAmountMapData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.asset_);
+  }
+  /**
+   * @brief asset フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetAssetString(  // line separate
+      TargetAmountMapData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.asset_, json_value);
+  }
+
+  /**
+   * @brief amount 取得処理
+   * @return amount
+   */
+  int64_t GetAmount() const {
+    return amount_;
+  }
+  /**
+   * @brief amount 設定処理
+   * @param[in] amount    設定値
+   */
+  void SetAmount(  // line separate
+    const int64_t& amount) {  // NOLINT
+    this->amount_ = amount;
+  }
+  /**
+   * @brief amount データ型の取得処理
+   * @return amountのデータ型
+   */
+  static std::string GetAmountFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief amount フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetAmountString(  // line separate
+      const TargetAmountMapData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.amount_);
+  }
+  /**
+   * @brief amount フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetAmountString(  // line separate
+      TargetAmountMapData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.amount_, json_value);
+  }
+
+  /**
+   * @brief 無視対象アイテムを設定する。
+   * @param[in] key   無視対象アイテムのキー名称
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief 構造体からクラスへ変換する.
+   * @param[in] data   構造体データ
+   */
+  void ConvertFromStruct(
+      const TargetAmountMapDataStruct& data);
+
+  /**
+   * @brief クラスから構造体へ変換する.
+   * @return  構造体データ
+   */
+  TargetAmountMapDataStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief Mapテーブルの型名定義
+   */
+  using TargetAmountMapDataMapTable =
+    cfd::core::JsonTableMap<TargetAmountMapData>;
+
+  /**
+   * @brief JSONマッピングオブジェクトを取得する。
+   * @return JSONマッピングオブジェクト
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TargetAmountMapDataMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief JSONマッピングのアイテム一覧を取得する。
+   * 対象の変数名を、定義順序に従い一覧取得する。
+   * @return JSONマッピングのアイテム一覧
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
+   * Serialize時に対象の変数を無視する。
+   * @return JSONマッピング時に無視するアイテム一覧
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMapテーブル
+  */
+  static TargetAmountMapDataMapTable json_mapper;
+  /**
+   * @brief フィールド名リスト
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief 無視リスト
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(asset) のvalue
+   */
+  std::string asset_ = "";
+  /**
+   * @brief JsonAPI(amount) のvalue
+   */
+  int64_t amount_ = 0;
+};
+
+// ------------------------------------------------------------------------
 // CoinSelectionFeeInfomationField
 // ------------------------------------------------------------------------
 /**
@@ -786,49 +971,6 @@ class SelectUtxosRequest
   }
 
   /**
-   * @brief targetAsset 取得処理
-   * @return targetAsset
-   */
-  std::string GetTargetAsset() const {
-    return target_asset_;
-  }
-  /**
-   * @brief targetAsset 設定処理
-   * @param[in] target_asset    設定値
-   */
-  void SetTargetAsset(  // line separate
-    const std::string& target_asset) {  // NOLINT
-    this->target_asset_ = target_asset;
-  }
-  /**
-   * @brief targetAsset データ型の取得処理
-   * @return targetAssetのデータ型
-   */
-  static std::string GetTargetAssetFieldType() {
-    return "std::string";
-  }
-  /**
-   * @brief targetAsset フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
-   */
-  static std::string GetTargetAssetString(  // line separate
-      const SelectUtxosRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.target_asset_);
-  }
-  /**
-   * @brief targetAsset フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
-   */
-  static void SetTargetAssetString(  // line separate
-      SelectUtxosRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.target_asset_, json_value);
-  }
-
-  /**
    * @brief isElements 取得処理
    * @return isElements
    */
@@ -869,6 +1011,49 @@ class SelectUtxosRequest
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief targets 取得処理
+   * @return targets
+   */
+  JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>& GetTargets() {  // NOLINT
+    return targets_;
+  }
+  /**
+   * @brief targets 設定処理
+   * @param[in] targets    設定値
+   */
+  void SetTargets(  // line separate
+      const JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>& targets) {  // NOLINT
+    this->targets_ = targets;
+  }
+  /**
+   * @brief targets データ型の取得処理
+   * @return targetsのデータ型
+   */
+  static std::string GetTargetsFieldType() {
+    return "JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>";  // NOLINT
+  }
+  /**
+   * @brief targets フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetTargetsString(  // line separate
+      const SelectUtxosRequest& obj) {  // NOLINT
+    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    return obj.targets_.Serialize();
+  }
+  /**
+   * @brief targets フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetTargetsString(  // line separate
+      SelectUtxosRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.targets_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -992,13 +1177,13 @@ class SelectUtxosRequest
    */
   int64_t target_amount_ = 0;
   /**
-   * @brief JsonAPI(targetAsset) のvalue
-   */
-  std::string target_asset_ = "";
-  /**
    * @brief JsonAPI(isElements) のvalue
    */
   bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(targets) のvalue
+   */
+  JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct> targets_;  // NOLINT
   /**
    * @brief JsonAPI(feeInfo) のvalue
    */
@@ -1109,6 +1294,49 @@ class SelectUtxosResponse
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.selected_amount_, json_value);
+  }
+
+  /**
+   * @brief selectedAmounts 取得処理
+   * @return selectedAmounts
+   */
+  JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>& GetSelectedAmounts() {  // NOLINT
+    return selected_amounts_;
+  }
+  /**
+   * @brief selectedAmounts 設定処理
+   * @param[in] selected_amounts    設定値
+   */
+  void SetSelectedAmounts(  // line separate
+      const JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>& selected_amounts) {  // NOLINT
+    this->selected_amounts_ = selected_amounts;
+  }
+  /**
+   * @brief selectedAmounts データ型の取得処理
+   * @return selectedAmountsのデータ型
+   */
+  static std::string GetSelectedAmountsFieldType() {
+    return "JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct>";  // NOLINT
+  }
+  /**
+   * @brief selectedAmounts フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetSelectedAmountsString(  // line separate
+      const SelectUtxosResponse& obj) {  // NOLINT
+    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    return obj.selected_amounts_.Serialize();
+  }
+  /**
+   * @brief selectedAmounts フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetSelectedAmountsString(  // line separate
+      SelectUtxosResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.selected_amounts_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -1274,6 +1502,10 @@ class SelectUtxosResponse
    * @brief JsonAPI(selectedAmount) のvalue
    */
   int64_t selected_amount_ = 0;
+  /**
+   * @brief JsonAPI(selectedAmounts) のvalue
+   */
+  JsonObjectVector<TargetAmountMapData, TargetAmountMapDataStruct> selected_amounts_;  // NOLINT
   /**
    * @brief JsonAPI(feeAmount) のvalue
    */

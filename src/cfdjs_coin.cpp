@@ -4,6 +4,8 @@
  *
  * @brief cfd-apiで利用するCoin操作の実装ファイル
  */
+#include <algorithm>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -16,6 +18,7 @@ namespace js {
 namespace api {
 namespace json {
 
+using cfd::AmountMap;
 using cfd::Utxo;
 using cfd::core::CfdError;
 using cfd::core::CfdException;
@@ -24,24 +27,47 @@ void CoinJsonApi::SelectUtxos(
     SelectUtxosWrapRequest* req, SelectUtxosWrapResponse* res) {
   const std::vector<Utxo>& utxos = req->GetUtxoList();
   CoinSelectionFeeInfomationField fee_info = req->GetFeeInfo();
-  Amount target_amount = Amount::CreateBySatoshiAmount(req->GetTargetAmount());
-  std::string target_asset = req->GetTargetAsset();
+  Amount target_amount;
+  AmountMap map_target_amount;
+  bool is_elements = req->GetIsElements();
 
   // in parameter
   CoinSelectionOption option;
   UtxoFilter filter;
-  if (!req->GetIsElements()) {
+  if (!is_elements) {
     // Bitcoin
+    target_amount = Amount::CreateBySatoshiAmount(req->GetTargetAmount());
     option.InitializeTxSizeInfo();
   } else {
     // Elements
 #ifndef CFD_DISABLE_ELEMENTS
     option.InitializeConfidentialTxSizeInfo();
-    if (!req->GetTargetAsset().empty()) {
-      filter.target_asset = ConfidentialAssetId(req->GetTargetAsset());
+    if (!req->GetTargetAmountMap().empty()) {
+      // asset idの厳密チェックは、CoinSelectionのロジックで実施
+      const AmountMap& targets = req->GetTargetAmountMap();
+      map_target_amount.insert(targets.begin(), targets.end());
+    } else {
+      warn(
+          CFD_LOG_SOURCE,
+          "Failed to SelectUtxos. targets is required.: is_elements=[{}]",
+          is_elements);
+      throw CfdException(
+          CfdError::kCfdIllegalArgumentError,
+          "Failed to SelectUtxos. targets is required.");
     }
+
+    // set fee asset
     if (!fee_info.GetFeeAsset().empty()) {
-      option.SetFeeAsset(ConfidentialAssetId(fee_info.GetFeeAsset()));
+      std::string fee_asset = fee_info.GetFeeAsset();
+      option.SetFeeAsset(ConfidentialAssetId(fee_asset));
+    } else if (
+        fee_info.GetFeeRate() == 0 || fee_info.GetLongTermFeeRate() == 0) {
+      // fall through
+    } else {
+      warn(CFD_LOG_SOURCE, "Failed to SelectUtxos. feeAsset is required.");
+      throw CfdException(
+          CfdError::kCfdIllegalArgumentError,
+          "Failed to SelectUtxos. feeAsset is required.");
     }
 #else
     warn(CFD_LOG_SOURCE, "Not Support Elements.");
@@ -54,25 +80,41 @@ void CoinJsonApi::SelectUtxos(
   option.SetKnapsackMinimumChange(fee_info.GetKnapsackMinChange());
 
   // out parameter
-  Amount select_value;
+  Amount select_amount;
+  AmountMap map_select_amount;
   Amount utxo_fee;
   Amount tx_fee = Amount::CreateBySatoshiAmount(fee_info.GetTxFeeAmount());
   bool use_bnb = false;
+  std::map<std::string, bool> map_use_bnb;
 
   CoinSelection coin_selection;
-  std::vector<Utxo> ret_utxos = coin_selection.SelectCoinsMinConf(
-      target_amount, utxos, filter, option, tx_fee, &select_value, &utxo_fee,
-      &use_bnb);
+  std::vector<Utxo> ret_utxos;
+  if (!is_elements) {
+    ret_utxos = coin_selection.SelectCoins(
+        target_amount, utxos, filter, option, tx_fee, &select_amount,
+        &utxo_fee, &use_bnb);
+    res->SetSelectedAmount(select_amount.GetSatoshiValue());
+    res->SetIgnoreItem("selectedAmounts");
+  } else {
+#ifndef CFD_DISABLE_ELEMENTS
+    ret_utxos = coin_selection.SelectCoins(
+        map_target_amount, utxos, filter, option, tx_fee, &map_select_amount,
+        &utxo_fee, &map_use_bnb);
+    res->SetSelectedAmountMap(map_select_amount);
+    res->SetIgnoreItem("selectedAmount");
+#endif  //  CFD_DISABLE_ELEMENTS
+  }
 
   res->SetTargetUtxoList(ret_utxos);
-  res->SetSelectedAmount(select_value.GetSatoshiValue());
+  if (utxo_fee == 0) {
+    res->SetIgnoreItem("utxoFeeAmount");
+  }
   res->SetUtxoFeeAmount(utxo_fee.GetSatoshiValue());
-  if (!use_bnb) {
+  Amount fee = tx_fee;
+  fee += utxo_fee;
+  res->SetFeeAmount(fee.GetSatoshiValue());
+  if (fee == 0) {
     res->SetIgnoreItem("feeAmount");
-  } else {
-    Amount fee = tx_fee;
-    fee += utxo_fee;
-    res->SetFeeAmount(fee.GetSatoshiValue());
   }
 }
 
