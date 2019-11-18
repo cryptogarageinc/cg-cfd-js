@@ -539,11 +539,6 @@ void TransactionJsonApi::EstimateFee(
     UtxoData data = {};
     data.txid = Txid(utxo.GetTxid());
     data.vout = utxo.GetVout();
-#ifndef CFD_DISABLE_ELEMENTS
-    if (!utxo.GetAsset().empty()) {
-      data.asset = ConfidentialAssetId(utxo.GetAsset());
-    }
-#endif
     if (!utxo.GetRedeemScript().empty()) {
       data.redeem_script = Script(utxo.GetRedeemScript());
     }
@@ -556,12 +551,67 @@ void TransactionJsonApi::EstimateFee(
   Amount utxo_fee;
   TransactionApi api;
   Amount fee = api.EstimateFee(
-      request->GetTransaction(), utxos, &tx_fee, &utxo_fee,
-      request->GetFeeRate());
+      request->GetTx(), utxos, &tx_fee, &utxo_fee, request->GetFeeRate());
 
   response->SetFeeAmount(fee.GetSatoshiValue());
   response->SetTxFeeAmount(tx_fee.GetSatoshiValue());
   response->SetUtxoFeeAmount(utxo_fee.GetSatoshiValue());
+}
+
+void TransactionJsonApi::FundRawTransaction(
+    FundRawTransactionRequest* request, FundRawTransactionResponse* response) {
+  std::vector<UtxoData> utxos;
+  std::vector<UtxoData> select_utxos;
+
+  for (auto& utxo : request->GetUtxos()) {
+    UtxoData data = {};
+    data.txid = Txid(utxo.GetTxid());
+    data.vout = utxo.GetVout();
+    data.amount = Amount::CreateBySatoshiAmount(utxo.GetAmount());
+    data.descriptor = utxo.GetDescriptor();
+    data.binary_data = nullptr;
+    utxos.push_back(data);
+  }
+  for (auto& utxo : request->GetSelectUtxos()) {
+    UtxoData data = {};
+    data.txid = Txid(utxo.GetTxid());
+    data.vout = utxo.GetVout();
+    data.amount = Amount::CreateBySatoshiAmount(utxo.GetAmount());
+    if (!utxo.GetRedeemScript().empty()) {
+      data.redeem_script = Script(utxo.GetRedeemScript());
+    }
+    data.descriptor = utxo.GetDescriptor();
+    data.binary_data = nullptr;
+    select_utxos.push_back(data);
+  }
+
+  // in parameter
+  FundFeeInfomation& fee_info = request->GetFeeInfo();
+  CoinSelectionOption option;
+  option.InitializeTxSizeInfo();
+  option.SetEffectiveFeeBaserate(fee_info.GetFeeRate());
+  option.SetLongTermFeeBaserate(fee_info.GetLongTermFeeRate());
+  option.SetKnapsackMinimumChange(fee_info.GetKnapsackMinChange());
+  option.SetDustFeeRate(fee_info.GetDustFeeRate());
+
+  NetType net_type = AddressStructApi::ConvertNetType(request->GetNetwork());
+  Amount target_amount =
+      Amount::CreateBySatoshiAmount(request->GetTargetAmount());
+  Amount fee;
+  std::vector<std::string> append_txout_addresses;
+  TransactionApi api;
+  TransactionController txc = api.FundRawTransaction(
+      request->GetTx(), utxos, target_amount, select_utxos,
+      request->GetReserveAddress(), fee_info.GetFeeRate(), &fee, nullptr,
+      &option, &append_txout_addresses, net_type);
+
+  response->SetHex(txc.GetHex());
+  if (!append_txout_addresses.empty()) {
+    response->GetUsedAddresses().push_back(append_txout_addresses[0]);
+  }
+  if (fee_info.GetFeeRate() > 0) {
+    response->SetFeeAmount(fee.GetSatoshiValue());
+  }
 }
 
 }  // namespace json
