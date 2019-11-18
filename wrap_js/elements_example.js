@@ -1065,7 +1065,7 @@ if (!supportFunctions.elements) {
         isBlindIssuance: false,
       }],
       feeRate: 20,
-      transaction: '020000000000010125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a01000000000010c8e0030c1bd6cfbda70607a2e6b954e229da07b9cf199003f44fff9d96ff1e010c49c017a9144c3ab60591ff8463c57aa3a318ed5154fb7652e98700000000',
+      tx: '020000000000010125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a01000000000010c8e0030c1bd6cfbda70607a2e6b954e229da07b9cf199003f44fff9d96ff1e010c49c017a9144c3ab60591ff8463c57aa3a318ed5154fb7652e98700000000',
       isElements: true,
       isBlind: true,
       feeAsset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
@@ -1095,7 +1095,7 @@ if (!supportFunctions.elements) {
         isBlindIssuance: true,
       }],
       feeRate: 20,
-      transaction: '020000000000010125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a01000000000010c8e0030c1bd6cfbda70607a2e6b954e229da07b9cf199003f44fff9d96ff1e010c49c017a9144c3ab60591ff8463c57aa3a318ed5154fb7652e98700000000',
+      tx: '020000000000010125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a01000000000010c8e0030c1bd6cfbda70607a2e6b954e229da07b9cf199003f44fff9d96ff1e010c49c017a9144c3ab60591ff8463c57aa3a318ed5154fb7652e98700000000',
       isElements: true,
       isBlind: true,
       feeAsset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
@@ -1150,18 +1150,19 @@ if (!supportFunctions.elements) {
     coinSelectionResult = SelectUtxos(reqJson);
     console.log('*** Response ***\n', coinSelectionResult);
   }
-}
 
-let parseDescriptorResult;
-{
-  console.log('-- ParseDescriptor start --');
-  const reqJson = {
-    descriptor: 'pkh([e4679995]02f8a0a7e12d38c313d51383ead3fccd3b70439f0c7c4c1ecd897f8767b194fc41)#p79a945u',
-    network: 'liquidv1',
-    bip32DerivationPath: '',
-    isElements: true,
-  };
-  console.log('*** Request ***\n', reqJson);
-  parseDescriptorResult = ParseDescriptor(reqJson);
-  console.log('*** Response ***\n', parseDescriptorResult);
+  let parseDescriptorResult;
+  {
+    console.log('-- ParseDescriptor start --');
+    const reqJson = {
+      descriptor: 'pkh([e4679995]02f8a0a7e12d38c313d51383ead3fccd3b70439f0c7c4c1ecd897f8767b194fc41)#p79a945u',
+      network: 'liquidv1',
+      bip32DerivationPath: '',
+      isElements: true,
+    };
+    console.log('*** Request ***\n', reqJson);
+    parseDescriptorResult = ParseDescriptor(reqJson);
+    console.log('*** Response ***\n', parseDescriptorResult);
+  }
+
 }
