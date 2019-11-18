@@ -27,6 +27,7 @@ const {
   SelectUtxos,
   EstimateFee,
   GetAddressesFromMultisig,
+  ParseDescriptor,
 } = cfdjsModule;
 
 let supportFunctions;
@@ -1133,17 +1134,34 @@ if (!supportFunctions.elements) {
         asset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
         descriptor: 'sh(wpkh([4ff503c6/0\'/0\'/1\']0216a3b1b11e83add2ad65574abed0d395a49773d66c9c6e38ab45351e014c4b17))#za299c3j',
       }],
-      targetAmount: 1090000,
-      targetAsset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+      targets: [{
+        asset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
+        amount: 1090000,
+      }],
       isElements: true,
       feeInfo: {
         txFeeAmount: estimateFeeResult.feeAmount,
         feeRate: 20,
         longTermFeeRate: 20,
+        feeAsset: '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225',
       },
     };
     console.log('*** Request ***\n', reqJson);
     coinSelectionResult = SelectUtxos(reqJson);
     console.log('*** Response ***\n', coinSelectionResult);
   }
+}
+
+let parseDescriptorResult;
+{
+  console.log('-- ParseDescriptor start --');
+  const reqJson = {
+    descriptor: 'pkh([e4679995]02f8a0a7e12d38c313d51383ead3fccd3b70439f0c7c4c1ecd897f8767b194fc41)#p79a945u',
+    network: 'liquidv1',
+    bip32DerivationPath: '',
+    isElements: true,
+  };
+  console.log('*** Request ***\n', reqJson);
+  parseDescriptorResult = ParseDescriptor(reqJson);
+  console.log('*** Response ***\n', parseDescriptorResult);
 }

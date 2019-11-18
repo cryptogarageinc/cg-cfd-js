@@ -20,6 +20,8 @@ namespace js {
 namespace api {
 
 using cfd::ElementsAddressFactory;
+using cfd::api::DescriptorKeyData;
+using cfd::api::DescriptorScriptData;
 using cfd::api::ElementsAddressApi;
 using cfd::core::Address;
 using cfd::core::CfdError;
@@ -272,6 +274,34 @@ ElementsAddressStructApi::CreatePegInAddress(
   result = ExecuteStructApi<
       ElementsCreatePegInAddressRequestStruct,
       ElementsCreatePegInAddressResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+ParseDescriptorResponseStruct ElementsAddressStructApi::ParseDescriptor(
+    const ParseDescriptorRequestStruct& request) {
+  auto call_func = [](const ParseDescriptorRequestStruct& request)
+      -> ParseDescriptorResponseStruct {  // NOLINT
+    ParseDescriptorResponseStruct response;
+
+    NetType net_type = ConvertElementsNetType(request.network);
+
+    ElementsAddressApi api;
+    std::vector<DescriptorScriptData> script_list;
+    std::vector<DescriptorKeyData> multisig_key_list;
+    DescriptorScriptData data = api.ParseOutputDescriptor(
+        request.descriptor, net_type, request.bip32_derivation_path,
+        &script_list, &multisig_key_list);
+
+    // レスポンスとなるモデルへ変換
+    response = AddressStructApi::ConvertDescriptorData(
+        data, script_list, multisig_key_list);
+    return response;
+  };
+
+  ParseDescriptorResponseStruct result;
+  result = ExecuteStructApi<
+      ParseDescriptorRequestStruct, ParseDescriptorResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

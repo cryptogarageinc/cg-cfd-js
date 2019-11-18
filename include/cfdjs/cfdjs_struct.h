@@ -1577,6 +1577,67 @@ struct CreateMultisigResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// ParseDescriptorRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ParseDescriptorRequestStruct 構造体
+ */
+struct ParseDescriptorRequestStruct {
+  bool is_elements = false;                //!< is_elements  // NOLINT
+  std::string descriptor = "";             //!< descriptor  // NOLINT
+  std::string network = "mainnet";         //!< network  // NOLINT
+  std::string bip32_derivation_path = "";  //!< bip32_derivation_path  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// DescriptorKeyJsonStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DescriptorKeyJsonStruct 構造体
+ */
+struct DescriptorKeyJsonStruct {
+  std::string key_type = "";  //!< key_type  // NOLINT
+  std::string key = "";       //!< key  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// DescriptorScriptJsonStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DescriptorScriptJsonStruct 構造体
+ */
+struct DescriptorScriptJsonStruct {
+  uint32_t depth = 0;                         //!< depth  // NOLINT
+  std::string locking_script = "";            //!< locking_script  // NOLINT
+  std::string address = "";                   //!< address  // NOLINT
+  std::string hash_type = "";                 //!< hash_type  // NOLINT
+  std::string redeem_script = "";             //!< redeem_script  // NOLINT
+  std::string key_type = "";                  //!< key_type  // NOLINT
+  std::string key = "";                       //!< key  // NOLINT
+  std::vector<DescriptorKeyJsonStruct> keys;  //!< keys  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ParseDescriptorResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ParseDescriptorResponseStruct 構造体
+ */
+struct ParseDescriptorResponseStruct {
+  std::string type = "";                            //!< type  // NOLINT
+  std::string address = "";                         //!< address  // NOLINT
+  std::string locking_script = "";                  //!< locking_script  // NOLINT
+  std::string hash_type = "";                       //!< hash_type  // NOLINT
+  std::string redeem_script = "";                   //!< redeem_script  // NOLINT
+  std::vector<DescriptorScriptJsonStruct> scripts;  //!< scripts  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // UtxoJsonDataStruct
 // ------------------------------------------------------------------------
 /**
@@ -1588,6 +1649,18 @@ struct UtxoJsonDataStruct {
   int64_t amount = 0;           //!< amount  // NOLINT
   std::string asset = "";       //!< asset  // NOLINT
   std::string descriptor = "";  //!< descriptor  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// TargetAmountMapDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief TargetAmountMapDataStruct 構造体
+ */
+struct TargetAmountMapDataStruct {
+  std::string asset = "";  //!< asset  // NOLINT
+  int64_t amount = 0;      //!< amount  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1615,8 +1688,8 @@ struct CoinSelectionFeeInfomationFieldStruct {
 struct SelectUtxosRequestStruct {
   std::vector<UtxoJsonDataStruct> utxos;           //!< utxos  // NOLINT
   int64_t target_amount = 0;                       //!< target_amount  // NOLINT
-  std::string target_asset = "";                   //!< target_asset  // NOLINT
   bool is_elements = false;                        //!< is_elements  // NOLINT
+  std::vector<TargetAmountMapDataStruct> targets;  //!< targets  // NOLINT
   CoinSelectionFeeInfomationFieldStruct fee_info;  //!< fee_info  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1628,10 +1701,11 @@ struct SelectUtxosRequestStruct {
  * @brief SelectUtxosResponseStruct 構造体
  */
 struct SelectUtxosResponseStruct {
-  std::vector<UtxoJsonDataStruct> utxos;  //!< utxos  // NOLINT
-  int64_t selected_amount = 0;            //!< selected_amount  // NOLINT
-  int64_t fee_amount = 0;                 //!< fee_amount  // NOLINT
-  int64_t utxo_fee_amount = 0;            //!< utxo_fee_amount  // NOLINT
+  std::vector<UtxoJsonDataStruct> utxos;                    //!< utxos  // NOLINT
+  int64_t selected_amount = 0;                              //!< selected_amount  // NOLINT
+  std::vector<TargetAmountMapDataStruct> selected_amounts;  //!< selected_amounts  // NOLINT
+  int64_t fee_amount = 0;                                   //!< fee_amount  // NOLINT
+  int64_t utxo_fee_amount = 0;                              //!< utxo_fee_amount  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

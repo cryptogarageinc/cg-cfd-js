@@ -539,9 +539,11 @@ void TransactionJsonApi::EstimateFee(
     UtxoData data = {};
     data.txid = Txid(utxo.GetTxid());
     data.vout = utxo.GetVout();
+#ifndef CFD_DISABLE_ELEMENTS
     if (!utxo.GetAsset().empty()) {
       data.asset = ConfidentialAssetId(utxo.GetAsset());
     }
+#endif
     if (!utxo.GetRedeemScript().empty()) {
       data.redeem_script = Script(utxo.GetRedeemScript());
     }
