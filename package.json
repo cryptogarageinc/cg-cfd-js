@@ -114,7 +114,7 @@
   "dependencies": {
     "big-integer": "^1.6.26",
     "bindings": "*",
-    "cmake-js": "^7.3.0",
+    "cmake-js": "^8.0.0",
     "nan": "^2.14.0",
     "node-addon-api": "^1.6.3",
     "node-gyp": "^12.1.0",
